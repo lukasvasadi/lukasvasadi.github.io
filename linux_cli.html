@@ -35,6 +35,7 @@
                 <div class="fixed">
                     <h3>Contents</h3>
                     <ul>
+                        <li><a href="#basic-utilities">Basic utilities</a></li>
                         <li><a href="#filesystem-nav">Navigating filesystem</a></li>
                         <li><a href="#applications">Managing applications</a></li>
                     </ul>
@@ -42,8 +43,35 @@
             </div>
             <div class="content">
                 <section class="code-section">
+                    <h3 id="basic-utilities">Basic utilities</h3>
+                    <div class="definitions">
+                        <ul>
+                            <li><span class="code-snippet">cat</span></li>
+                            <li><span class="code-snippet">head</span></li>
+                            <li><span class="code-snippet">tail</span></li>
+                            <li><span class="code-snippet">man</span></li>
+                            <li><span class="code-snippet">sudo</span></li>
+                            <li><span class="code-snippet">|</span></li>
+                        </ul>
+                        <ul>
+                            <li>type out a file (or combine files)</li>
+                            <li>show first few lines of file</li>
+                            <li>show last few lines of file</li>
+                            <li>view documentation</li>
+                            <li>grant admin privileges</li>
+                            <li>pipe data between programs</li>
+                        </ul>
+                    </div>
+                    <p>
+                        The command is the name of the program being executed. Many commands accept arguments and 
+                        options, the latter often preceded with one or two dashes, e.g., 
+                        <span class="code-snippet">-p</span> or <span class="code-snippet">--print</span>, to be
+                        distinguishable.
+                    </p>
+                </section>
+                <section class="code-section">
                     <h3 id="filesystem-nav">Filesystem navigation</h3>
-                    <p>This code exlains filesystem navigation.</p>
+                    <p>This code exlains filesystem navigation <span class="code-snippet">here</span>.</p>
                     <div class="code-block">
                         <p class="code-comment"># example code block</p>
                         <p>$ sudo apt update && sudo apt upgrade -y</p>
