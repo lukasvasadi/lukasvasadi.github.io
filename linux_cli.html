@@ -5,36 +5,78 @@
     <meta charset="UTF-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Renaissance Engineering</title>
+    <title>Lukas Vasadi</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="stylesheet" href="css/styles.css" />
 </head>
 
 <body>
-    <main>
-        <nav>
-			<a href="index.html" class="code">lukasvasadi</a>
-			<div id="hidden-links">
-				<a href="about.html">About</a>
-				<a href="linux_cli.html">Linux</a>
-				<a href="coming-soon.html">Arduino</a>
-			</div>
-			<!-- Hamburger menu -->
-			<a href="javascript:void(0);" class="icon" id="hamburger" onclick="menuFunction()"><i class="fa fa-bars"></i></a>
-		</nav>
-		<div class="pop-up" id="mobile-dropdown">
-			<a href="about.html">About</a>
-			<a href="linux_cli.html">Linux</a>
-			<a href="coming-soon.html">Arduino</a>
-			<a href="" class="icon"><i class="fa fa-envelope"></i></a>
-		</div>
+    <nav>
+        <a href="index.html" class="code-text">lukasvasadi</a>
+        <div id="desktop-menu">
+            <a href="about.html">About</a>
+            <a href="linux_cli.html">Linux</a>
+            <a href="coming-soon.html">Arduino</a>
+            <a href="mailto:lukas.vasadi@gmail.com"><i class="fa fa-envelope"></i></a>
+        </div>
+        <!-- Hamburger menu -->
+        <a href="javascript:void(0);" class="hamburger" onclick="menuFunction()"><i class="fa fa-bars"></i></a>
+    </nav>
+    <div id="mobile-menu">
+        <a href="about.html">About</a>
+        <a href="linux_cli.html">Linux</a>
+        <a href="coming-soon.html">Arduino</a>
+        <a href="lukas.vasadi@gmail.com" class="icon"><i class="fa fa-envelope"></i></a>
+    </div>
+    <main> 
+        <h1 class="center extra-padding">Mastering the Linux command line interface</h1>
         <article>
-            <h1>How to use the Linux command line interface</h1>
-            <div class="code code-block">
-                <p># example code block</p>
-                <p>$ sudo apt update && sudo apt upgrade -y</p>
+            <div class="toc">
+                <div class="fixed">
+                    <h3>Contents</h3>
+                    <ul>
+                        <li><a href="#filesystem-nav">Navigating filesystem</a></li>
+                        <li><a href="#applications">Managing applications</a></li>
+                    </ul>
+                </div>
             </div>
-            
+            <div class="content">
+                <section class="code-section">
+                    <h3 id="filesystem-nav">Filesystem navigation</h3>
+                    <p>This code exlains filesystem navigation.</p>
+                    <div class="code-block">
+                        <p class="code-comment"># example code block</p>
+                        <p>$ sudo apt update && sudo apt upgrade -y</p>
+                    </div>
+                    <div class="code-block">
+                        <p class="code-comment"># example code block</p>
+                        <p>$ sudo apt update && sudo apt upgrade -y</p>
+                    </div>
+                    <div class="code-block">
+                        <p class="code-comment"># example code block</p>
+                        <p>$ sudo apt update && sudo apt upgrade -y</p>
+                    </div>
+                    <div class="code-block">
+                        <p class="code-comment"># example code block</p>
+                        <p>$ sudo apt update && sudo apt upgrade -y</p>
+                    </div>
+                    <div class="code-block">
+                        <p class="code-comment"># example code block</p>
+                        <p>$ sudo apt update && sudo apt upgrade -y</p>
+                    </div>
+                </section>
+                <section class="code-section">
+                    <h3 id="applications">Applications</h3>
+                    <div class="code-block">
+                        <p class="code-comment"># example code block</p>
+                        <p>$ sudo apt update && sudo apt upgrade -y</p>
+                    </div>
+                    <div class="code-block">
+                        <p class="code-comment"># example code block</p>
+                        <p>$ sudo apt update && sudo apt upgrade -y</p>
+                    </div>
+                </section>
+            </div>
         </article>
     </main>
 

@@ -1,4 +1,4 @@
-var links = document.getElementById("mobile-dropdown");
+var links = document.getElementById("mobile-menu");
 
 function menuFunction() {
     if (links.style.visibility === "visible") {

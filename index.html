@@ -12,23 +12,24 @@
 </head>
 
 <body>
-	<main>
-		<nav>
-			<a href="index.html" class="code">lukasvasadi</a>
-			<div id="hidden-links">
-				<a href="about.html">About</a>
-				<a href="linux_cli.html".html">Linux</a>
-				<a href="coming-soon.html">Arduino</a>
-			</div>
-			<!-- Hamburger menu -->
-			<a href="javascript:void(0);" class="icon" id="hamburger" onclick="menuFunction()"><i class="fa fa-bars"></i></a>
-		</nav>
-		<div class="pop-up" id="mobile-dropdown">
+	<nav>
+		<a href="index.html" class="code-text">lukasvasadi</a>
+		<div id="desktop-menu">
 			<a href="about.html">About</a>
-			<a href="linux_cli.html">Linux</a>
+			<a href="linux_cli.html".html">Linux</a>
 			<a href="coming-soon.html">Arduino</a>
-			<a href="" class="icon"><i class="fa fa-envelope"></i></a>
+			<a href="mailto:lukas.vasadi@gmail.com"><i class="fa fa-envelope"></i></a>
 		</div>
+		<!-- Hamburger menu -->
+		<a href="javascript:void(0);" class="hamburger" onclick="menuFunction()"><i class="fa fa-bars"></i></a>
+	</nav>
+	<div id="mobile-menu">
+		<a href="about.html">About</a>
+		<a href="linux_cli.html">Linux</a>
+		<a href="coming-soon.html">Arduino</a>
+		<a href="mailto:lukas.vasadi@gmail.com"><i class="fa fa-envelope"></i></a>
+	</div>
+	<main>
 		<div id="landing">
 			<div>
 				<img class="banner" src="images/programming_1000x800.jpg" alt="">
@@ -40,29 +41,29 @@
 		</div>
 		<section class="featured">
 			<div class="grid">
-				<div class="post-container">
+				<div class="thumbnail-container">
 					<h2><a href="linux_cli.html">Command Line Interface</a></h2>
 					<a href="linux_cli.html"><img src="images/ubuntu_cli_sudo_500x331.jpg" alt=""></a>
-					<div class="text-container">
+					<div class="thumbnail-container-text">
 						<p>
 							Linux thrives on the command line. Learn to become a superuser.
 						</p>
 					</div>
 				</div>
-				<div class="post-container">
+				<div class="thumbnail-container">
 					<h2><a href="coming-soon.html">Basic Git Commands</a></h2>
 					<a href="coming-soon.html"><img src="images/git_500x331.jpg" alt=""></a>
-					<div class="text-container">
+					<div class="thumbnail-container-text">
 						<p>
 							Git is one of the most useful tools for a software engineer. This reference covers some of the 
 							standard commands for managing any repository.
 						</p>
 					</div>
 				</div>
-				<div class="post-container">
+				<div class="thumbnail-container">
 					<h2><a href="coming-soon.html">Raspberry Pi 4</a></h2>
 					<a href="coming-soon.html"><img src="images/raspi_500x331.jpg" alt=""></a>
-					<div class="text-container">
+					<div class="thumbnail-container-text">
 						<p>
 							One of the best learning instruments for computer engineering, the Raspberry Pi can accelerate 
 							your hardware prototyping.
