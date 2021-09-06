@@ -282,10 +282,7 @@ footer {
     .featured .post-container:last-child {
         grid-column: 3;
     }
-}
 
-/* Desktops */
-@media screen and (min-width: 1200px) {
     #landing {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
@@ -295,4 +292,9 @@ footer {
     #landing-image {
         width: 50vw;
     }
+}
+
+/* Desktops */
+@media screen and (min-width: 1200px) {
+    
 }
