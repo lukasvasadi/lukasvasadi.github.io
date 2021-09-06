@@ -1,15 +1,9 @@
-var links = document.getElementById("hidden-links");
-var courtesy = document.getElementById("photo-courtesy");
+var links = document.getElementById("mobile-dropdown");
 
 function menuFunction() {
-    if (links.style.display === "block") {
-        links.style.display = "none";
-        courtesy.style.display = "block";
+    if (links.style.visibility === "visible") {
+        links.style.visibility = "hidden";
     } else {
-        links.style.display = "block";
-        // Check sizes of both screen and browser window
-        if (screen.width < 960 || window.innerWidth < 960) {
-            courtesy.style.display = "none";
-        }
+        links.style.visibility = "visible";
     }
 }

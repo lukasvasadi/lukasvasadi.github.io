@@ -13,59 +13,60 @@
 
 <body>
 	<main>
-		<div class="landing">
-			<nav>
-				<a href="index.html">LUKAS J. VASADI</a>
-				<div id="hidden-links">
-					<a href="about.html">About</a>
-					<a href="blog.html">Blog</a>
-				</div>
-				<!-- Hamburger menu -->
-				<a href="javascript:void(0);" class="icon" onclick="menuFunction()"><i class="fa fa-bars"></i></a>
-			</nav>
-			<p id="photo-courtesy">Photo courtesy of <a href="https://bybert.com/">By Bert Media</a></p>
-			<div id="landing-welcome">
-				<h3>Welcome</h3>
-				<p>
-					Over the past few years I've traveled across the US, UK and Europe. This site documents my
-					adventures.
-				</p>
+		<nav>
+			<a href="index.html" class="code">lukasvasadi</a>
+			<div id="hidden-links">
+				<a href="about.html">About</a>
+				<a href="blog.html">Linux</a>
+				<a href="blog.html">Arduino</a>
+				
+			</div>
+			<!-- Hamburger menu -->
+			<a href="javascript:void(0);" class="icon" id="hamburger" onclick="menuFunction()"><i class="fa fa-bars"></i></a>
+		</nav>
+		<div class="pop-up" id="mobile-dropdown">
+			<a href="about.html">About</a>
+			<a href="blog.html">Linux</a>
+			<a href="blog.html">Arduino</a>
+			<a href="" class="icon"><i class="fa fa-envelope"></i></a>
+		</div>
+		<div id="landing">
+			<div>
+				<img class="banner" src="images/programming.jpg" alt="">
+			</div>
+			<div id="landing-msg">
+				<h1>Linux, Arduino, Raspberry Pi, and more...</h1>
+				<p>Blend hardware and software to create feature-rich products <i class="fa fa-rocket"></i></p>
 			</div>
 		</div>
-		<section class="featured-posts">
-			<h2>FEATURED POSTS</h2>
+		<section class="featured">
 			<div class="grid">
 				<div class="post-container">
-					<img src="images/paris/louve.jpg" alt="">
-					<p>January 21, 2018</p>
-					<h3><a href="posts/post-05.html">Paris et le Jardin du Luxembourg</a></h3>
+					<h2><a href="posts/post-05.html">Command Line Interface</a></h2>
+					<img src="images/ubuntu_cli_sudo.jpg" alt="">
 					<div class="text-container">
 						<p>
-							At one point, we came across a young couple standing in front of the palace, looking as if they were posing for a photo. 
-							We looked for someone holding a camera, but could find no one, and then realized that this couple was just standing there 
-							soaking in the moment, holding each other in a light embrace. <a href="posts/post-05.html">Read more...</a>
+							Linux thrives on the command line. Learn to become a superuser.
 						</p>
 					</div>
 				</div>
 				<div class="post-container">
-					<img src="images/hitchhiking/hitchhiking-thumbnail.jpg" alt="">
-					<p>August 2, 2020</p>
-					<h3><a href="post-02.html">Hitchhiking Out West</a></h3>
+					<h2><a href="post-02.html">Basic Git Commands</a></h2>
+					<img src="images/git.jpg" alt="">
 					<div class="text-container">
 						<p>
-							"Don't expect our first ride to be a 'Beamer, Benz, or Bentley,'" said Bret. Five minutes later, 
-							a brand new Mercedes Benz SUV pulled over and honked at us. Our first ride. <a href="posts/post-02.html">Read more...</a>
+							Git is one of the most useful tools for a software engineer. This reference covers some of the 
+							standard commands for managing any repository.
 						</p>
 					</div>
 				</div>
 				<div class="post-container">
-					<img src="images/grand-canyon/IMG_0128.jpg" alt="">
-					<p>August 8, 2017</p>
-					<h3><a href="posts/post-01.html">Backpacking the Grand Canyon</a></h3>
+					<h2><a href="posts/post-01.html">Raspberry Pi 4</a></h2>
+					<img src="images/raspi.jpg" alt="">
 					<div class="text-container">
 						<p>
-							What signifies manhood better than sleeping out west under the stars, knowing that scorpions 
-							would probably crawl into our sleeping bags? <a href="posts/post-01.html">Read more...</a>
+							One of the best learning instruments for computer engineering, the Raspberry Pi can accelerate 
+							your hardware prototyping.
 						</p>
 					</div>
 				</div>
@@ -74,7 +75,7 @@
 	</main>
 
 	<footer>
-		<p>Copyright &copy; 2020 Lukas Vasadi</p>
+		<p>Copyright &copy; 2021 Lukas Vasadi</p>
 	</footer>
 
 	<script src="http://code.jquery.com/jquery-3.5.1.min.js"
