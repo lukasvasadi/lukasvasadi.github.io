@@ -52,6 +52,9 @@
                             <li><span class="code-snippet">man</span></li>
                             <li><span class="code-snippet">sudo</span></li>
                             <li><span class="code-snippet">|</span></li>
+                            <li><span class="code-snippet">ssh</span></li>
+                            <li><span class="code-snippet">pwd</span></li>
+                            <li><span class="code-snippet">cd</span></li>
                         </ul>
                         <ul>
                             <li>type out a file (or combine files)</li>
@@ -60,6 +63,9 @@
                             <li>view documentation</li>
                             <li>grant admin privileges</li>
                             <li>pipe data between programs</li>
+                            <li>secure shell remote machine</li>
+                            <li>print working directory</li>
+                            <li>change directory</li>
                         </ul>
                     </div>
                     <p>
@@ -71,26 +77,53 @@
                 </section>
                 <section class="code-section">
                     <h3 id="filesystem-nav">Filesystem navigation</h3>
-                    <p>This code exlains filesystem navigation <span class="code-snippet">here</span>.</p>
+                    <p>Locate programs with the <span class="code-snippet">which</span> or 
+                        <span class="code-snippet">whereis</span> utilities, the latter of which searches
+                        across a broader range of system directories:</p>
                     <div class="code-block">
-                        <p class="code-comment"># example code block</p>
-                        <p>$ sudo apt update && sudo apt upgrade -y</p>
+                        <p>$ which &lt;program&gt;</p>
+                        <p>$ whereis &lt;program&gt;</p>
                     </div>
+                    <p>Use <span class="code-snippet">cd</span>to navigate directories:</p>
                     <div class="code-block">
-                        <p class="code-comment"># example code block</p>
-                        <p>$ sudo apt update && sudo apt upgrade -y</p>
+                        <p class="code-comment"># change to home directory</p>
+                        <p>$ cd</p>
+                        <p>$ cd ~</p>
+                        <p class="code-comment"># change to root directory</p>
+                        <p>$ cd /</p>
+                        <p class="code-comment"># change to parent directory</p>
+                        <p>$ cd ..</p>
+                        <p class="code-comment"># change to previous directory</p>
+                        <p>$ cd -</p>
                     </div>
+                    <p>When referencing pathnames, remember that absolute pathnames must be preceded by 
+                        <span class="code-snippet">/</span>:
+                    </p>
                     <div class="code-block">
-                        <p class="code-comment"># example code block</p>
-                        <p>$ sudo apt update && sudo apt upgrade -y</p>
+                        <p>$ cd /usr/bin</p>
+                        <p>$ cd ../../usr/bin</p>
                     </div>
+                    <p>Use the <span class="code-snippet">tree</span>command to view the entire filesystem
+                        (note that this command may have to be installed with <span class="code-snippet">snap</span>):</p>
                     <div class="code-block">
-                        <p class="code-comment"># example code block</p>
-                        <p>$ sudo apt update && sudo apt upgrade -y</p>
+                        <p class="code-comment"># the -d option displays directories while suppressing file names</p>
+                        <p>$ tree -d</p>
                     </div>
+                    <p>The <span class="code-snippet">ls</span>command lists the contents of the working directory:</p>
                     <div class="code-block">
-                        <p class="code-comment"># example code block</p>
-                        <p>$ sudo apt update && sudo apt upgrade -y</p>
+                        <p>$ ls</p>
+                        <p class="code-comment"># present in list view</p>
+                        <p>$ ls -l</p>
+                        <p class="code-comment"># include hidden files</p>
+                        <p>$ ls -a</p>
+                    </div>
+                    <p>Use <span class="code-snippet">pushd</span>to navigate the filesystem and store visited directories
+                        to a stack for later reference:</p>
+                    <div class="code-block">
+                        <p>$ pwd</p>
+                        <p class="terminal-output">/usr</p>
+                        <p>$ pushd bin</p>
+                        <p class="terminal-output">/usr/bin /usr</p>
                     </div>
                 </section>
                 <section class="code-section">

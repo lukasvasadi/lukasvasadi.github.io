@@ -133,7 +133,7 @@ ul {
 }
 
 li {
-    padding-bottom: 0.5rem;
+    padding-bottom: 0.8rem;
     list-style-type: circle;
     list-style-position: inside;
 }
@@ -184,7 +184,8 @@ footer {
 
 .toc {
     background-color: var(--background-color);
-    position: sticky;
+    /* position: sticky; */
+    position: relative;
     top: 0;
     padding-bottom: 2rem;
     z-index: 1;
@@ -232,6 +233,10 @@ footer {
 
 .code-comment {
     font-style: italic;
+}
+
+.terminal-output {
+    color: #D6C13A;
 }
 
 .code-snippet {
