@@ -15,8 +15,7 @@
         <a href="index.html" class="code-text">lukasvasadi</a>
         <div id="desktop-menu">
             <a href="about.html">About</a>
-            <a href="linux_cli.html">Linux</a>
-            <a href="coming-soon.html">Arduino</a>
+            <a href="cheatsheet-gallery.html">Cheatsheets</a>
             <a href="mailto:lukas.vasadi@gmail.com"><i class="fa fa-envelope"></i></a>
         </div>
         <!-- Hamburger menu -->
@@ -24,8 +23,7 @@
     </nav>
     <div id="mobile-menu">
         <a href="about.html">About</a>
-        <a href="linux_cli.html">Linux</a>
-        <a href="coming-soon.html">Arduino</a>
+        <a href="cheatsheet-gallery.html">Cheatsheets</a>
         <a href="lukas.vasadi@gmail.com" class="icon"><i class="fa fa-envelope"></i></a>
     </div>
     <main> 
@@ -37,7 +35,7 @@
                     <ul>
                         <li><a href="#basic-utilities">Basic utilities</a></li>
                         <li><a href="#filesystem-nav">Navigating filesystem</a></li>
-                        <li><a href="#applications">Managing applications</a></li>
+                        <li><a href="#applications">Working with files</a></li>
                     </ul>
                 </div>
             </div>
@@ -77,14 +75,17 @@
                 </section>
                 <section class="code-section">
                     <h3 id="filesystem-nav">Filesystem navigation</h3>
-                    <p>Locate programs with the <span class="code-snippet">which</span> or 
+                    <p>
+                        Locate programs with the <span class="code-snippet">which</span> or 
                         <span class="code-snippet">whereis</span> utilities, the latter of which searches
-                        across a broader range of system directories:</p>
+                        across a broader range of system directories and also prints the location of the 
+                        <span class="code-snippet">man</span> page:
+                    </p>
                     <div class="code-block">
                         <p>$ which &lt;program&gt;</p>
                         <p>$ whereis &lt;program&gt;</p>
                     </div>
-                    <p>Use <span class="code-snippet">cd</span>to navigate directories:</p>
+                    <p>Use <span class="code-snippet">cd</span> to navigate directories:</p>
                     <div class="code-block">
                         <p class="code-comment"># change to home directory</p>
                         <p>$ cd</p>
@@ -96,20 +97,23 @@
                         <p class="code-comment"># change to previous directory</p>
                         <p>$ cd -</p>
                     </div>
-                    <p>When referencing pathnames, remember that absolute pathnames must be preceded by 
+                    <p>
+                        When referencing pathnames, remember that absolute pathnames must be preceded by 
                         <span class="code-snippet">/</span>:
                     </p>
                     <div class="code-block">
                         <p>$ cd /usr/bin</p>
                         <p>$ cd ../../usr/bin</p>
                     </div>
-                    <p>Use the <span class="code-snippet">tree</span>command to view the entire filesystem
-                        (note that this command may have to be installed with <span class="code-snippet">snap</span>):</p>
+                    <p>
+                        Use the <span class="code-snippet">tree</span> command to view the entire filesystem
+                        (note that this command may have to be installed with <span class="code-snippet">snap</span>):
+                    </p>
                     <div class="code-block">
                         <p class="code-comment"># the -d option displays directories while suppressing file names</p>
                         <p>$ tree -d</p>
                     </div>
-                    <p>The <span class="code-snippet">ls</span>command lists the contents of the working directory:</p>
+                    <p>The <span class="code-snippet">ls</span> command lists the contents of the working directory:</p>
                     <div class="code-block">
                         <p>$ ls</p>
                         <p class="code-comment"># present in list view</p>
@@ -117,24 +121,89 @@
                         <p class="code-comment"># include hidden files</p>
                         <p>$ ls -a</p>
                     </div>
-                    <p>Use <span class="code-snippet">pushd</span>to navigate the filesystem and store visited directories
-                        to a stack for later reference:</p>
+                    <p>
+                        Use <span class="code-snippet">pushd</span> to navigate the filesystem and store visited directories
+                        to a stack for later reference:
+                    </p>
                     <div class="code-block">
                         <p>$ pwd</p>
                         <p class="terminal-output">/usr</p>
                         <p>$ pushd bin</p>
                         <p class="terminal-output">/usr/bin /usr</p>
                     </div>
+                    <p>
+                        Similarly, use <span class="code-snippet">popd</span> to revisit previous directories in reverse order. 
+                        The <span class="code-snippet">dirs</span> command prints a list of recent directories stacked with <span class="code-snippet">pushd</span>.
+                    </p>
                 </section>
                 <section class="code-section">
-                    <h3 id="applications">Applications</h3>
+                    <h3 id="applications">Working with files</h3>
+                    <p>There are many command line utilities for viewing and reconfiguring files.</p>
                     <div class="code-block">
-                        <p class="code-comment"># example code block</p>
-                        <p>$ sudo apt update && sudo apt upgrade -y</p>
+                        <p class="code-comment"># load file contents in terminal window</p>
+                        <p>$ cat &lt;filename&gt;</p>
+                        <p class="code-comment"># load file contents with line numbers</p>
+                        <p>$ cat -n &lt;filename&gt;</p>
+                        <p class="code-comment"># load file contents in reverse</p>
+                        <p>$ tac &lt;filename&gt;</p>
                     </div>
+                    <p>
+                        To see one page of text at a time, use the <span class="code-snippet">less</span> command and press the 
+                        spacebar to move through the file.
+                    </p>
                     <div class="code-block">
-                        <p class="code-comment"># example code block</p>
-                        <p>$ sudo apt update && sudo apt upgrade -y</p>
+                        <p class="code-comment"># show one page of text</p>
+                        <p>$ less &lt;filename&gt;</p>
+                        <p class="code-comment"># show one page of text with line numbers</p>
+                        <p>$ less -N &lt;filename&gt;</p>
+                    </div>
+                    <p>
+                        The <span class="code-snippet">head</span> and <span class="code-snippet">tail</span> commands display the
+                        first or last 10 lines of a file, respectively.
+                    </p>
+                    <div class="code-block">
+                        <p class="code-comment"># show first 10 lines</p>
+                        <p>$ head &lt;filename&gt;</p>
+                        <p class="code-comment"># specify number of lines</p>
+                        <p>$ head -20 &lt;filename&gt;</p>
+                        <p class="code-comment"># show last 10 lines</p>
+                        <p>$ tail &lt;filename&gt;</p>
+                        <p class="code-comment"># specify number of lines</p>
+                        <p>$ tail -20 &lt;filename&gt;</p>
+                    </div>
+                    <p>
+                        The <span class="code-snippet">touch</span> utility is commonly used to create new files for later usage, but 
+                        can also update/modify the timestamp of an existing file.
+                    </p>
+                    <div class="code-block">
+                        <p class="code-comment"># create new file in current directory</p>
+                        <p>$ touch &lt;filename&gt;</p>
+                        <p class="code-comment"># update the date and timestamp of an existing file</p>
+                        <p>$ touch &lt;filename&gt;</p>
+                        <p class="code-comment"># modify the date and timestamp of an existing file MM DD TIME</p>
+                        <p>$ touch -t 01011200 &lt;filename&gt;</p>
+                    </div>
+                    <p>
+                        Use <span class="code-snippet">mkdir</span> and <span class="code-snippet">rmdir</span> to manage directories.
+                    </p>
+                    <div class="code-block">
+                        <p class="code-comment"># create new local directory</p>
+                        <p>$ mkdir &lt;dirname&gt;</p>
+                        <p class="code-comment"># create new directory with specific path</p>
+                        <p>$ mkdir &lt;dirpath&gt;</p>
+                        <p class="code-comment"># delete an empty directory</p>
+                        <p>$ rm &lt;dirname&gt;</p>
+                        <p class="code-comment"># delete a directory with contents</p>
+                        <p>$ rm -rf &lt;dirname&gt;</p>
+                    </div>
+                    <p>
+                        The <span class="code-snippet">mv</span> utility can both rename and relocate files.
+                    </p>
+                    <div class="code-block">
+                        <p class="code-comment"># rename existing file</p>
+                        <p>$ mv &lt;filename&gt; &lt;new-filename&gt;</p>
+                        <p class="code-comment"># relocate file</p>
+                        <p>$ mv &lt;filename&gt; &lt;new-filepath&gt;</p>
                     </div>
                 </section>
             </div>

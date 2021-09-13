@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+	<title>Lukas Vasadi</title>
+	<!-- Load an icon library to show a hamburger menu (bars) on small screens -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="css/styles.css" />
+</head>
+
+<body>
+	<nav>
+		<a href="index.html" class="code-text">lukasvasadi</a>
+		<div id="desktop-menu">
+			<a href="about.html">About</a>
+			<a href="cheatsheet-gallery.html".html">Cheatsheets</a>
+			<a href="mailto:lukas.vasadi@gmail.com"><i class="fa fa-envelope"></i></a>
+		</div>
+		<!-- Hamburger menu -->
+		<a href="javascript:void(0);" class="hamburger" onclick="menuFunction()"><i class="fa fa-bars"></i></a>
+	</nav>
+	<div id="mobile-menu">
+		<a href="about.html">About</a>
+		<a href="cheatsheet-gallery.html">Cheatsheets</a>
+		<a href="mailto:lukas.vasadi@gmail.com"><i class="fa fa-envelope"></i></a>
+	</div>
+	<main>
+        <h1 class="center extra-padding">Cheatsheet gallery</h1>
+        <div class="grid">
+            <div class="thumbnail-container">
+                <h2><a href="linux-cli.html">Linux Command Line</a></h2>
+                <a href="linux-cli.html"><img src="images/ubuntu_cli_sudo_500x331.jpg" alt=""></a>
+                <div class="thumbnail-container-text">
+                    <p>
+                        Linux thrives on the command line. Learn to become a superuser.
+                    </p>
+                </div>
+            </div>
+            <div class="thumbnail-container">
+                <h2><a href="linux_cli.html">PowerShell</a></h2>
+                <a href="coming-soon.html"><img src="images/powershell_500x333.jpg" alt=""></a>
+                <div class="thumbnail-container-text">
+                    <p>
+                        One of the most powerful tools for modern IT administration.
+                    </p>
+                </div>
+            </div>
+            <div class="thumbnail-container">
+                <h2><a href="coming-soon.html">Git</a></h2>
+                <a href="coming-soon.html"><img src="images/git_500x331.jpg" alt=""></a>
+                <div class="thumbnail-container-text">
+                    <p>
+                        Git is one of the most useful tools for a software engineer. This reference covers some of the 
+                        standard commands for managing any repository.
+                    </p>
+                </div>
+            </div>
+            <div class="thumbnail-container">
+                <h2><a href="coming-soon.html">Raspberry Pi 4</a></h2>
+                <a href="coming-soon.html"><img src="images/raspi_500x331.jpg" alt=""></a>
+                <div class="thumbnail-container-text">
+                    <p>
+                        One of the best learning instruments for computer engineering, the Raspberry Pi can accelerate 
+                        your hardware prototyping.
+                    </p>
+                </div>
+            </div>
+        </div>
+	</main>
+
+	<footer>
+		<p>Copyright &copy; 2021 Lukas Vasadi</p>
+	</footer>
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="js/main.js"></script>
+</body>
+
+</html>
