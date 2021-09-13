@@ -301,6 +301,7 @@ footer {
     margin: 1rem auto;
     max-width: 96%;
     text-align: center;
+    border-radius: 10px;
 }
 
 .thumbnail-container-text {
