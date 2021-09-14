@@ -10,7 +10,8 @@
     --background-color-code: #111;
 	--text-color: #f0f0f0;
     --text-color-alt: #222;
-    --text-color-code: #D6D6D6
+    --text-color-code: #D6D6D6;
+    --powershell: #0B4EAA;
 }
 
 * {
@@ -224,7 +225,7 @@ footer {
     font-family: 'Fira Code', 'Roboto Condensed', sans-serif;
     font-size: 16px;
     color: var(--text-color-code);
-    border-radius: 20px;
+    border-radius: 10px;
 }
 
 .code-block p {
@@ -244,6 +245,7 @@ footer {
     font-family: 'Fira Code', 'Roboto Condensed', sans-serif;
     font-size: 17px;
     padding: 0.3rem;
+    border-radius: 5px;
 }
 
 /* default code */
@@ -311,6 +313,14 @@ footer {
     text-align: left;
 }
 
+.powershell .code-block {
+    background-color: var(--powershell);
+}
+
+.powershell .code-snippet {
+    background-color: var(--powershell);
+}
+
 /* Small tablets and sideways phones */
 @media screen and (min-width: 600px) {
     article {
@@ -356,6 +366,7 @@ footer {
     article {
         /* width: 60%; */
         padding-top: 2rem;
+        width: 90%;
     }
 
     nav a {
