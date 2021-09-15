@@ -206,6 +206,33 @@
                         <p>$ mv &lt;filename&gt; &lt;new-filepath&gt;</p>
                     </div>
                 </section>
+                <section class="code-section">
+                    <h3 id="applications">Searching for files</h3>
+                    <p>
+                        When interacting with the command line, there are always three standard file streams in operation:
+                        <span class="code-snippet">stdin</span>, <span class="code-snippet">stdout</span>, and 
+                        <span class="code-snippet">stderr</span>. Usually, <span class="code-snippet">stdin</span> captures
+                        user input while <span class="code-snippet">stdout</span> and <span class="code-snippet">stderr</span>
+                        print feedback via the terminal, though <span class="code-snippet">stderr</span> often targets an error
+                        logging file. The user can redirect these file streams to pipe data between various files and programs.
+                    </p>
+                    <p>
+                        The input source and output destination of a program can be changed with the 
+                        <span class="code-snippet">&lt;</span> and <span class="code-snippet">&gt;</span> symbols, respectively:
+                    </p>
+                    <div class="code-block">
+                        <p class="code-comment"># redirect program input</p>
+                        <p>$ do_something &lt; input-file</p>
+                        <p class="code-comment"># send output to file</p>
+                        <p>$ do_something &gt; output-file</p>
+                        <p class="code-comment"># send stderr output to file</p>
+                        <p>$ do_something 2&gt; output-file</p>
+                        <p class="code-comment"># send all output to same destination file</p>
+                        <p>$ do_something &gt; output-file 2&gt;&amp;1</p>
+                        <p class="code-comment"># shorthand syntax</p>
+                        <p>$ do_something &gt;&amp; output-file</p>
+                    </div>
+                </section>
             </div>
         </article>
     </main>

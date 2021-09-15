@@ -272,7 +272,7 @@ footer {
     grid-auto-rows: auto;
 }
 
-.featured {
+.gallery {
     margin: 1rem;
 }
 
@@ -420,6 +420,7 @@ footer {
 
     #landing-msg {
         margin: auto 1rem;
+        padding-right: 1.5rem;
     }
 
     nav a.hamburger {
