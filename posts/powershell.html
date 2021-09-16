@@ -64,27 +64,72 @@
                     <div class="definitions">
                         <ul>
                             <li><span class="code-snippet">refreshenv</span></li>
+                            <li><span class="code-snippet">cls</span></li>
                         </ul>
                         <ul>
                             <li>refresh environment variables</li>
+                            <li>clear shell</li>
                         </ul>
                     </div>
                     <p>
-                        
+                        Sometimes it may be useful to write shell comments, e.g., during webinars or broadcasts. Similar to Unix,
+                        comments in PowerShell are preceded with <span class="code-snippet">#</span>, however, block comments may
+                        be written between the <span class="code-snippet">&lt;#</span> and <span class="code-snippet">#&gt;</span> symbols.
                     </p>
+                    <div class="code-block">
+                        <p><span class="code-comment"># this is a comment</span></p>
+                        <p><span class="code-comment">&lt;# this is a block comment where you</span></p>
+                        <p><span class="code-comment">can include more detailed information #&gt;</span></p>
+                    </div>
                 </section>
                 <section class="code-section">
                     <h3 id="help">Help</h3>
                     <p>
-                        Locate programs with the <span class="code-snippet">which</span> or 
-                        <span class="code-snippet">whereis</span> utilities, the latter of which searches
-                        across a broader range of system directories and also prints the location of the 
-                        <span class="code-snippet">man</span> page:
+                        The developers of PowerShell believed that no user should memorize commands or syntax. As a result,
+                        they packaged PowerShell with an updatable, structured help utility that provides the latest information
+                        for cmdlets. With an internet connection, update help with the cmdlets below:
                     </p>
                     <div class="code-block">
-                        <p>PS C:\> which &lt;program&gt;</p>
-                        <p>PS C:\> whereis &lt;program&gt;</p>
+                        <p><span class="ps-cmdlet">Update-Help</span></p>
+                        <p><span class="code-comment"># often recommended to force execution</span></p>
+                        <p><span class="ps-cmdlet">Update-Help</span> -Force</p>
                     </div>
+                    <p>
+                        To get help on a cmdlet, use the <span class="code-snippet">Get-Help</span> utility followed by the cmdlet under
+                        investigation. This will output a shortlist of helpful information and automatically scroll to the bottom.
+                    </p>
+                    <div class="code-block">
+                        <p><span class="ps-cmdlet">Get-Help</span> cmdlet</p>
+                    </div>
+                    <p>
+                        Alternatively, the <span class="code-snippet">help</span> and <span class="code-snippet">man</span> commands may
+                        be used to display similar, but often more extensive, detailed information, but starting from the top with the option
+                        to show more.
+                    </p>
+                    <p>
+                        The <span class="code-snippet">Get-Help</span> utility may also be used to discover cmdlets for particular operations.
+                        For example, when trying to find cmdlets that interactive with services, i.e., background processes analogous to daemons,
+                        users can execute one of the help utilities along with a combination of keywords and wildcards: 
+                    </p>
+                    <div class="code-block">
+                        <p><span class="code-comment"># use the wildcard * symbol to broaden search</span></p>
+                        <p><span class="ps-cmdlet">Get-Help</span> *service*</p>
+                        <p><span class="code-comment"># add a g before the search criteria to produce a shortlist of results</span></p>
+                        <p><span class="ps-cmdlet">Get-Help</span> g*service*</p>
+                    </div>
+                    <p>
+                        This will return a list of potentially relevant cmdlets with "service" as part of their name. To see more extensive 
+                        information about a cmdlet, use the <span class="code-snippet">-Detailed</span> parameter. 
+                    </p>
+                    <div class="code-block">
+                        <p><span class="code-comment"># retrieve brief information about a cmdlet</span></p>
+                        <p><span class="ps-cmdlet">Get-Help</span> Get-Service</p>
+                        <p><span class="code-comment"># retrieve more detailed information</span></p>
+                        <p><span class="ps-cmdlet">Get-Help</span> Get-Service -Detailed</p>
+                        <p><span class="code-comment"># view examples</span></p>
+                        <p><span class="ps-cmdlet">Get-Help</span> Get-Service -Examples</p>
+                    </div>
+
                 </section>
             </div>
         </article>

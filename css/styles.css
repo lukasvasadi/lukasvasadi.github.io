@@ -240,6 +240,10 @@ footer {
     color: #D6C13A;
 }
 
+.ps-cmdlet {
+    color: #D6D43A;
+}
+
 .code-snippet {
     background-color: var(--background-color-code);
     font-family: 'Fira Code', 'Roboto Condensed', sans-serif;

@@ -84,28 +84,28 @@
                         <span class="code-snippet">man</span> page:
                     </p>
                     <div class="code-block">
-                        <p>$ which &lt;program&gt;</p>
-                        <p>$ whereis &lt;program&gt;</p>
+                        <p>which &lt;program&gt;</p>
+                        <p>whereis &lt;program&gt;</p>
                     </div>
                     <p>Use <span class="code-snippet">cd</span> to navigate directories:</p>
                     <div class="code-block">
                         <p class="code-comment"># change to home directory</p>
-                        <p>$ cd</p>
-                        <p>$ cd ~</p>
+                        <p>cd</p>
+                        <p>cd ~</p>
                         <p class="code-comment"># change to root directory</p>
-                        <p>$ cd /</p>
+                        <p>cd /</p>
                         <p class="code-comment"># change to parent directory</p>
-                        <p>$ cd ..</p>
+                        <p>cd ..</p>
                         <p class="code-comment"># change to previous directory</p>
-                        <p>$ cd -</p>
+                        <p>cd -</p>
                     </div>
                     <p>
                         When referencing pathnames, remember that absolute pathnames must be preceded by 
                         <span class="code-snippet">/</span>:
                     </p>
                     <div class="code-block">
-                        <p>$ cd /usr/bin</p>
-                        <p>$ cd ../../usr/bin</p>
+                        <p>cd /usr/bin</p>
+                        <p>cd ../../usr/bin</p>
                     </div>
                     <p>
                         Use the <span class="code-snippet">tree</span> command to view the entire filesystem
@@ -113,24 +113,24 @@
                     </p>
                     <div class="code-block">
                         <p class="code-comment"># the -d option displays directories while suppressing file names</p>
-                        <p>$ tree -d</p>
+                        <p>tree -d</p>
                     </div>
                     <p>The <span class="code-snippet">ls</span> command lists the contents of the working directory:</p>
                     <div class="code-block">
-                        <p>$ ls</p>
+                        <p>ls</p>
                         <p class="code-comment"># present in list view</p>
-                        <p>$ ls -l</p>
+                        <p>ls -l</p>
                         <p class="code-comment"># include hidden files</p>
-                        <p>$ ls -a</p>
+                        <p>ls -a</p>
                     </div>
                     <p>
                         Use <span class="code-snippet">pushd</span> to navigate the filesystem and store visited directories
                         to a stack for later reference:
                     </p>
                     <div class="code-block">
-                        <p>$ pwd</p>
+                        <p>pwd</p>
                         <p class="terminal-output">/usr</p>
-                        <p>$ pushd bin</p>
+                        <p>pushd bin</p>
                         <p class="terminal-output">/usr/bin /usr</p>
                     </div>
                     <p>
@@ -143,11 +143,11 @@
                     <p>There are many command line utilities for viewing and reconfiguring files.</p>
                     <div class="code-block">
                         <p class="code-comment"># load file contents in terminal window</p>
-                        <p>$ cat &lt;filename&gt;</p>
+                        <p>cat &lt;filename&gt;</p>
                         <p class="code-comment"># load file contents with line numbers</p>
-                        <p>$ cat -n &lt;filename&gt;</p>
+                        <p>cat -n &lt;filename&gt;</p>
                         <p class="code-comment"># load file contents in reverse</p>
-                        <p>$ tac &lt;filename&gt;</p>
+                        <p>tac &lt;filename&gt;</p>
                     </div>
                     <p>
                         To see one page of text at a time, use the <span class="code-snippet">less</span> command and press the 
@@ -155,9 +155,9 @@
                     </p>
                     <div class="code-block">
                         <p class="code-comment"># show one page of text</p>
-                        <p>$ less &lt;filename&gt;</p>
+                        <p>less &lt;filename&gt;</p>
                         <p class="code-comment"># show one page of text with line numbers</p>
-                        <p>$ less -N &lt;filename&gt;</p>
+                        <p>less -N &lt;filename&gt;</p>
                     </div>
                     <p>
                         The <span class="code-snippet">head</span> and <span class="code-snippet">tail</span> commands display the
@@ -165,13 +165,13 @@
                     </p>
                     <div class="code-block">
                         <p class="code-comment"># show first 10 lines</p>
-                        <p>$ head &lt;filename&gt;</p>
+                        <p>head &lt;filename&gt;</p>
                         <p class="code-comment"># specify number of lines</p>
-                        <p>$ head -20 &lt;filename&gt;</p>
+                        <p>head -20 &lt;filename&gt;</p>
                         <p class="code-comment"># show last 10 lines</p>
-                        <p>$ tail &lt;filename&gt;</p>
+                        <p>tail &lt;filename&gt;</p>
                         <p class="code-comment"># specify number of lines</p>
-                        <p>$ tail -20 &lt;filename&gt;</p>
+                        <p>tail -20 &lt;filename&gt;</p>
                     </div>
                     <p>
                         The <span class="code-snippet">touch</span> utility is commonly used to create new files for later usage, but 
@@ -179,33 +179,33 @@
                     </p>
                     <div class="code-block">
                         <p class="code-comment"># create new file in current directory</p>
-                        <p>$ touch &lt;filename&gt;</p>
+                        <p>touch &lt;filename&gt;</p>
                         <p class="code-comment"># update the date and timestamp of an existing file</p>
-                        <p>$ touch &lt;filename&gt;</p>
+                        <p>touch &lt;filename&gt;</p>
                         <p class="code-comment"># modify the date and timestamp of an existing file MM DD TIME</p>
-                        <p>$ touch -t 01011200 &lt;filename&gt;</p>
+                        <p>touch -t 01011200 &lt;filename&gt;</p>
                     </div>
                     <p>
                         Use <span class="code-snippet">mkdir</span> and <span class="code-snippet">rmdir</span> to manage directories.
                     </p>
                     <div class="code-block">
                         <p class="code-comment"># create new local directory</p>
-                        <p>$ mkdir &lt;dirname&gt;</p>
+                        <p>mkdir &lt;dirname&gt;</p>
                         <p class="code-comment"># create new directory with specific path</p>
-                        <p>$ mkdir &lt;dirpath&gt;</p>
+                        <p>mkdir &lt;dirpath&gt;</p>
                         <p class="code-comment"># delete an empty directory</p>
-                        <p>$ rm &lt;dirname&gt;</p>
+                        <p>rm &lt;dirname&gt;</p>
                         <p class="code-comment"># delete a directory with contents</p>
-                        <p>$ rm -rf &lt;dirname&gt;</p>
+                        <p>rm -rf &lt;dirname&gt;</p>
                     </div>
                     <p>
                         The <span class="code-snippet">mv</span> utility can both rename and relocate files.
                     </p>
                     <div class="code-block">
                         <p class="code-comment"># rename existing file</p>
-                        <p>$ mv &lt;filename&gt; &lt;new-filename&gt;</p>
+                        <p>mv &lt;filename&gt; &lt;new-filename&gt;</p>
                         <p class="code-comment"># relocate file</p>
-                        <p>$ mv &lt;filename&gt; &lt;new-filepath&gt;</p>
+                        <p>mv &lt;filename&gt; &lt;new-filepath&gt;</p>
                     </div>
                 </section>
                 <section class="code-section">
@@ -224,15 +224,23 @@
                     </p>
                     <div class="code-block">
                         <p class="code-comment"># redirect program input</p>
-                        <p>$ do_something &lt; input-file</p>
+                        <p>do_something &lt; input-file</p>
                         <p class="code-comment"># send output to file</p>
-                        <p>$ do_something &gt; output-file</p>
+                        <p>do_something &gt; output-file</p>
                         <p class="code-comment"># send stderr output to file</p>
-                        <p>$ do_something 2&gt; output-file</p>
+                        <p>do_something 2&gt; output-file</p>
                         <p class="code-comment"># send all output to same destination file</p>
-                        <p>$ do_something &gt; output-file 2&gt;&amp;1</p>
+                        <p>do_something &gt; output-file 2&gt;&amp;1</p>
                         <p class="code-comment"># shorthand syntax</p>
-                        <p>$ do_something &gt;&amp; output-file</p>
+                        <p>do_something &gt;&amp; output-file</p>
+                    </div>
+                    <p>
+                        To search for files and directories that contain a specific string, use the <span class="code-snippet">locate</span>
+                        command in combination with <span class="code-snippet">grep</span> for further filtering.
+                    </p>
+                    <div class="code-block">
+                        <p class="code-comment"># list all files with zip and bin in their name</p>
+                        <p>locate zip | grep bin</p>
                     </div>
                 </section>
                 <section class="code-section">
@@ -243,7 +251,7 @@
                         command. A string of connected commands is called a pipeline.
                     </p>
                     <div class="code-block">
-                        <p>$ command1 | command2 | command3</p>
+                        <p>command1 | command2 | command3</p>
                     </div>
                     <p>
                         In the above example, <span class="code-snippet">command2</span> and <span class="code-snippet">command3</span> can start
@@ -254,7 +262,6 @@
             </div>
         </article>
     </main>
-
     <footer>
         <p>Copyright &copy; 2021 Lukas Vasadi</p>
     </footer>
