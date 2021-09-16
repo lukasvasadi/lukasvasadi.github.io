@@ -35,7 +35,9 @@
                     <ul>
                         <li><a href="#basic-utilities">Basic utilities</a></li>
                         <li><a href="#filesystem-nav">Navigating the filesystem</a></li>
-                        <li><a href="#applications">Working with files</a></li>
+                        <li><a href="#working-files">Working with files</a></li>
+                        <li><a href="#searching-files">Searching for files</a></li>
+                        <li><a href="#pipeline">Command pipeline</a></li>
                     </ul>
                 </div>
             </div>
@@ -137,7 +139,7 @@
                     </p>
                 </section>
                 <section class="code-section">
-                    <h3 id="applications">Working with files</h3>
+                    <h3 id="working-files">Working with files</h3>
                     <p>There are many command line utilities for viewing and reconfiguring files.</p>
                     <div class="code-block">
                         <p class="code-comment"># load file contents in terminal window</p>
@@ -207,7 +209,7 @@
                     </div>
                 </section>
                 <section class="code-section">
-                    <h3 id="applications">Searching for files</h3>
+                    <h3 id="searching-files">Searching for files</h3>
                     <p>
                         When interacting with the command line, there are always three standard file streams in operation:
                         <span class="code-snippet">stdin</span>, <span class="code-snippet">stdout</span>, and 
@@ -232,6 +234,22 @@
                         <p class="code-comment"># shorthand syntax</p>
                         <p>$ do_something &gt;&amp; output-file</p>
                     </div>
+                </section>
+                <section class="code-section">
+                    <h3 id="pipeline">Command pipeline</h3>
+                    <p>
+                        The Unix/Linux philosophy is to combine multiple short programs to produce complex results. To achieve this 
+                        coordination, data (output) from one program may be "piped" into another using the <span class="code-snippet">|</span>
+                        command. A string of connected commands is called a pipeline.
+                    </p>
+                    <div class="code-block">
+                        <p>$ command1 | command2 | command3</p>
+                    </div>
+                    <p>
+                        In the above example, <span class="code-snippet">command2</span> and <span class="code-snippet">command3</span> can start
+                        acting on output from previous commands in the pipeline while those commands are still being executed. This feature utilizes
+                        the multicore functionality of modern computer systems and does not require data to be written to temporary files.
+                    </p>
                 </section>
             </div>
         </article>
