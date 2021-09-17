@@ -192,18 +192,18 @@ footer {
     z-index: 1;
 }
 
-.definitions {
+.def {
     display: flex;
     flex-direction: rows;
     padding-bottom: 1rem;
 }
 
-.definitions ul {
+.def ul {
     padding-top: 0;
     margin-right: 2rem;
 }
 
-.definitions li {
+.def li {
     list-style-type: none;
 }
 
@@ -250,6 +250,7 @@ footer {
     font-size: 17px;
     padding: 0.3rem;
     border-radius: 5px;
+    color: var(--text-color-code)
 }
 
 /* default code */
@@ -274,6 +275,13 @@ footer {
 .grid {
     display: grid;
     grid-auto-rows: auto;
+}
+
+.definitions {
+    grid-template-columns: max-content auto;
+    column-gap: 1rem;
+    row-gap: 0.2rem;
+    padding-bottom: 1rem;
 }
 
 .gallery {
@@ -346,7 +354,7 @@ footer {
         padding: 0 1rem;
     }
     
-    .grid {
+    .gallery {
         grid-template-columns: repeat(2, 1fr);
         /* grid-gap: 1em; */
     }
@@ -398,7 +406,7 @@ footer {
         text-align: center;
     }
 
-    .grid {
+    .gallery {
         grid-template-columns: repeat(3, 1fr);
         /* grid-gap: 1em; */
     }

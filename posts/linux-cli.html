@@ -34,45 +34,49 @@
                     <h3>Contents</h3>
                     <ul>
                         <li><a href="#basic-utilities">Basic utilities</a></li>
+                        <li><a href="#pipeline">Command pipeline</a></li>
                         <li><a href="#filesystem-nav">Navigating the filesystem</a></li>
                         <li><a href="#working-files">Working with files</a></li>
                         <li><a href="#searching-files">Searching for files</a></li>
-                        <li><a href="#pipeline">Command pipeline</a></li>
+                        <li><a href="#package-managers"></a>Package managers</li>
                     </ul>
                 </div>
             </div>
             <div class="content">
                 <section class="code-section">
                     <h3 id="basic-utilities">Basic utilities</h3>
-                    <div class="definitions">
-                        <ul>
-                            <li><span class="code-snippet">cat</span></li>
-                            <li><span class="code-snippet">head</span></li>
-                            <li><span class="code-snippet">tail</span></li>
-                            <li><span class="code-snippet">man</span></li>
-                            <li><span class="code-snippet">sudo</span></li>
-                            <li><span class="code-snippet">|</span></li>
-                            <li><span class="code-snippet">ssh</span></li>
-                            <li><span class="code-snippet">pwd</span></li>
-                            <li><span class="code-snippet">cd</span></li>
-                        </ul>
-                        <ul>
-                            <li>type out a file (or combine files)</li>
-                            <li>show first few lines of file</li>
-                            <li>show last few lines of file</li>
-                            <li>view documentation</li>
-                            <li>grant admin privileges</li>
-                            <li>pipe data between programs</li>
-                            <li>secure shell remote machine</li>
-                            <li>print working directory</li>
-                            <li>change directory</li>
-                        </ul>
+                    <div class="grid definitions">
+                        <p><span class="code-snippet">cat</span></p><p>type out a file (or combine files)</p>
+                        <p><span class="code-snippet">head</span></p><p>show first few lines of file</p>
+                        <p><span class="code-snippet">tail</span></p><p>show last few lines of file</p>
+                        <p><span class="code-snippet">man</span></p><p>view documentation</p>
+                        <p><span class="code-snippet">sudo</span></p><p>grant admin privileges</p>
+                        <p><span class="code-snippet">|</span></p><p>pipe data between programs</p>
+                        <p><span class="code-snippet">ssh</span></p><p>secure shell remote machine</p>
+                        <p><span class="code-snippet">pwd</span></p><p>print working directory</p>
+                        <p><span class="code-snippet">cd</span></p><p>change directory</p>
                     </div>
                     <p>
                         The command is the name of the program being executed. Many commands accept arguments and 
                         options, the latter often preceded with one or two dashes, e.g., 
                         <span class="code-snippet">-p</span> or <span class="code-snippet">--print</span>, to be
                         distinguishable.
+                    </p>
+                </section>
+                <section class="code-section">
+                    <h3 id="pipeline">Command pipeline</h3>
+                    <p>
+                        The Unix/Linux philosophy is to combine multiple short programs to produce complex results. To achieve this 
+                        coordination, data (output) from one program may be "piped" into another using the <span class="code-snippet">|</span>
+                        command. A string of connected commands is called a pipeline.
+                    </p>
+                    <div class="code-block">
+                        <p>command1 | command2 | command3</p>
+                    </div>
+                    <p>
+                        In the above example, <span class="code-snippet">command2</span> and <span class="code-snippet">command3</span> can start
+                        acting on output from previous commands in the pipeline while those commands are still being executed. This feature utilizes
+                        the multicore functionality of modern computer systems and does not require data to be written to temporary files.
                     </p>
                 </section>
                 <section class="code-section">
@@ -84,8 +88,8 @@
                         <span class="code-snippet">man</span> page:
                     </p>
                     <div class="code-block">
-                        <p>which &lt;program&gt;</p>
-                        <p>whereis &lt;program&gt;</p>
+                        <p>which program</p>
+                        <p>whereis program</p>
                     </div>
                     <p>Use <span class="code-snippet">cd</span> to navigate directories:</p>
                     <div class="code-block">
@@ -143,11 +147,11 @@
                     <p>There are many command line utilities for viewing and reconfiguring files.</p>
                     <div class="code-block">
                         <p class="code-comment"># load file contents in terminal window</p>
-                        <p>cat &lt;filename&gt;</p>
+                        <p>cat filename</p>
                         <p class="code-comment"># load file contents with line numbers</p>
-                        <p>cat -n &lt;filename&gt;</p>
+                        <p>cat -n filename</p>
                         <p class="code-comment"># load file contents in reverse</p>
-                        <p>tac &lt;filename&gt;</p>
+                        <p>tac filename</p>
                     </div>
                     <p>
                         To see one page of text at a time, use the <span class="code-snippet">less</span> command and press the 
@@ -155,9 +159,9 @@
                     </p>
                     <div class="code-block">
                         <p class="code-comment"># show one page of text</p>
-                        <p>less &lt;filename&gt;</p>
+                        <p>less filename</p>
                         <p class="code-comment"># show one page of text with line numbers</p>
-                        <p>less -N &lt;filename&gt;</p>
+                        <p>less -N filename</p>
                     </div>
                     <p>
                         The <span class="code-snippet">head</span> and <span class="code-snippet">tail</span> commands display the
@@ -165,13 +169,13 @@
                     </p>
                     <div class="code-block">
                         <p class="code-comment"># show first 10 lines</p>
-                        <p>head &lt;filename&gt;</p>
+                        <p>head filename</p>
                         <p class="code-comment"># specify number of lines</p>
-                        <p>head -20 &lt;filename&gt;</p>
+                        <p>head -20 filename</p>
                         <p class="code-comment"># show last 10 lines</p>
-                        <p>tail &lt;filename&gt;</p>
+                        <p>tail filename</p>
                         <p class="code-comment"># specify number of lines</p>
-                        <p>tail -20 &lt;filename&gt;</p>
+                        <p>tail -20 filename</p>
                     </div>
                     <p>
                         The <span class="code-snippet">touch</span> utility is commonly used to create new files for later usage, but 
@@ -179,33 +183,33 @@
                     </p>
                     <div class="code-block">
                         <p class="code-comment"># create new file in current directory</p>
-                        <p>touch &lt;filename&gt;</p>
+                        <p>touch filename</p>
                         <p class="code-comment"># update the date and timestamp of an existing file</p>
-                        <p>touch &lt;filename&gt;</p>
+                        <p>touch filename</p>
                         <p class="code-comment"># modify the date and timestamp of an existing file MM DD TIME</p>
-                        <p>touch -t 01011200 &lt;filename&gt;</p>
+                        <p>touch -t 01011200 filename</p>
                     </div>
                     <p>
                         Use <span class="code-snippet">mkdir</span> and <span class="code-snippet">rmdir</span> to manage directories.
                     </p>
                     <div class="code-block">
                         <p class="code-comment"># create new local directory</p>
-                        <p>mkdir &lt;dirname&gt;</p>
+                        <p>mkdir dirname</p>
                         <p class="code-comment"># create new directory with specific path</p>
-                        <p>mkdir &lt;dirpath&gt;</p>
+                        <p>mkdir dirpath</p>
                         <p class="code-comment"># delete an empty directory</p>
-                        <p>rm &lt;dirname&gt;</p>
+                        <p>rm dirname</p>
                         <p class="code-comment"># delete a directory with contents</p>
-                        <p>rm -rf &lt;dirname&gt;</p>
+                        <p>rm -rf dirname</p>
                     </div>
                     <p>
                         The <span class="code-snippet">mv</span> utility can both rename and relocate files.
                     </p>
                     <div class="code-block">
                         <p class="code-comment"># rename existing file</p>
-                        <p>mv &lt;filename&gt; &lt;new-filename&gt;</p>
+                        <p>mv filename new-filename</p>
                         <p class="code-comment"># relocate file</p>
-                        <p>mv &lt;filename&gt; &lt;new-filepath&gt;</p>
+                        <p>mv filename new-filepath</p>
                     </div>
                 </section>
                 <section class="code-section">
@@ -236,28 +240,61 @@
                     </div>
                     <p>
                         To search for files and directories that contain a specific string, use the <span class="code-snippet">locate</span>
-                        command in combination with <span class="code-snippet">grep</span> for further filtering.
+                        command in combination with <span class="code-snippet">grep</span> for further filtering. Alternatively, the 
+                        <span class="code-snippet">find</span> command can be used to locate files (or directories) after specifying the search 
+                        directory, where working directory is the default, and adding the <span class="code-snippet">-name</span> parameter alongside
+                        the search string. Note: without any arguments, <span class="code-snippet">-name</span> outputs all files in the current and 
+                        nested directories.
                     </p>
                     <div class="code-block">
                         <p class="code-comment"># list all files with zip and bin in their name</p>
                         <p>locate zip | grep bin</p>
+                        <p class="code-comment"># use find to search for a file in the current working directory</p>
+                        <p>find . -name "zip"</p>
+                    </div>
+                    <p>
+                        With these commands, it is often useful to employ wildcards:
+                    </p>
+                    <div class="grid definitions">
+                        <p><span class="code-snippet">?</span></p><p>match any single character</p>
+                        <p><span class="code-snippet">*</span></p><p>match any string of characters</p>
+                        <p><span class="code-snippet">[set]</span></p><p>match any character in set, e.g., [adf]</p>
+                        <p><span class="code-snippet">[!set]</span></p><p>match any character not in set</p>
+                    </div>
+                    <p>
+                        For example, to find a file that has "ba" followed by a third unknown character, with extension .out,
+                        search for <span class="code-snippet">ba?.out</span>. Similarly, if the entire name is unknown, search
+                        for <span class="code-snippet">*.out</span>. Putting the search criteria in quotes will expand the search
+                        beyond the working directory: <span class="code-snippet">ls "*.out"</span>.
+                    </p>
+                    <p>
+                        Using the <span class="code-snippet">-exec</span> parameter, the <span class="code-snippet">find</span> utility can also run other
+                        commands on the search results:
+                    </p>
+                    <div class="code-block">
+                        <p class="code-comment"># find and remove all files with extension .swp</p>
+                        <p>find -name "*.swp" -exec rm {} ';'</p>
                     </div>
                 </section>
                 <section class="code-section">
-                    <h3 id="pipeline">Command pipeline</h3>
+                    <h3 id="package-managers">Package managers</h3>
                     <p>
-                        The Unix/Linux philosophy is to combine multiple short programs to produce complex results. To achieve this 
-                        coordination, data (output) from one program may be "piped" into another using the <span class="code-snippet">|</span>
-                        command. A string of connected commands is called a pipeline.
+                        There are two broad families of package managers for Debian and RPM distributions. Each family has a high-level tool, 
+                        e.g., <span class="code-snippet">apt-get</span>, <span class="code-snippet">dnf</span>, <span class="code-snippet">zypper</span>, 
+                        that manage low-level utilities, e.g., <span class="code-snippet">dpkg</span>, <span class="code-snippet">rpm</span>, which 
+                        are responsible for unpacking and installing individual packages. These high-level tools also coordinate the installation of 
+                        dependencies, or packages that are needed to support the current installation.
                     </p>
-                    <div class="code-block">
-                        <p>command1 | command2 | command3</p>
+                    <p>
+                        Some common package management commands for Debian-based distros include:
+                    </p>
+                    <div class="grid definitions">
+                        <p><span class="code-snippet">dpkg --list</span></p><p>list all packages on system</p>
+                        <p><span class="code-snippet">apt-get install foo</span></p><p>install (or update) package and dependencies</p>
+                        <p><span class="code-snippet">apt-get autoremove foo</span></p><p>remove package and dependencies</p>
+                        <p><span class="code-snippet">apt-get dist-upgrade</span></p><p>upgrade entire system</p>
+                        <p><span class="code-snippet">apt-cache search foo</span></p><p>search packages named foo</p>
                     </div>
-                    <p>
-                        In the above example, <span class="code-snippet">command2</span> and <span class="code-snippet">command3</span> can start
-                        acting on output from previous commands in the pipeline while those commands are still being executed. This feature utilizes
-                        the multicore functionality of modern computer systems and does not require data to be written to temporary files.
-                    </p>
                 </section>
             </div>
         </article>
