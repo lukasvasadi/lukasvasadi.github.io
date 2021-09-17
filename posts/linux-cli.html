@@ -49,6 +49,7 @@
                         <p><span class="code-snippet">cat</span></p><p>type out a file (or combine files)</p>
                         <p><span class="code-snippet">head</span></p><p>show first few lines of file</p>
                         <p><span class="code-snippet">tail</span></p><p>show last few lines of file</p>
+                        <p><span class="code-snippet">less</span></p><p>view contents of larger files with scroll-back</p>
                         <p><span class="code-snippet">man</span></p><p>view documentation</p>
                         <p><span class="code-snippet">sudo</span></p><p>grant admin privileges</p>
                         <p><span class="code-snippet">|</span></p><p>pipe data between programs</p>
@@ -62,6 +63,20 @@
                         <span class="code-snippet">-p</span> or <span class="code-snippet">--print</span>, to be
                         distinguishable.
                     </p>
+                    <p>
+                        Users have several options to shutdown or reboot the system from the command line:
+                    </p>
+                    <div class="code-block">
+                        <p class="code-comment"># power off system without rebooting</p>
+                        <p>sudo shutdown -h</p>
+                        <p class="code-comment"># alternative commands that issue shutdown</p>
+                        <p>sudo halt</p>
+                        <p>sudo poweroff</p>
+                        <p class="code-comment"># reboot the system</p>
+                        <p>sudo shutdown -r</p>
+                        <p class="code-comment"># reboot alternative</p>
+                        <p>sudo reboot</p>
+                    </div>
                 </section>
                 <section class="code-section">
                     <h3 id="pipeline">Command pipeline</h3>
@@ -280,7 +295,7 @@
                     <h3 id="package-managers">Package managers</h3>
                     <p>
                         There are two broad families of package managers for Debian and RPM distributions. Each family has a high-level tool, 
-                        e.g., <span class="code-snippet">apt-get</span>, <span class="code-snippet">dnf</span>, <span class="code-snippet">zypper</span>, 
+                        e.g., <span class="code-snippet">apt</span>, <span class="code-snippet">dnf</span>, <span class="code-snippet">zypper</span>, 
                         that manage low-level utilities, e.g., <span class="code-snippet">dpkg</span>, <span class="code-snippet">rpm</span>, which 
                         are responsible for unpacking and installing individual packages. These high-level tools also coordinate the installation of 
                         dependencies, or packages that are needed to support the current installation.
@@ -291,7 +306,7 @@
                     <div class="grid definitions">
                         <p><span class="code-snippet">dpkg --list</span></p><p>list all packages on system</p>
                         <p><span class="code-snippet">apt-get install foo</span></p><p>install (or update) package and dependencies</p>
-                        <p><span class="code-snippet">apt-get autoremove foo</span></p><p>remove package and dependencies</p>
+                        <p><span class="code-snippet">apt-get remove foo</span></p><p>remove package and dependencies</p>
                         <p><span class="code-snippet">apt-get dist-upgrade</span></p><p>upgrade entire system</p>
                         <p><span class="code-snippet">apt-cache search foo</span></p><p>search packages named foo</p>
                     </div>
