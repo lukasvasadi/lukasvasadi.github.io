@@ -303,12 +303,17 @@
                     <p>
                         Some common package management commands for Debian-based distros include:
                     </p>
-                    <div class="grid definitions">
-                        <p><span class="code-snippet">dpkg --list</span></p><p>list all packages on system</p>
-                        <p><span class="code-snippet">apt-get install foo</span></p><p>install (or update) package and dependencies</p>
-                        <p><span class="code-snippet">apt-get remove foo</span></p><p>remove package and dependencies</p>
-                        <p><span class="code-snippet">apt-get dist-upgrade</span></p><p>upgrade entire system</p>
-                        <p><span class="code-snippet">apt-cache search foo</span></p><p>search packages named foo</p>
+                    <div class="code-block">
+                        <p class="code-comment"># list all packages on system</p>
+                        <p>dpkg --list</p>
+                        <p class="code-comment"># install (or update) package and dependencies</p>
+                        <p>apt-get install foo</p>
+                        <p class="code-comment"># remove package and dependencies</p>
+                        <p>apt-get remove foo</p>
+                        <p class="code-comment"># upgrade entire system</p>
+                        <p>apt-get dist-upgrade</p>
+                        <p class="code-comment"># search packages named foo</p>
+                        <p>apt-cache search foo</p>
                     </div>
                 </section>
             </div>
