@@ -39,6 +39,8 @@
                         <li><a href="#working-files">Working with files</a></li>
                         <li><a href="#searching-files">Searching for files</a></li>
                         <li><a href="#package-managers"></a>Package managers</li>
+                        <li><a href="#documentation"></a>Accessing documentation</li>
+                        <li><a href="#processes"></a>Processes</li>
                     </ul>
                 </div>
             </div>
@@ -315,6 +317,43 @@
                         <p class="code-comment"># search packages named foo</p>
                         <p>apt-cache search foo</p>
                     </div>
+                </section>
+                <section class="code-section">
+                    <h3 id="documentation">Accessing documentation</h3>
+                    <p>
+                        The general philosophy of computer administration is to not memorize every single shell command along with its parameters. Instead,
+                        administrators can reference the <span class="code-snippet">man</span> pages&mdash;short for manual&mdash; or utilize either the 
+                        <span class="code-snippet">help</span> command or <span class="code-snippet">--help</span> option.
+                    </p>
+                    <div class="code-block">
+                        <p class="code-comment"># find information about a specific topic</p>
+                        <p>man topic</p>
+                        <p class="code-comment"># list all pages on topic</p>
+                        <p>man -f topic</p>
+                        <p class="code-comment"># alternatively...</p>
+                        <p>whatis topic</p>
+                        <p class="code-comment"># list all pages that discuss a topic (yields more results)</p>
+                        <p>man -k topic</p>
+                        <p class="code-comment"># alternatively...</p>
+                        <p>apropos topic</p>
+                    </div>
+                    <p>
+                        While <span class="code-snippet">man</span> is a great tool for reading detailed information about specific utilities, often administrators
+                        only need a brief description. This can be accomplished using <span class="code-snippet">--help</span> or <span class="code-snippet">-h</span>:
+                    </p>
+                    <div class="code-block">
+                        <p class="code-comment"># find information on the man command</p>
+                        <p>man --help</p>
+                    </div>
+                    <p>
+                        Typing <span class="code-snippet">help</span> at the command line will print consolidated information about built-in commands.
+                    </p>
+                </section>
+                <section class="code-section">
+                    <h3 id="processes">Processes</h3>
+                    <p>
+                        A process represents a current task running on the computer.
+                    </p>
                 </section>
             </div>
         </article>
