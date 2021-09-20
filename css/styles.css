@@ -130,11 +130,12 @@ section {
 }
 
 ul {
-    padding-top: 1rem;
+    padding-bottom: 1rem;
+    padding-left: 1rem;
 }
 
 li {
-    padding-bottom: 0.8rem;
+    padding-bottom: 0.2rem;
     list-style-type: circle;
     list-style-position: inside;
 }
@@ -335,6 +336,12 @@ footer {
 
 section .code-block:last-child {
     margin-bottom: 0;
+}
+
+.emph {
+    font-weight: 600;
+    /* color: #336EFF; */
+    color: #759DFF;
 }
 
 /* Small tablets and sideways phones */

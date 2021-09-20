@@ -352,8 +352,44 @@
                 <section class="code-section">
                     <h3 id="processes">Processes</h3>
                     <p>
-                        A process represents a current task running on the computer.
+                        A process represents a current task running on the computer. Single commands may launch one or more processes simultaneously. The operating
+                        system is responsible for allocating system resources to each process for optimized performance. There are several types of processes:
                     </p>
+                    <ul>
+                        <li><span class="emph">Interactive:</span> started by the user via the command line or graphical interface</li>
+                        <li><span class="emph">Batch:</span> automated processes that require queued resource allocation on a first-in, first-out (FIFO) basis</li>
+                        <li><span class="emph">Daemons:</span> server processes that run continuously in the background</li>
+                        <li><span class="emph">Threads:</span> lightweight processes that run under a main process, sharing a designated number of resources</li>
+                        <li><span class="emph">Kernel threads:</span> perform housekeeping tasks such as relocating threads between CPU cores</li>
+                    </ul>
+                    <p>
+                        The kernel <span class="emph">scheduler</span> allocates CPU time to queued processes. Each CPU core has a run and wait queue. When a process
+                        enters a <span class="emph">sleep</span> state, the scheduler moves it to the wait queue until the necessary feedback is received. To manage 
+                        process scheduling and resource allocation, the operating system assigns each running process a unique process ID <span class="emph">(PID)</span> 
+                        number, which Usually follow the order that each process was born in the system. In addition, each process has a parent process ID 
+                        <span class="emph">(PPID)</span> and, if the process is multithreaded, a unique thread ID <span class="emph">(TID)</span>.
+                    </p>
+                    <p>
+                        Users can terminate processes in the terminal shell:
+                    </p>
+                    <div class="code-block">
+                        <p class="code-comment"># kill process</p>
+                        <p>kill -SIGKILL pid</p>
+                        <p class="code-comment"># alternatively</p>
+                        <p>kill -9 pid</p>
+                    </div>
+                    <p>
+                        Users can also specify a <span class="emph">nice value</span> for individual processes to control their execution priority. The lower the nice value,
+                        the more preference will be given this process over system resources and runtime. Linux nice values range from -20 to +19, with -20 designating the 
+                        highest priority, or precedence. Note that changing the niceness of a process will also update any child processes with the same value. Increasing
+                        niceness may require superuser permissions.
+                    </p>
+                    <div class="code-block">
+                        <p class="code-comment"># print current processes</p>
+                        <p>ps</p>
+                        <p class="code-comment"># change the niceness value</p>
+                        <p>renice value pid</p>
+                    </div>
                 </section>
             </div>
         </article>
