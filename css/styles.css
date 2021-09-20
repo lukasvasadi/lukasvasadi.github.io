@@ -115,6 +115,10 @@ h3 {
     font-family: Lato, 'Roboto Condensed', sans-serif;
 }
 
+h4 {
+    padding-bottom: 1rem;
+}
+
 #landing {
     padding-bottom: 0.5rem;
 }
