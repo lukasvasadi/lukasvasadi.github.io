@@ -113,6 +113,8 @@ h2 {
 
 h3 {
     font-family: Lato, 'Roboto Condensed', sans-serif;
+    padding-bottom: 0.5rem;
+    margin-bottom: 1rem;
 }
 
 h4 {
@@ -131,11 +133,6 @@ section {
     overflow: hidden;
     position: relative;
     padding-bottom: 2rem;
-}
-
-ul {
-    padding-bottom: 1rem;
-    padding-left: 1rem;
 }
 
 li {
@@ -214,13 +211,16 @@ footer {
 
 .code-section h3 {
     border-bottom: solid;
-    padding-bottom: 0.5rem;
-    margin-bottom: 1rem;
 }
 
 .code-section h3 a {
     text-decoration: none;
     color: var(--text-color);
+}
+
+.code-section ul {
+    padding-bottom: 1rem;
+    padding-left: 1rem;
 }
 
 .code-block {
