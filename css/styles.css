@@ -138,7 +138,7 @@ section {
 li {
     padding-bottom: 0.2rem;
     list-style-type: circle;
-    list-style-position: inside;
+    list-style-position: outside;
 }
 
 li:last-child {

@@ -386,10 +386,29 @@
                         niceness may require superuser permissions.
                     </p>
                     <div class="code-block">
-                        <p class="code-comment"># print current processes</p>
-                        <p>ps</p>
                         <p class="code-comment"># change the niceness value</p>
                         <p>renice value pid</p>
+                    </div>
+                    <p>
+                        The <span class="emph">load average</span> breaks down CPU resource consumption over three specified timepoints: 45, 15, and 5 min. These percentages 
+                        denote the amount of CPU resources demanded by active processes. For example, a load average of 0.5 means that an average of 50% CPU resources were 
+                        consumed for the specified time period.
+                    </p>
+                    <p>
+                        With modern machines, each load average should be divided by the number of CPU cores, e.g., a load average of 2.0
+                        for a dual-core system indicates 100% CPU resource consumption. It is possible for normalized load averages to exceed 1.0 for brief periods, but prolonged
+                        over-utilization may suggest problems. Load averages may be viewed in the terminal by running either <span class="code-snippet">w</span>, 
+                        <span class="code-snippet">top</span>, or <span class="code-snippet">uptime</span>.
+                    </p>
+                    <p>
+                        Jobs, or terminal commands, may be run in the foreground or background. Foreground jobs may be suspended with <span class="code-snippet">CTRL-Z</span> or
+                        terminated with <span class="code-snippet">CTRL-C</span>. Suffixing a command with <span class="code-snippet">&</span> causes it to be executed in the background.
+                        Alternatively, the <span class="code-snippet">bg</span> and <span class="code-snippet">fg</span> commands can push jobs to the background or foreground, 
+                        respectively.
+                    </p>
+                    <div class="code-block">
+                        <p class="code-comment"># view active background jobs</p>
+                        <p>jobs</p>
                     </div>
                 </section>
             </div>
