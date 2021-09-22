@@ -423,6 +423,31 @@
                         <p>ps -ef</p>
                         <p class="code-comment"># show one line of information for every thread</p>
                         <p>ps -elf</p>
+                        <p class="code-comment"># display as tree diagram to show process lineage</p>
+                        <p>pstree</p>
+                    </div>
+                    <p>
+                        In addition to printing load averages, the <span class="code-snippet">top</span> command presents a real-time system monitor of all processes, listed in order of 
+                        CPU resource consumption. The list constantly updates until the user quites with <span class="code-snippet">q</span>. Other interactive options for top include:
+                    </p>
+                    <div class="grid definitions">
+                        <p><span class="code-snippet">t</span></p><p>show or hide summary</p>
+                        <p><span class="code-snippet">m</span></p><p>show or hide memory</p>
+                        <p><span class="code-snippet">A</span></p><p>sort list by highest resource consumers</p>
+                        <p><span class="code-snippet">r</span></p><p>renice specific process</p>
+                        <p><span class="code-snippet">k</span></p><p>kill specific process</p>
+                        <p><span class="code-snippet">f</span></p><p>enter configuration utility</p>
+                    </div>
+                    <p>
+                        Various commands exist to manage future program execution and suspend currently active processes:
+                    </p>
+                    <div class="code-block">
+                        <p class="code-comment"># schedule non-interactive process to execute in 10 minutes</p>
+                        <p>at now + 10 minutes</p>
+                        <p class="code-comment"># issue command to be executed, then press CTRL-D to exit at config</p>
+                        <p>command arguments</p>
+                        <p class="code-comment"># sleep active program for 10 seconds</p>
+                        <p>sleep 10s</p>
                     </div>
                 </section>
                 <section class="code-section">
