@@ -42,6 +42,7 @@
                         <li><a href="#package-managers">Package managers</a></li>
                         <li><a href="#documentation">Accessing documentation</a></li>
                         <li><a href="#processes">Processes</a></li>
+                        <li><a href="#file-operations">File operations</a></li>
                     </ul>
                 </div>
             </div>
@@ -423,6 +424,34 @@
                         <p class="code-comment"># show one line of information for every thread</p>
                         <p>ps -elf</p>
                     </div>
+                </section>
+                <section class="code-section">
+                    <h3 id="file-operations">File operations</h3>
+                    <p>
+                        In the Linux, the root directory, denoted by <span class="code-snippet">/</span>, represents the beginning of the filesystem hierarchy. There are 
+                        many types of filesystems, which often differ across operating systems, but the most common belong to the <span class="emph">journaling</span> variety:
+                        ext4, xfs, btrfs, jfs. It is often the case that an OS will have several different filesystems, each stored on a particular disk partition. Important 
+                        programs to run the system are isolated on the <span class="emph">root</span> partition. Each partition has to be mounted on the filesystem tree to be 
+                        accessible by the user. Examples of common mount points, which appear as empty directories, include <span class="code-snippet">/</span>, 
+                        <span class="code-snippet">/home</span>, and <span class="code-snippet">/var</span>.
+                    </p>
+                    <p>
+                        Partitions can be mounted through a graphical utility, such as <span class="emph">gparted</span>, or the command line with the device node and mount 
+                        point as the arguments:
+                    </p>
+                    <div class="code-block">
+                        <p class="code-comment"># mount the filesystem at device node /dev/sda5 into the main filesystem tree at mount point /home</p>
+                        <p>sudo mount /dev/sda5 /home</p>
+                        <p class="code-comment"># unmount the partition</p>
+                        <p>sudo umount /home</p>
+                        <p class="code-comment"># show all mounted filesystems</p>
+                        <p>mount</p>
+                    </div>
+                    <p>
+                        Filesystems and data can also be shared across machines through networks. Networks, accessible over the internet, allow grouping of lower-level filesystems
+                        into a more universal framework, e.g., the Network Filesystem (<span class="emph">NFS</span>). For all intensive purposes, NFS can be treated as an other filesystem 
+                        on the client or server side.
+                    </p>
                 </section>
             </div>
         </article>
