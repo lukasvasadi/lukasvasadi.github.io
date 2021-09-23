@@ -477,6 +477,38 @@
                         into a more universal framework, e.g., the Network Filesystem (<span class="emph">NFS</span>). For all intensive purposes, NFS can be treated as an other filesystem 
                         on the client or server side.
                     </p>
+                    <p>
+                        Each user has a home directory listed under <span class="code-snippet">/home</span>. The <span class="code-snippet">/root</span> directory is simply the home of the 
+                        root user (aka superuser or system administrator). The <span class="code-snippet">/bin</span> directory contains executable binaries needed to boot the system as well 
+                        as ubiquitous user commands, such as <span class="code-snippet">cat</span>, <span class="code-snippet">cp</span>, <span class="code-snippet">ls</span>, etc. Though 
+                        similar, <span class="code-snippet">/sbin</span> stores executables for system administration, such as <span class="code-snippet">ip</span>.
+                    </p>
+                    <p>
+                        Non-essential commands are stored under <span class="code-snippet">/usr/bin</span> and <span class="code-snippet">/usr/sbin</span>, which was initially done to allow 
+                        mounting of the user filesystem at a later stage in the OS startup. However, this practice is mostly considered obselete and, as such, most modern Linux distros symbolically 
+                        link <span class="code-snippet">/usr/bin</span> with <span class="code-snippet">/bin</span> and <span class="code-snippet">/usr/sbin</span> with <span class="code-snippet">/sbin</span>, 
+                        i.e., for all intensive purposes, there are no distinctions between these directory groupings.
+                    </p>
+                    <p>
+                        The <span class="code-snippet">/proc</span> filesystem contains <span class="emph">virtual files</span>&mdash;files that only exist in memory&mdash;that track dynamic kernel 
+                        data, including information about mounted devices, hardware configurations, CPU, etc. This directory is considered a <span class="emph">pseudo filesystem</span> because it occupies 
+                        no permanent space in storage.
+                    </p>
+                    <p>
+                        The <span class="code-snippet">/dev</span> directory becomes populated with <span class="emph">device nodes</span> as devices, e.g., printers, are connected to the computer. Similarly, 
+                        <span class="code-snippet">/var</span> is a dynamic directory of sorts as it contains files that are expected to change in size, e.g., system log files (<span class="code-snippet">/var/log</span>), 
+                        packages and database files (<span class="code-snippet">/var/lib</span>), and temporary files (<span class="code-snippet">/var/tmp</span>).
+                    </p>
+                    <p>
+                        The <span class="code-snippet">/etc</span> directory is home to system configuration files that can only be modified by the superuser. Likewise, the <span class="code-snippet">/boot</span> 
+                        directory contains essential files needed to boot the system, which are kernel-specific. Libraries needed for binary executables are stored in <span class="code-snippet">/lib</span> 
+                        (32-bit) and <span class="code-snippet">/lib64</span> (64-bit). Removable media files, such as the contents of a connected USB drive, are typically accessible 
+                        uner the <span class="code-snippet">/run/media/usrname/</span> directory.
+                    </p>
+                    <p>
+                        There are other directories listed under <span class="code-snippet">/root</span>, as well as an entire directory tree under <span class="code-snippet">/usr</span> that contains 
+                        a host of programs and scripts not needed to boot or manage the system. 
+                    </p>
                 </section>
             </div>
         </article>
