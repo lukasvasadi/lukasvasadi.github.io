@@ -509,6 +509,50 @@
                         There are other directories listed under <span class="code-snippet">/root</span>, as well as an entire directory tree under <span class="code-snippet">/usr</span> that contains 
                         a host of programs and scripts not needed to boot or manage the system. 
                     </p>
+                    <p>
+                        Comparing text files can be done with the <span class="code-snippet">diff</span> command:
+                    </p>
+                    <div class="code-block">
+                        <p class="code-comment"># compare differences between two text files</p>
+                        <p>diff [options] filename1 filename2</p>
+                        <p class="code-comment"># compare differences between three text files, with one acting as a reference</p>
+                        <p>diff3 filename1 referencefile filename2</p>
+                    </div>
+                    <p>
+                        This utility provides several options:
+                    </p>
+                    <div class="grid definitions">
+                        <p><span class="code-snippet">-c</span></p><p>provide listing of differences</p>
+                        <p><span class="code-snippet">-r</span></p><p>recursively compare subdirectories</p>
+                        <p><span class="code-snippet">-i</span></p><p>ignore capitalization</p>
+                        <p><span class="code-snippet">-w</span></p><p>ignore whitespace</p>
+                        <p><span class="code-snippet">-q</span></p><p>state whether files are different without providing context</p>
+                    </div>
+                    <p>
+                        Unlike other operating systems, Linux does not rely on file extensions to direct operations, e.g., a file with the <span class="code-snippet">.txt</span> 
+                        extension could be a binary executable. Users can employ the <span class="code-snippet">file</span> utility to ascertain file type and other important 
+                        information.
+                    </p>
+                    <div class="code-block">
+                        <p class="code-comment"># ascertain file type</p>
+                        <p>file filename</p>
+                        <p class="code-comment"># find detailed information about all files in working directory</p>
+                        <p>file *</p>
+                    </div>
+                    <p>
+                        Data can be backed up using the <span class="code-snippet">cp</span> or <span class="code-snippet">rsync</span> utilities. While 
+                        the <span class="code-snippet">cp</span> command copies files from one destination to another on a local machine, <span class="code-snippet">rsync</span> 
+                        performs recursive operations to only copy modified data, i.e., existing files may not be entirely overwritten. The <span class="code-snippet">rsync</span> 
+                        utility can also copy data across remote machines.
+                    </p>
+                    <div class="code-block">
+                        <p class="code-comment"># copy file to new location</p>
+                        <p>rsync sourcefile destinationfile</p>
+                        <p class="code-comment"># back up project data to remote archive</p>
+                        <p>rsync -r project networked-machine:archives/project</p>
+                        <p class="code-comment"># perform a dry run to prevent unwanted overwrites</p>
+                        <p>rsync -r -dry-run project networked-machine:archives/project</p>
+                    </div>
                 </section>
             </div>
         </article>
