@@ -591,6 +591,41 @@
                         <p>line three</p>
                         <p>EOF</p>
                     </div>
+                    <p>
+                        For more flexible text editing, Linux distros offer several terminal-based and graphical editors, 
+                        including <span class="emph">nano</span>, <span class="emph">gedit</span>, <span class="emph">vi</span>,
+                        and <span class="emph">emacs</span>. The nano and gedit editors can be invoked with the 
+                        <span class="code-snippet">nano</span> and <span class="code-snippet">gedit</span> commands, 
+                        respectively.
+                    </p>
+                    <p>
+                        In most modern GNOME distros, vi is accessible with vim, which stands for <span class="emph">V</span>i 
+                        <span class="emph">IM</span>proved. Though vi has a steep learning curve for new users, it is significantly 
+                        more powerful than nano and gedit. Invoking <span class="code-snippet">vimtutor</span> from the command 
+                        line will launch a vim tutorial.
+                    </p>
+                    <p>
+                        Vi has three different modes:
+                    </p>
+                    <div class="grid definitions">
+                        <p><span class="code-snippet">command</span></p><p>default mode where each key is an editor command</p>
+                        <p><span class="code-snippet">insert</span></p><p>insert text into file (invoked with <span class="code-snippet">i</span>)</p>
+                        <p><span class="code-snippet">line</span></p><p>each key is an external command, though many are now deprecated (invoked with <span class="code-snippet">:</span>)</p>
+                    </div>
+                    <p>
+                        Some of the most useful commands for vi include:
+                    </p>
+                    <div class="grid definitions">
+                        <p><span class="code-snippet">vi file</span></p><p>open file in editor</p>
+                        <p><span class="code-snippet">vi -r file</span></p><p>open file in recovery mode after system crash</p>
+                        <p><span class="code-snippet">:r file2</span></p><p>read in a second file and insert at current position</p>
+                        <p><span class="code-snippet">:w</span></p><p>write to file</p>
+                        <p><span class="code-snippet">:w file</span></p><p>write out to a new file</p>
+                        <p><span class="code-snippet">:w! file2</span></p><p>overwrite file2</p>
+                        <p><span class="code-snippet">:wq</span></p><p>write to file and exit</p>
+                        <p><span class="code-snippet">:q</span></p><p>quit</p>
+                        <p><span class="code-snippet">:q!</span></p><p>quit even with unsaved modifications</p>
+                    </div>
                 </section>
             </div>
         </article>
