@@ -626,6 +626,27 @@
                         <p><span class="code-snippet">:q</span></p><p>quit</p>
                         <p><span class="code-snippet">:q!</span></p><p>quit even with unsaved modifications</p>
                     </div>
+                    <p>
+                        When using vi, an external command shell can be opened with <span class="code-snippet">sh</span>. Otherwise, 
+                        commands may be executed inside the editor prompt with <span class="code-snippet">!</span>:
+                    </p>
+                    <div class="code-block">
+                        <p><span class="code-comment"># find word count of current document (%)</span></p>
+                        <p>:! wc %</p>
+                    </div>
+                    <p>
+                        The emacs editor is a popular alternative to vi that executes commands using the CTRL and ALT/ESC keys, instead 
+                        of special characters. (For a full tutorial, start emacs and type <span class="code-snippet">CTRL-h</span> followed 
+                        by the letter <span class="code-snippet">t</span>.) Some of the most common command key combinations include:
+                    </p>
+                    <div class="grid definitions">
+                        <p><span class="code-snippet">emacs file</span></p><p>open file in editor</p>
+                        <p><span class="code-snippet">CTRL-x i</span></p><p>insert at current position in file</p>
+                        <p><span class="code-snippet">CTRL-x s</span></p><p>save all files</p>
+                        <p><span class="code-snippet">CTRL-x CTRL-w</span></p><p>write to file and rename</p>
+                        <p><span class="code-snippet">CTRL-x CTRL-s</span></p><p>save current file</p>
+                        <p><span class="code-snippet">CTRL-x CTRL-c</span></p><p>exit after prompted to save any modified files</p>
+                    </div>
                 </section>
             </div>
         </article>
