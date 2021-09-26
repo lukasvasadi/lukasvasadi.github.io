@@ -43,6 +43,7 @@
                         <li><a href="#documentation">Accessing documentation</a></li>
                         <li><a href="#processes">Processes</a></li>
                         <li><a href="#file-operations">File operations</a></li>
+                        <li><a href="#text-editors">Text editors</a></li>
                     </ul>
                 </div>
             </div>
@@ -552,6 +553,43 @@
                         <p>rsync -r project networked-machine:archives/project</p>
                         <p class="code-comment"># perform a dry run to prevent unwanted overwrites</p>
                         <p>rsync -r -dry-run project networked-machine:archives/project</p>
+                    </div>
+                    <p>
+                        There are several Linux utilities for managing data compression: <span class="code-snippet">gzip</span>, 
+                        <span class="code-snippet">bzip2</span> (deprecated), <span class="code-snippet">xz</span>. Each of 
+                        these utilities employ different compression algorithms and, not surprisingly, the utilities which 
+                        produce smaller files require longer amounts of time. A similar program, <span class="code-snippet">tar</span>, 
+                        compresses files grouped in an archive. Lastly, <span class="code-snippet">zip</span> is a legacy utility 
+                        specifically used to decompress zipped files from a Windows machine&mdash;though it also has compression 
+                        functionality.
+                    </p>
+                    <div class="code-block">
+                        <p><span class="code-comment"># compress files in current directory</span></p>
+                        <p>gzip *</p>
+                        <p><span class="code-comment"># recursively compress files in specified project directory</span></p>
+                        <p>gzip -r projectdir</p>
+                        <p><span class="code-comment"># decompress file foo.gz</span></p>
+                        <p>gzip -d foo</p>
+                        <p>gunzip foo</p>
+                    </div>
+                </section>
+                <section class="code-section">
+                    <h3 id="text-editors">Text editors</h3>
+                    <p>
+                        There are several ways to create and edit text files from the command line:
+                    </p>
+                    <div class="code-block">
+                        <p><span class="code-comment"># write several lines to a text file</span></p>
+                        <p>echo line one > filename</p>
+                        <p><span class="code-comment"># note that >> appends output to file</span></p>
+                        <p>echo line two >> filename</p>
+                        <p>echo line three >> filename</p>
+                        <p><span class="code-comment"># alternatively use cat with redirection</span></p>
+                        <p>cat << EOF > file</p>
+                        <p>line one</p>
+                        <p>line two</p>
+                        <p>line three</p>
+                        <p>EOF</p>
                     </div>
                 </section>
             </div>
