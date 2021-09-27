@@ -393,7 +393,7 @@ section .code-block:last-child {
     article {
         /* width: 60%; */
         padding-top: 2rem;
-        width: 94%;
+        width: 90%;
     }
 
     nav a {
@@ -414,6 +414,7 @@ section .code-block:last-child {
     }
 
     .content {
+        width: 90%;
         padding: 0 2rem;
     }
 
