@@ -44,6 +44,7 @@
                         <li><a href="#processes">Processes</a></li>
                         <li><a href="#file-operations">File operations</a></li>
                         <li><a href="#text-editors">Text editors</a></li>
+                        <li><a href="#user-environment">User environment</a></li>
                     </ul>
                 </div>
             </div>
@@ -646,6 +647,92 @@
                         <p><span class="code-snippet">CTRL-x CTRL-w</span></p><p>write to file and rename</p>
                         <p><span class="code-snippet">CTRL-x CTRL-s</span></p><p>save current file</p>
                         <p><span class="code-snippet">CTRL-x CTRL-c</span></p><p>exit after prompted to save any modified files</p>
+                    </div>
+                </section>
+                <section class="code-section">
+                    <h3 id="user-environment">User environment</h3>
+                    <p>
+                        As Linux is a multi-user system, administratos may be interested in knowing the current active 
+                        users:
+                    </p>
+                    <div class="code-block">
+                        <p class="code-comment"># find current user</p>
+                        <p>whoami</p>
+                        <p class="code-comment"># find all active users</p>
+                        <p>who</p>
+                        <p class="code-comment"># find more detailed information</p>
+                        <p>who -a</p>
+                    </div>
+                    <p>
+                        Each user will have local startup files to customize the user environment. These files supercede 
+                        system settings such as changing the default text editor and path to executables. At login, Linux 
+                        first evaluates <span class="code-snippet">/etc/profile</span> and then searches for user-specific 
+                        startup files in a particular order. Whichever startup file first discovered becomes the basis for 
+                        the user environment.
+                    </p>
+                    <p>
+                        Though startup files are only evaluated once at login, Linux will read and evaluate the 
+                        <span class="code-snippet">~/.bashrc</span> file each time a command line shell initiates or spawns 
+                        a program. For this reason, many users often only concern themselves with the 
+                        <span class="code-snippet">~/.bashrc</span> file.
+                    </p>
+                    <p>
+                        The <span class="code-snippet">~/.bashrc</span> file is also where <span class="emph">aliases</span> 
+                        are defined. Aliases are fully custom or modified commands that are accessible through every shell 
+                        instance. Invoking <span class="code-snippet">alias</span> will print all existing aliases to the console.
+                    </p>
+                    <p>
+                        All users belonging to a system are assigned a unique integer user ID (<span class="emph">UID</span>) as 
+                        well as one or more group IDs (<span class="emph">GID</span>) to denote group membership. Groups are simply 
+                        collections of Linux users that share the same permissions.
+                    </p>
+                    <div class="code-block">
+                        <p class="code-comment"># find user and group ids of current user</p>
+                        <p>id</p>
+                        <p class="code-comment"># find user and group ids of different user</p>
+                        <p>id johndoe</p>
+                    </div>
+                    <p>
+                        Linux administrators can manage user accounts directly from the command line:
+                    </p>
+                    <div class="code-block">
+                        <p class="code-comment"># create new user account</p>
+                        <p>sudo useradd johndoe</p>
+                        <p class="code-comment"># create account with home directory and default shell</p>
+                        <p>sudo useradd -m -c "John Doe" -s /bin/bash jdoe</p>
+                        <p class="code-comment"># start prompt to add account password</p>
+                        <p>sudo passwd jdoe</p>
+                        <p class="code-comment"># remove user account</p>
+                        <p>sudo userdel jdoe</p>
+                        <p class="code-comment"># remove user account as well as associated home directory</p>
+                        <p>sudo userdel -r jdoe</p>
+                    </div>
+                    <p>
+                        Groups may be managed similarly:
+                    </p>
+                    <div class="code-block">
+                        <p class="code-comment"># create new group</p>
+                        <p>sudo groupadd newgroup</p>
+                        <p class="code-comment"># remove group</p>
+                        <p>sudo groupdel newgroup</p>
+                        <p class="code-comment"># find groups associated with user</p>
+                        <p>groups johndoe</p>
+                        <p class="code-comment"># associate new group with user with append (-a)</p>
+                        <p>sudo usermod -a -G newgroup johndoe</p>
+                        <p class="code-comment"># change gid</p>
+                        <p>sudo groupmod -g newid</p>
+                        <p class="code-comment"># change group name</p>
+                        <p>sudo groupmod -n newname</p>
+                    </div>
+                    <p>
+                        Users can gain root privileges by either switching to the root user&mdash;not recommended for 
+                        security reasons&mdash;or executing individual shell commands with root privileges:
+                    </p>
+                    <div class="code-block">
+                        <p class="code-comment"># switch shell to root user</p>
+                        <p>su</p>
+                        <p class="code-comment"># execute one command with root privileges</p>
+                        <p>sudo command</p>
                     </div>
                 </section>
             </div>
