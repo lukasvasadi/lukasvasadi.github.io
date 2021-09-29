@@ -19,7 +19,7 @@
             <a href="mailto:lukas.vasadi@gmail.com"><i class="fa fa-envelope"></i></a>
         </div>
         <!-- Hamburger menu -->
-        <a href="javascript:void(0);" class="hamburger" onclick="menuFunction()"><i class="fa fa-bars"></i></a>
+        <a href="javascript:void(0);" class="hamburger" onclick="menuDropdown()"><i class="fa fa-bars"></i></a>
     </nav>
     <div id="mobile-menu">
         <a href="../about.html">About</a>
@@ -27,29 +27,27 @@
         <a href="lukas.vasadi@gmail.com" class="icon"><i class="fa fa-envelope"></i></a>
     </div>
     <main> 
-        <h1 class="center extra-padding">Mastering the Linux command line interface</h1>
+        <h1 class="center extra-padding">Mastering the Linux command line</h1>
         <h4 class="center">Last updated: September 2021</h4>
         <article>
-            <div class="toc">
-                <div class="fixed">
-                    <h3>Contents</h3>
-                    <ul>
-                        <li><a href="#basic-utilities">Basic utilities</a></li>
-                        <li><a href="#pipeline">Command pipeline</a></li>
-                        <li><a href="#filesystem-nav">Navigating the filesystem</a></li>
-                        <li><a href="#working-files">Working with files</a></li>
-                        <li><a href="#searching-files">Searching for files</a></li>
-                        <li><a href="#package-managers">Package managers</a></li>
-                        <li><a href="#documentation">Accessing documentation</a></li>
-                        <li><a href="#processes">Processes</a></li>
-                        <li><a href="#file-operations">File operations</a></li>
-                        <li><a href="#text-editors">Text editors</a></li>
-                        <li><a href="#user-environment">User environment</a></li>
-                    </ul>
-                </div>
+            <div class="toc fixed">
+                <h3>Contents</h3>
+                <ul>
+                    <li><a href="#basic-utilities">Basic utilities</a></li>
+                    <li><a href="#pipeline">Command pipeline</a></li>
+                    <li><a href="#filesystem-nav">Navigating the filesystem</a></li>
+                    <li><a href="#working-files">Working with files</a></li>
+                    <li><a href="#searching-files">Searching for files</a></li>
+                    <li><a href="#package-managers">Package managers</a></li>
+                    <li><a href="#documentation">Accessing documentation</a></li>
+                    <li><a href="#processes">Processes</a></li>
+                    <li><a href="#file-operations">File operations</a></li>
+                    <li><a href="#text-editors">Text editors</a></li>
+                    <li><a href="#user-environment">User environment</a></li>
+                </ul>
             </div>
-            <div class="content">
-                <section class="code-section">
+            <div class="content bash">
+                <section class="topic">
                     <h3 id="basic-utilities">Basic utilities</h3>
                     <div class="grid definitions">
                         <p><span class="code-snippet">cat</span></p><p>type out a file (or combine files)</p>
@@ -64,7 +62,7 @@
                         <p><span class="code-snippet">cd</span></p><p>change directory</p>
                     </div>
                     <p>
-                        The command is the name of the program being executed. Many commands accept arguments and 
+                        A command is the name of the program being executed. Many commands accept arguments and 
                         options, the latter often preceded with one or two dashes, e.g., 
                         <span class="code-snippet">-p</span> or <span class="code-snippet">--print</span>, to be
                         distinguishable.
@@ -72,27 +70,27 @@
                     <p>
                         Users have several options to shutdown or reboot the system from the command line:
                     </p>
-                    <div class="code-block">
-                        <p class="code-comment"># power off system without rebooting</p>
-                        <p>sudo shutdown -h</p>
-                        <p class="code-comment"># alternative commands that issue shutdown</p>
-                        <p>sudo halt</p>
-                        <p>sudo poweroff</p>
-                        <p class="code-comment"># reboot the system</p>
-                        <p>sudo shutdown -r</p>
-                        <p class="code-comment"># reboot alternative</p>
-                        <p>sudo reboot</p>
+                    <div class="console">
+                        <p class="comment"><span>power off system without rebooting</span></p>
+                        <p class="command">sudo shutdown -h</p>
+                        <p class="comment"><span>alternative commands that issue shutdown</span></p>
+                        <p class="command">sudo halt</p>
+                        <p class="command">sudo poweroff</p>
+                        <p class="comment"><span>reboot the system</span></p>
+                        <p class="command">sudo shutdown -r</p>
+                        <p class="comment"><span>reboot alternative</span></p>
+                        <p class="command">sudo reboot</p>
                     </div>
                 </section>
-                <section class="code-section">
+                <section class="topic">
                     <h3 id="pipeline">Command pipeline</h3>
                     <p>
                         The Unix/Linux philosophy is to combine multiple short programs to produce complex results. To achieve this 
                         coordination, data (output) from one program may be "piped" into another using the <span class="code-snippet">|</span>
                         command. A string of connected commands is called a pipeline.
                     </p>
-                    <div class="code-block">
-                        <p>command1 | command2 | command3</p>
+                    <div class="console">
+                        <p class="command">command1 | command2 | command3</p>
                     </div>
                     <p>
                         In the above example, <span class="code-snippet">command2</span> and <span class="code-snippet">command3</span> can start
@@ -100,7 +98,7 @@
                         the multicore functionality of modern computer systems and does not require data to be written to temporary files.
                     </p>
                 </section>
-                <section class="code-section">
+                <section class="topic">
                     <h3 id="filesystem-nav">Filesystem navigation</h3>
                     <p>
                         Locate programs with the <span class="code-snippet">which</span> or 
@@ -108,132 +106,132 @@
                         across a broader range of system directories and also prints the location of the 
                         <span class="code-snippet">man</span> page:
                     </p>
-                    <div class="code-block">
-                        <p>which program</p>
-                        <p>whereis program</p>
+                    <div class="console">
+                        <p class="command">which program</p>
+                        <p class="command">whereis program</p>
                     </div>
                     <p>Use <span class="code-snippet">cd</span> to navigate directories:</p>
-                    <div class="code-block">
-                        <p class="code-comment"># change to home directory</p>
-                        <p>cd</p>
-                        <p>cd ~</p>
-                        <p class="code-comment"># change to root directory</p>
-                        <p>cd /</p>
-                        <p class="code-comment"># change to parent directory</p>
-                        <p>cd ..</p>
-                        <p class="code-comment"># change to previous directory</p>
-                        <p>cd -</p>
+                    <div class="console">
+                        <p class="comment"><span>change to home directory</span></p>
+                        <p class="command">cd</p>
+                        <p class="command">cd ~</p>
+                        <p class="comment"><span>change to root directory</span></p>
+                        <p class="command">cd /</p>
+                        <p class="comment"><span>change to parent directory</span></p>
+                        <p class="command">cd ..</p>
+                        <p class="comment"><span>change to previous directory</span></p>
+                        <p class="command">cd -</p>
                     </div>
                     <p>
                         When referencing pathnames, remember that absolute pathnames must be preceded by 
                         <span class="code-snippet">/</span>:
                     </p>
-                    <div class="code-block">
-                        <p>cd /usr/bin</p>
-                        <p>cd ../../usr/bin</p>
+                    <div class="console">
+                        <p class="command">cd /usr/bin</p>
+                        <p class="command">cd ../../usr/bin</p>
                     </div>
                     <p>
                         Use the <span class="code-snippet">tree</span> command to view the entire filesystem
                         (note that this command may have to be installed with <span class="code-snippet">snap</span>):
                     </p>
-                    <div class="code-block">
-                        <p class="code-comment"># the -d option displays directories while suppressing file names</p>
-                        <p>tree -d</p>
+                    <div class="console">
+                        <p class="comment"><span>the -d option displays directories while suppressing file names</span></p>
+                        <p class="command">tree -d</p>
                     </div>
                     <p>The <span class="code-snippet">ls</span> command lists the contents of the working directory:</p>
-                    <div class="code-block">
-                        <p>ls</p>
-                        <p class="code-comment"># present in list view</p>
-                        <p>ls -l</p>
-                        <p class="code-comment"># include hidden files</p>
-                        <p>ls -a</p>
+                    <div class="console">
+                        <p class="command">ls</p>
+                        <p class="comment"><span>present in list view</span></p>
+                        <p class="command">ls -l</p>
+                        <p class="comment"><span>include hidden files</span></p>
+                        <p class="command">ls -a</p>
                     </div>
                     <p>
                         Use <span class="code-snippet">pushd</span> to navigate the filesystem and store visited directories
                         to a stack for later reference:
                     </p>
-                    <div class="code-block">
-                        <p>pwd</p>
-                        <p class="terminal-output">/usr</p>
-                        <p>pushd bin</p>
-                        <p class="terminal-output">/usr/bin /usr</p>
+                    <div class="console">
+                        <p class="command">pwd</p>
+                        <p class="output">/usr</p>
+                        <p class="command">pushd bin</p>
+                        <p class="output">/usr/bin /usr</p>
                     </div>
                     <p>
                         Similarly, use <span class="code-snippet">popd</span> to revisit previous directories in reverse order. 
                         The <span class="code-snippet">dirs</span> command prints a list of recent directories stacked with <span class="code-snippet">pushd</span>.
                     </p>
                 </section>
-                <section class="code-section">
+                <section class="topic">
                     <h3 id="working-files">Working with files</h3>
                     <p>There are many command line utilities for viewing and reconfiguring files.</p>
-                    <div class="code-block">
-                        <p class="code-comment"># load file contents in terminal window</p>
-                        <p>cat filename</p>
-                        <p class="code-comment"># load file contents with line numbers</p>
-                        <p>cat -n filename</p>
-                        <p class="code-comment"># load file contents in reverse</p>
-                        <p>tac filename</p>
+                    <div class="console">
+                        <p class="comment"><span>load file contents in terminal window</span></p>
+                        <p class="command">cat filename</p>
+                        <p class="comment"><span>load file contents with line numbers</span></p>
+                        <p class="command">cat -n filename</p>
+                        <p class="comment"><span>load file contents in reverse</span></p>
+                        <p class="command">tac filename</p>
                     </div>
                     <p>
                         To see one page of text at a time, use the <span class="code-snippet">less</span> command and press the 
                         spacebar to move through the file.
                     </p>
-                    <div class="code-block">
-                        <p class="code-comment"># show one page of text</p>
-                        <p>less filename</p>
-                        <p class="code-comment"># show one page of text with line numbers</p>
-                        <p>less -N filename</p>
+                    <div class="console">
+                        <p class="comment"><span>show one page of text</span></p>
+                        <p class="command">less filename</p>
+                        <p class="comment"><span>show one page of text with line numbers</span></p>
+                        <p class="command">less -N filename</p>
                     </div>
                     <p>
                         The <span class="code-snippet">head</span> and <span class="code-snippet">tail</span> commands display the
                         first or last 10 lines of a file, respectively.
                     </p>
-                    <div class="code-block">
-                        <p class="code-comment"># show first 10 lines</p>
-                        <p>head filename</p>
-                        <p class="code-comment"># specify number of lines</p>
-                        <p>head -20 filename</p>
-                        <p class="code-comment"># show last 10 lines</p>
-                        <p>tail filename</p>
-                        <p class="code-comment"># specify number of lines</p>
-                        <p>tail -20 filename</p>
+                    <div class="console">
+                        <p class="comment"><span>show first 10 lines</span></p>
+                        <p class="command">head filename</p>
+                        <p class="comment"><span>specify number of lines</span></p>
+                        <p class="command">head -20 filename</p>
+                        <p class="comment"><span>show last 10 lines</span></p>
+                        <p class="command">tail filename</p>
+                        <p class="comment"><span>specify number of lines</span></p>
+                        <p class="command">tail -20 filename</p>
                     </div>
                     <p>
                         The <span class="code-snippet">touch</span> utility is commonly used to create new files for later usage, but 
                         can also update/modify the timestamp of an existing file.
                     </p>
-                    <div class="code-block">
-                        <p class="code-comment"># create new file in current directory</p>
-                        <p>touch filename</p>
-                        <p class="code-comment"># update the date and timestamp of an existing file</p>
-                        <p>touch filename</p>
-                        <p class="code-comment"># modify the date and timestamp of an existing file MM DD TIME</p>
-                        <p>touch -t 01011200 filename</p>
+                    <div class="console">
+                        <p class="comment"><span>create new file in current directory</span></p>
+                        <p class="command">touch filename</p>
+                        <p class="comment"><span>update the date and timestamp of an existing file</span></p>
+                        <p class="command">touch filename</p>
+                        <p class="comment"><span>modify the date and timestamp of an existing file MM DD TIME</span></p>
+                        <p class="command">touch -t 01011200 filename</p>
                     </div>
                     <p>
                         Use <span class="code-snippet">mkdir</span> and <span class="code-snippet">rmdir</span> to manage directories.
                     </p>
-                    <div class="code-block">
-                        <p class="code-comment"># create new local directory</p>
-                        <p>mkdir dirname</p>
-                        <p class="code-comment"># create new directory with specific path</p>
-                        <p>mkdir dirpath</p>
-                        <p class="code-comment"># delete an empty directory</p>
-                        <p>rm dirname</p>
-                        <p class="code-comment"># delete a directory with contents</p>
-                        <p>rm -rf dirname</p>
+                    <div class="console">
+                        <p class="comment"><span>create new local directory</span></p>
+                        <p class="command">mkdir dirname</p>
+                        <p class="comment"><span>create new directory with specific path</span></p>
+                        <p class="command">mkdir dirpath</p>
+                        <p class="comment"><span>delete an empty directory</span></p>
+                        <p class="command">rm dirname</p>
+                        <p class="comment"><span>delete a directory with contents</span></p>
+                        <p class="command">rm -rf dirname</p>
                     </div>
                     <p>
                         The <span class="code-snippet">mv</span> utility can both rename and relocate files.
                     </p>
-                    <div class="code-block">
-                        <p class="code-comment"># rename existing file</p>
-                        <p>mv filename new-filename</p>
-                        <p class="code-comment"># relocate file</p>
-                        <p>mv filename new-filepath</p>
+                    <div class="console">
+                        <p class="comment"><span>rename existing file</span></p>
+                        <p class="command">mv filename new-filename</p>
+                        <p class="comment"><span>relocate file</span></p>
+                        <p class="command">mv filename new-filepath</p>
                     </div>
                 </section>
-                <section class="code-section">
+                <section class="topic">
                     <h3 id="searching-files">Searching for files</h3>
                     <p>
                         When interacting with the command line, there are always three standard file streams in operation:
@@ -247,17 +245,17 @@
                         The input source and output destination of a program can be changed with the 
                         <span class="code-snippet">&lt;</span> and <span class="code-snippet">&gt;</span> symbols, respectively:
                     </p>
-                    <div class="code-block">
-                        <p class="code-comment"># redirect program input</p>
-                        <p>do_something &lt; input-file</p>
-                        <p class="code-comment"># send output to file</p>
-                        <p>do_something &gt; output-file</p>
-                        <p class="code-comment"># send stderr output to file</p>
-                        <p>do_something 2&gt; output-file</p>
-                        <p class="code-comment"># send all output to same destination file</p>
-                        <p>do_something &gt; output-file 2&gt;&amp;1</p>
-                        <p class="code-comment"># shorthand syntax</p>
-                        <p>do_something &gt;&amp; output-file</p>
+                    <div class="console">
+                        <p class="comment"><span>redirect program input</span></p>
+                        <p class="command">do_something &lt; input-file</p>
+                        <p class="comment"><span>send output to file</span></p>
+                        <p class="command">do_something &gt; output-file</p>
+                        <p class="comment"><span>send stderr output to file</span></p>
+                        <p class="command">do_something 2&gt; output-file</p>
+                        <p class="comment"><span>send all output to same destination file</span></p>
+                        <p class="command">do_something &gt; output-file 2&gt;&amp;1</p>
+                        <p class="comment"><span>shorthand syntax</span></p>
+                        <p class="command">do_something &gt;&amp; output-file</p>
                     </div>
                     <p>
                         To search for files and directories that contain a specific string, use the <span class="code-snippet">locate</span>
@@ -267,11 +265,11 @@
                         the search string. Note: without any arguments, <span class="code-snippet">-name</span> outputs all files in the current and 
                         nested directories.
                     </p>
-                    <div class="code-block">
-                        <p class="code-comment"># list all files with zip and bin in their name</p>
-                        <p>locate zip | grep bin</p>
-                        <p class="code-comment"># use find to search for a file in the current working directory</p>
-                        <p>find . -name "zip"</p>
+                    <div class="console">
+                        <p class="comment"><span>list all files with zip and bin in their name</span></p>
+                        <p class="command">locate zip | grep bin</p>
+                        <p class="comment"><span>use find to search for a file in the current working directory</span></p>
+                        <p class="command">find . -name "zip"</p>
                     </div>
                     <p>
                         With these commands, it is often useful to employ wildcards:
@@ -292,12 +290,12 @@
                         Using the <span class="code-snippet">-exec</span> parameter, the <span class="code-snippet">find</span> utility can also run other
                         commands on the search results:
                     </p>
-                    <div class="code-block">
-                        <p class="code-comment"># find and remove all files with extension .swp</p>
-                        <p>find -name "*.swp" -exec rm {} ';'</p>
+                    <div class="console">
+                        <p class="comment"><span>find and remove all files with extension .swp</span></p>
+                        <p class="command">find -name "*.swp" -exec rm {} ';'</p>
                     </div>
                 </section>
-                <section class="code-section">
+                <section class="topic">
                     <h3 id="package-managers">Package managers</h3>
                     <p>
                         There are two broad families of package managers for Debian and RPM distributions. Each family has a high-level tool, 
@@ -309,51 +307,51 @@
                     <p>
                         Some common package management commands for Debian-based distros include:
                     </p>
-                    <div class="code-block">
-                        <p class="code-comment"># list all packages on system</p>
-                        <p>dpkg --list</p>
-                        <p class="code-comment"># install (or update) package and dependencies</p>
-                        <p>apt-get install foo</p>
-                        <p class="code-comment"># remove package and dependencies</p>
-                        <p>apt-get remove foo</p>
-                        <p class="code-comment"># upgrade entire system</p>
-                        <p>apt-get dist-upgrade</p>
-                        <p class="code-comment"># search packages named foo</p>
-                        <p>apt-cache search foo</p>
+                    <div class="console">
+                        <p class="comment"><span>list all packages on system</span></p>
+                        <p class="command">dpkg --list</p>
+                        <p class="comment"><span>install (or update) package and dependencies</span></p>
+                        <p class="command">apt-get install foo</p>
+                        <p class="comment"><span>remove package and dependencies</span></p>
+                        <p class="command">apt-get remove foo</p>
+                        <p class="comment"><span>upgrade entire system</span></p>
+                        <p class="command">apt-get dist-upgrade</p>
+                        <p class="comment"><span>search packages named foo</span></p>
+                        <p class="command">apt-cache search foo</p>
                     </div>
                 </section>
-                <section class="code-section">
+                <section class="topic">
                     <h3 id="documentation">Accessing documentation</h3>
                     <p>
                         The general philosophy of computer administration is to not memorize every single shell command along with its parameters. Instead,
                         administrators can reference the <span class="code-snippet">man</span> pages&mdash;short for manual&mdash; or utilize either the 
                         <span class="code-snippet">help</span> command or <span class="code-snippet">--help</span> option.
                     </p>
-                    <div class="code-block">
-                        <p class="code-comment"># find information about a specific topic</p>
-                        <p>man topic</p>
-                        <p class="code-comment"># list all pages on topic</p>
-                        <p>man -f topic</p>
-                        <p class="code-comment"># alternatively...</p>
-                        <p>whatis topic</p>
-                        <p class="code-comment"># list all pages that discuss a topic (yields more results)</p>
-                        <p>man -k topic</p>
-                        <p class="code-comment"># alternatively...</p>
-                        <p>apropos topic</p>
+                    <div class="console">
+                        <p class="comment"><span>find information about a specific topic</span></p>
+                        <p class="command">man topic</p>
+                        <p class="comment"><span>list all pages on topic</span></p>
+                        <p class="command">man -f topic</p>
+                        <p class="comment"><span>alternatively...</span></p>
+                        <p class="command">whatis topic</p>
+                        <p class="comment"><span>list all pages that discuss a topic (yields more results)</span></p>
+                        <p class="command">man -k topic</p>
+                        <p class="comment"><span>alternatively...</span></p>
+                        <p class="command">apropos topic</p>
                     </div>
                     <p>
                         While <span class="code-snippet">man</span> is a great tool for reading detailed information about specific utilities, often administrators
                         only need a brief description. This can be accomplished using <span class="code-snippet">--help</span> or <span class="code-snippet">-h</span>:
                     </p>
-                    <div class="code-block">
-                        <p class="code-comment"># find information on the man command</p>
-                        <p>man --help</p>
+                    <div class="console">
+                        <p class="comment"><span>find information on the man command</span></p>
+                        <p class="command">man --help</p>
                     </div>
                     <p>
                         Typing <span class="code-snippet">help</span> at the command line will print consolidated information about built-in commands.
                     </p>
                 </section>
-                <section class="code-section">
+                <section class="topic">
                     <h3 id="processes">Processes</h3>
                     <p>
                         A process represents a current task running on the computer. Single commands may launch one or more processes simultaneously. The operating
@@ -376,11 +374,11 @@
                     <p>
                         Users can terminate processes in the terminal shell:
                     </p>
-                    <div class="code-block">
-                        <p class="code-comment"># kill process</p>
-                        <p>kill -SIGKILL pid</p>
-                        <p class="code-comment"># alternatively</p>
-                        <p>kill -9 pid</p>
+                    <div class="console">
+                        <p class="comment"><span>kill process</span></p>
+                        <p class="command">kill -SIGKILL pid</p>
+                        <p class="comment"><span>alternatively</span></p>
+                        <p class="command">kill -9 pid</p>
                     </div>
                     <p>
                         Users can also specify a <span class="emph">nice value</span> for individual processes to control their execution priority. The lower the nice value,
@@ -388,9 +386,9 @@
                         highest priority, or precedence. Note that changing the niceness of a process will also update any child processes with the same value. Increasing
                         niceness may require superuser permissions.
                     </p>
-                    <div class="code-block">
-                        <p class="code-comment"># change the niceness value</p>
-                        <p>renice value pid</p>
+                    <div class="console">
+                        <p class="comment"><span>change the niceness value</span></p>
+                        <p class="command">renice value pid</p>
                     </div>
                     <p>
                         The <span class="emph">load average</span> breaks down CPU resource consumption over three specified timepoints: 45, 15, and 5 min. These percentages 
@@ -409,24 +407,24 @@
                         Alternatively, the <span class="code-snippet">bg</span> and <span class="code-snippet">fg</span> commands can push jobs to the background or foreground, 
                         respectively.
                     </p>
-                    <div class="code-block">
-                        <p class="code-comment"># view active background jobs</p>
-                        <p>jobs</p>
+                    <div class="console">
+                        <p class="comment"><span>view active background jobs</span></p>
+                        <p class="command">jobs</p>
                     </div>
                     <p>
                         The <span class="code-snippet">ps</span> command prints information about current running processes:
                     </p>
-                    <div class="code-block">
-                        <p class="code-comment"># display all processes running under current shell</p>
-                        <p>ps</p>
-                        <p class="code-comment"># include PPID</p>
-                        <p>ps -f</p>
-                        <p class="code-comment"># include full system detail</p>
-                        <p>ps -ef</p>
-                        <p class="code-comment"># show one line of information for every thread</p>
-                        <p>ps -elf</p>
-                        <p class="code-comment"># display as tree diagram to show process lineage</p>
-                        <p>pstree</p>
+                    <div class="console">
+                        <p class="comment"><span>display all processes running under current shell</span></p>
+                        <p class="command">ps</p>
+                        <p class="comment"><span>include PPID</span></p>
+                        <p class="command">ps -f</p>
+                        <p class="comment"><span>include full system detail</span></p>
+                        <p class="command">ps -ef</p>
+                        <p class="comment"><span>show one line of information for every thread</span></p>
+                        <p class="command">ps -elf</p>
+                        <p class="comment"><span>display as tree diagram to show process lineage</span></p>
+                        <p class="command">pstree</p>
                     </div>
                     <p>
                         In addition to printing load averages, the <span class="code-snippet">top</span> command presents a real-time system monitor of all processes, listed in order of 
@@ -443,16 +441,16 @@
                     <p>
                         Various commands exist to manage future program execution and suspend currently active processes:
                     </p>
-                    <div class="code-block">
-                        <p class="code-comment"># schedule non-interactive process to execute in 10 minutes</p>
-                        <p>at now + 10 minutes</p>
-                        <p class="code-comment"># issue command to be executed, then press CTRL-D to exit at config</p>
-                        <p>command arguments</p>
-                        <p class="code-comment"># sleep active program for 10 seconds</p>
-                        <p>sleep 10s</p>
+                    <div class="console">
+                        <p class="comment"><span>schedule non-interactive process to execute in 10 minutes</span></p>
+                        <p class="command">at now + 10 minutes</p>
+                        <p class="comment"><span>issue command to be executed, then press CTRL-D to exit at config</span></p>
+                        <p class="command">command arguments</p>
+                        <p class="comment"><span>sleep active program for 10 seconds</span></p>
+                        <p class="command">sleep 10s</p>
                     </div>
                 </section>
-                <section class="code-section">
+                <section class="topic">
                     <h3 id="file-operations">File operations</h3>
                     <p>
                         In the Linux, the root directory, denoted by <span class="code-snippet">/</span>, represents the beginning of the filesystem hierarchy. There are 
@@ -466,13 +464,13 @@
                         Partitions can be mounted through a graphical utility, such as <span class="emph">gparted</span>, or the command line with the device node and mount 
                         point as the arguments:
                     </p>
-                    <div class="code-block">
-                        <p class="code-comment"># mount the filesystem at device node /dev/sda5 into the main filesystem tree at mount point /home</p>
-                        <p>sudo mount /dev/sda5 /home</p>
-                        <p class="code-comment"># unmount the partition</p>
-                        <p>sudo umount /home</p>
-                        <p class="code-comment"># show all mounted filesystems</p>
-                        <p>mount</p>
+                    <div class="console">
+                        <p class="comment"><span>mount the filesystem at device node /dev/sda5 into the main filesystem tree at mount point /home</span></p>
+                        <p class="command">sudo mount /dev/sda5 /home</p>
+                        <p class="comment"><span>unmount the partition</span></p>
+                        <p class="command">sudo umount /home</p>
+                        <p class="comment"><span>show all mounted filesystems</span></p>
+                        <p class="command">mount</p>
                     </div>
                     <p>
                         Filesystems and data can also be shared across machines through networks. Networks, accessible over the internet, allow grouping of lower-level filesystems
@@ -514,11 +512,11 @@
                     <p>
                         Comparing text files can be done with the <span class="code-snippet">diff</span> command:
                     </p>
-                    <div class="code-block">
-                        <p class="code-comment"># compare differences between two text files</p>
-                        <p>diff [options] filename1 filename2</p>
-                        <p class="code-comment"># compare differences between three text files, with one acting as a reference</p>
-                        <p>diff3 filename1 referencefile filename2</p>
+                    <div class="console">
+                        <p class="comment"><span>compare differences between two text files</span></p>
+                        <p class="command">diff [options] filename1 filename2</p>
+                        <p class="comment"><span>compare differences between three text files, with one acting as a reference</span></p>
+                        <p class="command">diff3 filename1 referencefile filename2</p>
                     </div>
                     <p>
                         This utility provides several options:
@@ -535,7 +533,7 @@
                         extension could be a binary executable. Users can employ the <span class="code-snippet">file</span> utility to ascertain file type and other important 
                         information.
                     </p>
-                    <div class="code-block">
+                    <div class="console">
                         <p class="code-comment"># ascertain file type</p>
                         <p>file filename</p>
                         <p class="code-comment"># find detailed information about all files in working directory</p>
@@ -547,13 +545,13 @@
                         performs recursive operations to only copy modified data, i.e., existing files may not be entirely overwritten. The <span class="code-snippet">rsync</span> 
                         utility can also copy data across remote machines.
                     </p>
-                    <div class="code-block">
-                        <p class="code-comment"># copy file to new location</p>
-                        <p>rsync sourcefile destinationfile</p>
-                        <p class="code-comment"># back up project data to remote archive</p>
-                        <p>rsync -r project networked-machine:archives/project</p>
-                        <p class="code-comment"># perform a dry run to prevent unwanted overwrites</p>
-                        <p>rsync -r -dry-run project networked-machine:archives/project</p>
+                    <div class="console">
+                        <p class="comment"><span>copy file to new location</span></p>
+                        <p class="command">rsync sourcefile destinationfile</p>
+                        <p class="comment"><span>back up project data to remote archive</span></p>
+                        <p class="command">rsync -r project networked-machine:archives/project</p>
+                        <p class="comment"><span>perform a dry run to prevent unwanted overwrites</span></p>
+                        <p class="command">rsync -r -dry-run project networked-machine:archives/project</p>
                     </div>
                     <p>
                         There are several Linux utilities for managing data compression: <span class="code-snippet">gzip</span>, 
@@ -564,29 +562,29 @@
                         specifically used to decompress zipped files from a Windows machine&mdash;though it also has compression 
                         functionality.
                     </p>
-                    <div class="code-block">
-                        <p><span class="code-comment"># compress files in current directory</span></p>
-                        <p>gzip *</p>
-                        <p><span class="code-comment"># recursively compress files in specified project directory</span></p>
-                        <p>gzip -r projectdir</p>
-                        <p><span class="code-comment"># decompress file foo.gz</span></p>
-                        <p>gzip -d foo</p>
-                        <p>gunzip foo</p>
+                    <div class="console">
+                        <p class="comment"><span>compress files in current directory</span></p>
+                        <p class="command">gzip *</p>
+                        <p class="comment"><span>recursively compress files in specified project directory</span></p>
+                        <p class="command">gzip -r projectdir</p>
+                        <p class="comment"><span>decompress file foo.gz</span></p>
+                        <p class="command">gzip -d foo</p>
+                        <p class="command">gunzip foo</p>
                     </div>
                 </section>
-                <section class="code-section">
+                <section class="topic">
                     <h3 id="text-editors">Text editors</h3>
                     <p>
                         There are several ways to create and edit text files from the command line:
                     </p>
-                    <div class="code-block">
-                        <p><span class="code-comment"># write several lines to a text file</span></p>
-                        <p>echo line one > filename</p>
-                        <p><span class="code-comment"># note that >> appends output to file</span></p>
-                        <p>echo line two >> filename</p>
-                        <p>echo line three >> filename</p>
-                        <p><span class="code-comment"># alternatively use cat with redirection</span></p>
-                        <p>cat << EOF > file</p>
+                    <div class="console">
+                        <p class="comment"><span>write several lines to a text file</span></p>
+                        <p class="command">echo line one > filename</p>
+                        <p class="comment"><span>note that >> appends output to file</span></p>
+                        <p class="command">echo line two >> filename</p>
+                        <p class="command">echo line three >> filename</p>
+                        <p class="comment"><span>alternatively use cat with redirection</span></p>
+                        <p class="command">cat << EOF > file</p>
                         <p>line one</p>
                         <p>line two</p>
                         <p>line three</p>
@@ -631,9 +629,9 @@
                         When using vi, an external command shell can be opened with <span class="code-snippet">sh</span>. Otherwise, 
                         commands may be executed inside the editor prompt with <span class="code-snippet">!</span>:
                     </p>
-                    <div class="code-block">
-                        <p><span class="code-comment"># find word count of current document (%)</span></p>
-                        <p>:! wc %</p>
+                    <div class="console">
+                        <p class="comment"><span>find word count of current document (%)</span></p>
+                        <p class="command">:! wc %</p>
                     </div>
                     <p>
                         The emacs editor is a popular alternative to vi that executes commands using the CTRL and ALT/ESC keys, instead 
@@ -649,19 +647,19 @@
                         <p><span class="code-snippet">CTRL-x CTRL-c</span></p><p>exit after prompted to save any modified files</p>
                     </div>
                 </section>
-                <section class="code-section">
+                <section class="topic">
                     <h3 id="user-environment">User environment</h3>
                     <p>
                         As Linux is a multi-user system, administratos may be interested in knowing the current active 
                         users:
                     </p>
-                    <div class="code-block">
-                        <p class="code-comment"># find current user</p>
-                        <p>whoami</p>
-                        <p class="code-comment"># find all active users</p>
-                        <p>who</p>
-                        <p class="code-comment"># find more detailed information</p>
-                        <p>who -a</p>
+                    <div class="console">
+                        <p class="comment"><span>find current user</span></p>
+                        <p class="command">whoami</p>
+                        <p class="comment"><span>find all active users</span></p>
+                        <p class="command">who</p>
+                        <p class="comment"><span>find more detailed information</span></p>
+                        <p class="command">who -a</p>
                     </div>
                     <p>
                         Each user will have local startup files to customize the user environment. These files supercede 
@@ -672,12 +670,12 @@
                     </p>
                     <p>
                         Though startup files are only evaluated once at login, Linux will read and evaluate the 
-                        <span class="code-snippet">~/.bashrc</span> file each time a command line shell initiates or spawns 
+                        <span class="code-snippet">~/rc</span> file each time a command line shell initiates or spawns 
                         a program. For this reason, many users often only concern themselves with the 
-                        <span class="code-snippet">~/.bashrc</span> file.
+                        <span class="code-snippet">~/rc</span> file.
                     </p>
                     <p>
-                        The <span class="code-snippet">~/.bashrc</span> file is also where <span class="emph">aliases</span> 
+                        The <span class="code-snippet">~/rc</span> file is also where <span class="emph">aliases</span> 
                         are defined. Aliases are fully custom or modified commands that are accessible through every shell 
                         instance. Invoking <span class="code-snippet">alias</span> will print all existing aliases to the console.
                     </p>
@@ -686,53 +684,98 @@
                         well as one or more group IDs (<span class="emph">GID</span>) to denote group membership. Groups are simply 
                         collections of Linux users that share the same permissions.
                     </p>
-                    <div class="code-block">
-                        <p class="code-comment"># find user and group ids of current user</p>
-                        <p>id</p>
-                        <p class="code-comment"># find user and group ids of different user</p>
-                        <p>id johndoe</p>
+                    <div class="console">
+                        <p class="comment"><span>find user and group ids of current user</span></p>
+                        <p class="command">id</p>
+                        <p class="comment"><span>find user and group ids of different user</span></p>
+                        <p class="command">id johndoe</p>
                     </div>
                     <p>
                         Linux administrators can manage user accounts directly from the command line:
                     </p>
-                    <div class="code-block">
-                        <p class="code-comment"># create new user account</p>
-                        <p>sudo useradd johndoe</p>
-                        <p class="code-comment"># create account with home directory and default shell</p>
-                        <p>sudo useradd -m -c "John Doe" -s /bin/bash jdoe</p>
-                        <p class="code-comment"># start prompt to add account password</p>
-                        <p>sudo passwd jdoe</p>
-                        <p class="code-comment"># remove user account</p>
-                        <p>sudo userdel jdoe</p>
-                        <p class="code-comment"># remove user account as well as associated home directory</p>
-                        <p>sudo userdel -r jdoe</p>
+                    <div class="console">
+                        <p class="comment"><span>create new user account</span></p>
+                        <p class="command">sudo useradd johndoe</p>
+                        <p class="comment"><span>create account with home directory and default shell</span></p>
+                        <p class="command">sudo useradd -m -c "John Doe" -s /bin jdoe</p>
+                        <p class="comment"><span>start prompt to add account password</span></p>
+                        <p class="command">sudo passwd jdoe</p>
+                        <p class="comment"><span>remove user account</span></p>
+                        <p class="command">sudo userdel jdoe</p>
+                        <p class="comment"><span>remove user account as well as associated home directory</span></p>
+                        <p class="command">sudo userdel -r jdoe</p>
                     </div>
                     <p>
                         Groups may be managed similarly:
                     </p>
-                    <div class="code-block">
-                        <p class="code-comment"># create new group</p>
-                        <p>sudo groupadd newgroup</p>
-                        <p class="code-comment"># remove group</p>
-                        <p>sudo groupdel newgroup</p>
-                        <p class="code-comment"># find groups associated with user</p>
-                        <p>groups johndoe</p>
-                        <p class="code-comment"># associate new group with user with append (-a)</p>
-                        <p>sudo usermod -a -G newgroup johndoe</p>
-                        <p class="code-comment"># change gid</p>
-                        <p>sudo groupmod -g newid</p>
-                        <p class="code-comment"># change group name</p>
-                        <p>sudo groupmod -n newname</p>
+                    <div class="console">
+                        <p class="comment"><span>create new group</span></p>
+                        <p class="command">sudo groupadd newgroup</p>
+                        <p class="comment"><span>remove group</span></p>
+                        <p class="command">sudo groupdel newgroup</p>
+                        <p class="comment"><span>find groups associated with user</span></p>
+                        <p class="command">groups johndoe</p>
+                        <p class="comment"><span>associate new group with user with append (-a)</span></p>
+                        <p class="command">sudo usermod -a -G newgroup johndoe</p>
+                        <p class="comment"><span>change gid</span></p>
+                        <p class="command">sudo groupmod -g newid</p>
+                        <p class="comment"><span>change group name</span></p>
+                        <p class="command">sudo groupmod -n newname</p>
                     </div>
                     <p>
                         Users can gain root privileges by either switching to the root user&mdash;not recommended for 
                         security reasons&mdash;or executing individual shell commands with root privileges:
                     </p>
-                    <div class="code-block">
-                        <p class="code-comment"># switch shell to root user</p>
-                        <p>su</p>
-                        <p class="code-comment"># execute one command with root privileges</p>
-                        <p>sudo command</p>
+                    <div class="console">
+                        <p class="comment"><span>switch shell to root user</span></p>
+                        <p class="command">su</p>
+                        <p class="comment"><span>execute one command with root privileges</span></p>
+                        <p class="command">sudo command</p>
+                    </div>
+                    <p>
+                        <span class="emph">Environment variables</span> are character strings that contain important 
+                        configuration information for the command shell and various other applications. Various amounts 
+                        of this information can be viewed with the <span class="code-snippet">set</span>, 
+                        <span class="code-snippet">env</span>, or <span class="code-snippet">export</span>.
+                    </p>
+                    <div class="console">
+                        <p class="comment"><span>show value of variable</span></p>
+                        <p class="command">echo $SHELL</p>
+                        <p class="comment"><span>export new variable</span></p>
+                        <p class="command">export VARIABLE=value</p>
+                        <p class="comment"><span>commit value for permanent access</span></p>
+                        <p class="command">nano ~/rc</p>
+                        <p class="command">export VARIABLE=value</p>
+                        <p class="comment"><span>reset shell</span></p>
+                        <p class="command">source ~/rc</p>
+                    </div>
+                    <p>
+                        Some important variables include:
+                    </p>
+                    <div class="grid definitions">
+                        <p><span class="code-snippet">$HOME</span></p><p>points to user home directory</p>
+                        <p><span class="code-snippet">$PATH</span></p><p>points to ordered list of paths (separated by <span class="code-snippet">:</span>) that is scanned to find programs/scripts</p>
+                        <p><span class="code-snippet">$SHELL</span></p><p>points to default command shell (usually)</p>
+                    </div>
+                    <p>
+                        Previous shell commands can be cycled with the &uparrow; and &downarrow; keys or viewed as a list with 
+                        the <span class="code-snippet">history</span> command (command history stored in <span class="code-snippet">~/_history</span>).
+                        Alternatively, the most recent command can be called with <span class="code-snippet">!!</span> or a 
+                        specific command in history may be searched with <span class="code-snippet">CTRL+R</span> followed 
+                        by character hints.
+                    </p>
+                    <div class="console">
+                        <p class="comment"><span>print command history</span></p>
+                        <p class="command">history</p>
+                        <p class="output">1&nbsp;&nbsp;echo $HOME</p>
+                        <p class="output">2&nbsp;&nbsp;echo $PATH</p>
+                        <p class="output">3&nbsp;&nbsp;pwd</p>
+                        <p class="output">4&nbsp;&nbsp;ls -la</p>
+                        <p class="output">5&nbsp;&nbsp;history</p>
+                        <p class="comment"><span>call command 1</span></p>
+                        <p class="command">!1</p>
+                        <p class="comment"><span>call command beginning with "p"</span></p>
+                        <p class="command">!p</p>
                     </div>
                 </section>
             </div>
@@ -744,6 +787,7 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<script src="../js/main.js"></script>
+    <script src="../js/post.js"></script>
 </body>
 
 </html>

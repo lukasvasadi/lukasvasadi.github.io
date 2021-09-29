@@ -19,7 +19,7 @@
             <a href="mailto:lukas.vasadi@gmail.com"><i class="fa fa-envelope"></i></a>
         </div>
         <!-- Hamburger menu -->
-        <a href="javascript:void(0);" class="hamburger" onclick="menuFunction()"><i class="fa fa-bars"></i></a>
+        <a href="javascript:void(0);" class="hamburger" onclick="menuDropdown()"><i class="fa fa-bars"></i></a>
     </nav>
     <div id="mobile-menu">
         <a href="../about.html">About</a>
@@ -30,27 +30,25 @@
         <h1 class="center extra-padding">Using git to manage code repositories</h1>
         <h4 class="center">Last updated: September 2021</h4>
         <article>
-            <div class="toc">
-                <div class="fixed">
-                    <h3>Contents</h3>
-                    <ul>
-                        <li><a href="#delete-branch">Deleting branches</a></li>
-                    </ul>
-                </div>
+            <div class="toc fixed">
+                <h3>Contents</h3>
+                <ul>
+                    <li><a href="#delete-branch">Deleting branches</a></li>
+                </ul>
             </div>
-            <div class="content">
-                <section class="code-section">
+            <div class="content bash">
+                <section class="topic">
                     <h3 id="delete-branch">Deleting branches</h3>
                     <p>
                         When "trimming" branches, it is often desired to remove both the local and remote instances.
                     </p>
-                    <div class="code-block">
-                        <p class="code-comment"># delete remote branch where remote name is origin</p>
-                        <p>git push -d origin branch-name</p>
-                        <p class="code-comment"># delete local branch instance</p>
-                        <p>git branch -d branch-name</p>
-                        <p class="code-comment"># force local branch deletion</p>
-                        <p>git branch -D branch-name</p>
+                    <div class="console">
+                        <p class="comment"><span>delete remote branch where remote name is origin</span></p>
+                        <p class="command">git push -d origin branch-name</p>
+                        <p class="comment"><span>delete local branch instance</span></p>
+                        <p class="command">git branch -d branch-name</p>
+                        <p class="comment"><span>force local branch deletion</span></p>
+                        <p class="command">git branch -D branch-name</p>
                     </div>
                     <p>
                         In the above code block, the first command deletes the remote branch, which shares the same name as the local
@@ -69,6 +67,7 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<script src="../js/main.js"></script>
+    <script src="../js/post.js"></script>
 </body>
 
 </html>
