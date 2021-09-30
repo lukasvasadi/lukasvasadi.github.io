@@ -777,6 +777,48 @@
                         <p class="comment"><span>call command beginning with "p"</span></p>
                         <p class="command">!p</p>
                     </div>
+                    <p>
+                        The following keyboard shortcuts may help speed up tasks in the console:
+                    </p>
+                    <div class="grid definitions">
+                        <p><span class="code-snippet">CTRL+L</span></p><p>clear terminal window</p>
+                        <p><span class="code-snippet">CTRL+D</span></p><p>exit current shell</p>
+                        <p><span class="code-snippet">CTRL+Z</span></p><p>suspend current process in background</p>
+                        <p><span class="code-snippet">CTRL+C</span></p><p>kill current process</p>
+                        <p><span class="code-snippet">CTRL+H</span></p><p>backspace</p>
+                        <p><span class="code-snippet">CTRL+A</span></p><p>go to beginning of line</p>
+                        <p><span class="code-snippet">CTRL+W</span></p><p>delete word before cursor</p>
+                        <p><span class="code-snippet">CTRL+U</span></p><p>delete line up to cursor position</p>
+                        <p><span class="code-snippet">CTRL+E</span></p><p>go to end of line</p>
+                        <p><span class="code-snippet">Tab</span></p><p>autocomplete</p>
+                    </div>
+                    <p>
+                        Every file in Unix-based operating systems has an owner and is associated with certain groups, all of whom have varying degrees 
+                        of permissions and read/write access. These permissions can be changed manually:
+                    </p>
+                    <div class="console">
+                        <p class="comment"><span>change file ownership</span></p>
+                        <p class="command">chown user filename</p>
+                        <p class="comment"><span>change group ownership</span></p>
+                        <p class="command">chgrp group filename</p>
+                        <p class="comment"><span>change permission modes</span></p>
+                        <p class="command">chmod permissions filename</p>
+                    </div>
+                    <p>
+                        The <span class="code-snippet">chmod</span> command can change the read (<span class="code-snippet">r</span>), write (<span class="code-snippet">w</span>), 
+                        and execute (<span class="code-snippet">x</span>) permissions of the user/owner (<span class="code-snippet">u</span>), group (<span class="code-snippet">g</span>), 
+                        and others (<span class="code-snippet">o</span>). These characters may be used explicitly as arguments or replaced with a numbering system where read, write, 
+                        and execute permissions are represented as <span class="code-snippet">4</span>, <span class="code-snippet">2</span>, and <span class="code-snippet">1</span>,
+                        respectively. The summation of these numbers represents a combination of the various permissions.
+                    </p>
+                    <div class="console">
+                        <p class="comment"><span>grant user and group rw permissions, and others read permission</span></p>
+                        <p class="command">chmod u=rw,g=rw,o=r filename</p>
+                        <p class="comment"><span>add owner execute permission and remove group write permission</span></p>
+                        <p class="command">chmod u+x,g-w filename</p>
+                        <p class="comment"><span>give owner rwx permissions, group rx permissions, and others r permission</span></p>
+                        <p class="command">chmod 754 filename</p>
+                    </div>
                 </section>
             </div>
         </article>
