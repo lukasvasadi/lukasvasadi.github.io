@@ -246,7 +246,7 @@ footer {
     background-color: var(--background-color);
     position: relative;
     top: 0;
-    padding-bottom: 2rem;
+    padding: 0 1rem 2rem 1rem;
     z-index: 1;
 }
 
@@ -382,7 +382,6 @@ footer {
 
     .toc {
         width: 30%;
-        padding: 0 1rem;
         word-wrap: break-word;
     }
 
