@@ -343,7 +343,7 @@ footer {
     content: "# ";
 }
 
-.powershell .code-snippet {
+.powershell .snippet {
     background-color: var(--powershell);
 }
 
@@ -351,7 +351,7 @@ footer {
     color: #D6C13A;
 }
 
-.code-snippet {
+.snippet {
     background-color: var(--background-color-code);
     font-family: 'Fira Code', 'Roboto Condensed', sans-serif;
     font-size: 17px;
