@@ -14,7 +14,7 @@ function addCopyLinks() {
         copyLink.setAttribute('onclick', 'copyCommand(this)');
 
         var cloneIcon = document.createElement('i');
-        cloneIcon.setAttribute('class', 'far fa-clone');
+        cloneIcon.setAttribute('class', 'fas fa-clone');
 
         copyLink.appendChild(cloneIcon);
 
