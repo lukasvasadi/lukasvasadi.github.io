@@ -244,6 +244,10 @@ footer {
     margin-bottom: 1rem;
 }
 
+.topic .definitions:last-child {
+    margin-bottom: 0;
+}
+
 .toc {
     position: relative;
     top: 0;
@@ -252,6 +256,14 @@ footer {
 
 .toc ul {
     padding-left: 1rem;
+}
+
+.topic {
+    margin-bottom: 1rem;
+}
+
+.topic:last-child {
+    margin-bottom: 0;
 }
 
 .topic h3 {
@@ -268,17 +280,17 @@ footer {
     margin-left: 1rem;
 }
 
-.topic:last-child {
-    margin-bottom: 0;
-}
-
 .console {
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
     padding: 1rem;
     font-family: 'Fira Code', 'Roboto Condensed', sans-serif;
     font-size: 16px;
     color: var(--text-color-code);
     border-radius: 10px;
+}
+
+.console:last-child {
+    margin-bottom: 0;
 }
 
 .console p {
