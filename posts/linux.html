@@ -892,6 +892,68 @@
                         <p class="comment"><span>compare two compressed files</span></p>
                         <p class="command">zdiff comp-file1.gz comp-file2.gz</p>
                     </div>
+                    <p>
+                        The <span class="emph">stream editor</span> tool (<span class="snippet">sed</span>) is a lightweight text processing tool that 
+                        moves data from an input stream to a working stream for processing and then finally to an output stream. With the 4
+                        <span class="snippet">-e</span> option, <span class="snippet">sed</span> can perform multiple file operations from one line.
+                    </p>
+                    <div class="console">
+                        <p class="comment"><span>substitute every occurrence of string in file</span></p>
+                        <p class="command">sed -i s/string/substitution/g file</p>
+                        <p class="comment"><span>save output to a new file</span></p>
+                        <p class="command">sed -i s/string/substitution/g file1 > file2</p>
+                    </div>
+                    <p>
+                        The <span class="snippet">awk</span> utility, which is an acronym for the last names of its authors at Bell Labs, can extract and print 
+                        specific contents of a file. Commands in <span class="snippet">awk</span> must be surrounded with single-quotes (<span class="snippet">'</span>). 
+                    </p>
+                    <div class="console">
+                        <p class="comment"><span>print out entire file</span></p>
+                        <p class="command">awk '{print $0}' file</p>
+                        <p class="comment"><span>print first field (column) of every line</span></p>
+                        <p class="command">awk -F: '{print $1}' file</p>
+                        <p class="comment"><span>print first and third field of every line</span></p>
+                        <p class="command">awk -F: '{print $1 $3}' file</p>
+                    </div>
+                    <p>
+                        Other useful Linux file manipulation utilities include, <span class="snippet">sort</span>, <span class="snippet">uniq</span>, <span class="snippet">paste</span>, 
+                        <span class="snippet">join</span>, and <span class="snippet">split</span>:
+                    </p>
+                    <div class="console">
+                        <p class="comment"><span>print lines in file alphanumerically</span></p>
+                        <p class="command">sort file</p>
+                        <p class="comment"><span>reverse the order</span></p>
+                        <p class="command">sort -r file</p>
+                        <p class="comment"><span>remove duplicate entries from multiple files</span></p>
+                        <p class="command">sort file1 file2 | uniq > file3</p>
+                        <p class="comment"><span>alternatively use the -u option</span></p>
+                        <p class="command">sort -u file1 file2 > file3</p>
+                        <p class="comment"><span>combine corresponding lines from multiple files</span></p>
+                        <p class="command">paste file1 file2</p>
+                        <p class="comment"><span>specify : as the delimiter</span></p>
+                        <p class="command">paste -d: file1 file2</p>
+                        <p class="comment"><span>join data from different files based on a common field</span></p>
+                        <p class="command">join file1 file2</p>
+                        <p class="comment"><span>split a large file into 1000-line segments</span></p>
+                        <p class="command">split largefile</p>
+                    </div>
+                    <p>
+                        The <span class="snippet">grep</span> utility searches files for specific patterns, which may include <span class="emph">regular expressions</span>.
+                    </p>
+                    <div class="console">
+                        <p class="comment"><span>print all lines from a file that contain specific pattern</span></p>
+                        <p class="command">grep [pattern] file</p>
+                        <p class="comment"><span>print all lines that do not match pattern</span></p>
+                        <p class="command">grep -v [pattern] file</p>
+                    </div>
+                    <p>
+                        The <span class="snippet">strings</span> utility, which extracts printable character strings from files, is often used alongside <span class="snippet">grep</span> 
+                        to locate human-readable information in binary files.
+                    </p>
+                    <div class="console">
+                        <p class="comment"><span>search for specific string in binary file</span></p>
+                        <p class="command">strings binaryfile | grep searchstring</p>
+                    </div>
                 </section>
             </div>
         </article>
@@ -899,7 +961,7 @@
     <footer>
         <p>Copyright &copy; 2021 Lukas Vasadi</p>
     </footer>
-	<script src="../js/main.js"></script>
-    <script src="../js/post.js"></script>
+	<script src="../scripts/main.js"></script>
+    <script src="../scripts/post.js"></script>
 </body>
 </html>
