@@ -54,6 +54,15 @@
                         which will delete the local branch regardless of its merge status&mdash;unmerged branches throw an error when
                         the user attempts deletion.
                     </p>
+                    <p>
+                        After trimming branches, the local list of remote branches may need to be updated manually to reflect the changes.
+                    </p>
+                    <div class="console">
+                        <p class="comment"><span>update local records</span></p>
+                        <p class="command">git remote update origin --prune</p>
+                        <p class="comment"><span>check that list reflects recent changes</span></p>
+                        <p class="command">git branch -a</p>
+                    </div>
                 </section>
             </div>
         </article>
