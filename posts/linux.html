@@ -42,6 +42,7 @@
                     <li><a href="#text-editors">Text editors</a></li>
                     <li><a href="#user-environment">User environment</a></li>
                     <li><a href="#manipulating-text">Manipulating text</a></li>
+                    <li><a href="#network-operations">Network operations</a></li>
                 </ul>
             </div>
             <div class="content bash">
@@ -954,6 +955,70 @@
                         <p class="comment"><span>search for specific string in binary file</span></p>
                         <p class="command">strings binaryfile | grep searchstring</p>
                     </div>
+                    <p>
+                        The <span class="snippet">tr</span> utility translates sets of characters into other characters.
+                    </p>
+                    <div class="console">
+                        <p class="comment"><span>convert lowercase to uppercase</span></p>
+                        <p class="command">cat file | tr a-z A-Z</p>
+                        <p class="comment"><span>translate white space to tabs</span></p>
+                        <p class="command">echo "Testing 1 2 3" | tr [:space:] '\t'</p>
+                        <p class="comment"><span>delete specified characters</span></p>
+                        <p class="command">echo "Tigers and toucans" | tr -d 't'</p>
+                    </div>
+                    <p>
+                        The <span class="snippet">tee</span> command splits the <span class="snippet">stdout</span> stream to print results to the terminal and save output 
+                        to a new file.
+                    </p>
+                    <div class="console">
+                        <p class="comment"><span>display output for user and save to file</span></p>
+                        <p class="command">ls -l | tee filename</p>
+                    </div>
+                    <p>
+                        The <span class="snippet">wc</span> (word count) utility simply outputs the number of lines (<span class="snippet">-l</span>), characters/bytes 
+                        (<span class="snippet">-c</span>), or words (<span class="snippet">-w</span>) from a file.
+                    </p>
+                    <div class="console">
+                        <p class="comment"><span>output the number of lines in file</span></p>
+                        <p class="command">wc -l file</p>
+                    </div>
+                    <p>
+                        For columnated files, the <span class="snippet">cut</span> utility can extract specific columns of data based on a designated delimeter, where the 
+                        default is tab.
+                    </p>
+                    <div class="console">
+                        <p class="comment"><span>print data from the third column of a file with the ',' delimeter</span></p>
+                        <p class="command">cat file | cut -d',' -f3</p>
+                    </div>
+                </section>
+                <section class="topic">
+                    <h3 id="network-operations">Network operations</h3>
+                    <p>
+                        A network is a grouping of computers that share information and resources across communication channels. Each device connected to the network must have 
+                        at least one unique identifier known as the <span class="emph">IP</span> (Internet Protocol) address, which is used to route packets information through 
+                        the network. In addition to the actual data content, these packets contain headers that inform each subsequent machine of its sender, destination, and 
+                        sequence in the data stream.
+                    </p>
+                    <p>
+                        Currently, there are two IP address standards, <span class="emph">IPv4</span> and <span class="emph">IPv6</span>, which assign 32-bit and 128-bit addresses, 
+                        respectively. Though IPv6 is the newer standard, its adoption has been slow because migrating a collection of machines often requires significant effort. 
+                        Furthermore, <span class="emph">NAT</span> (Network Address Translation) and similar protocols allow users to share a common IP address across locally networked 
+                        computers. Internally, it appears as though each machine has a unique address, but externally the local network is presented a node with one unique address.
+                    </p>
+                    <p>
+                        IPv4 (32-bit) addresses are subdivided into four octets (8-bit segments or bytes). These address are categorized into one of several classes, where class A, B, 
+                        and C have octets that are either designated as <span class="emph">Net ID</span> or <span class="emph">Host ID</span>. This allows for various numbers of unique 
+                        networks or host machines, which often depends on the needs of the organization.
+                    </p>
+                    <p>
+                        IP addresses can either be assigned manually (static address) or dynamically through the Dynamic Host Configuration Protocol (<span class="emph">DHCP</span>). 
+                        Dynamically-assigned addresses may change every time the machine is rebooted, or even more frequently in some cases.
+                    </p>
+                    <p>
+                        <span class="emph">Name Resolution</span> converts IP addresses into the corresponding human-readable hostnames. The hostname of the local machine can be found 
+                        with the <span class="snippet">hostname</span> command, which may even be used to change the system hostname given admin privileges. There is also a special 
+                        hostname called <span class="emph">localhost</span>, which refers to the current machine and always has the address <span class="snippet">127.0.0.1</span>.
+                    </p>
                 </section>
             </div>
         </article>
