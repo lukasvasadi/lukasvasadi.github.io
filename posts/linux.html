@@ -1019,6 +1019,80 @@
                         with the <span class="snippet">hostname</span> command, which may even be used to change the system hostname given admin privileges. There is also a special 
                         hostname called <span class="emph">localhost</span>, which refers to the current machine and always has the address <span class="snippet">127.0.0.1</span>.
                     </p>
+                    <p>
+                        <span class="emph">Network configuration files</span> are essential for establishing functional interfaces. For Ubuntu-based systems, these files are stored located 
+                        <span class="emph">/etc/network</span>. Note that each machine can have one or more operational network interfaces, which may be manually activated or deactivated.
+                    </p>
+                    <p>
+                        Within a network, packets of data are passed between various nodes via a series of routers, which potentially span multiple networks. Servers store the 
+                        routing tables that contain the addresses of each node on the network. 
+                    </p>
+                    <div class="console">
+                        <p class="comment"><span>view IP address</span></p>
+                        <p class="command">ip addr show</p>
+                        <p class="comment"><span>keep it brief</span></p>
+                        <p class="command">ip --brief addr show</p>
+                        <p class="comment"><span>view routing information</span></p>
+                        <p class="command">ip route show</p>
+                        <p class="comment"><span>add static route</span></p>
+                        <p class="command">ip route add</p>
+                        <p class="comment"><span>delete static route</span></p>
+                        <p class="command">ip route del</p>
+                        <p class="comment"><span>check status of remote host</span></p>
+                        <p class="command">ping hostname</p>
+                    </div>
+                    <p>
+                        For troubleshooting errors and delays, administrators can inspect the routing path of data packets&mdash;and thereby isolate connection issues between hops&mdash;
+                        with the <span class="snippet">traceroute</span> utility. 
+                    </p>
+                    <div class="console">
+                        <p class="comment"><span>view route of information packet to host</span></p>
+                        <p class="command">traceroute hostname</p>
+                        <p class="comment"><span>alternatively...</span></p>
+                        <p class="command">traceroute address</p>
+                    </div>
+                    <p>
+                        Other common networking tools include:
+                    </p>
+                    <div class="grid definitions">
+                        <p><span class="snippet">ethtool</span></p><p>queries network interfaces</p>
+                        <p><span class="snippet">netstat</span></p><p>displays all active network connections and routing tables</p>
+                        <p><span class="snippet">nmap</span></p><p>scans open ports&mdash;critical for security analysis</p>
+                        <p><span class="snippet">tcpdump</span></p><p>dumps network traffic</p>
+                        <p><span class="snippet">mtr</span></p><p>displays same information as <span class="snippet">ping</span> and <span class="snippet">traceroute</span> in continuous output</p>
+                        <p><span class="snippet">dig</span></p><p>tests DNS workings</p>
+                    </div>
+                    <p>
+                        Downloading files from a network, such as an internet webpage, can be accomplished with <span class="snippet">wget</span>. This tool supports large file downloads, 
+                        recursive downloads, password-sensitive downloads, and large-file downloads.
+                    </p>
+                    <div class="console">
+                        <p class="comment"><span>download webpage</span></p>
+                        <p class="command">wget url</p>
+                    </div>
+                    <p>
+                        A similar tool, <span class="snippet">curl</span>, allows administrators to view webpage contents in the terminal or save the information to a 
+                        document.
+                    </p>
+                    <div class="console">
+                        <p class="comment"><span>read webpage contents</span></p>
+                        <p class="command">curl url</p>
+                        <p class="comment"><span>store contents to file</span></p>
+                        <p class="command">curl -o file.html url</p>
+                    </div>
+                    <p>
+                        The File Transfer Protocol (<span class="emph">FTP</span>) is one of the oldest standards for transferring data files between networked machines. These transfers 
+                        may be conducted through a browser or graphical/command line client, such as <span class="snippet">ftp</span>, <span class="snippet">sftp</span>. However, FTP is considered 
+                        obsolete by many system administrators as the protocol, which dates back to the 1970's, has inherent security flaws, e.g., user passwords are transmitted across the network 
+                        without encryption. A more common modern tool is the Secure Shell (<span class="emph">SSH</span>) protocol, which allows administrators to share data between networked machines 
+                        and execute commands on a remote system.
+                    </p>
+                    <div class="console">
+                        <p class="comment"><span>execute command on remote system</span></p>
+                        <p class="command">ssh remotesystem command</p>
+                        <p class="comment"><span>securely transfer files via SSH</span></p>
+                        <p class="command">scp localfile user@remotesystem:/home/user/</p>
+                    </div>
                 </section>
             </div>
         </article>
