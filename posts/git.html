@@ -30,11 +30,19 @@
             <div class="toc fixed">
                 <h3>Contents</h3>
                 <ul>
+                    <li><a href="#git-push">Pushing changes</a></li>
                     <li><a href="#delete-branch">Deleting branches</a></li>
                     <li><a href="#rename-branch">Renaming branches</a></li>
+                    <li><a href="#submodules">Submodules</a></li>
                 </ul>
             </div>
             <div class="content bash">
+                <section class="topic">
+                    <h3 id="git-push">Pushing changes</h3>
+                    <p>
+                        Use <span class="snippet">git stash</span> to switch branches without committing all changes.
+                    </p>
+                </section>
                 <section class="topic">
                     <h3 id="delete-branch">Deleting branches</h3>
                     <p>
@@ -79,6 +87,16 @@
                         <p class="command">git push origin -u new-branchname</p>
                         <p class="comment"><span>delete old remote branch</span></p>
                         <p class="command">git push origin -d old-branchname</p>
+                    </div>
+                </section>
+                <section class="topic">
+                    <h3 id="submodules">Submodules</h3>
+                    <p>
+                        Submodules are one way to incorporate code from other projects that exist as git repositories. 
+                    </p>
+                    <div class="console">
+                        <p class="comment"><span>convert existing https submodules to ssh</span></p>
+                        <p class="command">perl -i -p -e 's|https://(.*?)/|git@\1:|g' .gitmodules</p>
                     </div>
                 </section>
             </div>
