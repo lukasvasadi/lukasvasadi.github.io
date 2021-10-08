@@ -389,6 +389,15 @@ footer {
 @media screen and (min-width: 600px) {
     article {
         flex-direction: row;
+        padding-top: 2rem;
+    }
+
+    .center {
+        text-align: center;
+    }
+
+    .extra-padding {
+        padding: 2rem 0;
     }
 
     .toc {
@@ -409,10 +418,6 @@ footer {
     .thumbnail-container {
         max-width: 45vw;
     }
-
-    .featured .thumbnail-container:last-child {
-        grid-column: 1 / span 2;
-    }
 }
 
 /* Large tablets and small laptops */
@@ -423,7 +428,6 @@ footer {
     }
 
     article {
-        padding-top: 2rem;
         width: 90%;
     }
 
@@ -449,20 +453,12 @@ footer {
         padding: 0 2rem;
     }
 
-    .center {
-        text-align: center;
-    }
-
     .gallery {
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: repeat(4, 1fr);
     }
 
     .featured .thumbnail-container:last-child {
-        grid-column: 3;
-    }
-
-    .extra-padding {
-        padding: 2rem 0;
+        grid-column: 4;
     }
     
     .console p:hover .fa-clone {
