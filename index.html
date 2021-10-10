@@ -5,10 +5,9 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<meta http-equiv="X-UA-Compatible" content="ie=edge" />
 	<meta property="og:title" content="Lukas Vasadi"/>
-	<meta property="og:description" content="Documenting hardware and software skills for product development."/>
+	<meta property="og:description" content="Hardware and software for product development."/>
 	<meta property="og:image" content="https://lukasvasadi.github.io/images/programming_1000x800.jpg">
 	<title>Lukas Vasadi</title>
-	<!-- Load an icon library to show a hamburger menu (bars) on small screens -->
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 	<link rel="stylesheet" href="styles/styles.css" />
 </head>
@@ -27,52 +26,33 @@
 		<a href="gallery.html">Gallery</a>
 		<a href="mailto:lukas.vasadi@gmail.com"><i class="fa fa-envelope"></i></a>
 	</div>
-	<main>
-		<div id="landing">
-			<div>
-				<img class="banner" src="images/programming_1000x800.jpg" alt="">
-			</div>
-			<div id="landing-msg">
-				<h1>Linux, Arduino, Raspberry Pi, and more...</h1>
-				<p>Blend hardware and software to create feature-rich products <i class="fa fa-rocket"></i></p>
-			</div>
+	<header>
+		<img src="images/programming_1000x800.jpg">
+		<div>
+			<h1>Linux, Arduino, Raspberry Pi, and more...</h1>
+			<p>Blend hardware and software to create feature-rich products <i class="fa fa-rocket"></i></p>
 		</div>
-		<section class="featured">
-			<div class="grid gallery">
-				<div class="thumbnail-container">
-					<h2><a href="posts/linux.html">Linux Command Line</a></h2>
-					<a href="posts/linux.html"><img src="images/ubuntu_cli_sudo_500x331.jpg" alt=""></a>
-					<div class="thumbnail-container-text">
-						<p>
-							Linux thrives on the command line. Learn to become a superuser.
-						</p>
-					</div>
-				</div>
-				<div class="thumbnail-container">
-					<h2><a href="posts/powershell.html">PowerShell</a></h2>
-					<a href="posts/powershell.html"><img src="images/powershell_500x331.jpg" alt=""></a>
-					<div class="thumbnail-container-text">
-						<p>
-							One of the most powerful tools for modern IT administration.
-						</p>
-					</div>
-				</div>
-				<div class="thumbnail-container">
-					<h2><a href="posts/git.html">Git</a></h2>
-					<a href="posts/git.html"><img src="images/git_500x331.jpg" alt=""></a>
-					<div class="thumbnail-container-text">
-						<p>
-							Git is one of the most useful tools for a software engineer. This reference covers some of the 
-							standard commands for managing any repository.
-						</p>
-					</div>
-				</div>
-            </div>
+	</header>
+	<main>
+		<section class="grid">
+			<div class="tile">
+				<h2><a href="posts/linux.html">Linux Command Line</a></h2>
+				<a href="posts/linux.html"><img src="images/ubuntu_cli_sudo_500x331.jpg" alt=""></a>
+				<p>Learn to become a superuser.</p>
+			</div>
+			<div class="tile">
+				<h2><a href="posts/powershell.html">PowerShell</a></h2>
+				<a href="posts/powershell.html"><img src="images/powershell_500x331.jpg" alt=""></a>
+				<p>One of the most powerful tools for modern IT administration.</p>
+			</div>
+			<div class="tile">
+				<h2><a href="posts/git.html">Git</a></h2>
+				<a href="posts/git.html"><img src="images/git_500x331.jpg" alt=""></a>
+				<p>Master the commands to manage any code repository.</p>
+			</div>
 		</section>
 	</main>
-	<footer>
-		<p>Copyright &copy; 2021 Lukas Vasadi</p>
-	</footer>
+	<footer><p>Copyright &copy; 2021 Lukas Vasadi</p></footer>
 	<script src="scripts/main.js"></script>
 </body>
 </html>
