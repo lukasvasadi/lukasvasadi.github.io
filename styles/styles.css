@@ -168,6 +168,10 @@ h1 {
     margin-bottom: 1rem;
 }
 
+h3 {
+    padding-top: 1rem;
+}
+
 h4 {
     margin-bottom: 1.2rem;
 }
@@ -414,7 +418,6 @@ footer {
 
     nav a {
         float: left;
-        color: white;
         padding: 14px 16px;
         text-decoration: none;
     }
