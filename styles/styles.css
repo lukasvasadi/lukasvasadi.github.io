@@ -183,6 +183,7 @@ ul:last-child {
 li {
     list-style-type: circle;
     list-style-position: outside;
+    margin-bottom: 0.2rem;
 }
 
 li a {
