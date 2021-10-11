@@ -4,12 +4,13 @@
 
 :root {
     --background: #222;
-    --background-alt: #ECECEC;
+    --background-alt: #F0F0F0;
     --background-code: #111;
     --background-powershell: #0B4EAA;
-	--text: #ECECEC;
+	--text: #F0F0F0;
     --text-alt: #222;
     --text-code: #D6D6D6;
+    --text-emph: #759DFF;
     --text-highlight: #D6C13A;
 }
 
@@ -362,7 +363,7 @@ footer {
 
 .emph {
     font-weight: 600;
-    color: #759DFF;
+    color: var(--text-emph);
 }
 
 /* Small tablets and sideways phones */
