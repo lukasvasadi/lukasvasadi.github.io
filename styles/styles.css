@@ -4,10 +4,10 @@
 
 :root {
     --background: #222;
-    --background-alt: #CFCFCF;
+    --background-alt: #ECECEC;
     --background-code: #111;
     --background-powershell: #0B4EAA;
-	--text: #CFCFCF;
+	--text: #ECECEC;
     --text-alt: #222;
     --text-code: #D6D6D6;
     --text-highlight: #D6C13A;
