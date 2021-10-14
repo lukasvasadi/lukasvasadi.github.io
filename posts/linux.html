@@ -25,10 +25,10 @@
     </div>
     <main> 
         <h1 class="center extra-padding">Mastering the Linux command line</h1>
-        <h4 class="center">Last updated: September 2021</h4>
+        <h4 class="center">Last updated: October 2021</h4>
         <article>
             <div class="toc">
-                <h3>Contents</h3>
+                <h2>Contents</h2>
                 <ul>
                     <li><a href="#basic-utilities">Basic utilities</a></li>
                     <li><a href="#pipeline">Command pipeline</a></li>
@@ -43,11 +43,12 @@
                     <li><a href="#user-environment">User environment</a></li>
                     <li><a href="#manipulating-text">Manipulating text</a></li>
                     <li><a href="#network-operations">Network operations</a></li>
+                    <li><a href="#credits">Credits</a></li>
                 </ul>
             </div>
             <div class="content bash">
                 <section class="topic">
-                    <h3 id="basic-utilities">Basic utilities</h3>
+                    <h2 id="basic-utilities">Basic utilities</h2>
                     <div class="grid definitions">
                         <p><span class="snippet">cat</span></p><p>type out a file (or combine files)</p>
                         <p><span class="snippet">head</span></p><p>show first few lines of file</p>
@@ -82,7 +83,7 @@
                     </div>
                 </section>
                 <section class="topic">
-                    <h3 id="pipeline">Command pipeline</h3>
+                    <h2 id="pipeline">Command pipeline</h2>
                     <p>
                         The Unix/Linux philosophy is to combine multiple short programs to produce complex results. To achieve this 
                         coordination, data (output) from one program may be "piped" into another using the <span class="snippet">|</span>
@@ -98,7 +99,7 @@
                     </p>
                 </section>
                 <section class="topic">
-                    <h3 id="filesystem-nav">Filesystem navigation</h3>
+                    <h2 id="filesystem-nav">Filesystem navigation</h2>
                     <p>
                         Locate programs with the <span class="snippet">which</span> or 
                         <span class="snippet">whereis</span> utilities, the latter of which searches
@@ -161,7 +162,7 @@
                     </p>
                 </section>
                 <section class="topic">
-                    <h3 id="working-files">Working with files</h3>
+                    <h2 id="working-files">Working with files</h2>
                     <p>There are many command line utilities for viewing and reconfiguring files.</p>
                     <div class="console">
                         <p class="comment"><span>load file contents in terminal window</span></p>
@@ -231,7 +232,7 @@
                     </div>
                 </section>
                 <section class="topic">
-                    <h3 id="searching-files">Searching for files</h3>
+                    <h2 id="searching-files">Searching for files</h2>
                     <p>
                         When interacting with the command line, there are always three standard file streams in operation:
                         <span class="snippet">stdin</span>, <span class="snippet">stdout</span>, and 
@@ -295,7 +296,7 @@
                     </div>
                 </section>
                 <section class="topic">
-                    <h3 id="package-managers">Package managers</h3>
+                    <h2 id="package-managers">Package managers</h2>
                     <p>
                         There are two broad families of package managers for Debian and RPM distributions. Each family has a high-level tool, 
                         e.g., <span class="snippet">apt</span>, <span class="snippet">dnf</span>, <span class="snippet">zypper</span>, 
@@ -320,7 +321,7 @@
                     </div>
                 </section>
                 <section class="topic">
-                    <h3 id="documentation">Accessing documentation</h3>
+                    <h2 id="documentation">Accessing documentation</h2>
                     <p>
                         The general philosophy of computer administration is to not memorize every single shell command along with its parameters. Instead,
                         administrators can reference the <span class="snippet">man</span> pages&mdash;short for manual&mdash; or utilize either the 
@@ -351,7 +352,7 @@
                     </p>
                 </section>
                 <section class="topic">
-                    <h3 id="processes">Processes</h3>
+                    <h2 id="processes">Processes</h2>
                     <p>
                         A process represents a current task running on the computer. Single commands may launch one or more processes simultaneously. The operating
                         system is responsible for allocating system resources to each process for optimized performance. There are several types of processes:
@@ -450,7 +451,7 @@
                     </div>
                 </section>
                 <section class="topic">
-                    <h3 id="file-operations">File operations</h3>
+                    <h2 id="file-operations">File operations</h2>
                     <p>
                         In the Linux, the root directory, denoted by <span class="snippet">/</span>, represents the beginning of the filesystem hierarchy. There are 
                         many types of filesystems, which often differ across operating systems, but the most common belong to the <span class="emph">journaling</span> variety:
@@ -572,7 +573,7 @@
                     </div>
                 </section>
                 <section class="topic">
-                    <h3 id="text-editors">Text editors</h3>
+                    <h2 id="text-editors">Text editors</h2>
                     <p>
                         There are several ways to create and edit text files from the command line:
                     </p>
@@ -647,7 +648,7 @@
                     </div>
                 </section>
                 <section class="topic">
-                    <h3 id="user-environment">User environment</h3>
+                    <h2 id="user-environment">User environment</h2>
                     <p>
                         As Linux is a multi-user system, administratos may be interested in knowing the current active 
                         users:
@@ -820,7 +821,7 @@
                     </div>
                 </section>
                 <section class="topic">
-                    <h3 id="manipulating-text">Manipulating text</h3>
+                    <h2 id="manipulating-text">Manipulating text</h2>
                     <p>
                         The <span class="snippet">cat</span> utility is used to concatenate files as well as print file contents to the terminal:
                     </p>
@@ -992,7 +993,7 @@
                     </div>
                 </section>
                 <section class="topic">
-                    <h3 id="network-operations">Network operations</h3>
+                    <h2 id="network-operations">Network operations</h2>
                     <p>
                         A network is a grouping of computers that share information and resources across communication channels. Each device connected to the network must have 
                         at least one unique identifier known as the <span class="emph">IP</span> (Internet Protocol) address, which is used to route packets information through 
@@ -1093,6 +1094,13 @@
                         <p class="comment"><span>securely transfer files via SSH</span></p>
                         <p class="command">scp localfile user@remotesystem:/home/user/</p>
                     </div>
+                </section>
+                <section>
+                    <h2 id="credits">Credits</h2>
+                    <p>
+                        All material was based on <a href="https://www.edx.org/course/introduction-to-linux">Introduction to Linux</a>, a course from the Linux Foundation hosted on edX. 
+                        This course covers each topic with greater detail and also includes tutorials on bash shell scripting.
+                    </p>
                 </section>
             </div>
         </article>

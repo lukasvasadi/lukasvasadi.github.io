@@ -25,22 +25,25 @@
     </div>
     <main> 
         <h1 class="center extra-padding">Task automation with PowerShell</h1>
-        <h4 class="center">Last updated: September 2021</h4>
+        <h4 class="center">Last updated: October 2021</h4>
         <article>
             <div class="toc">
                 <div class="fixed">
-                    <h3>Contents</h3>
+                    <h2>Contents</h2>
                     <ul>
                         <li><a href="#intro">Introduction</a></li>
                         <li><a href="#basic-utilities">Basic utilities</a></li>
                         <li><a href="#help">Help</a></li>
                         <li><a href="#pipeline">Pipeline</a></li>
+                        <li><a href="#objects">Objects</a></li>
+                        <li><a href="#best-practices">Best Practices</a></li>
+                        <li><a href="#credits">Credits</a></li>
                     </ul>
                 </div>
             </div>
             <div class="content powershell">
                 <section>
-                    <h3 id="intro">Introduction</h3>
+                    <h2 id="intro">Introduction</h2>
                     <p>
                         The PowerShell command line interface was originally intended to port Unix tools to Windows.
                         However, the developers realized that the fundamental architectural differences between Unix
@@ -59,7 +62,7 @@
                     </p>
                 </section>
                 <section>
-                    <h3 id="basic-utilities">Basic utilities</h3>
+                    <h2 id="basic-utilities">Basic utilities</h2>
                     <div class="grid definitions">
                         <p><span class="snippet">refreshenv</span></p><p>refresh environment variables</p>
                         <p><span class="snippet">cls</span></p><p>clear shell</p>
@@ -79,7 +82,7 @@
                     </div>
                 </section>
                 <section>
-                    <h3 id="help">Help</h3>
+                    <h2 id="help">Help</h2>
                     <p>
                         The developers of PowerShell believed that no user should memorize commands or syntax. As a result,
                         they packaged PowerShell with an updatable, structured help utility that provides the latest information
@@ -130,9 +133,68 @@
                         <p class="command"><span class="cmdlet">Get-Help</span> Get-Service -ShowWindow</p>
                     </div>
                 </section>
-                <section class="code-section">
-                    <h3 id="pipeline">Pipeline</h3>
-                    
+                <section>
+                    <h2 id="pipeline">Pipeline</h2>
+                    <p>
+                        Similar to other shell scripting tools, the PowerShell pipe (<span class="snippet">|</span>) utility allows users to pass 
+                        data output from one command to the input of another.
+                    </p>
+                    <div class="console">
+                        <p class="comment"><span>export a list of current active services to a csv file</span></p>
+                        <p class="command"><span class="cmdlet">Get-Service</span> | <span class="cmdlet">Export-csv</span> -Path C:\Users\user\Desktop</p>
+                    </div>
+                </section>
+                <section>
+                    <h2 id="objects">Objects</h2>
+                    <p>
+                        In contrast to Unix-like systems, where all shell interactions are based on text-based input/output, PowerShell was designed to work directly 
+                        with objects. In manay cases, this reduces the amount of work necessary to accomplish certain tasks, as there is no overhead management of 
+                        filler text output. As an example, if you wanted to restrict <span class="snippet">Get-Process</span> output to handles greater than 900:
+                    </p>
+                    <div class="console">
+                        <p class="command"><span class="cmdlet">Get-Process</span> | <span class="cmdlet">Where</span> Handles -gt 900</p>
+                    </div>
+                    <p>
+                        This one line of code replaces several lines that would be needed to achieve the same result with Bash.
+                    </p>
+                    <p>
+                        Every object has associated properties and methods, which describe features of the object class as well as actionable functions, respectively. 
+                        The <span class="snippet">Get-Member</span> utility, with shorthand <span class="snippet">gm</span>, prints the properties of an object along 
+                        with its class definition.
+                    </p>
+                    <div class="console">
+                        <p class="comment"><span>find the properties of the bits service object</span></p>
+                        <p class="command"><span class="cmdlet">Get-Service</span> -Name bits | <span class="cmdlet">Get-Member</span></p>
+                    </div>
+                </section>
+                <section>
+                    <h2 id="best-practices">Best Practices</h2>
+                    <p>
+                        PowerShell is a powerful tool that can cause major system damage if mishandled. When unsure about the ramifications of a certain 
+                        command, administrators can use the <span class="snippet">WhatIf</span> parameter to print out the results of the questionable 
+                        command without execution.
+                    </p>
+                    <div class="console">
+                        <p class="comment"><span>the following command would kill all active services and likely damage the system</span></p>
+                        <p class="command"><span class="cmdlet">Get-Service</span> | <span class="cmdlet">Stop-Service</span> -WhatIf</p>
+                    </div>
+                    <p>
+                        Administrators may also consider using the <span class="snippet">Confirm</span> parameter to be prompted for confirmation before 
+                        command execution.
+                    </p>
+                    <div class="console">
+                        <p class="comment"><span>print out command execution results with confirmation prompt</span></p>
+                        <p class="command"><span class="cmdlet">Get-Service</span> | <span class="cmdlet">Stop-Service</span> -Confirm</p>
+                    </div>
+                </section>
+                <section>
+                    <h2 id="credits">Credits</h2>
+                    <p>
+                        The content presented was based on the <a href="https://www.youtube.com/watch?v=UVUd9_k9C6A&t=7637s">PowerShell for Beginners</a> course hosted 
+                        by Jeffrey Snover, the inventor of PowerShell, and Jason Helmick. This free online course is recommended for anyone wanting a deeper exploration 
+                        of PowerShell.
+
+                    </p>
                 </section>
             </div>
         </article>
