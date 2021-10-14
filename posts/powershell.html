@@ -159,12 +159,24 @@
                     </p>
                     <p>
                         Every object has associated properties and methods, which describe features of the object class as well as actionable functions, respectively. 
-                        The <span class="snippet">Get-Member</span> utility, with shorthand <span class="snippet">gm</span>, prints the properties of an object along 
-                        with its class definition.
+                        The <span class="snippet">Get-Member</span> utility, with shorthand <span class="snippet">gm</span>, prints all properties and methods of an object 
+                        along with its class definition.
                     </p>
                     <div class="console">
                         <p class="comment"><span>find the properties of the bits service object</span></p>
                         <p class="command"><span class="cmdlet">Get-Service</span> -Name bits | <span class="cmdlet">Get-Member</span></p>
+                    </div>
+                    <p>
+                        With this information, you can choose to customize output based on object class properties.
+                    </p>
+                    <div class="console">
+                        <p class="comment"><span>print the name and status of every object returned from get-service</span></p>
+                        <p class="command"><span class="cmdlet">Get-Service</span> | <span class="cmdlet">Select-Object</span> -Property Name, Status</p>
+                        <p class="comment"><span>print the name and length of each object and sort by length</span></p>
+                        <p class="command">
+                            <span class="cmdlet">Get-ChildItem</span> | <span class="cmdlet">Select-Object</span> -Property Name, Length | 
+                            <span class="cmdlet">Sort</span> -Property Length
+                        </p>
                     </div>
                 </section>
                 <section>
