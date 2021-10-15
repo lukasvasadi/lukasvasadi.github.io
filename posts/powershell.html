@@ -64,6 +64,10 @@
                 <section>
                     <h2 id="basic-utilities">Basic utilities</h2>
                     <div class="grid definitions">
+                        <p><span class="snippet">Get-History</span></p><p>print command history (alias: <span class="snippet">history</span>)</p>
+                        <p><span class="snippet">Where-Object</span></p><p>select object from collection based on property values (alias: <span class="snippet">where</span>)</p>
+                        <p><span class="snippet">Get-Process</span></p><p>find all running processes (alias: <span class="snippet">gps</span>)</p>
+                        <p><span class="snippet">Get-Service</span></p><p>find all running services (alias: <span class="snippet">gsv</span>)</p>
                         <p><span class="snippet">refreshenv</span></p><p>refresh environment variables</p>
                         <p><span class="snippet">cls</span></p><p>clear shell</p>
                     </div>
@@ -143,12 +147,27 @@
                         <p class="comment"><span>export a list of current active services to a csv file</span></p>
                         <p class="command"><span class="cmdlet">Get-Service</span> | <span class="cmdlet">Export-csv</span> -Path C:\Users\user\Desktop</p>
                     </div>
+                    <p>
+                        Besides executing commands on collections of objects crossing the pipeline, users can also evaluate individual objects with filters. These 
+                        individual objects, or items, crossing the pipeline can be accessed with the <span class="snippet">$PSItem</span> variable:
+                    </p>
+                    <div class="console">
+                        <p class="comment"><span>filter individual process objects where the status is running</span></p>
+                        <p class="command">
+                            <span class="cmdlet">Get-Service</span> | <span class="cmdlet">Where-Object</span> {$PSItem.Status -eq "Running"}
+                        </p>
+                    </div>
+                    <p>
+                        Of course, not all cmdlets will accept the objects being ferried across the pipeline. A good rule of thumb&mdash;though not always the case&mdash;is 
+                        that cmdlets with the same noun, e.g., <span class="snippet">Get-Service</span>, <span class="snippet">Stop-Service</span>, will be compatible. Specifically, 
+                        this means that the data leaving one cmdlet has the same property value, i.e., class type, as the input required by the adjacent cmdlet in the pipeline.
+                    </p>
                 </section>
                 <section>
                     <h2 id="objects">Objects</h2>
                     <p>
                         In contrast to Unix-like systems, where all shell interactions are based on text-based input/output, PowerShell was designed to work directly 
-                        with objects. In manay cases, this reduces the amount of work necessary to accomplish certain tasks, as there is no overhead management of 
+                        with objects. In many cases, this reduces the amount of work necessary to accomplish certain tasks, as there is no overhead management of 
                         filler text output. As an example, if you wanted to restrict <span class="snippet">Get-Process</span> output to handles greater than 900:
                     </p>
                     <div class="console">
@@ -205,7 +224,6 @@
                         The content presented was based on the <a href="https://www.youtube.com/watch?v=UVUd9_k9C6A&t=7637s">PowerShell for Beginners</a> course hosted 
                         by Jeffrey Snover, the inventor of PowerShell, and Jason Helmick. This free online course is recommended for anyone wanting a deeper exploration 
                         of PowerShell.
-
                     </p>
                 </section>
             </div>
