@@ -36,6 +36,7 @@
                         <li><a href="#help">Help</a></li>
                         <li><a href="#pipeline">Pipeline</a></li>
                         <li><a href="#objects">Objects</a></li>
+                        <li><a href="#remoting">Remoting</a></li>
                         <li><a href="#best-practices">Best Practices</a></li>
                         <li><a href="#credits">Credits</a></li>
                     </ul>
@@ -197,6 +198,57 @@
                             <span class="cmdlet">Sort</span> -Property Length
                         </p>
                     </div>
+                </section>
+                <section>
+                    <h2 id="remoting">Remoting</h2>
+                    <p>
+                        Remote access has to be enabled on all machines. Starting with Windows Server 2012, which is a cloud operating system, remote access 
+                        is enabled by default.
+                    </p>
+                    <div class="console">
+                        <p class="command"><span class="cmdlet">Enable-PSRemoting</span></p>
+                    </div>
+                    <p>
+                        To establish a one-to-one connection:
+                    </p>
+                    <div class="console">
+                        <p class="command"><span class="cmdlet">Enter-PSSession</span> -ComputerName &lt;computer-name&gt;</p>
+                    </div>
+                    <p>
+                        Outside of a remote session, individual commands can be executed on remote machines with the <span class="snippet">Invoke-Command</span> cmdlet:
+                    </p>
+                    <div class="console">
+                        <p class="comment"><span>print out the system event log from a remote machine named "image-processing"</span></p>
+                        <p class="command"><span class="cmdlet">Invoke-Command</span> -ComputerName image-processing {<span class="cmdlet">Get-EventLog</span> -LogName system}</p>
+                        <p class="comment"><span>beware of what will be executed</span></p>
+                        <p class="command"><span class="cmdlet">Invoke-Command</span> -ComputerName comp1,comp2,comp3 {<span class="cmdlet">Restart-Computer</span>}</p>
+                    </div>
+                    <p>
+                        Note that every PowerShell command entered into the console uses <span class="snippet">Invoke-Command</span> behind the scences, with the local
+                        computer accepted as the default machine. All data returned from the remote system(s) are deserialized object representations, meaning that the objects 
+                        contain all relevant information for the administrator, but have no methods other than <span class="snippet">ToString</span>.
+                    </p>
+                    <p>
+                        If not connected to the local network, PowerShell remoting may be facilitated in a browser over https web access. To set up this feature, first 
+                        install <span class="snippet">WindowsPowerShellWebAccess</span> on the remote machine and then configure user/group privileges.
+                    </p>
+                    <div class="console">
+                        <p class="comment"><span>connect to the "image-processing" machine</span></p>
+                        <p class="command"><span class="cmdlet">Enter-PSSession</span> -ComputerName &lt;computer-name&gt;</p>
+                        <p class="comment"><span>install the web access feature</span></p>
+                        <p class="command"><span class="cmdlet">Install-WindowsFeature</span> WindowsPowerShellWebAccess</p>
+                        <p class="comment"><span>configure a web application for remote PowerShell access with test certificate</span></p>
+                        <p class="command"><span class="cmdlet">Install-PswaWebApplication</span> -UseTestCertificate</p>
+                        <p class="comment"><span>add authorization rules for users and groups</span></p>
+                        <p class="command">
+                            <span class="cmdlet">Add-PswaAuthorizationRule</span> 
+                            -ComputerGroupName &lt;computer-group&gt; -UserName &lt;users&gt; -ConfigurationName &lt;access-rights&gt;
+                        </p>
+                    </div>
+                    <p>
+                        After completing these steps, the administrator can open a browser and navigate to the https address, input credentials to the 
+                        login prompt, and then access a PowerShell instance connected to the remote machine.
+                    </p>
                 </section>
                 <section>
                     <h2 id="best-practices">Best Practices</h2>
