@@ -37,6 +37,7 @@
                         <li><a href="#pipeline">Pipeline</a></li>
                         <li><a href="#objects">Objects</a></li>
                         <li><a href="#remoting">Remoting</a></li>
+                        <li><a href="#execution-policy">Execution Policy</a></li>
                         <li><a href="#best-practices">Best Practices</a></li>
                         <li><a href="#credits">Credits</a></li>
                     </ul>
@@ -233,11 +234,11 @@
                         install <span class="snippet">WindowsPowerShellWebAccess</span> on the remote machine and then configure user/group privileges.
                     </p>
                     <div class="console">
-                        <p class="comment"><span>connect to the "image-processing" machine</span></p>
+                        <p class="comment"><span>connect to the desired machine</span></p>
                         <p class="command"><span class="cmdlet">Enter-PSSession</span> -ComputerName &lt;computer-name&gt;</p>
                         <p class="comment"><span>install the web access feature</span></p>
                         <p class="command"><span class="cmdlet">Install-WindowsFeature</span> WindowsPowerShellWebAccess</p>
-                        <p class="comment"><span>configure a web application for remote PowerShell access with test certificate</span></p>
+                        <p class="comment"><span>configure a web application for remote PowerShell access</span></p>
                         <p class="command"><span class="cmdlet">Install-PswaWebApplication</span> -UseTestCertificate</p>
                         <p class="comment"><span>add authorization rules for users and groups</span></p>
                         <p class="command">
@@ -246,9 +247,39 @@
                         </p>
                     </div>
                     <p>
-                        After completing these steps, the administrator can open a browser and navigate to the https address, input credentials to the 
-                        login prompt, and then access a PowerShell instance connected to the remote machine.
+                        After completing these steps, the administrator can open a browser and navigate to the web address&mdash;the default being https://pwa/pwsa)&mdash;and 
+                        access a PowerShell instance connected to the remote machine.
                     </p>
+                </section>
+                <section>
+                    <h2 id="execution-policy">Execution Policy</h2>
+                    <p>
+                        PowerShell has safety features that prevent users from accidentally running scripts. Script execution permissions are controlled via the 
+                        exection policy, which can be set to <span class="snippet">Restricted</span> (default), <span class="snippet">Unrestricted</span>, 
+                        <span class="snippet">AllSigned</span>, <span class="snippet">RemoteSigned</span>, <span class="snippet">Bypass</span>, and 
+                        <span class="snippet">Undefined</span>. It is recommended to avoid <span class="snippet">Unrestricted</span> and 
+                        <span class="snippet">Bypass</span>. The correct way to run local scripts is to add a digital signature, which provides explicit 
+                        authorization to execute the code. 
+                    </p>
+                    <p>
+                        To find the current execution policy:
+                    </p>
+                    <div class="console">
+                        <p class="command"><span class="cmdlet">Get-ExecutionPolicy</span></p>
+                    </div>
+                    <p>
+                        To change the execution policy:
+                    </p>
+                    <div class="console">
+                        <p class="comment"><span>AllSigned or RemoteSigned are generally recommended</span></p>
+                        <p class="command"><span class="cmdlet">Set-ExecutionPolicy</span> AllSigned</p>
+                    </div>
+                    <p>
+                        To create a digital signature:
+                    </p>
+                    <div class="console">
+                        <p class="command"><span class="cmdlet">New-SelfSignedCertificate</span></p>
+                    </div>
                 </section>
                 <section>
                     <h2 id="best-practices">Best Practices</h2>
