@@ -254,12 +254,17 @@
                 <section>
                     <h2 id="execution-policy">Execution Policy</h2>
                     <p>
-                        PowerShell has safety features that prevent users from accidentally running scripts. Script execution permissions are controlled via the 
-                        exection policy, which can be set to <span class="snippet">Restricted</span> (default), <span class="snippet">Unrestricted</span>, 
-                        <span class="snippet">AllSigned</span>, <span class="snippet">RemoteSigned</span>, <span class="snippet">Bypass</span>, and 
-                        <span class="snippet">Undefined</span>. It is recommended to avoid <span class="snippet">Unrestricted</span> and 
-                        <span class="snippet">Bypass</span>. The correct way to run local scripts is to add a digital signature, which provides explicit 
-                        authorization to execute the code. 
+                        PowerShell has safety features that prevent users from accidentally running scripts, which may contain harmful or malicious code. 
+                        These permissions are controlled with the execution policy, which can be set to <span class="snippet">Restricted</span> 
+                        (default), <span class="snippet">Unrestricted</span>, <span class="snippet">AllSigned</span>, <span class="snippet">RemoteSigned</span>, 
+                        <span class="snippet">Bypass</span>, and <span class="snippet">Undefined</span>. <span class="snippet">AllSigned</span> requires that all 
+                        scripts downloaded or created locally have digital signatures, whereas <span class="snippet">RemoteSigned</span> only requires signatures 
+                        for scripts downloaded from the web.
+                    </p>
+                    <p>
+                        It is recommended to avoid <span class="snippet">Unrestricted</span> and <span class="snippet">Bypass</span>, as these options allow the 
+                        machine to execute any script without review. The correct way to run local scripts is to add a digital signature, which provides explicit 
+                        authorization to execute the code.
                     </p>
                     <p>
                         To find the current execution policy:
@@ -280,6 +285,25 @@
                     <div class="console">
                         <p class="command"><span class="cmdlet">New-SelfSignedCertificate</span></p>
                     </div>
+                    <p>
+                        To locate the digital signature and save it to an environment variable:
+                    </p>
+                    <div class="console">
+                        <p class="comment"><span>save all certificates to an environment variable</span></p>
+                        <p class="command"><span class="cmdlet">dir</span> Cert:\CurrentUser -Recurse -CodeSigningCert -OutVariable a</p>
+                        <p class="comment"><span>save the first cert from list to separate variable</span></p>
+                        <p class="command">$cert = $a[0]</p>
+                    </div>
+                    <p>
+                        To add a digital signature to a script:
+                    </p>
+                    <div class="console">
+                        <p class="command"><span class="cmdlet">Set-AuthenticodeSignature</span> -Certificate $cert -FilePath &lt;script-path&gt;</p>
+                    </div>
+                    <p>
+                        It is critical that administrators only sign scripts that they understand fully. When working in an industrial setting, adding 
+                        a digital signature is a way of assuming responsibility for the consequences of script execution.
+                    </p>
                 </section>
                 <section>
                     <h2 id="best-practices">Best Practices</h2>
