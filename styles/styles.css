@@ -339,6 +339,10 @@ footer {
     color: var(--text-highlight);
 }
 
+.powershell .var {
+    color: #00AF3A;
+}
+
 .powershell .console .command:before {
     content: "C:\\> ";
 }

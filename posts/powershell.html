@@ -36,6 +36,7 @@
                         <li><a href="#help">Help</a></li>
                         <li><a href="#pipeline">Pipeline</a></li>
                         <li><a href="#objects">Objects</a></li>
+                        <li><a href="#variables">Variables</a></li>
                         <li><a href="#remoting">Remoting</a></li>
                         <li><a href="#execution-policy">Execution Policy</a></li>
                         <li><a href="#best-practices">Best Practices</a></li>
@@ -70,6 +71,10 @@
                         <p><span class="snippet">Where-Object</span></p><p>select object from collection based on property values (alias: <span class="snippet">where</span>)</p>
                         <p><span class="snippet">Get-Process</span></p><p>find all running processes (alias: <span class="snippet">gps</span>)</p>
                         <p><span class="snippet">Get-Service</span></p><p>find all running services (alias: <span class="snippet">gsv</span>)</p>
+                        <p><span class="snippet">Write-Warning</span></p><p>prints warning message string argument to console with PowerShell formatting</p>
+                        <p><span class="snippet">Write-Error</span></p><p>prints error message string argument to console with PowerShell formatting</p>
+                        <p><span class="snippet">Write-Output</span></p><p>print variable value to console while preserving object properties</p>
+                        <p><span class="snippet">Write-Host</span></p><p>print to console without preserving object properties</p>
                         <p><span class="snippet">refreshenv</span></p><p>refresh environment variables</p>
                         <p><span class="snippet">cls</span></p><p>clear shell</p>
                     </div>
@@ -201,6 +206,47 @@
                     </div>
                 </section>
                 <section>
+                    <h2 id="variables">Variables</h2>
+                    <p>
+                        PowerShell variables are similar to Bash variables, except that these can hold object values. For example:
+                    </p>
+                    <div class="console">
+                        <p class="command"><span class="var">$bits</span> = <span class="cmdlet">Get-Service</span> bits</p>
+                    </div>
+                    <p>
+                        The variable <span class="snippet var">bits</span> now holds the <span class="snippet">bits</span> service object. As such, this variable 
+                        is subject to the object properties and methods:
+                    </p>
+                    <div class="console">
+                        <p class="comment"><span>print the status of the bits service</span></p>
+                        <p class="command"><span class="var">$bits</span>.status</p>
+                        <p>Running</p>
+                        <p class="comment"><span>stop the bits service</span></p>
+                        <p class="command"><span class="var">$bits</span>.stop()</p>
+                    </div>
+                    <p>
+                        It is important to note that the properties of this variable are static, meaning they represent a snapshot of the object at the time of 
+                        variable creation. After running a method, the object must be manually refreshed to update any properties that may have changed state.
+                    </p>
+                    <div class="console">
+                        <p class="comment"><span>check the variable status</span></p>
+                        <p class="command"><span class="var">$bits</span>.status</p>
+                        <p>Running</p>
+                        <p class="comment"><span>refresh object properties</span></p>
+                        <p class="command"><span class="var">$bits</span>.refresh()</p>
+                        <p class="command"><span class="var">$bits</span>.status</p>
+                        <p>Stopped</p>
+                    </div>
+                    <p>
+                        PowerShell variables, when defined inside brackets <span class="snippet">{}</span>, may also contain spaces and special characters:
+                    </p>
+                    <div class="console">
+                        <p class="command"><span class="var">${ var!@bl& }</span> = "hello"</p>
+                        <p class="command"><span class="var">${ var!@bl& }</span></p>
+                        <p>hello</p>
+                    </div>
+                </section>
+                <section>
                     <h2 id="remoting">Remoting</h2>
                     <p>
                         Remote access has to be enabled on all machines. Starting with Windows Server 2012, which is a cloud operating system, remote access 
@@ -249,6 +295,25 @@
                     <p>
                         After completing these steps, the administrator can open a browser and navigate to the web address&mdash;the default being https://pwa/pwsa)&mdash;and 
                         access a PowerShell instance connected to the remote machine.
+                    </p>
+                    <p>
+                        Individual commands can be executed on a remote machine without starting a PowerShell session:
+                    </p>
+                    <div class="console">
+                        <p class="command"><span class="cmdlet">Invoke-Command</span> -ComputerName &lt;computer-name&gt; {<span class="var">$proc</span> = <span class="cmdlet">Get-Process</span>}</p>
+                    </div>
+                    <p>
+                        In this case, PowerShell is loaded and initialized on the remote machine, the command is executed, and then the console instance and connection are 
+                        destroyed. Naturally, this means that any variables are deleted from memory and thus cannot be accessed with a subsequent <span class="snippet">Invoke-Command</span>.
+                    </p>
+                    <p>
+                        However, as hinted above, persistent PowerShell sessions can be created and accessed at various points of time:
+                    </p>
+                    <div class="console">
+                        <p class="command"><span class="var">$sess</span> <span class="cmdlet">New-PSSession</span> -ComputerName &lt;computer-name&gt;</p>
+                    </div>
+                    <p>
+                        This creates a remote session and stores the object inside the variable <span class="snippet var">sess</span>.
                     </p>
                 </section>
                 <section>
