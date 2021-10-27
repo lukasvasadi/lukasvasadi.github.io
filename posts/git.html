@@ -38,7 +38,31 @@
             </div>
             <div class="content bash">
                 <section>
-                    <h2 id="git-push">Pushing changes</h2>
+                    <h2 id="git-push">Commits</h2>
+                    <p>
+                        To check the status of current changes:
+                    </p>
+                    <div class="console">
+                        <p class="command">git status</p>
+                    </div>
+                    <p>
+                        To inspect individual files:
+                    </p>
+                    <div class="console">
+                        <p class="command">git diff &lt;filename&gt;</p>
+                    </div>
+                    <p>
+                        Many developers follow a workflow where all current changes are added to one commit:
+                    </p>
+                    <div class="console">
+                        <p class="command">git add -A</p>
+                        <p class="command">git add -m "brief description of changes"</p>
+                        <p class="command">git push</p>
+                    </div>
+                    <p>
+                        However, it is recommended to separate changes into individual commits based on topic. Fortunately, the <span class="emph">staging area</span> 
+                        provides a way to group changed files, or even parts of these files, into sequential commits.
+                    </p>
                     <p>
                         Use <span class="snippet">git stash</span> to switch branches without committing changes.
                     </p>
