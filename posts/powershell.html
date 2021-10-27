@@ -91,6 +91,12 @@
                             </span>
                         </p>
                     </div>
+                    <p>
+                        To measure the time required to execute a command:
+                    </p>
+                    <div class="console">
+                        <p class="command"><span class="cmdlet">Measure-Command</span> {<span class="cmdlet">Get-Process</span>}</p>
+                    </div>
                 </section>
                 <section>
                     <h2 id="help">Help</h2>
@@ -310,10 +316,31 @@
                         However, as hinted above, persistent PowerShell sessions can be created and accessed at various points of time:
                     </p>
                     <div class="console">
-                        <p class="command"><span class="var">$sess</span> <span class="cmdlet">New-PSSession</span> -ComputerName &lt;computer-name&gt;</p>
+                        <p class="command"><span class="var">$sess</span> = <span class="cmdlet">New-PSSession</span> -ComputerName &lt;computer-name&gt;</p>
                     </div>
                     <p>
-                        This creates a remote session and stores the object inside the variable <span class="snippet var">sess</span>.
+                        This creates a persistent remote session and stores the object inside the variable <span class="snippet var">sess</span>. This session 
+                        can now be used instead of <span class="snippet">ComputerName</span> to pass commands to the remote machine. So long as the session remains 
+                        open, variables will persist in system memory and can be accessed with subsequent commands.
+                    </p>
+                    <div class="console">
+                        <p class="command"><span class="cmdlet">Invoke-Command</span> -Session <span class="var">$sess</span> {<span class="var">$x</span>=2}</p>
+                        <p class="command"><span class="cmdlet">Invoke-Command</span> -Session <span class="var">$sess</span> {<span class="var">$x</span>}</p>
+                        <p>2</p>
+                    </div>
+                    <p>
+                        Sessions also offer the ability to share modules without installation on the local machine. For example, if a server computer 
+                        had the <span class="snippet">ActiveDirectory</span> module installed:
+                    </p>
+                    <div class="console">
+                        <p class="command"><span class="var">$sess</span> = <span class="cmdlet">New-PSSession</span> -ComputerName server</p>
+                        <p class="command"><span class="cmdlet">Import-PSSession</span> -Session <span class="var">$sess</span> -Module ActiveDirectory</p>
+                    </div>
+                    <p>
+                        Now all cmdlets from <span class="snippet">ActiveDirectory</span> are available locally while the session is active. Behind the scenes, 
+                        the local machine builds data structures using <span class="snippet">Get-Command</span> and, when these cmdlets are invoked, the relevant 
+                        information, e.g., input parameters, is collected and passed to the remote computer for execution. This entire workflow is referred to as 
+                        "implicit remoting."
                     </p>
                 </section>
                 <section>
