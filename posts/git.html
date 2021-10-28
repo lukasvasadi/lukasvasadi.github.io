@@ -30,42 +30,65 @@
             <div class="toc">
                 <h2>Contents</h2>
                 <ul>
-                    <li><a href="#git-push">Pushing changes</a></li>
+                    <li><a href="#intro">Introduction</a></li>
+                    <li><a href="#repositories">Repositories</a></li>
+                    <li><a href="#create-branch">Creating branches</a></li>
                     <li><a href="#delete-branch">Deleting branches</a></li>
                     <li><a href="#rename-branch">Renaming branches</a></li>
+                    <li><a href="#commit">Pushing changes</a></li>
                     <li><a href="#submodules">Submodules</a></li>
                 </ul>
             </div>
             <div class="content bash">
                 <section>
-                    <h2 id="git-push">Commits</h2>
+                    <h2 class="intro">Introduction</h2>
                     <p>
-                        To check the status of current changes:
+                        This guide assumes that git has been installed on the local machine. Furthermore, for simplicity, it is assumed that the 
+                        user has Git Bash&mdash;especially for Windows&mdash;or a standard <span class="snippet">bash</span>/<span class="snippet">zsh</span>
+                        console with access to the git command line tools, along with a GitHub account.
+                    </p>
+                </section>
+                <section>
+                    <h2 class="repositories">Repositories</h2>
+                    <p>
+                        Often, the first step to managing a project is to create or clone a git repository. GitHub is the most common remote repository 
+                        web application, allowing developers to store large code bases, track changes, and collaborate. To create a git repository from 
+                        a local project directory:
                     </p>
                     <div class="console">
-                        <p class="command">git status</p>
+                        <p class="command">cd project</p>
+                        <p class="command">git init</p>
                     </div>
                     <p>
-                        To inspect individual files:
+                        Often, it is desired to identify specific files or directories to ignore from tracking. The relative path names of these files and 
+                        directories can be added to a special gitignore file, which is located in the project root:
                     </p>
                     <div class="console">
-                        <p class="command">git diff &lt;filename&gt;</p>
+                        <p class="command">touch .gitignore</p>
+                        <p class="comment"><span>many developers choose to ignore directories that host virtual environments</span></p>
+                        <p class="command">echo venv >> .gitignore</p>
                     </div>
                     <p>
-                        Many developers follow a workflow where all current changes are added to one commit:
+                        At this point, the repository is ready to be committed:
                     </p>
                     <div class="console">
                         <p class="command">git add -A</p>
-                        <p class="command">git add -m "brief description of changes"</p>
-                        <p class="command">git push</p>
+                        <p class="command">git commit -m "first commit"</p>
                     </div>
                     <p>
-                        However, it is recommended to separate changes into individual commits based on topic. Fortunately, the <span class="emph">staging area</span> 
-                        provides a way to group changed files, or even parts of these files, into sequential commits.
+                        On GitHub, create a new repository with the option "Push an existing repository..." Then return to the console and push the 
+                        code base to the remote server:
                     </p>
+                    <div class="console">
+                        <p class="command">git remote add origin git@github.com:username/reponame</p>
+                        <p class="command">git push -u origin main"</p>
+                    </div>
                     <p>
-                        Use <span class="snippet">git stash</span> to switch branches without committing changes.
+                        Likewise, to clone a repository from GitHub:
                     </p>
+                    <div class="console">
+                        <p class="command">git clone git@github.com:username/reponame</p>
+                    </div>
                 </section>
                 <section>
                     <h2 id="delete-branch">Deleting branches</h2>
@@ -112,6 +135,36 @@
                         <p class="comment"><span>delete old remote branch</span></p>
                         <p class="command">git push origin -d old-branchname</p>
                     </div>
+                </section>
+                <section>
+                    <h2 id="commits">Commits</h2>
+                    <p>
+                        To check the status of current changes:
+                    </p>
+                    <div class="console">
+                        <p class="command">git status</p>
+                    </div>
+                    <p>
+                        To inspect individual files:
+                    </p>
+                    <div class="console">
+                        <p class="command">git diff &lt;filename&gt;</p>
+                    </div>
+                    <p>
+                        Many developers follow a workflow where all current changes are added to one commit:
+                    </p>
+                    <div class="console">
+                        <p class="command">git add -A</p>
+                        <p class="command">git add -m "brief description of changes"</p>
+                        <p class="command">git push</p>
+                    </div>
+                    <p>
+                        However, it is recommended to separate changes into individual commits based on topic. Fortunately, the <span class="emph">staging area</span> 
+                        provides a way to group changed files, or even parts of these files, into sequential commits.
+                    </p>
+                    <p>
+                        Use <span class="snippet">git stash</span> to switch branches without committing changes.
+                    </p>
                 </section>
                 <section>
                     <h2 id="submodules">Submodules</h2>
