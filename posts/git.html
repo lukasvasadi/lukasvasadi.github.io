@@ -91,6 +91,34 @@
                     </div>
                 </section>
                 <section>
+                    <h2 id="create-branch">Creating branches</h2>
+                    <p>
+                        The first branch created when initializing a repository is the <span class="snippet">main</span> branch. This branch serves as the project root and, 
+                        though uncommon, may be renamed. Developers create separate daughter branches, where specific features are developed and tested, to prevent breaking 
+                        changes from entering the project root.
+                    </p>
+                    <p>
+                        To see a list of local branches on a repository:
+                    </p>
+                    <div class="console">
+                        <p class="command">git branch</p>
+                    </div>
+                    <p>
+                        To see a list of local and remote branches:
+                    </p>
+                    <div class="console">
+                        <p class="comment"><span>use fetch to update the repository based on remote changes</span></p>
+                        <p class="command">git fetch</p>
+                        <p class="command">git branch -a</p>
+                    </div>
+                    <p>
+                        To create a new branch on an existing project:
+                    </p>
+                    <div class="console">
+                        <p class="command">git branch &lt;branch-name&gt;</p>
+                    </div>
+                </section>
+                <section>
                     <h2 id="delete-branch">Deleting branches</h2>
                     <p>
                         When "trimming" branches, it is often desired to remove both the local and remote instances.
