@@ -23,1086 +23,1086 @@
         <a href="../gallery.html">Gallery</a>
         <a href="lukas.vasadi@gmail.com" class="icon"><i class="fa fa-envelope"></i></a>
     </div>
-    <main> 
+    <div class="title">
         <h1 class="center extra-padding">Mastering the Linux command line</h1>
         <h4 class="center">Last updated: October 2021</h4>
-        <article>
-            <div class="toc">
-                <h2>Contents</h2>
+    </div>
+    <main> 
+        <div class="toc">
+            <h2>Contents</h2>
+            <ul>
+                <li><a href="#basic-utilities">Basic utilities</a></li>
+                <li><a href="#pipeline">Command pipeline</a></li>
+                <li><a href="#filesystem-nav">Navigating the filesystem</a></li>
+                <li><a href="#working-files">Working with files</a></li>
+                <li><a href="#searching-files">Searching for files</a></li>
+                <li><a href="#package-managers">Package managers</a></li>
+                <li><a href="#documentation">Accessing documentation</a></li>
+                <li><a href="#processes">Processes</a></li>
+                <li><a href="#file-operations">File operations</a></li>
+                <li><a href="#text-editors">Text editors</a></li>
+                <li><a href="#user-environment">User environment</a></li>
+                <li><a href="#manipulating-text">Manipulating text</a></li>
+                <li><a href="#network-operations">Network operations</a></li>
+                <li><a href="#credits">Credits</a></li>
+            </ul>
+        </div>
+        <article class="bash">
+            <section class="topic">
+                <h2 id="basic-utilities">Basic utilities</h2>
+                <div class="grid definitions">
+                    <p><span class="snippet">cat</span></p><p>type out a file (or combine files)</p>
+                    <p><span class="snippet">head</span></p><p>show first few lines of file</p>
+                    <p><span class="snippet">tail</span></p><p>show last few lines of file</p>
+                    <p><span class="snippet">less</span></p><p>view contents of larger files with scroll-back</p>
+                    <p><span class="snippet">man</span></p><p>view documentation</p>
+                    <p><span class="snippet">sudo</span></p><p>grant admin privileges</p>
+                    <p><span class="snippet">|</span></p><p>pipe data between programs</p>
+                    <p><span class="snippet">ssh</span></p><p>secure shell remote machine</p>
+                    <p><span class="snippet">pwd</span></p><p>print working directory</p>
+                    <p><span class="snippet">cd</span></p><p>change directory</p>
+                </div>
+                <p>
+                    A command is the name of the program being executed. Many commands accept arguments and 
+                    options, the latter often preceded with one or two dashes, e.g., 
+                    <span class="snippet">-p</span> or <span class="snippet">--print</span>, to be
+                    distinguishable.
+                </p>
+                <p>
+                    Users have several options to shutdown or reboot the system from the command line:
+                </p>
+                <div class="console">
+                    <p class="comment"><span>power off system without rebooting</span></p>
+                    <p class="command">sudo shutdown -h</p>
+                    <p class="comment"><span>alternative commands that issue shutdown</span></p>
+                    <p class="command">sudo halt</p>
+                    <p class="command">sudo poweroff</p>
+                    <p class="comment"><span>reboot the system</span></p>
+                    <p class="command">sudo shutdown -r</p>
+                    <p class="comment"><span>reboot alternative</span></p>
+                    <p class="command">sudo reboot</p>
+                </div>
+            </section>
+            <section class="topic">
+                <h2 id="pipeline">Command pipeline</h2>
+                <p>
+                    The Unix/Linux philosophy is to combine multiple short programs to produce complex results. To achieve this 
+                    coordination, data (output) from one program may be "piped" into another using the <span class="snippet">|</span>
+                    command. A string of connected commands is called a pipeline.
+                </p>
+                <div class="console">
+                    <p class="command">command1 | command2 | command3</p>
+                </div>
+                <p>
+                    In the above example, <span class="snippet">command2</span> and <span class="snippet">command3</span> can start
+                    acting on output from previous commands in the pipeline while those commands are still being executed. This feature utilizes
+                    the multicore functionality of modern computer systems and does not require data to be written to temporary files.
+                </p>
+            </section>
+            <section class="topic">
+                <h2 id="filesystem-nav">Filesystem navigation</h2>
+                <p>
+                    Locate programs with the <span class="snippet">which</span> or 
+                    <span class="snippet">whereis</span> utilities, the latter of which searches
+                    across a broader range of system directories and also prints the location of the 
+                    <span class="snippet">man</span> page:
+                </p>
+                <div class="console">
+                    <p class="command">which program</p>
+                    <p class="command">whereis program</p>
+                </div>
+                <p>Use <span class="snippet">cd</span> to navigate directories:</p>
+                <div class="console">
+                    <p class="comment"><span>change to home directory</span></p>
+                    <p class="command">cd</p>
+                    <p class="command">cd ~</p>
+                    <p class="comment"><span>change to root directory</span></p>
+                    <p class="command">cd /</p>
+                    <p class="comment"><span>change to parent directory</span></p>
+                    <p class="command">cd ..</p>
+                    <p class="comment"><span>change to previous directory</span></p>
+                    <p class="command">cd -</p>
+                </div>
+                <p>
+                    When referencing pathnames, remember that absolute pathnames must be preceded by 
+                    <span class="snippet">/</span>:
+                </p>
+                <div class="console">
+                    <p class="command">cd /usr/bin</p>
+                    <p class="command">cd ../../usr/bin</p>
+                </div>
+                <p>
+                    Use the <span class="snippet">tree</span> command to view the entire filesystem
+                    (note that this command may have to be installed with <span class="snippet">snap</span>):
+                </p>
+                <div class="console">
+                    <p class="comment"><span>the -d option displays directories while suppressing file names</span></p>
+                    <p class="command">tree -d</p>
+                </div>
+                <p>The <span class="snippet">ls</span> command lists the contents of the working directory:</p>
+                <div class="console">
+                    <p class="command">ls</p>
+                    <p class="comment"><span>present in list view</span></p>
+                    <p class="command">ls -l</p>
+                    <p class="comment"><span>include hidden files</span></p>
+                    <p class="command">ls -a</p>
+                </div>
+                <p>
+                    Use <span class="snippet">pushd</span> to navigate the filesystem and store visited directories
+                    to a stack for later reference:
+                </p>
+                <div class="console">
+                    <p class="command">pwd</p>
+                    <p class="output">/usr</p>
+                    <p class="command">pushd bin</p>
+                    <p class="output">/usr/bin /usr</p>
+                </div>
+                <p>
+                    Similarly, use <span class="snippet">popd</span> to revisit previous directories in reverse order. 
+                    The <span class="snippet">dirs</span> command prints a list of recent directories stacked with <span class="snippet">pushd</span>.
+                </p>
+            </section>
+            <section class="topic">
+                <h2 id="working-files">Working with files</h2>
+                <p>There are many command line utilities for viewing and reconfiguring files.</p>
+                <div class="console">
+                    <p class="comment"><span>load file contents in terminal window</span></p>
+                    <p class="command">cat filename</p>
+                    <p class="comment"><span>load file contents with line numbers</span></p>
+                    <p class="command">cat -n filename</p>
+                    <p class="comment"><span>load file contents in reverse</span></p>
+                    <p class="command">tac filename</p>
+                </div>
+                <p>
+                    To see one page of text at a time, use the <span class="snippet">less</span> command and press the 
+                    spacebar to move through the file.
+                </p>
+                <div class="console">
+                    <p class="comment"><span>show one page of text</span></p>
+                    <p class="command">less filename</p>
+                    <p class="comment"><span>show one page of text with line numbers</span></p>
+                    <p class="command">less -N filename</p>
+                </div>
+                <p>
+                    The <span class="snippet">head</span> and <span class="snippet">tail</span> commands display the
+                    first or last 10 lines of a file, respectively.
+                </p>
+                <div class="console">
+                    <p class="comment"><span>show first 10 lines</span></p>
+                    <p class="command">head filename</p>
+                    <p class="comment"><span>specify number of lines</span></p>
+                    <p class="command">head -20 filename</p>
+                    <p class="comment"><span>show last 10 lines</span></p>
+                    <p class="command">tail filename</p>
+                    <p class="comment"><span>specify number of lines</span></p>
+                    <p class="command">tail -20 filename</p>
+                </div>
+                <p>
+                    The <span class="snippet">touch</span> utility is commonly used to create new files for later usage, but 
+                    can also update/modify the timestamp of an existing file.
+                </p>
+                <div class="console">
+                    <p class="comment"><span>create new file in current directory</span></p>
+                    <p class="command">touch filename</p>
+                    <p class="comment"><span>update the date and timestamp of an existing file</span></p>
+                    <p class="command">touch filename</p>
+                    <p class="comment"><span>modify the date and timestamp of an existing file MM DD TIME</span></p>
+                    <p class="command">touch -t 01011200 filename</p>
+                </div>
+                <p>
+                    Use <span class="snippet">mkdir</span> and <span class="snippet">rmdir</span> to manage directories.
+                </p>
+                <div class="console">
+                    <p class="comment"><span>create new local directory</span></p>
+                    <p class="command">mkdir dirname</p>
+                    <p class="comment"><span>create new directory with specific path</span></p>
+                    <p class="command">mkdir dirpath</p>
+                    <p class="comment"><span>delete an empty directory</span></p>
+                    <p class="command">rm dirname</p>
+                    <p class="comment"><span>delete a directory with contents</span></p>
+                    <p class="command">rm -rf dirname</p>
+                </div>
+                <p>
+                    The <span class="snippet">mv</span> utility can both rename and relocate files.
+                </p>
+                <div class="console">
+                    <p class="comment"><span>rename existing file</span></p>
+                    <p class="command">mv filename new-filename</p>
+                    <p class="comment"><span>relocate file</span></p>
+                    <p class="command">mv filename new-filepath</p>
+                </div>
+            </section>
+            <section class="topic">
+                <h2 id="searching-files">Searching for files</h2>
+                <p>
+                    When interacting with the command line, there are always three standard file streams in operation:
+                    <span class="snippet">stdin</span>, <span class="snippet">stdout</span>, and 
+                    <span class="snippet">stderr</span>. Usually, <span class="snippet">stdin</span> captures
+                    user input while <span class="snippet">stdout</span> and <span class="snippet">stderr</span>
+                    print feedback via the terminal, though <span class="snippet">stderr</span> often targets an error
+                    logging file. The user can redirect these file streams to pipe data between various files and programs.
+                </p>
+                <p>
+                    The input source and output destination of a program can be changed with the 
+                    <span class="snippet">&lt;</span> and <span class="snippet">&gt;</span> symbols, respectively:
+                </p>
+                <div class="console">
+                    <p class="comment"><span>redirect program input</span></p>
+                    <p class="command">do_something &lt; input-file</p>
+                    <p class="comment"><span>send output to file</span></p>
+                    <p class="command">do_something &gt; output-file</p>
+                    <p class="comment"><span>send stderr output to file</span></p>
+                    <p class="command">do_something 2&gt; output-file</p>
+                    <p class="comment"><span>send all output to same destination file</span></p>
+                    <p class="command">do_something &gt; output-file 2&gt;&amp;1</p>
+                    <p class="comment"><span>shorthand syntax</span></p>
+                    <p class="command">do_something &gt;&amp; output-file</p>
+                </div>
+                <p>
+                    To search for files and directories that contain a specific string, use the <span class="snippet">locate</span>
+                    command in combination with <span class="snippet">grep</span> for further filtering. Alternatively, the 
+                    <span class="snippet">find</span> command can be used to locate files (or directories) after specifying the search 
+                    directory, where working directory is the default, and adding the <span class="snippet">-name</span> parameter alongside
+                    the search string. Note: without any arguments, <span class="snippet">-name</span> outputs all files in the current and 
+                    nested directories.
+                </p>
+                <div class="console">
+                    <p class="comment"><span>list all files with zip and bin in their name</span></p>
+                    <p class="command">locate zip | grep bin</p>
+                    <p class="comment"><span>use find to search for a file in the current working directory</span></p>
+                    <p class="command">find . -name "zip"</p>
+                </div>
+                <p>
+                    With these commands, it is often useful to employ wildcards:
+                </p>
+                <div class="grid definitions">
+                    <p><span class="snippet">?</span></p><p>match any single character</p>
+                    <p><span class="snippet">*</span></p><p>match any string of characters</p>
+                    <p><span class="snippet">[set]</span></p><p>match any character in set, e.g., [adf]</p>
+                    <p><span class="snippet">[!set]</span></p><p>match any character not in set</p>
+                </div>
+                <p>
+                    For example, to find a file that has "ba" followed by a third unknown character, with extension .out,
+                    search for <span class="snippet">ba?.out</span>. Similarly, if the entire name is unknown, search
+                    for <span class="snippet">*.out</span>. Putting the search criteria in quotes will expand the search
+                    beyond the working directory: <span class="snippet">ls "*.out"</span>.
+                </p>
+                <p>
+                    Using the <span class="snippet">-exec</span> parameter, the <span class="snippet">find</span> utility can also run other
+                    commands on the search results:
+                </p>
+                <div class="console">
+                    <p class="comment"><span>find and remove all files with extension .swp</span></p>
+                    <p class="command">find -name "*.swp" -exec rm {} ';'</p>
+                </div>
+            </section>
+            <section class="topic">
+                <h2 id="package-managers">Package managers</h2>
+                <p>
+                    There are two broad families of package managers for Debian and RPM distributions. Each family has a high-level tool, 
+                    e.g., <span class="snippet">apt</span>, <span class="snippet">dnf</span>, <span class="snippet">zypper</span>, 
+                    that manage low-level utilities, e.g., <span class="snippet">dpkg</span>, <span class="snippet">rpm</span>, which 
+                    are responsible for unpacking and installing individual packages. These high-level tools also coordinate the installation of 
+                    dependencies, or packages that are needed to support the current installation.
+                </p>
+                <p>
+                    Some common package management commands for Debian-based distros include:
+                </p>
+                <div class="console">
+                    <p class="comment"><span>list all packages on system</span></p>
+                    <p class="command">dpkg --list</p>
+                    <p class="comment"><span>install (or update) package and dependencies</span></p>
+                    <p class="command">apt-get install foo</p>
+                    <p class="comment"><span>remove package and dependencies</span></p>
+                    <p class="command">apt-get remove foo</p>
+                    <p class="comment"><span>upgrade entire system</span></p>
+                    <p class="command">apt-get dist-upgrade</p>
+                    <p class="comment"><span>search packages named foo</span></p>
+                    <p class="command">apt-cache search foo</p>
+                </div>
+            </section>
+            <section class="topic">
+                <h2 id="documentation">Accessing documentation</h2>
+                <p>
+                    The general philosophy of computer administration is to not memorize every single shell command along with its parameters. Instead,
+                    administrators can reference the <span class="snippet">man</span> pages&mdash;short for manual&mdash; or utilize either the 
+                    <span class="snippet">help</span> command or <span class="snippet">--help</span> option.
+                </p>
+                <div class="console">
+                    <p class="comment"><span>find information about a specific topic</span></p>
+                    <p class="command">man topic</p>
+                    <p class="comment"><span>list all pages on topic</span></p>
+                    <p class="command">man -f topic</p>
+                    <p class="comment"><span>alternatively...</span></p>
+                    <p class="command">whatis topic</p>
+                    <p class="comment"><span>list all pages that discuss a topic (yields more results)</span></p>
+                    <p class="command">man -k topic</p>
+                    <p class="comment"><span>alternatively...</span></p>
+                    <p class="command">apropos topic</p>
+                </div>
+                <p>
+                    While <span class="snippet">man</span> is a great tool for reading detailed information about specific utilities, often administrators
+                    only need a brief description. This can be accomplished using <span class="snippet">--help</span> or <span class="snippet">-h</span>:
+                </p>
+                <div class="console">
+                    <p class="comment"><span>find information on the man command</span></p>
+                    <p class="command">man --help</p>
+                </div>
+                <p>
+                    Typing <span class="snippet">help</span> at the command line will print consolidated information about built-in commands.
+                </p>
+            </section>
+            <section class="topic">
+                <h2 id="processes">Processes</h2>
+                <p>
+                    A process represents a current task running on the computer. Single commands may launch one or more processes simultaneously. The operating
+                    system is responsible for allocating system resources to each process for optimized performance. There are several types of processes:
+                </p>
                 <ul>
-                    <li><a href="#basic-utilities">Basic utilities</a></li>
-                    <li><a href="#pipeline">Command pipeline</a></li>
-                    <li><a href="#filesystem-nav">Navigating the filesystem</a></li>
-                    <li><a href="#working-files">Working with files</a></li>
-                    <li><a href="#searching-files">Searching for files</a></li>
-                    <li><a href="#package-managers">Package managers</a></li>
-                    <li><a href="#documentation">Accessing documentation</a></li>
-                    <li><a href="#processes">Processes</a></li>
-                    <li><a href="#file-operations">File operations</a></li>
-                    <li><a href="#text-editors">Text editors</a></li>
-                    <li><a href="#user-environment">User environment</a></li>
-                    <li><a href="#manipulating-text">Manipulating text</a></li>
-                    <li><a href="#network-operations">Network operations</a></li>
-                    <li><a href="#credits">Credits</a></li>
+                    <li><span class="emph">Interactive:</span> started by the user via the command line or graphical interface</li>
+                    <li><span class="emph">Batch:</span> automated processes that require queued resource allocation on a first-in, first-out (FIFO) basis</li>
+                    <li><span class="emph">Daemons:</span> server processes that run continuously in the background</li>
+                    <li><span class="emph">Threads:</span> lightweight processes that run under a main process, sharing a designated number of resources</li>
+                    <li><span class="emph">Kernel threads:</span> perform housekeeping tasks such as relocating threads between CPU cores</li>
                 </ul>
-            </div>
-            <div class="content bash">
-                <section class="topic">
-                    <h2 id="basic-utilities">Basic utilities</h2>
-                    <div class="grid definitions">
-                        <p><span class="snippet">cat</span></p><p>type out a file (or combine files)</p>
-                        <p><span class="snippet">head</span></p><p>show first few lines of file</p>
-                        <p><span class="snippet">tail</span></p><p>show last few lines of file</p>
-                        <p><span class="snippet">less</span></p><p>view contents of larger files with scroll-back</p>
-                        <p><span class="snippet">man</span></p><p>view documentation</p>
-                        <p><span class="snippet">sudo</span></p><p>grant admin privileges</p>
-                        <p><span class="snippet">|</span></p><p>pipe data between programs</p>
-                        <p><span class="snippet">ssh</span></p><p>secure shell remote machine</p>
-                        <p><span class="snippet">pwd</span></p><p>print working directory</p>
-                        <p><span class="snippet">cd</span></p><p>change directory</p>
-                    </div>
-                    <p>
-                        A command is the name of the program being executed. Many commands accept arguments and 
-                        options, the latter often preceded with one or two dashes, e.g., 
-                        <span class="snippet">-p</span> or <span class="snippet">--print</span>, to be
-                        distinguishable.
-                    </p>
-                    <p>
-                        Users have several options to shutdown or reboot the system from the command line:
-                    </p>
-                    <div class="console">
-                        <p class="comment"><span>power off system without rebooting</span></p>
-                        <p class="command">sudo shutdown -h</p>
-                        <p class="comment"><span>alternative commands that issue shutdown</span></p>
-                        <p class="command">sudo halt</p>
-                        <p class="command">sudo poweroff</p>
-                        <p class="comment"><span>reboot the system</span></p>
-                        <p class="command">sudo shutdown -r</p>
-                        <p class="comment"><span>reboot alternative</span></p>
-                        <p class="command">sudo reboot</p>
-                    </div>
-                </section>
-                <section class="topic">
-                    <h2 id="pipeline">Command pipeline</h2>
-                    <p>
-                        The Unix/Linux philosophy is to combine multiple short programs to produce complex results. To achieve this 
-                        coordination, data (output) from one program may be "piped" into another using the <span class="snippet">|</span>
-                        command. A string of connected commands is called a pipeline.
-                    </p>
-                    <div class="console">
-                        <p class="command">command1 | command2 | command3</p>
-                    </div>
-                    <p>
-                        In the above example, <span class="snippet">command2</span> and <span class="snippet">command3</span> can start
-                        acting on output from previous commands in the pipeline while those commands are still being executed. This feature utilizes
-                        the multicore functionality of modern computer systems and does not require data to be written to temporary files.
-                    </p>
-                </section>
-                <section class="topic">
-                    <h2 id="filesystem-nav">Filesystem navigation</h2>
-                    <p>
-                        Locate programs with the <span class="snippet">which</span> or 
-                        <span class="snippet">whereis</span> utilities, the latter of which searches
-                        across a broader range of system directories and also prints the location of the 
-                        <span class="snippet">man</span> page:
-                    </p>
-                    <div class="console">
-                        <p class="command">which program</p>
-                        <p class="command">whereis program</p>
-                    </div>
-                    <p>Use <span class="snippet">cd</span> to navigate directories:</p>
-                    <div class="console">
-                        <p class="comment"><span>change to home directory</span></p>
-                        <p class="command">cd</p>
-                        <p class="command">cd ~</p>
-                        <p class="comment"><span>change to root directory</span></p>
-                        <p class="command">cd /</p>
-                        <p class="comment"><span>change to parent directory</span></p>
-                        <p class="command">cd ..</p>
-                        <p class="comment"><span>change to previous directory</span></p>
-                        <p class="command">cd -</p>
-                    </div>
-                    <p>
-                        When referencing pathnames, remember that absolute pathnames must be preceded by 
-                        <span class="snippet">/</span>:
-                    </p>
-                    <div class="console">
-                        <p class="command">cd /usr/bin</p>
-                        <p class="command">cd ../../usr/bin</p>
-                    </div>
-                    <p>
-                        Use the <span class="snippet">tree</span> command to view the entire filesystem
-                        (note that this command may have to be installed with <span class="snippet">snap</span>):
-                    </p>
-                    <div class="console">
-                        <p class="comment"><span>the -d option displays directories while suppressing file names</span></p>
-                        <p class="command">tree -d</p>
-                    </div>
-                    <p>The <span class="snippet">ls</span> command lists the contents of the working directory:</p>
-                    <div class="console">
-                        <p class="command">ls</p>
-                        <p class="comment"><span>present in list view</span></p>
-                        <p class="command">ls -l</p>
-                        <p class="comment"><span>include hidden files</span></p>
-                        <p class="command">ls -a</p>
-                    </div>
-                    <p>
-                        Use <span class="snippet">pushd</span> to navigate the filesystem and store visited directories
-                        to a stack for later reference:
-                    </p>
-                    <div class="console">
-                        <p class="command">pwd</p>
-                        <p class="output">/usr</p>
-                        <p class="command">pushd bin</p>
-                        <p class="output">/usr/bin /usr</p>
-                    </div>
-                    <p>
-                        Similarly, use <span class="snippet">popd</span> to revisit previous directories in reverse order. 
-                        The <span class="snippet">dirs</span> command prints a list of recent directories stacked with <span class="snippet">pushd</span>.
-                    </p>
-                </section>
-                <section class="topic">
-                    <h2 id="working-files">Working with files</h2>
-                    <p>There are many command line utilities for viewing and reconfiguring files.</p>
-                    <div class="console">
-                        <p class="comment"><span>load file contents in terminal window</span></p>
-                        <p class="command">cat filename</p>
-                        <p class="comment"><span>load file contents with line numbers</span></p>
-                        <p class="command">cat -n filename</p>
-                        <p class="comment"><span>load file contents in reverse</span></p>
-                        <p class="command">tac filename</p>
-                    </div>
-                    <p>
-                        To see one page of text at a time, use the <span class="snippet">less</span> command and press the 
-                        spacebar to move through the file.
-                    </p>
-                    <div class="console">
-                        <p class="comment"><span>show one page of text</span></p>
-                        <p class="command">less filename</p>
-                        <p class="comment"><span>show one page of text with line numbers</span></p>
-                        <p class="command">less -N filename</p>
-                    </div>
-                    <p>
-                        The <span class="snippet">head</span> and <span class="snippet">tail</span> commands display the
-                        first or last 10 lines of a file, respectively.
-                    </p>
-                    <div class="console">
-                        <p class="comment"><span>show first 10 lines</span></p>
-                        <p class="command">head filename</p>
-                        <p class="comment"><span>specify number of lines</span></p>
-                        <p class="command">head -20 filename</p>
-                        <p class="comment"><span>show last 10 lines</span></p>
-                        <p class="command">tail filename</p>
-                        <p class="comment"><span>specify number of lines</span></p>
-                        <p class="command">tail -20 filename</p>
-                    </div>
-                    <p>
-                        The <span class="snippet">touch</span> utility is commonly used to create new files for later usage, but 
-                        can also update/modify the timestamp of an existing file.
-                    </p>
-                    <div class="console">
-                        <p class="comment"><span>create new file in current directory</span></p>
-                        <p class="command">touch filename</p>
-                        <p class="comment"><span>update the date and timestamp of an existing file</span></p>
-                        <p class="command">touch filename</p>
-                        <p class="comment"><span>modify the date and timestamp of an existing file MM DD TIME</span></p>
-                        <p class="command">touch -t 01011200 filename</p>
-                    </div>
-                    <p>
-                        Use <span class="snippet">mkdir</span> and <span class="snippet">rmdir</span> to manage directories.
-                    </p>
-                    <div class="console">
-                        <p class="comment"><span>create new local directory</span></p>
-                        <p class="command">mkdir dirname</p>
-                        <p class="comment"><span>create new directory with specific path</span></p>
-                        <p class="command">mkdir dirpath</p>
-                        <p class="comment"><span>delete an empty directory</span></p>
-                        <p class="command">rm dirname</p>
-                        <p class="comment"><span>delete a directory with contents</span></p>
-                        <p class="command">rm -rf dirname</p>
-                    </div>
-                    <p>
-                        The <span class="snippet">mv</span> utility can both rename and relocate files.
-                    </p>
-                    <div class="console">
-                        <p class="comment"><span>rename existing file</span></p>
-                        <p class="command">mv filename new-filename</p>
-                        <p class="comment"><span>relocate file</span></p>
-                        <p class="command">mv filename new-filepath</p>
-                    </div>
-                </section>
-                <section class="topic">
-                    <h2 id="searching-files">Searching for files</h2>
-                    <p>
-                        When interacting with the command line, there are always three standard file streams in operation:
-                        <span class="snippet">stdin</span>, <span class="snippet">stdout</span>, and 
-                        <span class="snippet">stderr</span>. Usually, <span class="snippet">stdin</span> captures
-                        user input while <span class="snippet">stdout</span> and <span class="snippet">stderr</span>
-                        print feedback via the terminal, though <span class="snippet">stderr</span> often targets an error
-                        logging file. The user can redirect these file streams to pipe data between various files and programs.
-                    </p>
-                    <p>
-                        The input source and output destination of a program can be changed with the 
-                        <span class="snippet">&lt;</span> and <span class="snippet">&gt;</span> symbols, respectively:
-                    </p>
-                    <div class="console">
-                        <p class="comment"><span>redirect program input</span></p>
-                        <p class="command">do_something &lt; input-file</p>
-                        <p class="comment"><span>send output to file</span></p>
-                        <p class="command">do_something &gt; output-file</p>
-                        <p class="comment"><span>send stderr output to file</span></p>
-                        <p class="command">do_something 2&gt; output-file</p>
-                        <p class="comment"><span>send all output to same destination file</span></p>
-                        <p class="command">do_something &gt; output-file 2&gt;&amp;1</p>
-                        <p class="comment"><span>shorthand syntax</span></p>
-                        <p class="command">do_something &gt;&amp; output-file</p>
-                    </div>
-                    <p>
-                        To search for files and directories that contain a specific string, use the <span class="snippet">locate</span>
-                        command in combination with <span class="snippet">grep</span> for further filtering. Alternatively, the 
-                        <span class="snippet">find</span> command can be used to locate files (or directories) after specifying the search 
-                        directory, where working directory is the default, and adding the <span class="snippet">-name</span> parameter alongside
-                        the search string. Note: without any arguments, <span class="snippet">-name</span> outputs all files in the current and 
-                        nested directories.
-                    </p>
-                    <div class="console">
-                        <p class="comment"><span>list all files with zip and bin in their name</span></p>
-                        <p class="command">locate zip | grep bin</p>
-                        <p class="comment"><span>use find to search for a file in the current working directory</span></p>
-                        <p class="command">find . -name "zip"</p>
-                    </div>
-                    <p>
-                        With these commands, it is often useful to employ wildcards:
-                    </p>
-                    <div class="grid definitions">
-                        <p><span class="snippet">?</span></p><p>match any single character</p>
-                        <p><span class="snippet">*</span></p><p>match any string of characters</p>
-                        <p><span class="snippet">[set]</span></p><p>match any character in set, e.g., [adf]</p>
-                        <p><span class="snippet">[!set]</span></p><p>match any character not in set</p>
-                    </div>
-                    <p>
-                        For example, to find a file that has "ba" followed by a third unknown character, with extension .out,
-                        search for <span class="snippet">ba?.out</span>. Similarly, if the entire name is unknown, search
-                        for <span class="snippet">*.out</span>. Putting the search criteria in quotes will expand the search
-                        beyond the working directory: <span class="snippet">ls "*.out"</span>.
-                    </p>
-                    <p>
-                        Using the <span class="snippet">-exec</span> parameter, the <span class="snippet">find</span> utility can also run other
-                        commands on the search results:
-                    </p>
-                    <div class="console">
-                        <p class="comment"><span>find and remove all files with extension .swp</span></p>
-                        <p class="command">find -name "*.swp" -exec rm {} ';'</p>
-                    </div>
-                </section>
-                <section class="topic">
-                    <h2 id="package-managers">Package managers</h2>
-                    <p>
-                        There are two broad families of package managers for Debian and RPM distributions. Each family has a high-level tool, 
-                        e.g., <span class="snippet">apt</span>, <span class="snippet">dnf</span>, <span class="snippet">zypper</span>, 
-                        that manage low-level utilities, e.g., <span class="snippet">dpkg</span>, <span class="snippet">rpm</span>, which 
-                        are responsible for unpacking and installing individual packages. These high-level tools also coordinate the installation of 
-                        dependencies, or packages that are needed to support the current installation.
-                    </p>
-                    <p>
-                        Some common package management commands for Debian-based distros include:
-                    </p>
-                    <div class="console">
-                        <p class="comment"><span>list all packages on system</span></p>
-                        <p class="command">dpkg --list</p>
-                        <p class="comment"><span>install (or update) package and dependencies</span></p>
-                        <p class="command">apt-get install foo</p>
-                        <p class="comment"><span>remove package and dependencies</span></p>
-                        <p class="command">apt-get remove foo</p>
-                        <p class="comment"><span>upgrade entire system</span></p>
-                        <p class="command">apt-get dist-upgrade</p>
-                        <p class="comment"><span>search packages named foo</span></p>
-                        <p class="command">apt-cache search foo</p>
-                    </div>
-                </section>
-                <section class="topic">
-                    <h2 id="documentation">Accessing documentation</h2>
-                    <p>
-                        The general philosophy of computer administration is to not memorize every single shell command along with its parameters. Instead,
-                        administrators can reference the <span class="snippet">man</span> pages&mdash;short for manual&mdash; or utilize either the 
-                        <span class="snippet">help</span> command or <span class="snippet">--help</span> option.
-                    </p>
-                    <div class="console">
-                        <p class="comment"><span>find information about a specific topic</span></p>
-                        <p class="command">man topic</p>
-                        <p class="comment"><span>list all pages on topic</span></p>
-                        <p class="command">man -f topic</p>
-                        <p class="comment"><span>alternatively...</span></p>
-                        <p class="command">whatis topic</p>
-                        <p class="comment"><span>list all pages that discuss a topic (yields more results)</span></p>
-                        <p class="command">man -k topic</p>
-                        <p class="comment"><span>alternatively...</span></p>
-                        <p class="command">apropos topic</p>
-                    </div>
-                    <p>
-                        While <span class="snippet">man</span> is a great tool for reading detailed information about specific utilities, often administrators
-                        only need a brief description. This can be accomplished using <span class="snippet">--help</span> or <span class="snippet">-h</span>:
-                    </p>
-                    <div class="console">
-                        <p class="comment"><span>find information on the man command</span></p>
-                        <p class="command">man --help</p>
-                    </div>
-                    <p>
-                        Typing <span class="snippet">help</span> at the command line will print consolidated information about built-in commands.
-                    </p>
-                </section>
-                <section class="topic">
-                    <h2 id="processes">Processes</h2>
-                    <p>
-                        A process represents a current task running on the computer. Single commands may launch one or more processes simultaneously. The operating
-                        system is responsible for allocating system resources to each process for optimized performance. There are several types of processes:
-                    </p>
-                    <ul>
-                        <li><span class="emph">Interactive:</span> started by the user via the command line or graphical interface</li>
-                        <li><span class="emph">Batch:</span> automated processes that require queued resource allocation on a first-in, first-out (FIFO) basis</li>
-                        <li><span class="emph">Daemons:</span> server processes that run continuously in the background</li>
-                        <li><span class="emph">Threads:</span> lightweight processes that run under a main process, sharing a designated number of resources</li>
-                        <li><span class="emph">Kernel threads:</span> perform housekeeping tasks such as relocating threads between CPU cores</li>
-                    </ul>
-                    <p>
-                        The kernel <span class="emph">scheduler</span> allocates CPU time to queued processes. Each CPU core has a run and wait queue. When a process
-                        enters a <span class="emph">sleep</span> state, the scheduler moves it to the wait queue until the necessary feedback is received. To manage 
-                        process scheduling and resource allocation, the operating system assigns each running process a unique process ID <span class="emph">(PID)</span> 
-                        number, which Usually follow the order that each process was born in the system. In addition, each process has a parent process ID 
-                        <span class="emph">(PPID)</span> and, if the process is multithreaded, a unique thread ID <span class="emph">(TID)</span>.
-                    </p>
-                    <p>
-                        Users can terminate processes in the terminal shell:
-                    </p>
-                    <div class="console">
-                        <p class="comment"><span>kill process</span></p>
-                        <p class="command">kill -SIGKILL pid</p>
-                        <p class="comment"><span>alternatively</span></p>
-                        <p class="command">kill -9 pid</p>
-                    </div>
-                    <p>
-                        Users can also specify a <span class="emph">nice value</span> for individual processes to control their execution priority. The lower the nice value,
-                        the more preference will be given this process over system resources and runtime. Linux nice values range from -20 to +19, with -20 designating the 
-                        highest priority, or precedence. Note that changing the niceness of a process will also update any child processes with the same value. Increasing
-                        niceness may require superuser permissions.
-                    </p>
-                    <div class="console">
-                        <p class="comment"><span>change the niceness value</span></p>
-                        <p class="command">renice value pid</p>
-                    </div>
-                    <p>
-                        The <span class="emph">load average</span> breaks down CPU resource consumption over three specified timepoints: 45, 15, and 5 min. These percentages 
-                        denote the amount of CPU resources demanded by active processes. For example, a load average of 0.5 means that an average of 50% CPU resources were 
-                        consumed for the specified time period.
-                    </p>
-                    <p>
-                        With modern machines, each load average should be divided by the number of CPU cores, e.g., a load average of 2.0
-                        for a dual-core system indicates 100% CPU resource consumption. It is possible for normalized load averages to exceed 1.0 for brief periods, but prolonged
-                        over-utilization may suggest problems. Load averages may be viewed in the terminal by running either <span class="snippet">w</span>, 
-                        <span class="snippet">top</span>, or <span class="snippet">uptime</span>.
-                    </p>
-                    <p>
-                        Jobs, or terminal commands, may be run in the foreground or background. Foreground jobs may be suspended with <span class="snippet">CTRL-Z</span> or
-                        terminated with <span class="snippet">CTRL-C</span>. Suffixing a command with <span class="snippet">&</span> causes it to be executed in the background.
-                        Alternatively, the <span class="snippet">bg</span> and <span class="snippet">fg</span> commands can push jobs to the background or foreground, 
-                        respectively.
-                    </p>
-                    <div class="console">
-                        <p class="comment"><span>view active background jobs</span></p>
-                        <p class="command">jobs</p>
-                    </div>
-                    <p>
-                        The <span class="snippet">ps</span> command prints information about current running processes:
-                    </p>
-                    <div class="console">
-                        <p class="comment"><span>display all processes running under current shell</span></p>
-                        <p class="command">ps</p>
-                        <p class="comment"><span>include PPID</span></p>
-                        <p class="command">ps -f</p>
-                        <p class="comment"><span>include full system detail</span></p>
-                        <p class="command">ps -ef</p>
-                        <p class="comment"><span>show one line of information for every thread</span></p>
-                        <p class="command">ps -elf</p>
-                        <p class="comment"><span>display as tree diagram to show process lineage</span></p>
-                        <p class="command">pstree</p>
-                    </div>
-                    <p>
-                        In addition to printing load averages, the <span class="snippet">top</span> command presents a real-time system monitor of all processes, listed in order of 
-                        CPU resource consumption. The list constantly updates until the user quites with <span class="snippet">q</span>. Other interactive options for top include:
-                    </p>
-                    <div class="grid definitions">
-                        <p><span class="snippet">t</span></p><p>show or hide summary</p>
-                        <p><span class="snippet">m</span></p><p>show or hide memory</p>
-                        <p><span class="snippet">A</span></p><p>sort list by highest resource consumers</p>
-                        <p><span class="snippet">r</span></p><p>renice specific process</p>
-                        <p><span class="snippet">k</span></p><p>kill specific process</p>
-                        <p><span class="snippet">f</span></p><p>enter configuration utility</p>
-                    </div>
-                    <p>
-                        Various commands exist to manage future program execution and suspend currently active processes:
-                    </p>
-                    <div class="console">
-                        <p class="comment"><span>schedule non-interactive process to execute in 10 minutes</span></p>
-                        <p class="command">at now + 10 minutes</p>
-                        <p class="comment"><span>issue command to be executed, then press CTRL-D to exit at config</span></p>
-                        <p class="command">command arguments</p>
-                        <p class="comment"><span>sleep active program for 10 seconds</span></p>
-                        <p class="command">sleep 10s</p>
-                    </div>
-                </section>
-                <section class="topic">
-                    <h2 id="file-operations">File operations</h2>
-                    <p>
-                        In the Linux, the root directory, denoted by <span class="snippet">/</span>, represents the beginning of the filesystem hierarchy. There are 
-                        many types of filesystems, which often differ across operating systems, but the most common belong to the <span class="emph">journaling</span> variety:
-                        ext4, xfs, btrfs, jfs. It is often the case that an OS will have several different filesystems, each stored on a particular disk partition. Important 
-                        programs to run the system are isolated on the <span class="emph">root</span> partition. Each partition has to be mounted on the filesystem tree to be 
-                        accessible by the user. Examples of common mount points, which appear as empty directories, include <span class="snippet">/</span>, 
-                        <span class="snippet">/home</span>, and <span class="snippet">/var</span>.
-                    </p>
-                    <p>
-                        Partitions can be mounted through a graphical utility, such as <span class="emph">gparted</span>, or the command line with the device node and mount 
-                        point as the arguments:
-                    </p>
-                    <div class="console">
-                        <p class="comment"><span>mount the filesystem at device node /dev/sda5 into the main filesystem tree at mount point /home</span></p>
-                        <p class="command">sudo mount /dev/sda5 /home</p>
-                        <p class="comment"><span>unmount the partition</span></p>
-                        <p class="command">sudo umount /home</p>
-                        <p class="comment"><span>show all mounted filesystems</span></p>
-                        <p class="command">mount</p>
-                    </div>
-                    <p>
-                        Filesystems and data can also be shared across machines through networks. Networks, accessible over the internet, allow grouping of lower-level filesystems
-                        into a more universal framework, e.g., the Network Filesystem (<span class="emph">NFS</span>). For all intensive purposes, NFS can be treated as an other filesystem 
-                        on the client or server side.
-                    </p>
-                    <p>
-                        Each user has a home directory listed under <span class="snippet">/home</span>. The <span class="snippet">/root</span> directory is simply the home of the 
-                        root user (aka superuser or system administrator). The <span class="snippet">/bin</span> directory contains executable binaries needed to boot the system as well 
-                        as ubiquitous user commands, such as <span class="snippet">cat</span>, <span class="snippet">cp</span>, <span class="snippet">ls</span>, etc. Though 
-                        similar, <span class="snippet">/sbin</span> stores executables for system administration, such as <span class="snippet">ip</span>.
-                    </p>
-                    <p>
-                        Non-essential commands are stored under <span class="snippet">/usr/bin</span> and <span class="snippet">/usr/sbin</span>, which was initially done to allow 
-                        mounting of the user filesystem at a later stage in the OS startup. However, this practice is mostly considered obselete and, as such, most modern Linux distros symbolically 
-                        link <span class="snippet">/usr/bin</span> with <span class="snippet">/bin</span> and <span class="snippet">/usr/sbin</span> with <span class="snippet">/sbin</span>, 
-                        i.e., for all intensive purposes, there are no distinctions between these directory groupings.
-                    </p>
-                    <p>
-                        The <span class="snippet">/proc</span> filesystem contains <span class="emph">virtual files</span>&mdash;files that only exist in memory&mdash;that track dynamic kernel 
-                        data, including information about mounted devices, hardware configurations, CPU, etc. This directory is considered a <span class="emph">pseudo filesystem</span> because it occupies 
-                        no permanent space in storage.
-                    </p>
-                    <p>
-                        The <span class="snippet">/dev</span> directory becomes populated with <span class="emph">device nodes</span> as devices, e.g., printers, are connected to the computer. Similarly, 
-                        <span class="snippet">/var</span> is a dynamic directory of sorts as it contains files that are expected to change in size, e.g., system log files (<span class="snippet">/var/log</span>), 
-                        packages and database files (<span class="snippet">/var/lib</span>), and temporary files (<span class="snippet">/var/tmp</span>).
-                    </p>
-                    <p>
-                        The <span class="snippet">/etc</span> directory is home to system configuration files that can only be modified by the superuser. Likewise, the <span class="snippet">/boot</span> 
-                        directory contains essential files needed to boot the system, which are kernel-specific. Libraries needed for binary executables are stored in <span class="snippet">/lib</span> 
-                        (32-bit) and <span class="snippet">/lib64</span> (64-bit). Removable media files, such as the contents of a connected USB drive, are typically accessible 
-                        uner the <span class="snippet">/run/media/usrname/</span> directory.
-                    </p>
-                    <p>
-                        There are other directories listed under <span class="snippet">/root</span>, as well as an entire directory tree under <span class="snippet">/usr</span> that contains 
-                        a host of programs and scripts not needed to boot or manage the system. 
-                    </p>
-                    <p>
-                        Comparing text files can be done with the <span class="snippet">diff</span> command:
-                    </p>
-                    <div class="console">
-                        <p class="comment"><span>compare differences between two text files</span></p>
-                        <p class="command">diff [options] filename1 filename2</p>
-                        <p class="comment"><span>compare differences between three text files, with one acting as a reference</span></p>
-                        <p class="command">diff3 filename1 referencefile filename2</p>
-                    </div>
-                    <p>
-                        This utility provides several options:
-                    </p>
-                    <div class="grid definitions">
-                        <p><span class="snippet">-c</span></p><p>provide listing of differences</p>
-                        <p><span class="snippet">-r</span></p><p>recursively compare subdirectories</p>
-                        <p><span class="snippet">-i</span></p><p>ignore capitalization</p>
-                        <p><span class="snippet">-w</span></p><p>ignore whitespace</p>
-                        <p><span class="snippet">-q</span></p><p>state whether files are different without providing context</p>
-                    </div>
-                    <p>
-                        Unlike other operating systems, Linux does not rely on file extensions to direct operations, e.g., a file with the <span class="snippet">.txt</span> 
-                        extension could be a binary executable. Users can employ the <span class="snippet">file</span> utility to ascertain file type and other important 
-                        information.
-                    </p>
-                    <div class="console">
-                        <p class="comment"><span>ascertain file type</span></p>
-                        <p class="command">file filename</p>
-                        <p class="comment"><span>find detailed information about all files in working directory</span></p>
-                        <p class="command">file *</p>
-                    </div>
-                    <p>
-                        Data can be backed up using the <span class="snippet">cp</span> or <span class="snippet">rsync</span> utilities. While 
-                        the <span class="snippet">cp</span> command copies files from one destination to another on a local machine, <span class="snippet">rsync</span> 
-                        performs recursive operations to only copy modified data, i.e., existing files may not be entirely overwritten. The <span class="snippet">rsync</span> 
-                        utility can also copy data across remote machines.
-                    </p>
-                    <div class="console">
-                        <p class="comment"><span>copy file to new location</span></p>
-                        <p class="command">rsync sourcefile destinationfile</p>
-                        <p class="comment"><span>back up project data to remote archive</span></p>
-                        <p class="command">rsync -r project networked-machine:archives/project</p>
-                        <p class="comment"><span>perform a dry run to prevent unwanted overwrites</span></p>
-                        <p class="command">rsync -r -dry-run project networked-machine:archives/project</p>
-                    </div>
-                    <p>
-                        There are several Linux utilities for managing data compression: <span class="snippet">gzip</span>, 
-                        <span class="snippet">bzip2</span> (deprecated), <span class="snippet">xz</span>. Each of 
-                        these utilities employ different compression algorithms and, not surprisingly, the utilities which 
-                        produce smaller files require longer amounts of time. A similar program, <span class="snippet">tar</span>, 
-                        compresses files grouped in an archive. Lastly, <span class="snippet">zip</span> is a legacy utility 
-                        specifically used to decompress zipped files from a Windows machine&mdash;though it also has compression 
-                        functionality.
-                    </p>
-                    <div class="console">
-                        <p class="comment"><span>compress files in current directory</span></p>
-                        <p class="command">gzip *</p>
-                        <p class="comment"><span>recursively compress files in specified project directory</span></p>
-                        <p class="command">gzip -r projectdir</p>
-                        <p class="comment"><span>decompress file foo.gz</span></p>
-                        <p class="command">gzip -d foo</p>
-                        <p class="command">gunzip foo</p>
-                    </div>
-                </section>
-                <section class="topic">
-                    <h2 id="text-editors">Text editors</h2>
-                    <p>
-                        There are several ways to create and edit text files from the command line:
-                    </p>
-                    <div class="console">
-                        <p class="comment"><span>write several lines to a text file</span></p>
-                        <p class="command">echo line one > filename</p>
-                        <p class="comment"><span>note that >> appends output to file</span></p>
-                        <p class="command">echo line two >> filename</p>
-                        <p class="command">echo line three >> filename</p>
-                        <p class="comment"><span>alternatively use cat with redirection</span></p>
-                        <p class="command">cat << EOF > file</p>
-                        <p>line one</p>
-                        <p>line two</p>
-                        <p>line three</p>
-                        <p>EOF</p>
-                    </div>
-                    <p>
-                        For more flexible text editing, Linux distros offer several terminal-based and graphical editors, 
-                        including <span class="emph">nano</span>, <span class="emph">gedit</span>, <span class="emph">vi</span>,
-                        and <span class="emph">emacs</span>. The nano and gedit editors can be invoked with the 
-                        <span class="snippet">nano</span> and <span class="snippet">gedit</span> commands, 
-                        respectively.
-                    </p>
-                    <p>
-                        In most modern GNOME distros, vi is accessible with vim, which stands for <span class="emph">V</span>i 
-                        <span class="emph">IM</span>proved. Though vi has a steep learning curve for new users, it is significantly 
-                        more powerful than nano and gedit. Invoking <span class="snippet">vimtutor</span> from the command 
-                        line will launch a vim tutorial.
-                    </p>
-                    <p>
-                        Vi has three different modes:
-                    </p>
-                    <div class="grid definitions">
-                        <p><span class="snippet">command</span></p><p>default mode where each key is an editor command</p>
-                        <p><span class="snippet">insert</span></p><p>insert text into file (invoked with <span class="snippet">i</span>)</p>
-                        <p><span class="snippet">line</span></p><p>each key is an external command, though many are now deprecated (invoked with <span class="snippet">:</span>)</p>
-                    </div>
-                    <p>
-                        Some of the most useful commands for vi include:
-                    </p>
-                    <div class="grid definitions">
-                        <p><span class="snippet">vi file</span></p><p>open file in editor</p>
-                        <p><span class="snippet">vi -r file</span></p><p>open file in recovery mode after system crash</p>
-                        <p><span class="snippet">:r file2</span></p><p>read in a second file and insert at current position</p>
-                        <p><span class="snippet">:w</span></p><p>write to file</p>
-                        <p><span class="snippet">:w file</span></p><p>write out to a new file</p>
-                        <p><span class="snippet">:w! file2</span></p><p>overwrite file2</p>
-                        <p><span class="snippet">:wq</span></p><p>write to file and exit</p>
-                        <p><span class="snippet">:q</span></p><p>quit</p>
-                        <p><span class="snippet">:q!</span></p><p>quit even with unsaved modifications</p>
-                    </div>
-                    <p>
-                        When using vi, an external command shell can be opened with <span class="snippet">sh</span>. Otherwise, 
-                        commands may be executed inside the editor prompt with <span class="snippet">!</span>:
-                    </p>
-                    <div class="console">
-                        <p class="comment"><span>find word count of current document (%)</span></p>
-                        <p class="command">:! wc %</p>
-                    </div>
-                    <p>
-                        The emacs editor is a popular alternative to vi that executes commands using the CTRL and ALT/ESC keys, instead 
-                        of special characters. (For a full tutorial, start emacs and type <span class="snippet">CTRL-h</span> followed 
-                        by the letter <span class="snippet">t</span>.) Some of the most common command key combinations include:
-                    </p>
-                    <div class="grid definitions">
-                        <p><span class="snippet">emacs file</span></p><p>open file in editor</p>
-                        <p><span class="snippet">CTRL-x i</span></p><p>insert at current position in file</p>
-                        <p><span class="snippet">CTRL-x s</span></p><p>save all files</p>
-                        <p><span class="snippet">CTRL-x CTRL-w</span></p><p>write to file and rename</p>
-                        <p><span class="snippet">CTRL-x CTRL-s</span></p><p>save current file</p>
-                        <p><span class="snippet">CTRL-x CTRL-c</span></p><p>exit after prompted to save any modified files</p>
-                    </div>
-                </section>
-                <section class="topic">
-                    <h2 id="user-environment">User environment</h2>
-                    <p>
-                        As Linux is a multi-user system, administratos may be interested in knowing the current active 
-                        users:
-                    </p>
-                    <div class="console">
-                        <p class="comment"><span>find current user</span></p>
-                        <p class="command">whoami</p>
-                        <p class="comment"><span>find all active users</span></p>
-                        <p class="command">who</p>
-                        <p class="comment"><span>find more detailed information</span></p>
-                        <p class="command">who -a</p>
-                    </div>
-                    <p>
-                        Each user will have local startup files to customize the user environment. These files supercede 
-                        system settings such as changing the default text editor and path to executables. At login, Linux 
-                        first evaluates <span class="snippet">/etc/profile</span> and then searches for user-specific 
-                        startup files in a particular order. Whichever startup file first discovered becomes the basis for 
-                        the user environment.
-                    </p>
-                    <p>
-                        Though startup files are only evaluated once at login, Linux will read and evaluate the 
-                        <span class="snippet">~/rc</span> file each time a command line shell initiates or spawns 
-                        a program. For this reason, many users often only concern themselves with the 
-                        <span class="snippet">~/rc</span> file.
-                    </p>
-                    <p>
-                        The <span class="snippet">~/rc</span> file is also where <span class="emph">aliases</span> 
-                        are defined. Aliases are fully custom or modified commands that are accessible through every shell 
-                        instance. Invoking <span class="snippet">alias</span> will print all existing aliases to the console.
-                    </p>
-                    <p>
-                        All users belonging to a system are assigned a unique integer user ID (<span class="emph">UID</span>) as 
-                        well as one or more group IDs (<span class="emph">GID</span>) to denote group membership. Groups are simply 
-                        collections of Linux users that share the same permissions.
-                    </p>
-                    <div class="console">
-                        <p class="comment"><span>find user and group ids of current user</span></p>
-                        <p class="command">id</p>
-                        <p class="comment"><span>find user and group ids of different user</span></p>
-                        <p class="command">id johndoe</p>
-                    </div>
-                    <p>
-                        Linux administrators can manage user accounts directly from the command line:
-                    </p>
-                    <div class="console">
-                        <p class="comment"><span>create new user account</span></p>
-                        <p class="command">sudo useradd johndoe</p>
-                        <p class="comment"><span>create account with home directory and default shell</span></p>
-                        <p class="command">sudo useradd -m -c "John Doe" -s /bin jdoe</p>
-                        <p class="comment"><span>start prompt to add account password</span></p>
-                        <p class="command">sudo passwd jdoe</p>
-                        <p class="comment"><span>remove user account</span></p>
-                        <p class="command">sudo userdel jdoe</p>
-                        <p class="comment"><span>remove user account as well as associated home directory</span></p>
-                        <p class="command">sudo userdel -r jdoe</p>
-                    </div>
-                    <p>
-                        Groups may be managed similarly:
-                    </p>
-                    <div class="console">
-                        <p class="comment"><span>create new group</span></p>
-                        <p class="command">sudo groupadd newgroup</p>
-                        <p class="comment"><span>remove group</span></p>
-                        <p class="command">sudo groupdel newgroup</p>
-                        <p class="comment"><span>find groups associated with user</span></p>
-                        <p class="command">groups johndoe</p>
-                        <p class="comment"><span>associate new group with user with append (-a)</span></p>
-                        <p class="command">sudo usermod -a -G newgroup johndoe</p>
-                        <p class="comment"><span>change gid</span></p>
-                        <p class="command">sudo groupmod -g newid</p>
-                        <p class="comment"><span>change group name</span></p>
-                        <p class="command">sudo groupmod -n newname</p>
-                    </div>
-                    <p>
-                        Users can gain root privileges by either switching to the root user&mdash;not recommended for 
-                        security reasons&mdash;or executing individual shell commands with root privileges:
-                    </p>
-                    <div class="console">
-                        <p class="comment"><span>switch shell to root user</span></p>
-                        <p class="command">su</p>
-                        <p class="comment"><span>execute one command with root privileges</span></p>
-                        <p class="command">sudo command</p>
-                    </div>
-                    <p>
-                        <span class="emph">Environment variables</span> are character strings that contain important 
-                        configuration information for the command shell and various other applications. Various amounts 
-                        of this information can be viewed with the <span class="snippet">set</span>, 
-                        <span class="snippet">env</span>, or <span class="snippet">export</span>.
-                    </p>
-                    <div class="console">
-                        <p class="comment"><span>show value of variable</span></p>
-                        <p class="command">echo $SHELL</p>
-                        <p class="comment"><span>export new variable</span></p>
-                        <p class="command">export VARIABLE=value</p>
-                        <p class="comment"><span>commit value for permanent access</span></p>
-                        <p class="command">nano ~/rc</p>
-                        <p class="command">export VARIABLE=value</p>
-                        <p class="comment"><span>reset shell</span></p>
-                        <p class="command">source ~/rc</p>
-                    </div>
-                    <p>
-                        Some important variables include:
-                    </p>
-                    <div class="grid definitions">
-                        <p><span class="snippet">$HOME</span></p><p>points to user home directory</p>
-                        <p><span class="snippet">$PATH</span></p><p>points to ordered list of paths (separated by <span class="snippet">:</span>) that is scanned to find programs/scripts</p>
-                        <p><span class="snippet">$SHELL</span></p><p>points to default command shell (usually)</p>
-                    </div>
-                    <p>
-                        Previous shell commands can be cycled with the &uparrow; and &downarrow; keys or viewed as a list with 
-                        the <span class="snippet">history</span> command (command history stored in <span class="snippet">~/_history</span>).
-                        Alternatively, the most recent command can be called with <span class="snippet">!!</span> or a 
-                        specific command in history may be searched with <span class="snippet">CTRL+R</span> followed 
-                        by character hints.
-                    </p>
-                    <div class="console">
-                        <p class="comment"><span>print command history</span></p>
-                        <p class="command">history</p>
-                        <p class="output">1&nbsp;&nbsp;echo $HOME</p>
-                        <p class="output">2&nbsp;&nbsp;echo $PATH</p>
-                        <p class="output">3&nbsp;&nbsp;pwd</p>
-                        <p class="output">4&nbsp;&nbsp;ls -la</p>
-                        <p class="output">5&nbsp;&nbsp;history</p>
-                        <p class="comment"><span>call command 1</span></p>
-                        <p class="command">!1</p>
-                        <p class="comment"><span>call command beginning with "p"</span></p>
-                        <p class="command">!p</p>
-                    </div>
-                    <p>
-                        The following keyboard shortcuts may help speed up tasks in the console:
-                    </p>
-                    <div class="grid definitions">
-                        <p><span class="snippet">CTRL+L</span></p><p>clear terminal window</p>
-                        <p><span class="snippet">CTRL+D</span></p><p>exit current shell</p>
-                        <p><span class="snippet">CTRL+Z</span></p><p>suspend current process in background</p>
-                        <p><span class="snippet">CTRL+C</span></p><p>kill current process</p>
-                        <p><span class="snippet">CTRL+H</span></p><p>backspace</p>
-                        <p><span class="snippet">CTRL+A</span></p><p>go to beginning of line</p>
-                        <p><span class="snippet">CTRL+W</span></p><p>delete word before cursor</p>
-                        <p><span class="snippet">CTRL+U</span></p><p>delete line up to cursor position</p>
-                        <p><span class="snippet">CTRL+E</span></p><p>go to end of line</p>
-                        <p><span class="snippet">Tab</span></p><p>autocomplete</p>
-                    </div>
-                    <p>
-                        Every file in Unix-based operating systems has an owner and is associated with certain groups, all of whom have varying degrees 
-                        of permissions and read/write access. These permissions can be changed manually:
-                    </p>
-                    <div class="console">
-                        <p class="comment"><span>change file ownership</span></p>
-                        <p class="command">chown user filename</p>
-                        <p class="comment"><span>change group ownership</span></p>
-                        <p class="command">chgrp group filename</p>
-                        <p class="comment"><span>change permission modes</span></p>
-                        <p class="command">chmod permissions filename</p>
-                    </div>
-                    <p>
-                        The <span class="snippet">chmod</span> command can change the read (<span class="snippet">r</span>), write (<span class="snippet">w</span>), 
-                        and execute (<span class="snippet">x</span>) permissions of the user/owner (<span class="snippet">u</span>), group (<span class="snippet">g</span>), 
-                        and others (<span class="snippet">o</span>). These characters may be used explicitly as arguments or replaced with a numbering system where read, write, 
-                        and execute permissions are represented as <span class="snippet">4</span>, <span class="snippet">2</span>, and <span class="snippet">1</span>,
-                        respectively. The summation of these numbers represents a combination of the various permissions.
-                    </p>
-                    <div class="console">
-                        <p class="comment"><span>grant user and group rw permissions, and others read permission</span></p>
-                        <p class="command">chmod u=rw,g=rw,o=r filename</p>
-                        <p class="comment"><span>add owner execute permission and remove group write permission</span></p>
-                        <p class="command">chmod u+x,g-w filename</p>
-                        <p class="comment"><span>give owner rwx permissions, group rx permissions, and others r permission</span></p>
-                        <p class="command">chmod 754 filename</p>
-                    </div>
-                </section>
-                <section class="topic">
-                    <h2 id="manipulating-text">Manipulating text</h2>
-                    <p>
-                        The <span class="snippet">cat</span> utility is used to concatenate files as well as print file contents to the terminal:
-                    </p>
-                    <div class="console">
-                        <p class="comment"><span>print file contents</span></p>
-                        <p class="command">cat filename</p>
-                        <p class="comment"><span>concatenate multiple files and display the output</span></p>
-                        <p class="command">cat file1 file2</p>
-                        <p class="comment"><span>combine multiple files in a new file</span></p>
-                        <p class="command">cat file1 file2 > file3</p>
-                        <p class="comment"><span>append contents of one file to another</span></p>
-                        <p class="command">cat file1 > file2</p>
-                        <p class="comment"><span>write subsequent lines typed into console to file until CTRL+D</span></p>
-                        <p class="command">cat > filename</p>
-                        <p class="comment"><span>append file with subsequent lines until CTRL+D</span></p>
-                        <p class="command">cat >> filename</p>
-                        <p class="comment"><span>print file contents in reverse order</span></p>
-                        <p class="command">tac filename</p>
-                        <p class="comment"><span>combine two files in reverse order and save the output</span></p>
-                        <p class="command">tac file1 file2 > file</p>
-                    </div>
-                    <p>
-                        These same operations can be accomplished with <span class="snippet">echo</span>, which is a utility that simply prints (echoes) 
-                        strings in the terminal:
-                    </p>
-                    <div class="console">
-                        <p class="comment"><span>print string to terminal</span></p>
-                        <p class="command">echo string</p>
-                        <p class="comment"><span>save string to file</span></p>
-                        <p class="command">echo string > filename</p>
-                        <p class="comment"><span>append string to existing file</span></p>
-                        <p class="command">echo string >> filename</p>
-                        <p class="comment"><span>print the contents of an environment variable</span></p>
-                        <p class="command">cat $variable</p>
-                    </div>
-                    <p>
-                        System administrators often work with large files, especially in industrial settings. In these cases, opening such a file in a graphical 
-                        text editor would require the machine to load the entire data into memory, leading to poor performance. Alternatively, the <span class="snippet">less</span> 
-                        command may be used to load pages at a time into the terminal window.
-                    </p>
-                    <div class="console">
-                        <p class="comment"><span>view one page of a file in the console</span></p>
-                        <p class="command">less filename</p>
-                        <p class="command">cat filename | less</p>
-                    </div>
-                    <p>
-                        As mentioned previously, the <span class="snippet">head</span> and <span class="snippet">tail</span> utilities can be used to print a set number 
-                        of lines from a file:
-                    </p>
-                    <div class="console">
-                        <p class="comment"><span>view the first five lines of a file</span></p>
-                        <p class="command">head -n 5 filename</p>
-                        <p class="command">head -5 filename</p>
-                        <p class="comment"><span>view the last 15 lines of a file</span></p>
-                        <p class="command">tail -n 15 filename</p>
-                        <p class="command">tail -15 filename</p>
-                        <p class="comment"><span>continually monitor new output in a growing file</span></p>
-                        <p class="command">tail -f filename</p>
-                    </div>
-                    <p>
-                        Compressed files have special versions of these utilties that first work to decompress the data and then perform the desired operation.
-                    </p>
-                    <div class="console">
-                        <p class="comment"><span>view contents of compressed file</span></p>
-                        <p class="command">zcat comp-file.txt.gz</p>
-                        <p class="comment"><span>view one page of compressed file</span></p>
-                        <p class="command">zless comp-file.txt.gz</p>
-                        <p class="comment"><span>search within compressed file</span></p>
-                        <p class="command">zgrep -i less comp-file.gz</p>
-                        <p class="comment"><span>compare two compressed files</span></p>
-                        <p class="command">zdiff comp-file1.gz comp-file2.gz</p>
-                    </div>
-                    <p>
-                        The <span class="emph">stream editor</span> tool (<span class="snippet">sed</span>) is a lightweight text processing tool that 
-                        moves data from an input stream to a working stream for processing and then finally to an output stream. With the 4
-                        <span class="snippet">-e</span> option, <span class="snippet">sed</span> can perform multiple file operations from one line.
-                    </p>
-                    <div class="console">
-                        <p class="comment"><span>substitute every occurrence of string in file</span></p>
-                        <p class="command">sed -i s/string/substitution/g file</p>
-                        <p class="comment"><span>save output to a new file</span></p>
-                        <p class="command">sed -i s/string/substitution/g file1 > file2</p>
-                    </div>
-                    <p>
-                        The <span class="snippet">awk</span> utility, which is an acronym for the last names of its authors at Bell Labs, can extract and print 
-                        specific contents of a file. Commands in <span class="snippet">awk</span> must be surrounded with single-quotes (<span class="snippet">'</span>). 
-                    </p>
-                    <div class="console">
-                        <p class="comment"><span>print out entire file</span></p>
-                        <p class="command">awk '{print $0}' file</p>
-                        <p class="comment"><span>print first field (column) of every line</span></p>
-                        <p class="command">awk -F: '{print $1}' file</p>
-                        <p class="comment"><span>print first and third field of every line</span></p>
-                        <p class="command">awk -F: '{print $1 $3}' file</p>
-                    </div>
-                    <p>
-                        Other useful Linux file manipulation utilities include, <span class="snippet">sort</span>, <span class="snippet">uniq</span>, <span class="snippet">paste</span>, 
-                        <span class="snippet">join</span>, and <span class="snippet">split</span>:
-                    </p>
-                    <div class="console">
-                        <p class="comment"><span>print lines in file alphanumerically</span></p>
-                        <p class="command">sort file</p>
-                        <p class="comment"><span>reverse the order</span></p>
-                        <p class="command">sort -r file</p>
-                        <p class="comment"><span>remove duplicate entries from multiple files</span></p>
-                        <p class="command">sort file1 file2 | uniq > file3</p>
-                        <p class="comment"><span>alternatively use the -u option</span></p>
-                        <p class="command">sort -u file1 file2 > file3</p>
-                        <p class="comment"><span>combine corresponding lines from multiple files</span></p>
-                        <p class="command">paste file1 file2</p>
-                        <p class="comment"><span>specify : as the delimiter</span></p>
-                        <p class="command">paste -d: file1 file2</p>
-                        <p class="comment"><span>join data from different files based on a common field</span></p>
-                        <p class="command">join file1 file2</p>
-                        <p class="comment"><span>split a large file into 1000-line segments</span></p>
-                        <p class="command">split largefile</p>
-                    </div>
-                    <p>
-                        The <span class="snippet">grep</span> utility searches files for specific patterns, which may include <span class="emph">regular expressions</span>.
-                    </p>
-                    <div class="console">
-                        <p class="comment"><span>print all lines from a file that contain specific pattern</span></p>
-                        <p class="command">grep [pattern] file</p>
-                        <p class="comment"><span>print all lines that do not match pattern</span></p>
-                        <p class="command">grep -v [pattern] file</p>
-                    </div>
-                    <p>
-                        The <span class="snippet">strings</span> utility, which extracts printable character strings from files, is often used alongside <span class="snippet">grep</span> 
-                        to locate human-readable information in binary files.
-                    </p>
-                    <div class="console">
-                        <p class="comment"><span>search for specific string in binary file</span></p>
-                        <p class="command">strings binaryfile | grep searchstring</p>
-                    </div>
-                    <p>
-                        The <span class="snippet">tr</span> utility translates sets of characters into other characters.
-                    </p>
-                    <div class="console">
-                        <p class="comment"><span>convert lowercase to uppercase</span></p>
-                        <p class="command">cat file | tr a-z A-Z</p>
-                        <p class="comment"><span>translate white space to tabs</span></p>
-                        <p class="command">echo "Testing 1 2 3" | tr [:space:] '\t'</p>
-                        <p class="comment"><span>delete specified characters</span></p>
-                        <p class="command">echo "Tigers and toucans" | tr -d 't'</p>
-                    </div>
-                    <p>
-                        The <span class="snippet">tee</span> command splits the <span class="snippet">stdout</span> stream to print results to the terminal and save output 
-                        to a new file.
-                    </p>
-                    <div class="console">
-                        <p class="comment"><span>display output for user and save to file</span></p>
-                        <p class="command">ls -l | tee filename</p>
-                    </div>
-                    <p>
-                        The <span class="snippet">wc</span> (word count) utility simply outputs the number of lines (<span class="snippet">-l</span>), characters/bytes 
-                        (<span class="snippet">-c</span>), or words (<span class="snippet">-w</span>) from a file.
-                    </p>
-                    <div class="console">
-                        <p class="comment"><span>output the number of lines in file</span></p>
-                        <p class="command">wc -l file</p>
-                    </div>
-                    <p>
-                        For columnated files, the <span class="snippet">cut</span> utility can extract specific columns of data based on a designated delimeter, where the 
-                        default is tab.
-                    </p>
-                    <div class="console">
-                        <p class="comment"><span>print data from the third column of a file with the ',' delimeter</span></p>
-                        <p class="command">cat file | cut -d',' -f3</p>
-                    </div>
-                </section>
-                <section class="topic">
-                    <h2 id="network-operations">Network operations</h2>
-                    <p>
-                        A network is a grouping of computers that share information and resources across communication channels. Each device connected to the network must have 
-                        at least one unique identifier known as the <span class="emph">IP</span> (Internet Protocol) address, which is used to route packets information through 
-                        the network. In addition to the actual data content, these packets contain headers that inform each subsequent machine of its sender, destination, and 
-                        sequence in the data stream.
-                    </p>
-                    <p>
-                        Currently, there are two IP address standards, <span class="emph">IPv4</span> and <span class="emph">IPv6</span>, which assign 32-bit and 128-bit addresses, 
-                        respectively. Though IPv6 is the newer standard, its adoption has been slow because migrating a collection of machines often requires significant effort. 
-                        Furthermore, <span class="emph">NAT</span> (Network Address Translation) and similar protocols allow users to share a common IP address across locally networked 
-                        computers. Internally, it appears as though each machine has a unique address, but externally the local network is presented a node with one unique address.
-                    </p>
-                    <p>
-                        IPv4 (32-bit) addresses are subdivided into four octets (8-bit segments or bytes). These address are categorized into one of several classes, where class A, B, 
-                        and C have octets that are either designated as <span class="emph">Net ID</span> or <span class="emph">Host ID</span>. This allows for various numbers of unique 
-                        networks or host machines, which often depends on the needs of the organization.
-                    </p>
-                    <p>
-                        IP addresses can either be assigned manually (static address) or dynamically through the Dynamic Host Configuration Protocol (<span class="emph">DHCP</span>). 
-                        Dynamically-assigned addresses may change every time the machine is rebooted, or even more frequently in some cases.
-                    </p>
-                    <p>
-                        <span class="emph">Name Resolution</span> converts IP addresses into the corresponding human-readable hostnames. The hostname of the local machine can be found 
-                        with the <span class="snippet">hostname</span> command, which may even be used to change the system hostname given admin privileges. There is also a special 
-                        hostname called <span class="emph">localhost</span>, which refers to the current machine and always has the address <span class="snippet">127.0.0.1</span>.
-                    </p>
-                    <p>
-                        <span class="emph">Network configuration files</span> are essential for establishing functional interfaces. For Ubuntu-based systems, these files are stored located 
-                        <span class="emph">/etc/network</span>. Note that each machine can have one or more operational network interfaces, which may be manually activated or deactivated.
-                    </p>
-                    <p>
-                        Within a network, packets of data are passed between various nodes via a series of routers, which potentially span multiple networks. Servers store the 
-                        routing tables that contain the addresses of each node on the network. 
-                    </p>
-                    <div class="console">
-                        <p class="comment"><span>view IP address</span></p>
-                        <p class="command">ip addr show</p>
-                        <p class="comment"><span>keep it brief</span></p>
-                        <p class="command">ip --brief addr show</p>
-                        <p class="comment"><span>view routing information</span></p>
-                        <p class="command">ip route show</p>
-                        <p class="comment"><span>add static route</span></p>
-                        <p class="command">ip route add</p>
-                        <p class="comment"><span>delete static route</span></p>
-                        <p class="command">ip route del</p>
-                        <p class="comment"><span>check status of remote host</span></p>
-                        <p class="command">ping hostname</p>
-                    </div>
-                    <p>
-                        For troubleshooting errors and delays, administrators can inspect the routing path of data packets&mdash;and thereby isolate connection issues between hops&mdash;
-                        with the <span class="snippet">traceroute</span> utility. 
-                    </p>
-                    <div class="console">
-                        <p class="comment"><span>view route of information packet to host</span></p>
-                        <p class="command">traceroute hostname</p>
-                        <p class="comment"><span>alternatively...</span></p>
-                        <p class="command">traceroute address</p>
-                    </div>
-                    <p>
-                        Other common networking tools include:
-                    </p>
-                    <div class="grid definitions">
-                        <p><span class="snippet">ethtool</span></p><p>queries network interfaces</p>
-                        <p><span class="snippet">netstat</span></p><p>displays all active network connections and routing tables</p>
-                        <p><span class="snippet">nmap</span></p><p>scans open ports&mdash;critical for security analysis</p>
-                        <p><span class="snippet">tcpdump</span></p><p>dumps network traffic</p>
-                        <p><span class="snippet">mtr</span></p><p>displays same information as <span class="snippet">ping</span> and <span class="snippet">traceroute</span> in continuous output</p>
-                        <p><span class="snippet">dig</span></p><p>tests DNS workings</p>
-                    </div>
-                    <p>
-                        Downloading files from a network, such as an internet webpage, can be accomplished with <span class="snippet">wget</span>. This tool supports large file downloads, 
-                        recursive downloads, password-sensitive downloads, and large-file downloads.
-                    </p>
-                    <div class="console">
-                        <p class="comment"><span>download webpage</span></p>
-                        <p class="command">wget url</p>
-                    </div>
-                    <p>
-                        A similar tool, <span class="snippet">curl</span>, allows administrators to view webpage contents in the terminal or save the information to a 
-                        document.
-                    </p>
-                    <div class="console">
-                        <p class="comment"><span>read webpage contents</span></p>
-                        <p class="command">curl url</p>
-                        <p class="comment"><span>store contents to file</span></p>
-                        <p class="command">curl -o file.html url</p>
-                    </div>
-                    <p>
-                        The File Transfer Protocol (<span class="emph">FTP</span>) is one of the oldest standards for transferring data files between networked machines. These transfers 
-                        may be conducted through a browser or graphical/command line client, such as <span class="snippet">ftp</span>, <span class="snippet">sftp</span>. However, FTP is considered 
-                        obsolete by many system administrators as the protocol, which dates back to the 1970's, has inherent security flaws, e.g., user passwords are transmitted across the network 
-                        without encryption. A more common modern tool is the Secure Shell (<span class="emph">SSH</span>) protocol, which allows administrators to share data between networked machines 
-                        and execute commands on a remote system.
-                    </p>
-                    <div class="console">
-                        <p class="comment"><span>execute command on remote system</span></p>
-                        <p class="command">ssh remotesystem command</p>
-                        <p class="comment"><span>securely transfer files via SSH</span></p>
-                        <p class="command">scp localfile user@remotesystem:/home/user/</p>
-                    </div>
-                </section>
-                <section>
-                    <h2 id="credits">Credits</h2>
-                    <p>
-                        All material was based on <a href="https://www.edx.org/course/introduction-to-linux">Introduction to Linux</a>, a course from the Linux Foundation hosted on edX. 
-                        This course covers each topic with greater detail and also includes tutorials on bash shell scripting.
-                    </p>
-                </section>
-            </div>
+                <p>
+                    The kernel <span class="emph">scheduler</span> allocates CPU time to queued processes. Each CPU core has a run and wait queue. When a process
+                    enters a <span class="emph">sleep</span> state, the scheduler moves it to the wait queue until the necessary feedback is received. To manage 
+                    process scheduling and resource allocation, the operating system assigns each running process a unique process ID <span class="emph">(PID)</span> 
+                    number, which Usually follow the order that each process was born in the system. In addition, each process has a parent process ID 
+                    <span class="emph">(PPID)</span> and, if the process is multithreaded, a unique thread ID <span class="emph">(TID)</span>.
+                </p>
+                <p>
+                    Users can terminate processes in the terminal shell:
+                </p>
+                <div class="console">
+                    <p class="comment"><span>kill process</span></p>
+                    <p class="command">kill -SIGKILL pid</p>
+                    <p class="comment"><span>alternatively</span></p>
+                    <p class="command">kill -9 pid</p>
+                </div>
+                <p>
+                    Users can also specify a <span class="emph">nice value</span> for individual processes to control their execution priority. The lower the nice value,
+                    the more preference will be given this process over system resources and runtime. Linux nice values range from -20 to +19, with -20 designating the 
+                    highest priority, or precedence. Note that changing the niceness of a process will also update any child processes with the same value. Increasing
+                    niceness may require superuser permissions.
+                </p>
+                <div class="console">
+                    <p class="comment"><span>change the niceness value</span></p>
+                    <p class="command">renice value pid</p>
+                </div>
+                <p>
+                    The <span class="emph">load average</span> breaks down CPU resource consumption over three specified timepoints: 45, 15, and 5 min. These percentages 
+                    denote the amount of CPU resources demanded by active processes. For example, a load average of 0.5 means that an average of 50% CPU resources were 
+                    consumed for the specified time period.
+                </p>
+                <p>
+                    With modern machines, each load average should be divided by the number of CPU cores, e.g., a load average of 2.0
+                    for a dual-core system indicates 100% CPU resource consumption. It is possible for normalized load averages to exceed 1.0 for brief periods, but prolonged
+                    over-utilization may suggest problems. Load averages may be viewed in the terminal by running either <span class="snippet">w</span>, 
+                    <span class="snippet">top</span>, or <span class="snippet">uptime</span>.
+                </p>
+                <p>
+                    Jobs, or terminal commands, may be run in the foreground or background. Foreground jobs may be suspended with <span class="snippet">CTRL-Z</span> or
+                    terminated with <span class="snippet">CTRL-C</span>. Suffixing a command with <span class="snippet">&</span> causes it to be executed in the background.
+                    Alternatively, the <span class="snippet">bg</span> and <span class="snippet">fg</span> commands can push jobs to the background or foreground, 
+                    respectively.
+                </p>
+                <div class="console">
+                    <p class="comment"><span>view active background jobs</span></p>
+                    <p class="command">jobs</p>
+                </div>
+                <p>
+                    The <span class="snippet">ps</span> command prints information about current running processes:
+                </p>
+                <div class="console">
+                    <p class="comment"><span>display all processes running under current shell</span></p>
+                    <p class="command">ps</p>
+                    <p class="comment"><span>include PPID</span></p>
+                    <p class="command">ps -f</p>
+                    <p class="comment"><span>include full system detail</span></p>
+                    <p class="command">ps -ef</p>
+                    <p class="comment"><span>show one line of information for every thread</span></p>
+                    <p class="command">ps -elf</p>
+                    <p class="comment"><span>display as tree diagram to show process lineage</span></p>
+                    <p class="command">pstree</p>
+                </div>
+                <p>
+                    In addition to printing load averages, the <span class="snippet">top</span> command presents a real-time system monitor of all processes, listed in order of 
+                    CPU resource consumption. The list constantly updates until the user quites with <span class="snippet">q</span>. Other interactive options for top include:
+                </p>
+                <div class="grid definitions">
+                    <p><span class="snippet">t</span></p><p>show or hide summary</p>
+                    <p><span class="snippet">m</span></p><p>show or hide memory</p>
+                    <p><span class="snippet">A</span></p><p>sort list by highest resource consumers</p>
+                    <p><span class="snippet">r</span></p><p>renice specific process</p>
+                    <p><span class="snippet">k</span></p><p>kill specific process</p>
+                    <p><span class="snippet">f</span></p><p>enter configuration utility</p>
+                </div>
+                <p>
+                    Various commands exist to manage future program execution and suspend currently active processes:
+                </p>
+                <div class="console">
+                    <p class="comment"><span>schedule non-interactive process to execute in 10 minutes</span></p>
+                    <p class="command">at now + 10 minutes</p>
+                    <p class="comment"><span>issue command to be executed, then press CTRL-D to exit at config</span></p>
+                    <p class="command">command arguments</p>
+                    <p class="comment"><span>sleep active program for 10 seconds</span></p>
+                    <p class="command">sleep 10s</p>
+                </div>
+            </section>
+            <section class="topic">
+                <h2 id="file-operations">File operations</h2>
+                <p>
+                    In the Linux, the root directory, denoted by <span class="snippet">/</span>, represents the beginning of the filesystem hierarchy. There are 
+                    many types of filesystems, which often differ across operating systems, but the most common belong to the <span class="emph">journaling</span> variety:
+                    ext4, xfs, btrfs, jfs. It is often the case that an OS will have several different filesystems, each stored on a particular disk partition. Important 
+                    programs to run the system are isolated on the <span class="emph">root</span> partition. Each partition has to be mounted on the filesystem tree to be 
+                    accessible by the user. Examples of common mount points, which appear as empty directories, include <span class="snippet">/</span>, 
+                    <span class="snippet">/home</span>, and <span class="snippet">/var</span>.
+                </p>
+                <p>
+                    Partitions can be mounted through a graphical utility, such as <span class="emph">gparted</span>, or the command line with the device node and mount 
+                    point as the arguments:
+                </p>
+                <div class="console">
+                    <p class="comment"><span>mount the filesystem at device node /dev/sda5 into the main filesystem tree at mount point /home</span></p>
+                    <p class="command">sudo mount /dev/sda5 /home</p>
+                    <p class="comment"><span>unmount the partition</span></p>
+                    <p class="command">sudo umount /home</p>
+                    <p class="comment"><span>show all mounted filesystems</span></p>
+                    <p class="command">mount</p>
+                </div>
+                <p>
+                    Filesystems and data can also be shared across machines through networks. Networks, accessible over the internet, allow grouping of lower-level filesystems
+                    into a more universal framework, e.g., the Network Filesystem (<span class="emph">NFS</span>). For all intensive purposes, NFS can be treated as an other filesystem 
+                    on the client or server side.
+                </p>
+                <p>
+                    Each user has a home directory listed under <span class="snippet">/home</span>. The <span class="snippet">/root</span> directory is simply the home of the 
+                    root user (aka superuser or system administrator). The <span class="snippet">/bin</span> directory contains executable binaries needed to boot the system as well 
+                    as ubiquitous user commands, such as <span class="snippet">cat</span>, <span class="snippet">cp</span>, <span class="snippet">ls</span>, etc. Though 
+                    similar, <span class="snippet">/sbin</span> stores executables for system administration, such as <span class="snippet">ip</span>.
+                </p>
+                <p>
+                    Non-essential commands are stored under <span class="snippet">/usr/bin</span> and <span class="snippet">/usr/sbin</span>, which was initially done to allow 
+                    mounting of the user filesystem at a later stage in the OS startup. However, this practice is mostly considered obselete and, as such, most modern Linux distros symbolically 
+                    link <span class="snippet">/usr/bin</span> with <span class="snippet">/bin</span> and <span class="snippet">/usr/sbin</span> with <span class="snippet">/sbin</span>, 
+                    i.e., for all intensive purposes, there are no distinctions between these directory groupings.
+                </p>
+                <p>
+                    The <span class="snippet">/proc</span> filesystem contains <span class="emph">virtual files</span>&mdash;files that only exist in memory&mdash;that track dynamic kernel 
+                    data, including information about mounted devices, hardware configurations, CPU, etc. This directory is considered a <span class="emph">pseudo filesystem</span> because it occupies 
+                    no permanent space in storage.
+                </p>
+                <p>
+                    The <span class="snippet">/dev</span> directory becomes populated with <span class="emph">device nodes</span> as devices, e.g., printers, are connected to the computer. Similarly, 
+                    <span class="snippet">/var</span> is a dynamic directory of sorts as it contains files that are expected to change in size, e.g., system log files (<span class="snippet">/var/log</span>), 
+                    packages and database files (<span class="snippet">/var/lib</span>), and temporary files (<span class="snippet">/var/tmp</span>).
+                </p>
+                <p>
+                    The <span class="snippet">/etc</span> directory is home to system configuration files that can only be modified by the superuser. Likewise, the <span class="snippet">/boot</span> 
+                    directory contains essential files needed to boot the system, which are kernel-specific. Libraries needed for binary executables are stored in <span class="snippet">/lib</span> 
+                    (32-bit) and <span class="snippet">/lib64</span> (64-bit). Removable media files, such as the contents of a connected USB drive, are typically accessible 
+                    uner the <span class="snippet">/run/media/usrname/</span> directory.
+                </p>
+                <p>
+                    There are other directories listed under <span class="snippet">/root</span>, as well as an entire directory tree under <span class="snippet">/usr</span> that contains 
+                    a host of programs and scripts not needed to boot or manage the system. 
+                </p>
+                <p>
+                    Comparing text files can be done with the <span class="snippet">diff</span> command:
+                </p>
+                <div class="console">
+                    <p class="comment"><span>compare differences between two text files</span></p>
+                    <p class="command">diff [options] filename1 filename2</p>
+                    <p class="comment"><span>compare differences between three text files, with one acting as a reference</span></p>
+                    <p class="command">diff3 filename1 referencefile filename2</p>
+                </div>
+                <p>
+                    This utility provides several options:
+                </p>
+                <div class="grid definitions">
+                    <p><span class="snippet">-c</span></p><p>provide listing of differences</p>
+                    <p><span class="snippet">-r</span></p><p>recursively compare subdirectories</p>
+                    <p><span class="snippet">-i</span></p><p>ignore capitalization</p>
+                    <p><span class="snippet">-w</span></p><p>ignore whitespace</p>
+                    <p><span class="snippet">-q</span></p><p>state whether files are different without providing context</p>
+                </div>
+                <p>
+                    Unlike other operating systems, Linux does not rely on file extensions to direct operations, e.g., a file with the <span class="snippet">.txt</span> 
+                    extension could be a binary executable. Users can employ the <span class="snippet">file</span> utility to ascertain file type and other important 
+                    information.
+                </p>
+                <div class="console">
+                    <p class="comment"><span>ascertain file type</span></p>
+                    <p class="command">file filename</p>
+                    <p class="comment"><span>find detailed information about all files in working directory</span></p>
+                    <p class="command">file *</p>
+                </div>
+                <p>
+                    Data can be backed up using the <span class="snippet">cp</span> or <span class="snippet">rsync</span> utilities. While 
+                    the <span class="snippet">cp</span> command copies files from one destination to another on a local machine, <span class="snippet">rsync</span> 
+                    performs recursive operations to only copy modified data, i.e., existing files may not be entirely overwritten. The <span class="snippet">rsync</span> 
+                    utility can also copy data across remote machines.
+                </p>
+                <div class="console">
+                    <p class="comment"><span>copy file to new location</span></p>
+                    <p class="command">rsync sourcefile destinationfile</p>
+                    <p class="comment"><span>back up project data to remote archive</span></p>
+                    <p class="command">rsync -r project networked-machine:archives/project</p>
+                    <p class="comment"><span>perform a dry run to prevent unwanted overwrites</span></p>
+                    <p class="command">rsync -r -dry-run project networked-machine:archives/project</p>
+                </div>
+                <p>
+                    There are several Linux utilities for managing data compression: <span class="snippet">gzip</span>, 
+                    <span class="snippet">bzip2</span> (deprecated), <span class="snippet">xz</span>. Each of 
+                    these utilities employ different compression algorithms and, not surprisingly, the utilities which 
+                    produce smaller files require longer amounts of time. A similar program, <span class="snippet">tar</span>, 
+                    compresses files grouped in an archive. Lastly, <span class="snippet">zip</span> is a legacy utility 
+                    specifically used to decompress zipped files from a Windows machine&mdash;though it also has compression 
+                    functionality.
+                </p>
+                <div class="console">
+                    <p class="comment"><span>compress files in current directory</span></p>
+                    <p class="command">gzip *</p>
+                    <p class="comment"><span>recursively compress files in specified project directory</span></p>
+                    <p class="command">gzip -r projectdir</p>
+                    <p class="comment"><span>decompress file foo.gz</span></p>
+                    <p class="command">gzip -d foo</p>
+                    <p class="command">gunzip foo</p>
+                </div>
+            </section>
+            <section class="topic">
+                <h2 id="text-editors">Text editors</h2>
+                <p>
+                    There are several ways to create and edit text files from the command line:
+                </p>
+                <div class="console">
+                    <p class="comment"><span>write several lines to a text file</span></p>
+                    <p class="command">echo line one > filename</p>
+                    <p class="comment"><span>note that >> appends output to file</span></p>
+                    <p class="command">echo line two >> filename</p>
+                    <p class="command">echo line three >> filename</p>
+                    <p class="comment"><span>alternatively use cat with redirection</span></p>
+                    <p class="command">cat << EOF > file</p>
+                    <p>line one</p>
+                    <p>line two</p>
+                    <p>line three</p>
+                    <p>EOF</p>
+                </div>
+                <p>
+                    For more flexible text editing, Linux distros offer several terminal-based and graphical editors, 
+                    including <span class="emph">nano</span>, <span class="emph">gedit</span>, <span class="emph">vi</span>,
+                    and <span class="emph">emacs</span>. The nano and gedit editors can be invoked with the 
+                    <span class="snippet">nano</span> and <span class="snippet">gedit</span> commands, 
+                    respectively.
+                </p>
+                <p>
+                    In most modern GNOME distros, vi is accessible with vim, which stands for <span class="emph">V</span>i 
+                    <span class="emph">IM</span>proved. Though vi has a steep learning curve for new users, it is significantly 
+                    more powerful than nano and gedit. Invoking <span class="snippet">vimtutor</span> from the command 
+                    line will launch a vim tutorial.
+                </p>
+                <p>
+                    Vi has three different modes:
+                </p>
+                <div class="grid definitions">
+                    <p><span class="snippet">command</span></p><p>default mode where each key is an editor command</p>
+                    <p><span class="snippet">insert</span></p><p>insert text into file (invoked with <span class="snippet">i</span>)</p>
+                    <p><span class="snippet">line</span></p><p>each key is an external command, though many are now deprecated (invoked with <span class="snippet">:</span>)</p>
+                </div>
+                <p>
+                    Some of the most useful commands for vi include:
+                </p>
+                <div class="grid definitions">
+                    <p><span class="snippet">vi file</span></p><p>open file in editor</p>
+                    <p><span class="snippet">vi -r file</span></p><p>open file in recovery mode after system crash</p>
+                    <p><span class="snippet">:r file2</span></p><p>read in a second file and insert at current position</p>
+                    <p><span class="snippet">:w</span></p><p>write to file</p>
+                    <p><span class="snippet">:w file</span></p><p>write out to a new file</p>
+                    <p><span class="snippet">:w! file2</span></p><p>overwrite file2</p>
+                    <p><span class="snippet">:wq</span></p><p>write to file and exit</p>
+                    <p><span class="snippet">:q</span></p><p>quit</p>
+                    <p><span class="snippet">:q!</span></p><p>quit even with unsaved modifications</p>
+                </div>
+                <p>
+                    When using vi, an external command shell can be opened with <span class="snippet">sh</span>. Otherwise, 
+                    commands may be executed inside the editor prompt with <span class="snippet">!</span>:
+                </p>
+                <div class="console">
+                    <p class="comment"><span>find word count of current document (%)</span></p>
+                    <p class="command">:! wc %</p>
+                </div>
+                <p>
+                    The emacs editor is a popular alternative to vi that executes commands using the CTRL and ALT/ESC keys, instead 
+                    of special characters. (For a full tutorial, start emacs and type <span class="snippet">CTRL-h</span> followed 
+                    by the letter <span class="snippet">t</span>.) Some of the most common command key combinations include:
+                </p>
+                <div class="grid definitions">
+                    <p><span class="snippet">emacs file</span></p><p>open file in editor</p>
+                    <p><span class="snippet">CTRL-x i</span></p><p>insert at current position in file</p>
+                    <p><span class="snippet">CTRL-x s</span></p><p>save all files</p>
+                    <p><span class="snippet">CTRL-x CTRL-w</span></p><p>write to file and rename</p>
+                    <p><span class="snippet">CTRL-x CTRL-s</span></p><p>save current file</p>
+                    <p><span class="snippet">CTRL-x CTRL-c</span></p><p>exit after prompted to save any modified files</p>
+                </div>
+            </section>
+            <section class="topic">
+                <h2 id="user-environment">User environment</h2>
+                <p>
+                    As Linux is a multi-user system, administratos may be interested in knowing the current active 
+                    users:
+                </p>
+                <div class="console">
+                    <p class="comment"><span>find current user</span></p>
+                    <p class="command">whoami</p>
+                    <p class="comment"><span>find all active users</span></p>
+                    <p class="command">who</p>
+                    <p class="comment"><span>find more detailed information</span></p>
+                    <p class="command">who -a</p>
+                </div>
+                <p>
+                    Each user will have local startup files to customize the user environment. These files supercede 
+                    system settings such as changing the default text editor and path to executables. At login, Linux 
+                    first evaluates <span class="snippet">/etc/profile</span> and then searches for user-specific 
+                    startup files in a particular order. Whichever startup file first discovered becomes the basis for 
+                    the user environment.
+                </p>
+                <p>
+                    Though startup files are only evaluated once at login, Linux will read and evaluate the 
+                    <span class="snippet">~/rc</span> file each time a command line shell initiates or spawns 
+                    a program. For this reason, many users often only concern themselves with the 
+                    <span class="snippet">~/rc</span> file.
+                </p>
+                <p>
+                    The <span class="snippet">~/rc</span> file is also where <span class="emph">aliases</span> 
+                    are defined. Aliases are fully custom or modified commands that are accessible through every shell 
+                    instance. Invoking <span class="snippet">alias</span> will print all existing aliases to the console.
+                </p>
+                <p>
+                    All users belonging to a system are assigned a unique integer user ID (<span class="emph">UID</span>) as 
+                    well as one or more group IDs (<span class="emph">GID</span>) to denote group membership. Groups are simply 
+                    collections of Linux users that share the same permissions.
+                </p>
+                <div class="console">
+                    <p class="comment"><span>find user and group ids of current user</span></p>
+                    <p class="command">id</p>
+                    <p class="comment"><span>find user and group ids of different user</span></p>
+                    <p class="command">id johndoe</p>
+                </div>
+                <p>
+                    Linux administrators can manage user accounts directly from the command line:
+                </p>
+                <div class="console">
+                    <p class="comment"><span>create new user account</span></p>
+                    <p class="command">sudo useradd johndoe</p>
+                    <p class="comment"><span>create account with home directory and default shell</span></p>
+                    <p class="command">sudo useradd -m -c "John Doe" -s /bin jdoe</p>
+                    <p class="comment"><span>start prompt to add account password</span></p>
+                    <p class="command">sudo passwd jdoe</p>
+                    <p class="comment"><span>remove user account</span></p>
+                    <p class="command">sudo userdel jdoe</p>
+                    <p class="comment"><span>remove user account as well as associated home directory</span></p>
+                    <p class="command">sudo userdel -r jdoe</p>
+                </div>
+                <p>
+                    Groups may be managed similarly:
+                </p>
+                <div class="console">
+                    <p class="comment"><span>create new group</span></p>
+                    <p class="command">sudo groupadd newgroup</p>
+                    <p class="comment"><span>remove group</span></p>
+                    <p class="command">sudo groupdel newgroup</p>
+                    <p class="comment"><span>find groups associated with user</span></p>
+                    <p class="command">groups johndoe</p>
+                    <p class="comment"><span>associate new group with user with append (-a)</span></p>
+                    <p class="command">sudo usermod -a -G newgroup johndoe</p>
+                    <p class="comment"><span>change gid</span></p>
+                    <p class="command">sudo groupmod -g newid</p>
+                    <p class="comment"><span>change group name</span></p>
+                    <p class="command">sudo groupmod -n newname</p>
+                </div>
+                <p>
+                    Users can gain root privileges by either switching to the root user&mdash;not recommended for 
+                    security reasons&mdash;or executing individual shell commands with root privileges:
+                </p>
+                <div class="console">
+                    <p class="comment"><span>switch shell to root user</span></p>
+                    <p class="command">su</p>
+                    <p class="comment"><span>execute one command with root privileges</span></p>
+                    <p class="command">sudo command</p>
+                </div>
+                <p>
+                    <span class="emph">Environment variables</span> are character strings that contain important 
+                    configuration information for the command shell and various other applications. Various amounts 
+                    of this information can be viewed with the <span class="snippet">set</span>, 
+                    <span class="snippet">env</span>, or <span class="snippet">export</span>.
+                </p>
+                <div class="console">
+                    <p class="comment"><span>show value of variable</span></p>
+                    <p class="command">echo $SHELL</p>
+                    <p class="comment"><span>export new variable</span></p>
+                    <p class="command">export VARIABLE=value</p>
+                    <p class="comment"><span>commit value for permanent access</span></p>
+                    <p class="command">nano ~/rc</p>
+                    <p class="command">export VARIABLE=value</p>
+                    <p class="comment"><span>reset shell</span></p>
+                    <p class="command">source ~/rc</p>
+                </div>
+                <p>
+                    Some important variables include:
+                </p>
+                <div class="grid definitions">
+                    <p><span class="snippet">$HOME</span></p><p>points to user home directory</p>
+                    <p><span class="snippet">$PATH</span></p><p>points to ordered list of paths (separated by <span class="snippet">:</span>) that is scanned to find programs/scripts</p>
+                    <p><span class="snippet">$SHELL</span></p><p>points to default command shell (usually)</p>
+                </div>
+                <p>
+                    Previous shell commands can be cycled with the &uparrow; and &downarrow; keys or viewed as a list with 
+                    the <span class="snippet">history</span> command (command history stored in <span class="snippet">~/_history</span>).
+                    Alternatively, the most recent command can be called with <span class="snippet">!!</span> or a 
+                    specific command in history may be searched with <span class="snippet">CTRL+R</span> followed 
+                    by character hints.
+                </p>
+                <div class="console">
+                    <p class="comment"><span>print command history</span></p>
+                    <p class="command">history</p>
+                    <p class="output">1&nbsp;&nbsp;echo $HOME</p>
+                    <p class="output">2&nbsp;&nbsp;echo $PATH</p>
+                    <p class="output">3&nbsp;&nbsp;pwd</p>
+                    <p class="output">4&nbsp;&nbsp;ls -la</p>
+                    <p class="output">5&nbsp;&nbsp;history</p>
+                    <p class="comment"><span>call command 1</span></p>
+                    <p class="command">!1</p>
+                    <p class="comment"><span>call command beginning with "p"</span></p>
+                    <p class="command">!p</p>
+                </div>
+                <p>
+                    The following keyboard shortcuts may help speed up tasks in the console:
+                </p>
+                <div class="grid definitions">
+                    <p><span class="snippet">CTRL+L</span></p><p>clear terminal window</p>
+                    <p><span class="snippet">CTRL+D</span></p><p>exit current shell</p>
+                    <p><span class="snippet">CTRL+Z</span></p><p>suspend current process in background</p>
+                    <p><span class="snippet">CTRL+C</span></p><p>kill current process</p>
+                    <p><span class="snippet">CTRL+H</span></p><p>backspace</p>
+                    <p><span class="snippet">CTRL+A</span></p><p>go to beginning of line</p>
+                    <p><span class="snippet">CTRL+W</span></p><p>delete word before cursor</p>
+                    <p><span class="snippet">CTRL+U</span></p><p>delete line up to cursor position</p>
+                    <p><span class="snippet">CTRL+E</span></p><p>go to end of line</p>
+                    <p><span class="snippet">Tab</span></p><p>autocomplete</p>
+                </div>
+                <p>
+                    Every file in Unix-based operating systems has an owner and is associated with certain groups, all of whom have varying degrees 
+                    of permissions and read/write access. These permissions can be changed manually:
+                </p>
+                <div class="console">
+                    <p class="comment"><span>change file ownership</span></p>
+                    <p class="command">chown user filename</p>
+                    <p class="comment"><span>change group ownership</span></p>
+                    <p class="command">chgrp group filename</p>
+                    <p class="comment"><span>change permission modes</span></p>
+                    <p class="command">chmod permissions filename</p>
+                </div>
+                <p>
+                    The <span class="snippet">chmod</span> command can change the read (<span class="snippet">r</span>), write (<span class="snippet">w</span>), 
+                    and execute (<span class="snippet">x</span>) permissions of the user/owner (<span class="snippet">u</span>), group (<span class="snippet">g</span>), 
+                    and others (<span class="snippet">o</span>). These characters may be used explicitly as arguments or replaced with a numbering system where read, write, 
+                    and execute permissions are represented as <span class="snippet">4</span>, <span class="snippet">2</span>, and <span class="snippet">1</span>,
+                    respectively. The summation of these numbers represents a combination of the various permissions.
+                </p>
+                <div class="console">
+                    <p class="comment"><span>grant user and group rw permissions, and others read permission</span></p>
+                    <p class="command">chmod u=rw,g=rw,o=r filename</p>
+                    <p class="comment"><span>add owner execute permission and remove group write permission</span></p>
+                    <p class="command">chmod u+x,g-w filename</p>
+                    <p class="comment"><span>give owner rwx permissions, group rx permissions, and others r permission</span></p>
+                    <p class="command">chmod 754 filename</p>
+                </div>
+            </section>
+            <section class="topic">
+                <h2 id="manipulating-text">Manipulating text</h2>
+                <p>
+                    The <span class="snippet">cat</span> utility is used to concatenate files as well as print file contents to the terminal:
+                </p>
+                <div class="console">
+                    <p class="comment"><span>print file contents</span></p>
+                    <p class="command">cat filename</p>
+                    <p class="comment"><span>concatenate multiple files and display the output</span></p>
+                    <p class="command">cat file1 file2</p>
+                    <p class="comment"><span>combine multiple files in a new file</span></p>
+                    <p class="command">cat file1 file2 > file3</p>
+                    <p class="comment"><span>append contents of one file to another</span></p>
+                    <p class="command">cat file1 > file2</p>
+                    <p class="comment"><span>write subsequent lines typed into console to file until CTRL+D</span></p>
+                    <p class="command">cat > filename</p>
+                    <p class="comment"><span>append file with subsequent lines until CTRL+D</span></p>
+                    <p class="command">cat >> filename</p>
+                    <p class="comment"><span>print file contents in reverse order</span></p>
+                    <p class="command">tac filename</p>
+                    <p class="comment"><span>combine two files in reverse order and save the output</span></p>
+                    <p class="command">tac file1 file2 > file</p>
+                </div>
+                <p>
+                    These same operations can be accomplished with <span class="snippet">echo</span>, which is a utility that simply prints (echoes) 
+                    strings in the terminal:
+                </p>
+                <div class="console">
+                    <p class="comment"><span>print string to terminal</span></p>
+                    <p class="command">echo string</p>
+                    <p class="comment"><span>save string to file</span></p>
+                    <p class="command">echo string > filename</p>
+                    <p class="comment"><span>append string to existing file</span></p>
+                    <p class="command">echo string >> filename</p>
+                    <p class="comment"><span>print the contents of an environment variable</span></p>
+                    <p class="command">cat $variable</p>
+                </div>
+                <p>
+                    System administrators often work with large files, especially in industrial settings. In these cases, opening such a file in a graphical 
+                    text editor would require the machine to load the entire data into memory, leading to poor performance. Alternatively, the <span class="snippet">less</span> 
+                    command may be used to load pages at a time into the terminal window.
+                </p>
+                <div class="console">
+                    <p class="comment"><span>view one page of a file in the console</span></p>
+                    <p class="command">less filename</p>
+                    <p class="command">cat filename | less</p>
+                </div>
+                <p>
+                    As mentioned previously, the <span class="snippet">head</span> and <span class="snippet">tail</span> utilities can be used to print a set number 
+                    of lines from a file:
+                </p>
+                <div class="console">
+                    <p class="comment"><span>view the first five lines of a file</span></p>
+                    <p class="command">head -n 5 filename</p>
+                    <p class="command">head -5 filename</p>
+                    <p class="comment"><span>view the last 15 lines of a file</span></p>
+                    <p class="command">tail -n 15 filename</p>
+                    <p class="command">tail -15 filename</p>
+                    <p class="comment"><span>continually monitor new output in a growing file</span></p>
+                    <p class="command">tail -f filename</p>
+                </div>
+                <p>
+                    Compressed files have special versions of these utilties that first work to decompress the data and then perform the desired operation.
+                </p>
+                <div class="console">
+                    <p class="comment"><span>view contents of compressed file</span></p>
+                    <p class="command">zcat comp-file.txt.gz</p>
+                    <p class="comment"><span>view one page of compressed file</span></p>
+                    <p class="command">zless comp-file.txt.gz</p>
+                    <p class="comment"><span>search within compressed file</span></p>
+                    <p class="command">zgrep -i less comp-file.gz</p>
+                    <p class="comment"><span>compare two compressed files</span></p>
+                    <p class="command">zdiff comp-file1.gz comp-file2.gz</p>
+                </div>
+                <p>
+                    The <span class="emph">stream editor</span> tool (<span class="snippet">sed</span>) is a lightweight text processing tool that 
+                    moves data from an input stream to a working stream for processing and then finally to an output stream. With the 4
+                    <span class="snippet">-e</span> option, <span class="snippet">sed</span> can perform multiple file operations from one line.
+                </p>
+                <div class="console">
+                    <p class="comment"><span>substitute every occurrence of string in file</span></p>
+                    <p class="command">sed -i s/string/substitution/g file</p>
+                    <p class="comment"><span>save output to a new file</span></p>
+                    <p class="command">sed -i s/string/substitution/g file1 > file2</p>
+                </div>
+                <p>
+                    The <span class="snippet">awk</span> utility, which is an acronym for the last names of its authors at Bell Labs, can extract and print 
+                    specific contents of a file. Commands in <span class="snippet">awk</span> must be surrounded with single-quotes (<span class="snippet">'</span>). 
+                </p>
+                <div class="console">
+                    <p class="comment"><span>print out entire file</span></p>
+                    <p class="command">awk '{print $0}' file</p>
+                    <p class="comment"><span>print first field (column) of every line</span></p>
+                    <p class="command">awk -F: '{print $1}' file</p>
+                    <p class="comment"><span>print first and third field of every line</span></p>
+                    <p class="command">awk -F: '{print $1 $3}' file</p>
+                </div>
+                <p>
+                    Other useful Linux file manipulation utilities include, <span class="snippet">sort</span>, <span class="snippet">uniq</span>, <span class="snippet">paste</span>, 
+                    <span class="snippet">join</span>, and <span class="snippet">split</span>:
+                </p>
+                <div class="console">
+                    <p class="comment"><span>print lines in file alphanumerically</span></p>
+                    <p class="command">sort file</p>
+                    <p class="comment"><span>reverse the order</span></p>
+                    <p class="command">sort -r file</p>
+                    <p class="comment"><span>remove duplicate entries from multiple files</span></p>
+                    <p class="command">sort file1 file2 | uniq > file3</p>
+                    <p class="comment"><span>alternatively use the -u option</span></p>
+                    <p class="command">sort -u file1 file2 > file3</p>
+                    <p class="comment"><span>combine corresponding lines from multiple files</span></p>
+                    <p class="command">paste file1 file2</p>
+                    <p class="comment"><span>specify : as the delimiter</span></p>
+                    <p class="command">paste -d: file1 file2</p>
+                    <p class="comment"><span>join data from different files based on a common field</span></p>
+                    <p class="command">join file1 file2</p>
+                    <p class="comment"><span>split a large file into 1000-line segments</span></p>
+                    <p class="command">split largefile</p>
+                </div>
+                <p>
+                    The <span class="snippet">grep</span> utility searches files for specific patterns, which may include <span class="emph">regular expressions</span>.
+                </p>
+                <div class="console">
+                    <p class="comment"><span>print all lines from a file that contain specific pattern</span></p>
+                    <p class="command">grep [pattern] file</p>
+                    <p class="comment"><span>print all lines that do not match pattern</span></p>
+                    <p class="command">grep -v [pattern] file</p>
+                </div>
+                <p>
+                    The <span class="snippet">strings</span> utility, which extracts printable character strings from files, is often used alongside <span class="snippet">grep</span> 
+                    to locate human-readable information in binary files.
+                </p>
+                <div class="console">
+                    <p class="comment"><span>search for specific string in binary file</span></p>
+                    <p class="command">strings binaryfile | grep searchstring</p>
+                </div>
+                <p>
+                    The <span class="snippet">tr</span> utility translates sets of characters into other characters.
+                </p>
+                <div class="console">
+                    <p class="comment"><span>convert lowercase to uppercase</span></p>
+                    <p class="command">cat file | tr a-z A-Z</p>
+                    <p class="comment"><span>translate white space to tabs</span></p>
+                    <p class="command">echo "Testing 1 2 3" | tr [:space:] '\t'</p>
+                    <p class="comment"><span>delete specified characters</span></p>
+                    <p class="command">echo "Tigers and toucans" | tr -d 't'</p>
+                </div>
+                <p>
+                    The <span class="snippet">tee</span> command splits the <span class="snippet">stdout</span> stream to print results to the terminal and save output 
+                    to a new file.
+                </p>
+                <div class="console">
+                    <p class="comment"><span>display output for user and save to file</span></p>
+                    <p class="command">ls -l | tee filename</p>
+                </div>
+                <p>
+                    The <span class="snippet">wc</span> (word count) utility simply outputs the number of lines (<span class="snippet">-l</span>), characters/bytes 
+                    (<span class="snippet">-c</span>), or words (<span class="snippet">-w</span>) from a file.
+                </p>
+                <div class="console">
+                    <p class="comment"><span>output the number of lines in file</span></p>
+                    <p class="command">wc -l file</p>
+                </div>
+                <p>
+                    For columnated files, the <span class="snippet">cut</span> utility can extract specific columns of data based on a designated delimeter, where the 
+                    default is tab.
+                </p>
+                <div class="console">
+                    <p class="comment"><span>print data from the third column of a file with the ',' delimeter</span></p>
+                    <p class="command">cat file | cut -d',' -f3</p>
+                </div>
+            </section>
+            <section class="topic">
+                <h2 id="network-operations">Network operations</h2>
+                <p>
+                    A network is a grouping of computers that share information and resources across communication channels. Each device connected to the network must have 
+                    at least one unique identifier known as the <span class="emph">IP</span> (Internet Protocol) address, which is used to route packets information through 
+                    the network. In addition to the actual data content, these packets contain headers that inform each subsequent machine of its sender, destination, and 
+                    sequence in the data stream.
+                </p>
+                <p>
+                    Currently, there are two IP address standards, <span class="emph">IPv4</span> and <span class="emph">IPv6</span>, which assign 32-bit and 128-bit addresses, 
+                    respectively. Though IPv6 is the newer standard, its adoption has been slow because migrating a collection of machines often requires significant effort. 
+                    Furthermore, <span class="emph">NAT</span> (Network Address Translation) and similar protocols allow users to share a common IP address across locally networked 
+                    computers. Internally, it appears as though each machine has a unique address, but externally the local network is presented a node with one unique address.
+                </p>
+                <p>
+                    IPv4 (32-bit) addresses are subdivided into four octets (8-bit segments or bytes). These address are categorized into one of several classes, where class A, B, 
+                    and C have octets that are either designated as <span class="emph">Net ID</span> or <span class="emph">Host ID</span>. This allows for various numbers of unique 
+                    networks or host machines, which often depends on the needs of the organization.
+                </p>
+                <p>
+                    IP addresses can either be assigned manually (static address) or dynamically through the Dynamic Host Configuration Protocol (<span class="emph">DHCP</span>). 
+                    Dynamically-assigned addresses may change every time the machine is rebooted, or even more frequently in some cases.
+                </p>
+                <p>
+                    <span class="emph">Name Resolution</span> converts IP addresses into the corresponding human-readable hostnames. The hostname of the local machine can be found 
+                    with the <span class="snippet">hostname</span> command, which may even be used to change the system hostname given admin privileges. There is also a special 
+                    hostname called <span class="emph">localhost</span>, which refers to the current machine and always has the address <span class="snippet">127.0.0.1</span>.
+                </p>
+                <p>
+                    <span class="emph">Network configuration files</span> are essential for establishing functional interfaces. For Ubuntu-based systems, these files are stored located 
+                    <span class="emph">/etc/network</span>. Note that each machine can have one or more operational network interfaces, which may be manually activated or deactivated.
+                </p>
+                <p>
+                    Within a network, packets of data are passed between various nodes via a series of routers, which potentially span multiple networks. Servers store the 
+                    routing tables that contain the addresses of each node on the network. 
+                </p>
+                <div class="console">
+                    <p class="comment"><span>view IP address</span></p>
+                    <p class="command">ip addr show</p>
+                    <p class="comment"><span>keep it brief</span></p>
+                    <p class="command">ip --brief addr show</p>
+                    <p class="comment"><span>view routing information</span></p>
+                    <p class="command">ip route show</p>
+                    <p class="comment"><span>add static route</span></p>
+                    <p class="command">ip route add</p>
+                    <p class="comment"><span>delete static route</span></p>
+                    <p class="command">ip route del</p>
+                    <p class="comment"><span>check status of remote host</span></p>
+                    <p class="command">ping hostname</p>
+                </div>
+                <p>
+                    For troubleshooting errors and delays, administrators can inspect the routing path of data packets&mdash;and thereby isolate connection issues between hops&mdash;
+                    with the <span class="snippet">traceroute</span> utility. 
+                </p>
+                <div class="console">
+                    <p class="comment"><span>view route of information packet to host</span></p>
+                    <p class="command">traceroute hostname</p>
+                    <p class="comment"><span>alternatively...</span></p>
+                    <p class="command">traceroute address</p>
+                </div>
+                <p>
+                    Other common networking tools include:
+                </p>
+                <div class="grid definitions">
+                    <p><span class="snippet">ethtool</span></p><p>queries network interfaces</p>
+                    <p><span class="snippet">netstat</span></p><p>displays all active network connections and routing tables</p>
+                    <p><span class="snippet">nmap</span></p><p>scans open ports&mdash;critical for security analysis</p>
+                    <p><span class="snippet">tcpdump</span></p><p>dumps network traffic</p>
+                    <p><span class="snippet">mtr</span></p><p>displays same information as <span class="snippet">ping</span> and <span class="snippet">traceroute</span> in continuous output</p>
+                    <p><span class="snippet">dig</span></p><p>tests DNS workings</p>
+                </div>
+                <p>
+                    Downloading files from a network, such as an internet webpage, can be accomplished with <span class="snippet">wget</span>. This tool supports large file downloads, 
+                    recursive downloads, password-sensitive downloads, and large-file downloads.
+                </p>
+                <div class="console">
+                    <p class="comment"><span>download webpage</span></p>
+                    <p class="command">wget url</p>
+                </div>
+                <p>
+                    A similar tool, <span class="snippet">curl</span>, allows administrators to view webpage contents in the terminal or save the information to a 
+                    document.
+                </p>
+                <div class="console">
+                    <p class="comment"><span>read webpage contents</span></p>
+                    <p class="command">curl url</p>
+                    <p class="comment"><span>store contents to file</span></p>
+                    <p class="command">curl -o file.html url</p>
+                </div>
+                <p>
+                    The File Transfer Protocol (<span class="emph">FTP</span>) is one of the oldest standards for transferring data files between networked machines. These transfers 
+                    may be conducted through a browser or graphical/command line client, such as <span class="snippet">ftp</span>, <span class="snippet">sftp</span>. However, FTP is considered 
+                    obsolete by many system administrators as the protocol, which dates back to the 1970's, has inherent security flaws, e.g., user passwords are transmitted across the network 
+                    without encryption. A more common modern tool is the Secure Shell (<span class="emph">SSH</span>) protocol, which allows administrators to share data between networked machines 
+                    and execute commands on a remote system.
+                </p>
+                <div class="console">
+                    <p class="comment"><span>execute command on remote system</span></p>
+                    <p class="command">ssh remotesystem command</p>
+                    <p class="comment"><span>securely transfer files via SSH</span></p>
+                    <p class="command">scp localfile user@remotesystem:/home/user/</p>
+                </div>
+            </section>
+            <section>
+                <h2 id="credits">Credits</h2>
+                <p>
+                    All material was based on <a href="https://www.edx.org/course/introduction-to-linux">Introduction to Linux</a>, a course from the Linux Foundation hosted on edX. 
+                    This course covers each topic with greater detail and also includes tutorials on bash shell scripting.
+                </p>
+            </section>
         </article>
     </main>
     <footer>

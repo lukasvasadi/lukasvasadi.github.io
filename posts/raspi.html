@@ -23,49 +23,49 @@
         <a href="../gallery.html">Gallery</a>
         <a href="lukas.vasadi@gmail.com" class="icon"><i class="fa fa-envelope"></i></a>
     </div>
-    <main> 
+    <div class="title">
         <h1 class="center">Basic automation with Raspberry Pi</h1>
         <h4 class="center">Last updated: November 2021</h4>
-        <article>
-            <div class="toc">
-                <h2>Contents</h2>
-                <ul>
-                    <li><a href="#intro">Introduction</a></li>
-                    <li><a href="#remote-access">Remote access</a></li>
-                    <li><a href="#updates">Updates</a></li>
-                </ul>
-            </div>
-            <div class="content bash">
-                <section>
-                    <h2 class="intro">Introduction</h2>
-                    <p>
-                        This guide assumes a basic knowledge of bash and the physical layout of a Raspberry Pi.
-                    </p>
-                </section>
-                <section>
-                    <h2 class="remote-access">Remote access</h2>
-                    <h3>SSH</h3>
-                    <p>
-                        Assuming the Pi is running Raspberry Pi OS, enable SSH in system settings and reboot. Find the IP address with 
-                        <span class="snippet">ifconfig</span> and then use the <span class="snippet">ssh</span> utility on the remote 
-                        machine (remember that "pi" and "raspberry" are the default username and password, respectively):
-                    </p>
-                    <div class="console">
-                        <p class="command">ssh pi@xxx.xx.xx.xx</p>
-                    </div>
-                </section>
-                <section>
-                    <h2 id="updates">Updates</h2>
-                    <p>
-                        Package updates are pushed periodically, so it is recommended to frequently run the following commands to keep your system 
-                        current. To update the system package list and then upgrade all installed packages:
-                    </p>
-                    <div class="console">
-                        <p class="command">sudo apt-get update</p>
-                        <p class="command">sudo apt-get dist-upgrade</p>
-                    </div>
-                </section>
-            </div>
+    </div>
+    <main> 
+        <div class="toc">
+            <h2>Contents</h2>
+            <ul>
+                <li><a href="#intro">Introduction</a></li>
+                <li><a href="#remote-access">Remote access</a></li>
+                <li><a href="#updates">Updates</a></li>
+            </ul>
+        </div>
+        <article class="bash">
+            <section>
+                <h2 class="intro">Introduction</h2>
+                <p>
+                    This guide assumes a basic knowledge of bash and the physical layout of a Raspberry Pi.
+                </p>
+            </section>
+            <section>
+                <h2 class="remote-access">Remote access</h2>
+                <h3>SSH</h3>
+                <p>
+                    Assuming the Pi is running Raspberry Pi OS, enable SSH in system settings and reboot. Find the IP address with 
+                    <span class="snippet">ifconfig</span> and then use the <span class="snippet">ssh</span> utility on the remote 
+                    machine (remember that "pi" and "raspberry" are the default username and password, respectively):
+                </p>
+                <div class="console">
+                    <p class="command">ssh pi@xxx.xx.xx.xx</p>
+                </div>
+            </section>
+            <section>
+                <h2 id="updates">Updates</h2>
+                <p>
+                    Package updates are pushed periodically, so it is recommended to frequently run the following commands to keep your system 
+                    current. To update the system package list and then upgrade all installed packages:
+                </p>
+                <div class="console">
+                    <p class="command">sudo apt-get update</p>
+                    <p class="command">sudo apt-get dist-upgrade</p>
+                </div>
+            </section>
         </article>
     </main>
     <footer>
