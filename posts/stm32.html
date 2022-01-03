@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>STM32</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="../styles/styles.css" />
+</head>
+
+<body>
+    <nav>
+        <a href="../index.html" class="code-text">lukasvasadi</a>
+        <div id="desktop-menu">
+            <a href="../about.html">About</a>
+            <a href="../gallery.html">Gallery</a>
+            <a href="mailto:lukas.vasadi@gmail.com"><i class="fa fa-envelope"></i></a>
+        </div>
+        <a href="javascript:void(0);" class="hamburger" onclick="menuDropdown()"><i class="fa fa-bars"></i></a>
+    </nav>
+    <div id="mobile-menu">
+        <a href="../about.html">About</a>
+        <a href="../gallery.html">Gallery</a>
+        <a href="lukas.vasadi@gmail.com" class="icon"><i class="fa fa-envelope"></i></a>
+    </div>
+    <div class="title">
+        <h1 class="center extra-padding">Programming STM32 dev boards with VSCode</h1>
+        <h4 class="center">Last updated: December 2021</h4>
+    </div>
+    <main>
+        <div class="toc">
+            <h2>Contents</h2>
+            <ul>
+                <li><a href="#intro">Introduction</a></li>
+                <li><a href="#environment-setup">Environment setup</a></li>
+            </ul>
+        </div>
+        <article class="bash">
+            <section>
+                <h2 id="intro">Introduction</h2>
+                <p>
+                    This guide will explain how to set up an environment for programming an <a
+                        href="https://www.st.com/en/microcontrollers-microprocessors/stm32-32-bit-arm-cortex-mcus.html">STM32</a>
+                    microcontroller (MCU). The website provides a listing of various MCUs for special use cases, such as
+                    "High Performance" or "Ultra Low Power." Search the "Mainstream MCUs" if unsure about the
+                    requirements.
+                </p>
+            </section>
+            <section>
+                <h2 id="environment-setup">Environment setup</h2>
+                <h3>Visual Studio Code</h3>
+                <p>
+                    Visual Studio Code (VSCode) will be used as the main text editor. Within the VSCode extensions tab,
+                    install the <span class="emph">Microsoft C/C++</span> and <span class="emph">Cortex-Debug</span>
+                    plugins.
+                </p>
+                <h3>GNU Arm embedded toolchain</h3>
+                <p>
+                    On Windows machines, the GNU embedded toolchain for Arm microcontrollers can be installed via the
+                    executable from <a
+                        href="https://developer.arm.com/tools-and-software/open-source-software/developer-tools/gnu-toolchain/gnu-rm/downloads">armDeveloper</a>.
+                    Linux users can install the toolchain directly from the command line:
+                </p>
+                <div class="console">
+                    <p class="command">sudo apt install gcc-arm-none-eabi</p>
+                </div>
+                <p>
+                    For debugging, Linux users can install the GNU debugger:
+                </p>
+                <div class="console">
+                    <p class="command">sudo apt install gdb-multiarch</p>
+                </div>
+                <h3>ST-LINK utility</h3>
+                <p>
+                    ST-LINK is a software interface for programming STM32 microcontrollers. It allows developers to read
+                    and write programs and flash the microcontroller with a full-featured GUI or CLI. To install ST-LINK
+                    on Windows, download the executable from <a
+                        href="https://www.st.com/content/st_com/en/products/development-tools/software-development-tools/stm32-software-development-tools/stm32-programmers/stsw-link004.html?dl=LGsjZilkKk%2FAGQjL5K324Q%3D%3D%2Cp9lNWX6GN8OVPXHa79EVftrYJCvbty%2B1zCuEvienzHs9CPI%2F2HAnG%2BgA8QzpWqoxZRDAd8w%2FIX%2FYaFwIrv4%2FQ6bdjChpRuA5FC5yqdpeFvWscDBNyQ%2FU1fVoJGg75%2BXzWh8XYHqLTQUi3iGA4JiC2infaTDxiofQcSBzF8uiF9Xf5V2cVCg52UntgyxuEuI9h6ziGVBALH5WSlJdo1W4zbiFOnfCBYbdD%2FSWMiJygUDIPz2FHY6399njocmEgBZveR4htsPd%2BUBMkgvh3KIioaigOQd7%2BsRQkCzRCINro%2FS9QKbLCYvGyB%2F34jlL9ze0#overview&secondary=st_description_sec-nav-tab">st.com</a>
+                    (an email address is required to download the software). On Linux:
+                </p>
+                <div class="console">
+                    <p class="command">sudo apt install st-utils</p>
+                </div>
+                <h3>OpenOCD</h3>
+                <p>
+                    The Open On-Chip Debugger (OpenOCD) is a piece of software that helps debug programs after flashing
+                    the microcontroller.
+                </p>
+                <div class="console">
+                    <p class="command">sudo apt install openocd</p>
+                </div>
+            </section>
+        </article>
+    </main>
+    <footer>
+        <p>Copyright &copy; 2021 Lukas Vasadi</p>
+    </footer>
+    <script src="../scripts/main.js"></script>
+    <script src="../scripts/post.js"></script>
+</body>
+
+</html>
