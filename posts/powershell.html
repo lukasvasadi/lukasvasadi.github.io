@@ -27,7 +27,7 @@
     </div>
     <div class="title">
         <h1 class="center extra-padding">Task automation with PowerShell</h1>
-        <h4 class="center">Last updated: October 2021</h4>
+        <h4 class="center">Last updated: January 2022</h4>
     </div>
     <main>
         <div class="toc">
@@ -406,9 +406,9 @@
             <section>
                 <h2 id="execution-policy">Execution Policy</h2>
                 <p>
-                    PowerShell has safety features that prevent users from accidentally running scripts, which may
-                    contain harmful or malicious code. These permissions are controlled with the execution policy, which
-                    can be set to <span class="snippet">Restricted</span> (default), <span
+                    PowerShell has safety features that prevent users from accidentally running scripts that may
+                    contain harmful or malicious code. Script execution permissions are controlled via the execution
+                    policy, which can be set to <span class="snippet">Restricted</span> (default), <span
                         class="snippet">Unrestricted</span>, <span class="snippet">AllSigned</span>, <span
                         class="snippet">RemoteSigned</span>, <span class="snippet">Bypass</span>, and <span
                         class="snippet">Undefined</span>. <span class="snippet">AllSigned</span> requires that all
@@ -419,8 +419,10 @@
                 <p>
                     It is recommended to avoid <span class="snippet">Unrestricted</span> and <span
                         class="snippet">Bypass</span>, as these options allow the machine to execute any script without
-                    review. The correct way to run local scripts is to add a digital signature, which provides explicit
-                    authorization to execute the code.
+                    review. If a downloaded script is missing a trusted digital signature but nevertheless has been
+                    deemed safe, then it can be exempted from the execution policy with the <span
+                        class="snippet">Unblock-File</span> command. As suggested, the correct way to run local scripts
+                    is to add a digital signature, which provides explicit authorization to execute the code.
                 </p>
                 <p>
                     To find the current execution policy:
