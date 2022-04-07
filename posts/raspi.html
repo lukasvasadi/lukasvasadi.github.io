@@ -26,7 +26,7 @@
         <a href="lukas.vasadi@gmail.com" class="icon"><i class="fa fa-envelope"></i></a>
     </div>
     <div class="title">
-        <h1 class="center">Basic automation with Raspberry Pi</h1>
+        <h1 class="center">Automation with Raspberry Pi</h1>
         <h4 class="center">Last updated: November 2021</h4>
     </div>
     <main>
@@ -34,8 +34,8 @@
             <h2>Contents</h2>
             <ul>
                 <li><a href="#intro">Introduction</a></li>
-                <li><a href="#remote-access">Remote access</a></li>
                 <li><a href="#updates">Updates</a></li>
+                <li><a href="#remote-access">Remote access</a></li>
             </ul>
         </div>
         <article class="bash">
@@ -46,29 +46,76 @@
                 </p>
             </section>
             <section>
-                <h2 class="remote-access">Remote access</h2>
-                <h3>SSH</h3>
+                <h2 class="updates">Updates</h2>
                 <p>
-                    Assuming the Pi is running Raspberry Pi OS, enable SSH in system settings and reboot. Find the IP
-                    address with <span class="snippet">ifconfig</span> and then use the <span class="snippet">ssh</span>
-                    utility on the remote machine (remember that "pi" and "raspberry" are the default username and
-                    password, respectively):
+                    Most Raspberry Pi users run the official Raspberry Pi OS, which is a flavor of the Debian Linux
+                    distribution. As such, all distribution and package updates can be executed through the terminal.
                 </p>
-                <div class="console">
-                    <p class="command">ssh pi@xxx.xx.xx.xx</p>
-                </div>
-            </section>
-            <section>
-                <h2 id="updates">Updates</h2>
                 <p>
-                    Package updates are pushed periodically, so it is recommended to frequently run the following
-                    commands to keep your system current. To update the system package list and then upgrade all
-                    installed packages:
+                    To update all installed software packages:
                 </p>
                 <div class="console">
                     <p class="command">sudo apt-get update</p>
+                </div>
+                <p>
+                    Similarly, to upgrade the OS distribution:
+                </p>
+                <div class="console">
                     <p class="command">sudo apt-get dist-upgrade</p>
                 </div>
+                <p>
+                    Note, after running this command, you must reboot the Pi for the new distribution changes to load:
+                </p>
+                <div class="console">
+                    <p class="command">sudo reboot</p>
+                </div>
+                <p>
+                    An alternative method to restart the Pi:
+                </p>
+                <div class="console">
+                    <p class="command">sudo shutdown -r now</p>
+                </div>
+            </section>
+            <section>
+                <h2 class="remote-access">Remote access</h2>
+                <p>
+                    Gaining remote access to the Pi will require knowledge of its IP address:
+                </p>
+                <div class="console">
+                    <p class="command">hostname -I</p>
+                </div>
+                <p>
+                    Note that some of the following methods may fail due to certain network configurations, such as a
+                    firewall that prohibits remote connections for safety.
+                </p>
+                <h3>SSH</h3>
+                <p>
+                    Enable SSH in system settings (either through the console or GUI) and reboot. After determining the
+                    IP address, use the <span class="snippet">ssh</span> utility on the remote machine (remember that
+                    "pi" and "raspberry" are the default username and password, respectively):
+                </p>
+                <div class="console">
+                    <p class="command">ssh pi@XXX.XX.XX.XX</p>
+                </div>
+                <h3>Xrdp remote desktop server</h3>
+                <p>
+                    Microsoft Xrdp is a free opensource desktop protocol service that can be used with any operating
+                    system. After updating the Pi, install the following packages:
+                </p>
+                <div class="console">
+                    <p class="command">sudo apt-get install raspberrypi-ui-mods xinit xserver-xorg xrdp</p>
+                </div>
+                <p>
+                    Restart the Pi:
+                </p>
+                <div class="console">
+                    <p class="command">sudo reboot</p>
+                </div>
+                <p>
+                    Now, input the Pi IP address and login credentials into the <span class="emph">Remote Desktop
+                        Connection</span> app on Windows or the <span class="emph">Microsoft Remote Desktop</span> for
+                    Mac. After a few seconds, the system should connect and launch a window with the Pi GUI.
+                </p>
             </section>
         </article>
     </main>
