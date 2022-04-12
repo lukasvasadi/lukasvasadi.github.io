@@ -10,6 +10,7 @@
   --text: #f0f0f0;
   --text-alt: #222;
   --text-code: #d6d6d6;
+  --text-comments: #a0a0a0;
   --text-emph: #9333ff;
   --text-highlight: #d6c13a;
   --links: #759dff;
@@ -304,6 +305,7 @@ footer {
 
 .comment span {
   font-style: italic;
+  color: var(--text-comments);
 }
 
 .bash .console {
