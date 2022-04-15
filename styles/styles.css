@@ -216,6 +216,14 @@ footer {
   color: var(--text);
 }
 
+.about p {
+  margin-bottom: 1rem;
+}
+
+.about p:last-child {
+  margin-bottom: 0;
+}
+
 .center-page {
   position: absolute;
   top: 50%;
