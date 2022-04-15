@@ -8,7 +8,7 @@
     <title>Environment Setup</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="stylesheet" href="../styles/styles.css" />
-    <link rel="icon" href="icons/vasadi_gear_icon.png">
+    <link rel="icon" href="../icons/vasadi_gear_icon.png">
 </head>
 
 <body>
@@ -38,16 +38,16 @@
                 <li><a href="#windows">Windows</a></li>
                 <ul>
                     <li><a href="#chocolatey">Chocolatey</a></li>
-                    <li><a href="#pyenv-win">Pyenv</a></li>
+                    <li><a href="#python-win">Python</a></li>
                 </ul>
                 <li><a href="#mac">Mac</a></li>
                 <ul>
                     <li><a href="#homebrew">Homebrew</a></li>
-                    <li><a href="#pyenv-mac">Pyenv</a></li>
+                    <li><a href="#python-mac">Python</a></li>
                 </ul>
                 <li><a href="#mac">Linux</a></li>
                 <ul>
-                    <li><a href="#pyenv-linux">Pyenv</a></li>
+                    <li><a href="#python-linux">Python</a></li>
                 </ul>
             </ul>
         </div>
@@ -64,20 +64,46 @@
                 <h3 id="chocolatey">Chocolatey</h3>
                 <p>
                     <a href="https://chocolatey.org/">Chocolatey</a> is probably the best general package manager for
-                    Windows. With one command, this tool bypasses the process of downloading executable installation
-                    wizards.
+                    Windows. With one command, this tool bypasses the process of downloading installation wizards.
                 </p>
                 <p>
-                    To install Chocolatey, run the following commands in an Administrative PowerShell session:
+                    The developers of Chocolatey provide a script to automate the installation process. However, in
+                    order to run a script downloaded from the internet, we need to temporarily change the security
+                    permissions in PowerShell. In an Administrative shell, execute the following commands:
                 </p>
                 <div class="console">
                     <p class="command"><span class="cmdlet">Set-ExecutionPolicy</span> Bypass -Scope Process -Force</p>
                     <p class="command">[System.Net.ServicePointManager]::SecurityProtocol =
                         [System.Net.ServicePointManager]::SecurityProtocol -bor 3072</p>
+                </div>
+                <p>
+                    The above commands change the <span class="snippet">ExecutionPolicy</span> to <span
+                        class="snippet">Bypass</span> for the scope of the current process, meaning that the default
+                    policy will resume upon a new shell session. Nevertheless, it is always good practice to inspect the
+                    scripts being downloaded and executed through PowerShell.
+                </p>
+                <p>
+                    With these temporary permissions, download and run the installation script:
+                </p>
+                <div class="console">
                     <p class="command"><span class="cmdlet">iex</span> ((New-Object
                         System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))</p>
                 </div>
-                <h3 id="pyenv-win">Pyenv</h3>
+                <p>
+                    Now, refresh the shell environment and check the installation:
+                </p>
+                <div class="console">
+                    <p class="command"><span class="cmdlet">refreshenv</span></p>
+                    <p class="command"><span class="cmdlet">choco</span> --version</p>
+                </div>
+                <h3 id="python-win">Python</h3>
+                <p>
+                    Unlike Mac and Linux, Windows does not come prepackaged with Python. Users have the option to
+                    manually install a specific Python version or use <a
+                        href="https://github.com/pyenv-win/pyenv-win">pyenv-win</a> to manage multiple installations on
+                    the same machine.
+                </p>
+                <h4>Pyenv</h4>
                 <p>
                     Install pyenv with <span class="snippet">choco</span>:
                 </p>
@@ -85,9 +111,10 @@
                     <p class="command"><span class="cmdlet">choco</span> install pyenv-win</p>
                 </div>
                 <p>
-                    Confirm pyenv installation:
+                    Refresh the shell environment and confirm the installation:
                 </p>
                 <div class="console">
+                    <p class="command"><span class="cmdlet">refreshenv</span></p>
                     <p class="command"><span class="cmdlet">pyenv</span> --version</p>
                 </div>
                 <p>
@@ -112,6 +139,35 @@
                     <p>C:\Users\user\.pyenv\shims\python</p>
                     <p class="command"><span class="cmdlet">where</span> pip</p>
                     <p>C:\Users\user\.pyenv\shims\pip</p>
+                </div>
+                <h4>Virtual Environments</h4>
+                <p>
+                    Unfortunately, pyenv-win does not include the normal pyenv utility for managing virtual
+                    environments. Windows users need to follow the traditional approach to create an isolated
+                    environment:
+                </p>
+                <div class="console">
+                    <p class="command"><span class="cmdlet">python</span> -m venv virtualenv</p>
+                </div>
+                <p>
+                    This will reference the Python version set by pyenv <span class="snippet">global</span> or <span
+                        class="snippet">local</span> and create a new directory that contains the Python executable and
+                    any site packages installed via <span class="snippet">pip</span>. Note that once created, the
+                    virtual environment directory cannot be moved to another location. Many developers choose to store
+                    their environments in a dedicated sub-directory of their project folder.
+                </p>
+                <p>
+                    To activate the environment:
+                </p>
+                <div class="console">
+                    <p class="comment"><span>assuming you are located in the parent directory of virtualenv</span></p>
+                    <p class="command"><span class="cmdlet">virtualenv\Scripts\activate</span></p>
+                </div>
+                <p>
+                    To deactivate:
+                </p>
+                <div class="console">
+                    <p class="command"><span class="cmdlet">deactivate</span></p>
                 </div>
             </section>
             <section class="bash">
