@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Environment Setup</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="../styles/styles.css" />
+</head>
+
+<body>
+    <nav>
+        <a href="../index.html" class="code-text">lukasvasadi</a>
+        <div id="desktop-menu">
+            <a href="../about.html">About</a>
+            <a href="../gallery.html">Gallery</a>
+            <a href="mailto:lukas.vasadi@gmail.com"><i class="fa fa-envelope"></i></a>
+        </div>
+        <a href="javascript:void(0);" class="hamburger" onclick="menuDropdown()"><i class="fa fa-bars"></i></a>
+    </nav>
+    <div id="mobile-menu">
+        <a href="../about.html">About</a>
+        <a href="../gallery.html">Gallery</a>
+        <a href="lukas.vasadi@gmail.com" class="icon"><i class="fa fa-envelope"></i></a>
+    </div>
+    <div class="title">
+        <h1 class="center">Development environment setup</h1>
+        <h4 class="center">Last updated: April 2022</h4>
+    </div>
+    <main>
+        <div class="toc">
+            <h2>Contents</h2>
+            <ul>
+                <li><a href="#intro">Introduction</a></li>
+                <li><a href="#windows">Windows</a></li>
+                <ul>
+                    <li><a href="#chocolatey">Chocolatey</a></li>
+                    <li><a href="#pyenv-win">Pyenv</a></li>
+                </ul>
+                <li><a href="#mac">Mac</a></li>
+                <ul>
+                    <li><a href="#homebrew">Homebrew</a></li>
+                    <li><a href="#pyenv-mac">Pyenv</a></li>
+                </ul>
+                <li><a href="#mac">Linux</a></li>
+                <ul>
+                    <li><a href="#pyenv-linux">Pyenv</a></li>
+                </ul>
+            </ul>
+        </div>
+        <article>
+            <section>
+                <h2 id="intro">Introduction</h2>
+                <p>
+                    This tutorial will guide you through configuring a local development environment for popular tools,
+                    such as Python, Node.js and Git, as well as system package managers.
+                </p>
+            </section>
+            <section class="powershell">
+                <h2 id="windows"><i class="fab fa-windows"></i> Windows</h2>
+                <h3 id="chocolatey">Chocolatey</h3>
+                <p>
+                    <a href="https://chocolatey.org/">Chocolatey</a> is probably the best general package manager for
+                    Windows. With one command, this tool bypasses the process of downloading executable installation
+                    wizards.
+                </p>
+                <p>
+                    To install Chocolatey, run the following commands in an Administrative PowerShell session:
+                </p>
+                <div class="console">
+                    <p class="command"><span class="cmdlet">Set-ExecutionPolicy</span> Bypass -Scope Process -Force</p>
+                    <p class="command">[System.Net.ServicePointManager]::SecurityProtocol =
+                        [System.Net.ServicePointManager]::SecurityProtocol -bor 3072</p>
+                    <p class="command"><span class="cmdlet">iex</span> ((New-Object
+                        System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))</p>
+                </div>
+                <h3 id="pyenv-win">Pyenv</h3>
+                <p>
+                    Install pyenv with <span class="snippet">choco</span>:
+                </p>
+                <div class="console">
+                    <p class="command"><span class="cmdlet">choco</span> install pyenv-win</p>
+                </div>
+                <p>
+                    Confirm pyenv installation:
+                </p>
+                <div class="console">
+                    <p class="command"><span class="cmdlet">pyenv</span> --version</p>
+                </div>
+                <p>
+                    Install a version of Python:
+                </p>
+                <div class="console">
+                    <p class="comment"><span>3.10.0 as an example</span></p>
+                    <p class="command"><span class="cmdlet">pyenv</span> install 3.10.0</p>
+                </div>
+                <p>
+                    Set the global Python version:
+                </p>
+                <div class="console">
+                    <p class="command"><span class="cmdlet">pyenv</span> global 3.10.0</p>
+                </div>
+                <p>
+                    Confirm that <span class="snippet">python</span> and <span class="snippet">pip</span> point to the
+                    correct executables:
+                </p>
+                <div class="console">
+                    <p class="command"><span class="cmdlet">where</span> python</p>
+                    <p>C:\Users\user\.pyenv\shims\python</p>
+                    <p class="command"><span class="cmdlet">where</span> pip</p>
+                    <p>C:\Users\user\.pyenv\shims\pip</p>
+                </div>
+            </section>
+            <section class="bash">
+                <h2 id="mac"><i class="fab fa-apple"></i> Mac</h2>
+                <h3 id="homebrew">Homebrew</h3>
+                <p>
+                    Similar to Chocolatey, <a href="">Homebrew</a> probably ranks as the top tool for general package
+                    management in MacOS.
+                </p>
+                <p>
+                    To install Homebrew:
+                </p>
+                <div class="console">
+                    <p class="command">curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh |
+                        zsh"</p>
+                </div>
+                <h3 id="pyenv-mac">Pyenv</h3>
+                <p>
+                    To install pyenv, first install the package dependencies:
+                </p>
+                <div class="console">
+                    <p class="command">brew install openssl readline sqlite3 xz zlib</p>
+                </div>
+                <p>
+                    Then execute the pyenv installer:
+                </p>
+                <div class="console">
+                    <p class="command">curl https://pyenv.run | zsh</p>
+                </div>
+                <p>
+                    Update the PATH environment variable:
+                </p>
+                <div class="console">
+                    <p class="command">echo 'export PATH="$HOME/.pyenv/bin:$PATH"' >> ~/.bashrc</p>
+                    <p class="command">echo 'export PATH="$HOME/.pyenv/shims:$PATH"' >> ~/.bashrc</p>
+                    <p class="command">echo 'eval "$(pyenv init -)"' >> ~/.bashrc</p>
+                    <p class="command">echo 'eval "$(pyenv virtualenv-init -)"' >> ~/.bashrc</p>
+                </div>
+                <p>
+                    Refresh the environment:
+                </p>
+                <div class="console">
+                    <p class="command">exec $SHELL</p>
+                </div>
+                <p>
+                    Confirm pyenv installation:
+                </p>
+                <div class="console">
+                    <p class="command">pyenv --version</p>
+                </div>
+                <p>
+                    Install a version of Python:
+                </p>
+                <div class="console">
+                    <p class="comment"><span>3.10.0 as an example</span></p>
+                    <p class="command">pyenv install 3.10.0</p>
+                </div>
+                <p>
+                    Set the global Python version:
+                </p>
+                <div class="console">
+                    <p class="command">pyenv global 3.10.0</p>
+                </div>
+                <p>
+                    Confirm that <span class="snippet">python</span> and <span class="snippet">pip</span> point to the
+                    correct executables:
+                </p>
+                <div class="console">
+                    <p class="command">which python</p>
+                    <p>/Users/user/.pyenv/shims/python</p>
+                    <p class="command">which pip</p>
+                    <p>/Users/user/.pyenv/shims/pip</p>
+                </div>
+            </section>
+            <section class="bash">
+                <h2 id="linux"><i class="fab fa-linux"></i> Linux</h2>
+                <p>
+                    Note: This tutorial only covers Ubuntu/Debian flavors of Linux.
+                </p>
+                <h3 id="pyenv-linux">Pyenv</h3>
+                <div class="console">
+                    <p class="command">sudo apt-get install -y make build-essential libssl-dev zlib1g-dev libbz2-dev
+                        libreadline-dev libsqlite3-dev wget curl llvm libncurses5-dev libncursesw5-dev xz-utils tk-dev
+                        libffi-dev liblzma-dev python-openssl</p>
+                </div>
+                <p>
+                    Then execute the pyenv installer:
+                </p>
+                <div class="console">
+                    <p class="command">curl https://pyenv.run | bash</p>
+                </div>
+                <p>
+                    Update the PATH environment variable:
+                </p>
+                <div class="console">
+                    <p class="command">echo 'export PATH="$HOME/.pyenv/bin:$PATH"' >> ~/.bashrc</p>
+                    <p class="command">echo 'export PATH="$HOME/.pyenv/shims:$PATH"' >> ~/.bashrc</p>
+                    <p class="command">echo 'eval "$(pyenv init -)"' >> ~/.bashrc</p>
+                    <p class="command">echo 'eval "$(pyenv virtualenv-init -)"' >> ~/.bashrc</p>
+                </div>
+                <p>
+                    Refresh the environment:
+                </p>
+                <div class="console">
+                    <p class="command">exec $SHELL</p>
+                </div>
+                <p>
+                    Confirm pyenv installation:
+                </p>
+                <div class="console">
+                    <p class="command">pyenv --version</p>
+                </div>
+                <p>
+                    Install a version of Python:
+                </p>
+                <div class="console">
+                    <p class="comment"><span>3.10.0 as an example</span></p>
+                    <p class="command">pyenv install 3.10.0</p>
+                </div>
+                <p>
+                    Set the global Python version:
+                </p>
+                <div class="console">
+                    <p class="command">pyenv global 3.10.0</p>
+                </div>
+                <p>
+                    Confirm that <span class="snippet">python</span> and <span class="snippet">pip</span> point to the
+                    correct executables:
+                </p>
+                <div class="console">
+                    <p class="command">which python</p>
+                    <p>/Users/user/.pyenv/shims/python</p>
+                    <p class="command">which pip</p>
+                    <p>/Users/user/.pyenv/shims/pip</p>
+                </div>
+            </section>
+        </article>
+    </main>
+    <footer>
+        <p>Copyright &copy; 2021 Lukas Vasadi</p>
+    </footer>
+    <script src="../scripts/main.js"></script>
+    <script src="../scripts/post.js"></script>
+</body>
+
+</html>
