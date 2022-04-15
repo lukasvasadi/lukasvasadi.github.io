@@ -45,10 +45,12 @@
                 <ul>
                     <li><a href="#homebrew">Homebrew</a></li>
                     <li><a href="#python-mac">Python</a></li>
+                    <li><a href="#node-mac">Node.js</a></li>
                 </ul>
-                <li><a href="#mac">Linux</a></li>
+                <li><a href="#linux">Linux</a></li>
                 <ul>
                     <li><a href="#python-linux">Python</a></li>
+                    <li><a href="#node-linux">Node.js</a></li>
                 </ul>
             </ul>
         </div>
@@ -145,10 +147,10 @@
                 <p>
                     Unfortunately, pyenv-win does not include the normal pyenv utility for managing virtual
                     environments. Windows users need to follow the traditional approach to create an isolated
-                    environment:
+                    environment named "env":
                 </p>
                 <div class="console">
-                    <p class="command"><span class="cmdlet">python</span> -m venv virtualenv</p>
+                    <p class="command"><span class="cmdlet">python</span> -m venv env</p>
                 </div>
                 <p>
                     This will reference the Python version set by pyenv <span class="snippet">global</span> or <span
@@ -161,8 +163,8 @@
                     To activate the environment:
                 </p>
                 <div class="console">
-                    <p class="comment"><span>assuming you are located in the parent directory of virtualenv</span></p>
-                    <p class="command"><span class="cmdlet">virtualenv\Scripts\activate</span></p>
+                    <p class="comment"><span>assuming you are located in the parent directory of env</span></p>
+                    <p class="command"><span class="cmdlet">env\Scripts\activate</span></p>
                 </div>
                 <p>
                     To deactivate:
@@ -222,27 +224,18 @@
                     <p class="command">curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh |
                         zsh</p>
                 </div>
-                <h3 id="pyenv-mac">Pyenv</h3>
+                <h3 id="python-mac">Python</h3>
                 <p>
-                    To install pyenv, first install the package dependencies:
+                    Although MacOS comes with a default Python, it is often recommended to reserve that installation for
+                    system usage. For this reason, pyenv provides an easy way to manage multiple versions of Python on
+                    one machine.
+                </p>
+                <h4>Pyenv</h4>
+                <p>
+                    To install pyenv, run the automated script:
                 </p>
                 <div class="console">
-                    <p class="command">brew install openssl readline sqlite3 xz zlib</p>
-                </div>
-                <p>
-                    Then execute the pyenv installer:
-                </p>
-                <div class="console">
-                    <p class="command">curl https://pyenv.run | zsh</p>
-                </div>
-                <p>
-                    Update the PATH environment variable:
-                </p>
-                <div class="console">
-                    <p class="command">echo 'export PATH="$HOME/.pyenv/bin:$PATH"' >> ~/.zshrc</p>
-                    <p class="command">echo 'export PATH="$HOME/.pyenv/shims:$PATH"' >> ~/.zshrc</p>
-                    <p class="command">echo 'eval "$(pyenv init -)"' >> ~/.zshrc</p>
-                    <p class="command">echo 'eval "$(pyenv virtualenv-init -)"' >> ~/.zshrc</p>
+                    <p class="command">brew install pyenv</p>
                 </div>
                 <p>
                     Refresh the environment:
@@ -279,13 +272,69 @@
                     <p class="command">which pip</p>
                     <p>/Users/user/.pyenv/shims/pip</p>
                 </div>
+                <h4>Virtual Environments</h4>
+                <p>
+                    Pyenv also provides an easy way to create and manage virtual environments. To create a new
+                    environment named "env":
+                </p>
+                <div class="console">
+                    <p class="comment"><span>using 3.10.0 as an example</span></p>
+                    <p class="command">pyenv virtualenv 3.10.0 env</p>
+                </div>
+                <p>
+                    Use this environment as the default Python reference in a project directory:
+                </p>
+                <div class="console">
+                    <p class="comment"><span>assuming you have navigated inside the project dir</span></p>
+                    <p class="command">pyenv local env</p>
+                </div>
+                <h3 id="node-mac">Node.js</h3>
+                <p>
+                    As mentioned above, Node.js is a popular JavaScript runtime that can be easily managed with <a
+                        href="https://github.com/nvm-sh/nvm">nvm</a>.
+                </p>
+                <h4>NVM</h4>
+                <p>
+                    To install nvm:
+                </p>
+                <div class="console">
+                    <p class="command">brew install nvm</p>
+                </div>
+                <p>
+                    Confirm installation:
+                </p>
+                <div class="console">
+                    <p class="command">command -v nvm</p>
+                </div>
+                <p>
+                    If nothing returns, you may need to refresh the environment:
+                </p>
+                <div class="console">
+                    <p class="command">source ~/.zshrc</p>
+                </div>
+                <p>
+                    Install the latest stable release of Node.js:
+                </p>
+                <div class="console">
+                    <p class="command">nvm install stable</p>
+                </div>
+                <p>
+                    Confirm successful Node.js installation:
+                </p>
+                <div class="console">
+                    <p class="command">node --version</p>
+                </div>
             </section>
             <section class="bash">
                 <h2 id="linux"><i class="fab fa-linux"></i> Linux</h2>
                 <p>
                     Note: This tutorial only covers Ubuntu/Debian flavors of Linux.
                 </p>
-                <h3 id="pyenv-linux">Pyenv</h3>
+                <h3 id="python-linux">Python</h3>
+                <h4>Pyenv</h4>
+                <p>
+                    To install pyenv, first install its package dependencies:
+                </p>
                 <div class="console">
                     <p class="command">sudo apt-get install -y make build-essential libssl-dev zlib1g-dev libbz2-dev
                         libreadline-dev libsqlite3-dev wget curl llvm libncurses5-dev libncursesw5-dev xz-utils tk-dev
@@ -340,6 +389,38 @@
                     <p>/Users/user/.pyenv/shims/python</p>
                     <p class="command">which pip</p>
                     <p>/Users/user/.pyenv/shims/pip</p>
+                </div>
+                <h3 id="node-linux">Node.js</h3>
+                <h4>NVM</h4>
+                <p>
+                    To install nvm, run the automated script:
+                </p>
+                <div class="console">
+                    <p class="command">curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash</p>
+                </div>
+                <p>
+                    Confirm installation:
+                </p>
+                <div class="console">
+                    <p class="command">command -v nvm</p>
+                </div>
+                <p>
+                    If nothing returns, you may need to refresh the environment:
+                </p>
+                <div class="console">
+                    <p class="command">source ~/.bashrc</p>
+                </div>
+                <p>
+                    Install the latest stable release of Node.js:
+                </p>
+                <div class="console">
+                    <p class="command">nvm install stable</p>
+                </div>
+                <p>
+                    Confirm successful Node.js installation:
+                </p>
+                <div class="console">
+                    <p class="command">node --version</p>
                 </div>
             </section>
         </article>
