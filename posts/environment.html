@@ -39,6 +39,7 @@
                 <ul>
                     <li><a href="#chocolatey">Chocolatey</a></li>
                     <li><a href="#python-win">Python</a></li>
+                    <li><a href="#node-win">Node.js</a></li>
                 </ul>
                 <li><a href="#mac">Mac</a></li>
                 <ul>
@@ -168,6 +169,43 @@
                 </p>
                 <div class="console">
                     <p class="command"><span class="cmdlet">deactivate</span></p>
+                </div>
+                <h3 id="node-win">Node.js</h3>
+                <p>
+                    Node.js is a popular JavaScript runtime used for server-side programming or desktop app development.
+                </p>
+                <h4>NVM</h4>
+                <p>
+                    Similar to Python, Node.js has a version manager (nvm) that was created for Mac and Linux, and later
+                    cloned for Windows (<a href="https://github.com/coreybutler/nvm-windows">nvm-windows</a>). Using nvm
+                    allows developers to manage multiple versions of Node.js on one machine, eliminating conflicts
+                    between projects with different requirements.
+                </p>
+                <p>
+                    To install nvm, first ensure that there are no pre-existing versions of Node.js installed on the
+                    machine, as this may cause conflicts. Then, run the automated install script:
+                </p>
+                <div class="console">
+                    <p class="command"><span class="cmdlet">choco</span> install nvm</p>
+                </div>
+                <p>
+                    Refresh the environment and confirm nvm installation:
+                </p>
+                <div class="console">
+                    <p class="command"><span class="cmdlet">refreshenv</span></p>
+                    <p class="command"><span class="cmdlet">nvm</span> --version</p>
+                </div>
+                <p>
+                    Install the latest long-term support (LTS) version of Node.js:
+                </p>
+                <div class="console">
+                    <p class="command"><span class="cmdlet">nvm</span> install stable</p>
+                </div>
+                <p>
+                    Confirm Node.js installation:
+                </p>
+                <div class="console">
+                    <p class="command"><span class="cmdlet">node</span> --version</p>
                 </div>
             </section>
             <section class="bash">
