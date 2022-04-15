@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="210mm"
+   height="297mm"
+   viewBox="0 0 210 297"
+   version="1.1"
+   id="svg5"
+   sodipodi:docname="vasadi_gear_icon.svg"
+   inkscape:version="1.1.2 (b8e25be8, 2022-02-05)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview7"
+     pagecolor="#505050"
+     bordercolor="#eeeeee"
+     borderopacity="1"
+     inkscape:pageshadow="0"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="0"
+     inkscape:document-units="mm"
+     showgrid="false"
+     inkscape:zoom="1.2257751"
+     inkscape:cx="328.36367"
+     inkscape:cy="595.13365"
+     inkscape:window-width="1512"
+     inkscape:window-height="945"
+     inkscape:window-x="0"
+     inkscape:window-y="37"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs2" />
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <g
+       inkscape:label="Rendered Gears"
+       transform="translate(105,148.5)"
+       id="g804"
+       style="fill:#000000;fill-opacity:1;stroke-width:1;stroke-miterlimit:4;stroke-dasharray:none">
+      <path
+         style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-miterlimit:4;stroke-dasharray:none"
+         d="m 16.62,-2.73723 3.4471,-0.56772 0.7285,0.01124 4.4228,1.74572 V 1.54799 L 20.7956,3.29371 20.0671,3.30495 16.62,2.73723 15.0548,7.55453 18.1772,9.12139 18.76,9.55871 21.312,13.5707 19.4922,16.0753 14.888,14.888 14.292,14.4689 11.837,11.9835 7.73912,14.9607 9.34427,18.0637 9.55871,18.76 9.26513,23.5057 6.32069,24.4625 3.29371,20.7956 3.05789,20.1062 2.53261,16.6524 h -5.06522 l -0.52528,3.4538 -0.23582,0.6894 -3.02698,3.6669 -2.94444,-0.9568 -0.29358,-4.7457 0.21444,-0.6963 1.60515,-3.103 -4.09788,-2.9772 -2.455,2.4854 -0.596,0.4191 -4.6042,1.1873 -1.8198,-2.5046 2.552,-4.01199 0.5828,-0.43732 3.1224,-1.56686 -1.5652,-4.8173 -3.4471,0.56772 -0.7285,-0.01124 -4.4228,-1.74572 v -3.09598 l 4.4228,-1.74572 0.7285,-0.01124 3.4471,0.56772 1.5652,-4.8173 -3.1224,-1.56686 -0.5828,-0.43732 -2.552,-4.01199 1.8198,-2.5046 4.6042,1.1873 0.596,0.4191 2.455,2.4854 4.09788,-2.9772 -1.60515,-3.103 -0.21444,-0.6963 0.29358,-4.7457 2.94444,-0.9568 3.02698,3.6669 0.23582,0.6894 0.52528,3.4538 h 5.06522 l 0.52528,-3.4538 0.23582,-0.6894 3.02698,-3.6669 2.94444,0.9568 0.29358,4.7457 -0.21444,0.6963 -1.60515,3.103 4.09788,2.9772 2.455,-2.4854 0.596,-0.4191 4.6042,-1.1873 1.8198,2.5046 -2.552,4.01199 -0.5828,0.43732 -3.1224,1.56686 z"
+         id="path800" />
+      <circle
+         style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-miterlimit:4;stroke-dasharray:none"
+         id="path802"
+         cx="0"
+         cy="0"
+         r="10.583333" />
+    </g>
+    <circle
+       style="fill:#cccccc;fill-opacity:1;stroke:none;stroke-width:1.27119;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="path1684"
+       cx="105"
+       cy="148.5"
+       r="9.8841591" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:17.4714px;line-height:1.25;font-family:Helvetica;-inkscape-font-specification:'Helvetica, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.436785"
+       x="99.088043"
+       y="155.31647"
+       id="text3260"><tspan
+         sodipodi:role="line"
+         id="tspan3258"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:17.4714px;font-family:Helvetica;-inkscape-font-specification:'Helvetica, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.436785"
+         x="99.088043"
+         y="155.31647">V</tspan></text>
+  </g>
+</svg>
