@@ -139,6 +139,7 @@ article section h2 {
 }
 
 article section h3 {
+  padding-top: 1rem;
   margin-bottom: 0.5rem;
 }
 
@@ -183,6 +184,14 @@ ul {
 
 ul:last-child {
   margin-bottom: auto;
+}
+
+ul ul {
+  margin-bottom: 0;
+}
+
+ul ul li {
+  list-style-type: disc;
 }
 
 li {
@@ -278,7 +287,7 @@ footer {
 }
 
 .toc ul {
-  padding-left: 1rem;
+  padding-left: 1.2rem;
 }
 
 .console {
@@ -310,6 +319,7 @@ footer {
 
 .bash .console {
   background: var(--background-code);
+  word-break: break-all;
 }
 
 .bash .console .comment:before {
@@ -326,6 +336,7 @@ footer {
 
 .powershell .console {
   background-color: var(--background-powershell);
+  word-break: break-all;
 }
 
 .powershell .console .cmdlet {
@@ -423,7 +434,7 @@ footer {
   }
 
   main {
-    width: 80%;
+    width: 85%;
   }
 
   nav a {
