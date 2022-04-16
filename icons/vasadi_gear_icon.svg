@@ -24,8 +24,8 @@
      inkscape:document-units="mm"
      showgrid="false"
      inkscape:zoom="1.2257751"
-     inkscape:cx="328.36367"
-     inkscape:cy="595.13365"
+     inkscape:cx="328.36366"
+     inkscape:cy="595.13364"
      inkscape:window-width="1512"
      inkscape:window-height="945"
      inkscape:window-x="0"
@@ -40,36 +40,30 @@
      id="layer1">
     <g
        inkscape:label="Rendered Gears"
-       transform="translate(105,148.5)"
+       transform="matrix(2.0575413,0,0,2.1130186,105,148.5)"
        id="g804"
        style="fill:#000000;fill-opacity:1;stroke-width:1;stroke-miterlimit:4;stroke-dasharray:none">
       <path
          style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-miterlimit:4;stroke-dasharray:none"
          d="m 16.62,-2.73723 3.4471,-0.56772 0.7285,0.01124 4.4228,1.74572 V 1.54799 L 20.7956,3.29371 20.0671,3.30495 16.62,2.73723 15.0548,7.55453 18.1772,9.12139 18.76,9.55871 21.312,13.5707 19.4922,16.0753 14.888,14.888 14.292,14.4689 11.837,11.9835 7.73912,14.9607 9.34427,18.0637 9.55871,18.76 9.26513,23.5057 6.32069,24.4625 3.29371,20.7956 3.05789,20.1062 2.53261,16.6524 h -5.06522 l -0.52528,3.4538 -0.23582,0.6894 -3.02698,3.6669 -2.94444,-0.9568 -0.29358,-4.7457 0.21444,-0.6963 1.60515,-3.103 -4.09788,-2.9772 -2.455,2.4854 -0.596,0.4191 -4.6042,1.1873 -1.8198,-2.5046 2.552,-4.01199 0.5828,-0.43732 3.1224,-1.56686 -1.5652,-4.8173 -3.4471,0.56772 -0.7285,-0.01124 -4.4228,-1.74572 v -3.09598 l 4.4228,-1.74572 0.7285,-0.01124 3.4471,0.56772 1.5652,-4.8173 -3.1224,-1.56686 -0.5828,-0.43732 -2.552,-4.01199 1.8198,-2.5046 4.6042,1.1873 0.596,0.4191 2.455,2.4854 4.09788,-2.9772 -1.60515,-3.103 -0.21444,-0.6963 0.29358,-4.7457 2.94444,-0.9568 3.02698,3.6669 0.23582,0.6894 0.52528,3.4538 h 5.06522 l 0.52528,-3.4538 0.23582,-0.6894 3.02698,-3.6669 2.94444,0.9568 0.29358,4.7457 -0.21444,0.6963 -1.60515,3.103 4.09788,2.9772 2.455,-2.4854 0.596,-0.4191 4.6042,-1.1873 1.8198,2.5046 -2.552,4.01199 -0.5828,0.43732 -3.1224,1.56686 z"
          id="path800" />
-      <circle
-         style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-miterlimit:4;stroke-dasharray:none"
+      <path
          id="path802"
-         cx="0"
-         cy="0"
-         r="10.583333" />
+         style="stroke:#000000"
+         d="M 10.583333,0 A 10.583333,10.583333 0 0 1 0,10.583333 10.583333,10.583333 0 0 1 -10.583333,0 10.583333,10.583333 0 0 1 0,-10.583333 10.583333,10.583333 0 0 1 10.583333,0 Z" />
     </g>
-    <circle
-       style="fill:#cccccc;fill-opacity:1;stroke:none;stroke-width:1.27119;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+    <path
        id="path1684"
-       cx="105"
-       cy="148.5"
-       r="9.8841591" />
-    <text
-       xml:space="preserve"
-       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:17.4714px;line-height:1.25;font-family:Helvetica;-inkscape-font-specification:'Helvetica, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.436785"
-       x="99.088043"
-       y="155.31647"
-       id="text3260"><tspan
-         sodipodi:role="line"
-         id="tspan3258"
-         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:17.4714px;font-family:Helvetica;-inkscape-font-specification:'Helvetica, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.436785"
-         x="99.088043"
-         y="155.31647">V</tspan></text>
+       style="fill:#999999;stroke-width:2.65055"
+       d="M 125.33706,148.5 A 20.337066,20.885412 0 0 1 105,169.38542 20.337066,20.885412 0 0 1 84.662931,148.5 20.337066,20.885412 0 0 1 105,127.61459 20.337066,20.885412 0 0 1 125.33706,148.5 Z" />
+    <g
+       aria-label="V"
+       id="text3260"
+       style="font-weight:bold;font-size:17.4714px;line-height:1.25;font-family:Helvetica;-inkscape-font-specification:'Helvetica, Bold';stroke-width:0.436785"
+       transform="matrix(2.0575413,0,0,2.1130186,-111.04184,-165.28326)">
+      <path
+         d="m 99.488998,142.74184 h 2.806682 l 2.72991,9.54614 2.7555,-9.54614 h 2.7299 l -4.29107,12.57463 h -2.48251 z"
+         id="path2553" />
+    </g>
   </g>
 </svg>
