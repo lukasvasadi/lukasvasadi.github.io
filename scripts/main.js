@@ -1,10 +1,14 @@
-var links = document.getElementById('mobile-menu');
+var menu = document.getElementById('mobile-menu');
+var hamburger = document.getElementsByTagName('nav')[0].getElementsByTagName('a')[4];
 
 function menuDropdown() {
-    if (links.style.visibility === 'visible') {
-        links.style.visibility = 'hidden';
-        links.style.background = '#222';
+    if (menu.style.visibility === 'visible') {
+        menu.style.visibility = 'hidden';
+        hamburger.style.backgroundColor = '#222';
+        hamburger.style.color = "#f0f0f0";
     } else {
-        links.style.visibility = 'visible';
+        menu.style.visibility = 'visible';
+        hamburger.style.backgroundColor = '#f0f0f0';
+        hamburger.style.color = "#222";
     }
 }
