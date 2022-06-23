@@ -68,11 +68,32 @@
                     React is primarily a frontend JavaScript library, which was created by Facebook (Meta) in 2013. With
                     React, developers build UI elements as "components," which maintain a state that can be controlled
                     independent of the Document Object Manager (DOM), i.e., UI components can be updated individually,
-                    without refreshing the entire page.
+                    without refreshing the entire page. In my opinion, this is the most compelling reason to use React
+                    alonside Electron, especially when creating applications with high rendering demands, such as a
+                    video player.
                 </p>
             </section>
             <section>
                 <h2 id="setup">Setup</h2>
+                <p>
+                    Electron and React each require a dedicated process.
+                </p>
+                <p>
+                    To start, configure a React application with the <span class="snippet">create-react-app</span>
+                    command line tool:
+                </p>
+                <div class="console">
+                    <p class="command">npx create-react-app project-dirname</p>
+                </div>
+                <p>
+                    Navigate to the new project directory and install the dependencies needed to bridge Electron and
+                    React:
+                </p>
+                <div class="console">
+                    <p class="command">cd project-dirname</p>
+                    <p class="command">yarn add -D concurrently cross-env electron electron-builder electronmon wait-on
+                    </p>
+                </div>
             </section>
         </article>
     </main>
