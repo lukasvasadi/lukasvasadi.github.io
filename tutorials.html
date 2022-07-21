@@ -1,74 +1,96 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Turorials</title>
+    <link rel="stylesheet" href="styles/styles.css" />
+    <link rel="icon" href="icons/vasadi_gear_icon.png" />
+    <script
+      src="https://kit.fontawesome.com/1b5e59a99b.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
 
-<head>
-	<meta charset="UTF-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<meta http-equiv="X-UA-Compatible" content="ie=edge" />
-	<title>Turorials</title>
-	<link rel="stylesheet" href="styles/styles.css" />
-	<link rel="icon" href="icons/vasadi_gear_icon.png">
-	<script src="https://kit.fontawesome.com/1b5e59a99b.js" crossorigin="anonymous"></script>
-</head>
-
-<body>
-	<nav>
-		<a href="index.html" class="code-text">lukasvasadi</a>
-		<div id="desktop-menu">
-			<a href="about.html">About</a>
-			<a href="tutorials.html">Tutorials</a>
-			<a href="mailto:lukas.vasadi@gmail.com"><i class="fa fa-envelope"></i></a>
-		</div>
-		<a href="javascript:void(0);" class="hamburger" onclick="menuDropdown()"><i class="fa fa-bars"></i></a>
-	</nav>
-	<div id="mobile-menu">
-		<a href="about.html">About</a>
-		<a href="tutorials.html">Tutorials</a>
-		<a href="mailto:lukas.vasadi@gmail.com"><i class="fa fa-envelope"></i></a>
-	</div>
-	<main>
-		<section class="grid gallery">
-			<div class="tile">
-				<h2><a href="posts/linux.html">Linux</a></h2>
-				<a href="posts/linux.html"><img src="images/linux_debian_comp.jpg" alt=""></a>
-				<p>Become a superuser.</p>
-			</div>
-			<div class="tile">
-				<h2><a href="posts/powershell.html">PowerShell</a></h2>
-				<a href="posts/powershell.html"><img src="images/windows_laptop_comp.jpg" alt=""></a>
-				<p>Learn modern IT administration.</p>
-			</div>
-			<div class="tile">
-				<h2><a href="posts/git.html">Git</a></h2>
-				<a href="posts/git.html"><img src="images/git_comp.jpg" alt=""></a>
-				<p>Manage any code repository.</p>
-			</div>
-			<!-- <div class="tile">
-				<h2><a href="posts/stm32.html">STM32</a></h2>
-				<a href="posts/stm32.html"><img src="images/stm32.jpg" alt=""></a>
-				<p>STM32 programming with VSCode.</p>
-			</div> -->
-			<div class="tile">
-				<h2><a href="posts/raspi.html">Raspberry Pi</a></h2>
-				<a href="posts/raspi.html"><img src="images/raspi_comp.jpg" alt=""></a>
-				<p>Accelerate hardware prototyping.</p>
-			</div>
-			<div class="tile">
-				<h2><a href="posts/environment.html">Environment Setup</a></h2>
-				<a href="posts/environment.html"><img src="images/macbook_code_comp.jpg" alt=""></a>
-				<p>Configure an environment for high productivity.</p>
-			</div>
-			<!-- <div class="tile">
-				<h2><a href="posts/electron-react.html">Electron React</a></h2>
-				<a href="posts/electron-react.html"><img src="images/react_comp.jpg" alt=""></a>
-				<p>Build an Electron app with a React frontend.</p>
-			</div> -->
-		</section>
-	</main>
-	<footer>
-		<p>Copyright &copy; 2021 Lukas Vasadi</p>
-	</footer>
-	<script src="scripts/main.js"></script>
-</body>
-
+  <body>
+    <nav>
+      <a href="index.html" class="code-text">lukasvasadi</a>
+      <div id="desktop-menu">
+        <a href="about.html">About</a>
+        <a href="tutorials.html">Tutorials</a>
+        <a href="mailto:lukas.vasadi@gmail.com"
+          ><i class="fa fa-envelope"></i
+        ></a>
+      </div>
+      <a href="javascript:void(0);" class="hamburger" onclick="menuDropdown()"
+        ><i class="fa fa-bars"></i
+      ></a>
+    </nav>
+    <div id="mobile-menu">
+      <a href="about.html">About</a>
+      <a href="tutorials.html">Tutorials</a>
+      <a href="mailto:lukas.vasadi@gmail.com"><i class="fa fa-envelope"></i></a>
+    </div>
+    <main>
+      <section class="grid gallery">
+        <div class="tile">
+          <h2><a href="posts/environment.html">Environment Setup</a></h2>
+          <a href="posts/environment.html"
+            ><img src="images/macbook_code_comp.jpg" alt=""
+          /></a>
+          <p>Configure an environment for high productivity.</p>
+        </div>
+        <div class="tile">
+          <h2><a href="posts/git.html">Git</a></h2>
+          <a href="posts/git.html"><img src="images/git_comp.jpg" alt="" /></a>
+          <p>Manage any code repository.</p>
+        </div>
+        <div class="tile">
+          <h2><a href="posts/linux.html">Linux</a></h2>
+          <a href="posts/linux.html"
+            ><img src="images/linux_debian_comp.jpg" alt=""
+          /></a>
+          <p>Become a superuser.</p>
+        </div>
+        <div class="tile">
+          <h2><a href="posts/powershell.html">PowerShell</a></h2>
+          <a href="posts/powershell.html"
+            ><img src="images/windows_laptop_comp.jpg" alt=""
+          /></a>
+          <p>Learn modern IT administration.</p>
+        </div>
+        <!-- <div class="tile">
+          <h2><a href="posts/stm32.html">STM32</a></h2>
+          <a href="posts/stm32.html"><img src="images/stm32.jpg" alt="" /></a>
+          <p>STM32 programming with VSCode.</p>
+        </div> -->
+        <div class="tile">
+          <h2><a href="posts/arduino.html">Arduino</a></h2>
+          <a href="posts/arduino.html"
+            ><img src="images/arduino_electronics_comp.jpg" alt=""
+          /></a>
+          <p>Harness the power of microcontrollers.</p>
+        </div>
+        <div class="tile">
+          <h2><a href="posts/raspi.html">Raspberry Pi</a></h2>
+          <a href="posts/raspi.html"
+            ><img src="images/raspi_comp.jpg" alt=""
+          /></a>
+          <p>Accelerate hardware prototyping.</p>
+        </div>
+        <!-- <div class="tile">
+          <h2><a href="posts/electron-react.html">Electron React</a></h2>
+          <a href="posts/electron-react.html"
+            ><img src="images/react_comp.jpg" alt=""
+          /></a>
+          <p>Build an Electron app with a React frontend.</p>
+        </div> -->
+      </section>
+    </main>
+    <footer>
+      <p>Copyright &copy; 2021 Lukas Vasadi</p>
+    </footer>
+    <script src="scripts/main.js"></script>
+  </body>
 </html>
