@@ -1,171 +1,194 @@
 <!DOCTYPE html>
 <html>
-
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Raspberry Pi</title>
     <link rel="stylesheet" href="../styles/styles.css" />
-    <link rel="icon" href="../icons/vasadi_gear_icon.png">
-    <script src="https://kit.fontawesome.com/1b5e59a99b.js" crossorigin="anonymous"></script>
-</head>
+    <link rel="icon" href="../icons/vasadi_gear_icon.png" />
+    <script
+      src="https://kit.fontawesome.com/1b5e59a99b.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
 
-<body>
+  <body>
     <nav>
-        <a href="../index.html" class="code-text">lukasvasadi</a>
-        <div id="desktop-menu">
-            <a href="../about.html">About</a>
-            <a href="../tutorials.html">Tutorials</a>
-            <a href="mailto:lukas.vasadi@gmail.com"><i class="fa fa-envelope"></i></a>
-        </div>
-        <a href="javascript:void(0);" class="hamburger" onclick="menuDropdown()"><i class="fa fa-bars"></i></a>
-    </nav>
-    <div id="mobile-menu">
+      <a href="../index.html" class="code-text">lukasvasadi</a>
+      <div id="desktop-menu">
         <a href="../about.html">About</a>
         <a href="../tutorials.html">Tutorials</a>
-        <a href="lukas.vasadi@gmail.com" class="icon"><i class="fa fa-envelope"></i></a>
+        <a href="mailto:lukas.vasadi@gmail.com"
+          ><i class="fa fa-envelope"></i
+        ></a>
+      </div>
+      <a href="javascript:void(0);" class="hamburger" onclick="menuDropdown()"
+        ><i class="fa fa-bars"></i
+      ></a>
+    </nav>
+    <div id="mobile-menu">
+      <a href="../about.html">About</a>
+      <a href="../tutorials.html">Tutorials</a>
+      <a href="lukas.vasadi@gmail.com" class="icon"
+        ><i class="fa fa-envelope"></i
+      ></a>
     </div>
     <div class="title">
-        <h1 class="center">Automation with Raspberry Pi</h1>
-        <h4 class="center">Last updated: November 2021</h4>
+      <h1 class="center">Automation with Raspberry Pi</h1>
+      <h4 class="center">Last updated: November 2021</h4>
     </div>
     <main>
-        <div class="toc">
-            <h2>Contents</h2>
-            <ul>
-                <li><a href="#intro">Introduction</a></li>
-                <li><a href="#updates">Updates</a></li>
-                <li><a href="#remote-access">Remote access</a></li>
-                <li><a href="#python">Python</a></li>
-            </ul>
-        </div>
-        <article class="bash">
-            <section>
-                <h2 id="intro">Introduction</h2>
-                <p>
-                    This guide assumes a basic knowledge of bash and the physical layout of a Raspberry Pi.
-                </p>
-            </section>
-            <section>
-                <h2 id="updates">Updates</h2>
-                <p>
-                    Most Raspberry Pi users run the official Raspberry Pi OS, which is a flavor of the Debian Linux
-                    distribution. As such, all distribution and package updates can be executed through the terminal.
-                </p>
-                <p>
-                    To update all installed software packages:
-                </p>
-                <div class="console">
-                    <p class="command">sudo apt-get update</p>
-                </div>
-                <p>
-                    Similarly, to upgrade the OS distribution:
-                </p>
-                <div class="console">
-                    <p class="command">sudo apt-get dist-upgrade</p>
-                </div>
-                <p>
-                    Note, after running this command, you must reboot the Pi for the new distribution changes to load:
-                </p>
-                <div class="console">
-                    <p class="command">sudo reboot</p>
-                </div>
-                <p>
-                    An alternative method to restart the Pi:
-                </p>
-                <div class="console">
-                    <p class="command">sudo shutdown -r now</p>
-                </div>
-            </section>
-            <section>
-                <h2 id="remote-access">Remote access</h2>
-                <p>
-                    Gaining remote access to the Pi will require knowledge of its IP address:
-                </p>
-                <div class="console">
-                    <p class="command">hostname -I</p>
-                </div>
-                <p>
-                    Note that some of the following methods may fail due to certain network configurations, such as a
-                    firewall that prohibits remote connections for safety.
-                </p>
-                <h3>SSH</h3>
-                <p>
-                    Enable SSH in system settings (either through the console or GUI) and reboot. After determining the
-                    IP address, use the <span class="snippet">ssh</span> utility on the remote machine (remember that
-                    "pi" and "raspberry" are the default username and password, respectively):
-                </p>
-                <div class="console">
-                    <p class="command">ssh pi@XXX.XX.XX.XX</p>
-                </div>
-                <h3>Xrdp remote desktop server</h3>
-                <p>
-                    Microsoft Xrdp is a free opensource desktop protocol service that can be used with any operating
-                    system. After updating the Pi, install the following packages:
-                </p>
-                <div class="console">
-                    <p class="command">sudo apt-get install raspberrypi-ui-mods xinit xserver-xorg xrdp</p>
-                </div>
-                <p>
-                    Restart the Pi:
-                </p>
-                <div class="console">
-                    <p class="command">sudo reboot</p>
-                </div>
-                <p>
-                    Now, input the Pi IP address and login credentials into the <span class="emph">Remote Desktop
-                        Connection</span> app on Windows or the <span class="emph">Microsoft Remote Desktop</span> for
-                    Mac. After a few seconds, the system should connect and launch a window with the Pi GUI.
-                </p>
-            </section>
-            <section>
-                <h2 id="python">Python</h2>
-                <h3>Virtual Environments</h3>
-                <p>
-                    Although most users have a dedicated use for their Pi, some may work across several projects that
-                    have conflicting Python version or package requirements. In this case, virtual environments would
-                    enable one Pi to run multiple versions of Python with isolated library installations.
-                </p>
-                <p>
-                    Although Python has its own tool to create virtual environments, we recommend using <a
-                        href="https://realpython.com/intro-to-pyenv/">pyenv</a> for Python version control and
-                    environment management. Installing this tool requires the following system packages:
-                </p>
-                <div class="console">
-                    <p class="command">sudo apt-get install -y make build-essential libssl-dev zlib1g-dev libbz2-dev
-                        libreadline-dev libsqlite3-dev wget curl llvm libncurses5-dev libncursesw5-dev xz-utils tk-dev
-                        libffi-dev liblzma-dev</p>
-                </div>
-                <p>
-                    Once those packages have been installed, run the pyenv installation script:
-                </p>
-                <div class="console">
-                    <p class="command">curl https://pyenv.run | bash</p>
-                </div>
-                <p>
-                    Then, add the following to bashrc to update the PATH variable:
-                </p>
-                <div class="console">
-                    <p class="command">echo 'export PATH="$HOME/.pyenv/bin:$PATH"' >> ~/.bashrc</p>
-                    <p class="command">echo 'export PATH="$HOME/.pyenv/shims:$PATH"' >> ~/.bashrc</p>
-                    <p class="command">echo 'eval "$(pyenv init -)"' >> ~/.bashrc</p>
-                    <p class="command">echo 'eval "$(pyenv virtualenv-init -)"' >> ~/.bashrc</p>
-                </div>
-                <p>
-                    Finally, reset the shell for the changes to take effect:
-                </p>
-                <div class="console">
-                    <p class="command">exec $SHELL</p>
-                </div>
-            </section>
-        </article>
+      <div class="toc">
+        <h2>Contents</h2>
+        <ul>
+          <li><a href="#intro">Introduction</a></li>
+          <li><a href="#updates">Updates</a></li>
+          <li><a href="#remote-access">Remote access</a></li>
+          <li><a href="#python">Python</a></li>
+        </ul>
+      </div>
+      <article class="bash">
+        <section>
+          <h2 id="intro">Introduction</h2>
+          <p>
+            This guide assumes a basic knowledge of bash and the physical layout
+            of a Raspberry Pi.
+          </p>
+          <!-- https://www.clipartmax.com/middle/m2i8A0Z5Z5d3N4A0_open-raspberry-pi-vector-png/ -->
+          <img src="../images/raspi_cartoon.png" alt="" />
+        </section>
+        <section>
+          <h2 id="updates">Updates</h2>
+          <p>
+            Most Raspberry Pi users run the official Raspberry Pi OS, which is a
+            flavor of the Debian Linux distribution. As such, all distribution
+            and package updates can be executed through the terminal.
+          </p>
+          <p>To update all installed software packages:</p>
+          <div class="console">
+            <p class="command">sudo apt-get update</p>
+          </div>
+          <p>Similarly, to upgrade the OS distribution:</p>
+          <div class="console">
+            <p class="command">sudo apt-get dist-upgrade</p>
+          </div>
+          <p>
+            Note, after running this command, you must reboot the Pi for the new
+            distribution changes to load:
+          </p>
+          <div class="console">
+            <p class="command">sudo reboot</p>
+          </div>
+          <p>An alternative method to restart the Pi:</p>
+          <div class="console">
+            <p class="command">sudo shutdown -r now</p>
+          </div>
+        </section>
+        <section>
+          <h2 id="remote-access">Remote access</h2>
+          <p>
+            Gaining remote access to the Pi will require knowledge of its IP
+            address:
+          </p>
+          <div class="console">
+            <p class="command">hostname -I</p>
+          </div>
+          <p>
+            Note that some of the following methods may fail due to certain
+            network configurations, such as a firewall that prohibits remote
+            connections for safety.
+          </p>
+          <h3>SSH</h3>
+          <p>
+            Enable SSH in system settings (either through the console or GUI)
+            and reboot. After determining the IP address, use the
+            <span class="snippet">ssh</span> utility on the remote machine
+            (remember that "pi" and "raspberry" are the default username and
+            password, respectively):
+          </p>
+          <div class="console">
+            <p class="command">ssh pi@XXX.XX.XX.XX</p>
+          </div>
+          <h3>Xrdp remote desktop server</h3>
+          <p>
+            Microsoft Xrdp is a free opensource desktop protocol service that
+            can be used with any operating system. After updating the Pi,
+            install the following packages:
+          </p>
+          <div class="console">
+            <p class="command">
+              sudo apt-get install raspberrypi-ui-mods xinit xserver-xorg xrdp
+            </p>
+          </div>
+          <p>Restart the Pi:</p>
+          <div class="console">
+            <p class="command">sudo reboot</p>
+          </div>
+          <p>
+            Now, input the Pi IP address and login credentials into the
+            <span class="emph">Remote Desktop Connection</span> app on Windows
+            or the <span class="emph">Microsoft Remote Desktop</span> for Mac.
+            After a few seconds, the system should connect and launch a window
+            with the Pi GUI.
+          </p>
+        </section>
+        <section>
+          <h2 id="python">Python</h2>
+          <h3>Virtual Environments</h3>
+          <p>
+            Although most users have a dedicated use for their Pi, some may work
+            across several projects that have conflicting Python version or
+            package requirements. In this case, virtual environments would
+            enable one Pi to run multiple versions of Python with isolated
+            library installations.
+          </p>
+          <p>
+            Although Python has its own tool to create virtual environments, we
+            recommend using
+            <a href="https://realpython.com/intro-to-pyenv/">pyenv</a> for
+            Python version control and environment management. Installing this
+            tool requires the following system packages:
+          </p>
+          <div class="console">
+            <p class="command">
+              sudo apt-get install -y make build-essential libssl-dev zlib1g-dev
+              libbz2-dev libreadline-dev libsqlite3-dev wget curl llvm
+              libncurses5-dev libncursesw5-dev xz-utils tk-dev libffi-dev
+              liblzma-dev
+            </p>
+          </div>
+          <p>
+            Once those packages have been installed, run the pyenv installation
+            script:
+          </p>
+          <div class="console">
+            <p class="command">curl https://pyenv.run | bash</p>
+          </div>
+          <p>Then, add the following to bashrc to update the PATH variable:</p>
+          <div class="console">
+            <p class="command">
+              echo 'export PATH="$HOME/.pyenv/bin:$PATH"' >> ~/.bashrc
+            </p>
+            <p class="command">
+              echo 'export PATH="$HOME/.pyenv/shims:$PATH"' >> ~/.bashrc
+            </p>
+            <p class="command">echo 'eval "$(pyenv init -)"' >> ~/.bashrc</p>
+            <p class="command">
+              echo 'eval "$(pyenv virtualenv-init -)"' >> ~/.bashrc
+            </p>
+          </div>
+          <p>Finally, reset the shell for the changes to take effect:</p>
+          <div class="console">
+            <p class="command">exec $SHELL</p>
+          </div>
+        </section>
+      </article>
     </main>
     <footer>
-        <p>Copyright &copy; 2021 Lukas Vasadi</p>
+      <p>Copyright &copy; 2021 Lukas Vasadi</p>
     </footer>
     <script src="../scripts/main.js"></script>
     <script src="../scripts/post.js"></script>
-</body>
-
+  </body>
 </html>

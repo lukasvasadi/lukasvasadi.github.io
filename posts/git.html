@@ -1,255 +1,287 @@
 <!DOCTYPE html>
 <html>
-
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Git</title>
     <link rel="stylesheet" href="../styles/styles.css" />
-    <link rel="icon" href="../icons/vasadi_gear_icon.png">
-    <script src="https://kit.fontawesome.com/1b5e59a99b.js" crossorigin="anonymous"></script>
-</head>
+    <link rel="icon" href="../icons/vasadi_gear_icon.png" />
+    <script
+      src="https://kit.fontawesome.com/1b5e59a99b.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
 
-<body>
+  <body>
     <nav>
-        <a href="../index.html" class="code-text">lukasvasadi</a>
-        <div id="desktop-menu">
-            <a href="../about.html">About</a>
-            <a href="../tutorials.html">Tutorials</a>
-            <a href="mailto:lukas.vasadi@gmail.com"><i class="fa fa-envelope"></i></a>
-        </div>
-        <a href="javascript:void(0);" class="hamburger" onclick="menuDropdown()"><i class="fa fa-bars"></i></a>
-    </nav>
-    <div id="mobile-menu">
+      <a href="../index.html" class="code-text">lukasvasadi</a>
+      <div id="desktop-menu">
         <a href="../about.html">About</a>
         <a href="../tutorials.html">Tutorials</a>
-        <a href="lukas.vasadi@gmail.com" class="icon"><i class="fa fa-envelope"></i></a>
+        <a href="mailto:lukas.vasadi@gmail.com"
+          ><i class="fa fa-envelope"></i
+        ></a>
+      </div>
+      <a href="javascript:void(0);" class="hamburger" onclick="menuDropdown()"
+        ><i class="fa fa-bars"></i
+      ></a>
+    </nav>
+    <div id="mobile-menu">
+      <a href="../about.html">About</a>
+      <a href="../tutorials.html">Tutorials</a>
+      <a href="lukas.vasadi@gmail.com" class="icon"
+        ><i class="fa fa-envelope"></i
+      ></a>
     </div>
     <div class="title">
-        <h1 class="center">Using git to manage code repositories</h1>
-        <h4 class="center">Last updated: February 2022</h4>
+      <h1 class="center">Using git to manage code repositories</h1>
+      <h4 class="center">Last updated: February 2022</h4>
     </div>
     <main>
-        <div class="toc">
-            <h2>Contents</h2>
-            <ul>
-                <li><a href="#intro">Introduction</a></li>
-                <li><a href="#repositories">Repositories</a></li>
-                <li><a href="#commits">Commits</a></li>
-                <li><a href="#create-branch">Creating branches</a></li>
-                <li><a href="#delete-branch">Deleting branches</a></li>
-                <li><a href="#rename-branch">Renaming branches</a></li>
-                <li><a href="#submodules">Submodules</a></li>
-            </ul>
-        </div>
-        <article class="bash">
-            <section>
-                <h2 id="intro">Introduction</h2>
-                <p>
-                    This guide assumes that git has been installed on the local machine. Furthermore, for simplicity, it
-                    is assumed that the user has Git Bash&mdash;especially for Windows&mdash;or a standard <span
-                        class="snippet">bash</span>/<span class="snippet">zsh</span> console with access to the git
-                    command line tools, along with a GitHub account.
-                </p>
-            </section>
-            <section>
-                <h2 id="repositories">Repositories</h2>
-                <p>
-                    Often, the first step to managing a project is to create or clone a git repository. GitHub is the
-                    most common remote repository web application, allowing developers to store large code bases, track
-                    changes, and collaborate. To create a git repository from a local project directory:
-                </p>
-                <div class="console">
-                    <p class="command">cd project</p>
-                    <p class="command">git init</p>
-                </div>
-                <p>
-                    Often, it is desired to identify specific files or directories to ignore from tracking. The relative
-                    path names of these files and directories can be added to a special gitignore file, which is located
-                    in the project root:
-                </p>
-                <div class="console">
-                    <p class="command">touch .gitignore</p>
-                    <p class="comment"><span>many developers choose to ignore directories that host virtual
-                            environments</span></p>
-                    <p class="command">echo venv >> .gitignore</p>
-                </div>
-                <p>
-                    At this point, the repository is ready to be committed:
-                </p>
-                <div class="console">
-                    <p class="command">git add -A</p>
-                    <p class="command">git commit -m "first commit"</p>
-                </div>
-                <p>
-                    On GitHub, create a new repository with the option "Push an existing repository..." Then return to
-                    the console and push the code base to the remote server:
-                </p>
-                <div class="console">
-                    <p class="command">git remote add origin git@github.com:username/reponame</p>
-                    <p class="command">git push -u origin main"</p>
-                </div>
-                <p>
-                    Likewise, to clone a repository from GitHub:
-                </p>
-                <div class="console">
-                    <p class="command">git clone git@github.com:username/reponame</p>
-                </div>
-            </section>
-            <section>
-                <h2 id="commits">Commits</h2>
-                <p>
-                    To check the status of current changes:
-                </p>
-                <div class="console">
-                    <p class="command">git status</p>
-                </div>
-                <p>
-                    To inspect individual files:
-                </p>
-                <div class="console">
-                    <p class="command">git diff &lt;filename&gt;</p>
-                </div>
-                <p>
-                    To add changes to a commit:
-                </p>
-                <div class="console">
-                    <p class="comment"><span>add all files with changes</span></p>
-                    <p class="command">git add -A</p>
-                    <p class="comment"><span>add an individual file</span></p>
-                    <p class="command">git add &lt;filename&gt;</p>
-                    <p class="comment"><span>add parts of an individual file (patch level)</span></p>
-                    <p class="command">git add -p &lt;filename&gt;</p>
-                </div>
-                <p>
-                    In general, it is recommended to separate changes into individual commits based on topic. Once
-                    changes are saved for commit:
-                </p>
-                <div class="console">
-                    <p class="comment"><span>commit changes with full description</span></p>
-                    <p class="command">git commit</p>
-                    <p class="comment"><span>alternatively, use a brief inline message</span></p>
-                    <p class="command">git commit -m "brief description of changes"</p>
-                </div>
-                <p>
-                    Using <span class="snippet">commit</span> with no parameters will open a text editor for a
-                    description of the changes. The first line is reserved for the <span class="emph">subject</span>,
-                    which briefly summarizes the commit, and all subsequent lines will belong to the <span
-                        class="emph">body</span> for more detailed comments.
-                </p>
-                <p>
-                    Use <span class="snippet">git stash</span> to switch branches without committing changes.
-                </p>
-                <p>
-                    Sometimes conflicts arise when merging two branches. In this case, one option is to simply undo the
-                    merge and reevaluate:
-                </p>
-                <div class="console">
-                    <p class="command">git merge --abort</p>
-                </div>
-            </section>
-            <section>
-                <h2 id="create-branch">Creating branches</h2>
-                <p>
-                    The first branch created when initializing a repository is the <span class="snippet">main</span>
-                    branch. This branch serves as the project root and, though uncommon, may be renamed. Developers
-                    create separate daughter branches, where specific features are developed and tested, to prevent
-                    breaking changes from entering the project root.
-                </p>
-                <p>
-                    To see a list of local branches on a repository:
-                </p>
-                <div class="console">
-                    <p class="command">git branch</p>
-                </div>
-                <p>
-                    To see a list of local and remote branches:
-                </p>
-                <div class="console">
-                    <p class="comment"><span>use fetch to update the repository based on remote changes</span></p>
-                    <p class="command">git fetch</p>
-                    <p class="command">git branch -a</p>
-                </div>
-                <p>
-                    To create a new branch on an existing project:
-                </p>
-                <div class="console">
-                    <p class="command">git branch &lt;branch-name&gt;</p>
-                </div>
-                <p>
-                    To push changes to a new branch upstream:
-                </p>
-                <div class="console">
-                    <p class="command">git push --set-upstream origin &lt;branch-name&gt;</p>
-                </div>
-            </section>
-            <section>
-                <h2 id="delete-branch">Deleting branches</h2>
-                <p>
-                    When "trimming" branches, it is often desired to remove both the local and remote instances.
-                </p>
-                <div class="console">
-                    <p class="comment"><span>delete remote branch where remote name is origin</span></p>
-                    <p class="command">git push -d origin branch-name</p>
-                    <p class="comment"><span>delete local branch instance</span></p>
-                    <p class="command">git branch -d branch-name</p>
-                    <p class="comment"><span>force local branch deletion</span></p>
-                    <p class="command">git branch -D branch-name</p>
-                </div>
-                <p>
-                    In the above code block, the first command deletes the remote branch, which shares the same name as
-                    the local branch. The <span class="code-snippet">-d</span> option is an alias for <span
-                        class="code-snippet">--delete</span>. Similarly, the <span class="code-snippet">-D</span> option
-                    is an alias for <span class="code-snippet">--delete --force</span>, which will delete the local
-                    branch regardless of its merge status&mdash;unmerged branches throw an error when the user attempts
-                    deletion.
-                </p>
-                <p>
-                    After trimming branches, the local list of remote branches may need to be updated manually to
-                    reflect the changes.
-                </p>
-                <div class="console">
-                    <p class="comment"><span>update local records</span></p>
-                    <p class="command">git remote update origin --prune</p>
-                    <p class="comment"><span>check that list reflects recent changes</span></p>
-                    <p class="command">git branch -a</p>
-                </div>
-            </section>
-            <section>
-                <h2 id="rename-branch">Renaming branches</h2>
-                <p>
-                    To rename a branch, first update the name of the local branch, then push the "new" renamed branch
-                    and delete the old version.
-                </p>
-                <div class="console">
-                    <p class="comment"><span>navigate to branch</span></p>
-                    <p class="command">git checkout old-branchname</p>
-                    <p class="comment"><span>rename local branch</span></p>
-                    <p class="command">git branch -m new-branchname</p>
-                    <p class="comment"><span>push branch to remote origin</span></p>
-                    <p class="command">git push origin -u new-branchname</p>
-                    <p class="comment"><span>delete old remote branch</span></p>
-                    <p class="command">git push origin -d old-branchname</p>
-                </div>
-            </section>
-            <section>
-                <h2 id="submodules">Submodules</h2>
-                <p>
-                    Submodules are one way to incorporate code from other projects that exist as git repositories.
-                </p>
-                <div class="console">
-                    <p class="comment"><span>convert existing https submodules to ssh</span></p>
-                    <p class="command">perl -i -p -e 's|https://(.*?)/|git@\1:|g' .gitmodules</p>
-                </div>
-            </section>
-        </article>
+      <div class="toc">
+        <h2>Contents</h2>
+        <ul>
+          <li><a href="#intro">Introduction</a></li>
+          <li><a href="#repositories">Repositories</a></li>
+          <li><a href="#commits">Commits</a></li>
+          <li><a href="#create-branch">Creating branches</a></li>
+          <li><a href="#delete-branch">Deleting branches</a></li>
+          <li><a href="#rename-branch">Renaming branches</a></li>
+          <li><a href="#submodules">Submodules</a></li>
+        </ul>
+      </div>
+      <article class="bash">
+        <section>
+          <h2 id="intro">Introduction</h2>
+          <p>
+            This guide assumes that git has been installed on the local machine.
+            Furthermore, for simplicity, it is assumed that the user has Git
+            Bash&mdash;especially for Windows&mdash;or a standard
+            <span class="snippet">bash</span>/<span class="snippet">zsh</span>
+            console with access to the git command line tools, along with a
+            GitHub account.
+          </p>
+          <img src="../images/git_logo.png" alt="" />
+        </section>
+        <section>
+          <h2 id="repositories">Repositories</h2>
+          <p>
+            Often, the first step to managing a project is to create or clone a
+            git repository. GitHub is the most common remote repository web
+            application, allowing developers to store large code bases, track
+            changes, and collaborate. To create a git repository from a local
+            project directory:
+          </p>
+          <div class="console">
+            <p class="command">cd project</p>
+            <p class="command">git init</p>
+          </div>
+          <p>
+            Often, it is desired to identify specific files or directories to
+            ignore from tracking. The relative path names of these files and
+            directories can be added to a special gitignore file, which is
+            located in the project root:
+          </p>
+          <div class="console">
+            <p class="command">touch .gitignore</p>
+            <p class="comment">
+              <span
+                >many developers choose to ignore directories that host virtual
+                environments</span
+              >
+            </p>
+            <p class="command">echo venv >> .gitignore</p>
+          </div>
+          <p>At this point, the repository is ready to be committed:</p>
+          <div class="console">
+            <p class="command">git add -A</p>
+            <p class="command">git commit -m "first commit"</p>
+          </div>
+          <p>
+            On GitHub, create a new repository with the option "Push an existing
+            repository..." Then return to the console and push the code base to
+            the remote server:
+          </p>
+          <div class="console">
+            <p class="command">
+              git remote add origin git@github.com:username/reponame
+            </p>
+            <p class="command">git push -u origin main"</p>
+          </div>
+          <p>Likewise, to clone a repository from GitHub:</p>
+          <div class="console">
+            <p class="command">git clone git@github.com:username/reponame</p>
+          </div>
+        </section>
+        <section>
+          <h2 id="commits">Commits</h2>
+          <p>To check the status of current changes:</p>
+          <div class="console">
+            <p class="command">git status</p>
+          </div>
+          <p>To inspect individual files:</p>
+          <div class="console">
+            <p class="command">git diff &lt;filename&gt;</p>
+          </div>
+          <p>To add changes to a commit:</p>
+          <div class="console">
+            <p class="comment"><span>add all files with changes</span></p>
+            <p class="command">git add -A</p>
+            <p class="comment"><span>add an individual file</span></p>
+            <p class="command">git add &lt;filename&gt;</p>
+            <p class="comment">
+              <span>add parts of an individual file (patch level)</span>
+            </p>
+            <p class="command">git add -p &lt;filename&gt;</p>
+          </div>
+          <p>
+            In general, it is recommended to separate changes into individual
+            commits based on topic. Once changes are saved for commit:
+          </p>
+          <div class="console">
+            <p class="comment">
+              <span>commit changes with full description</span>
+            </p>
+            <p class="command">git commit</p>
+            <p class="comment">
+              <span>alternatively, use a brief inline message</span>
+            </p>
+            <p class="command">git commit -m "brief description of changes"</p>
+          </div>
+          <p>
+            Using <span class="snippet">commit</span> with no parameters will
+            open a text editor for a description of the changes. The first line
+            is reserved for the <span class="emph">subject</span>, which briefly
+            summarizes the commit, and all subsequent lines will belong to the
+            <span class="emph">body</span> for more detailed comments.
+          </p>
+          <p>
+            Use <span class="snippet">git stash</span> to switch branches
+            without committing changes.
+          </p>
+          <p>
+            Sometimes conflicts arise when merging two branches. In this case,
+            one option is to simply undo the merge and reevaluate:
+          </p>
+          <div class="console">
+            <p class="command">git merge --abort</p>
+          </div>
+        </section>
+        <section>
+          <h2 id="create-branch">Creating branches</h2>
+          <p>
+            The first branch created when initializing a repository is the
+            <span class="snippet">main</span>
+            branch. This branch serves as the project root and, though uncommon,
+            may be renamed. Developers create separate daughter branches, where
+            specific features are developed and tested, to prevent breaking
+            changes from entering the project root.
+          </p>
+          <p>To see a list of local branches on a repository:</p>
+          <div class="console">
+            <p class="command">git branch</p>
+          </div>
+          <p>To see a list of local and remote branches:</p>
+          <div class="console">
+            <p class="comment">
+              <span
+                >use fetch to update the repository based on remote
+                changes</span
+              >
+            </p>
+            <p class="command">git fetch</p>
+            <p class="command">git branch -a</p>
+          </div>
+          <p>To create a new branch on an existing project:</p>
+          <div class="console">
+            <p class="command">git branch &lt;branch-name&gt;</p>
+          </div>
+          <p>To push changes to a new branch upstream:</p>
+          <div class="console">
+            <p class="command">
+              git push --set-upstream origin &lt;branch-name&gt;
+            </p>
+          </div>
+        </section>
+        <section>
+          <h2 id="delete-branch">Deleting branches</h2>
+          <p>
+            When "trimming" branches, it is often desired to remove both the
+            local and remote instances.
+          </p>
+          <div class="console">
+            <p class="comment">
+              <span>delete remote branch where remote name is origin</span>
+            </p>
+            <p class="command">git push -d origin branch-name</p>
+            <p class="comment"><span>delete local branch instance</span></p>
+            <p class="command">git branch -d branch-name</p>
+            <p class="comment"><span>force local branch deletion</span></p>
+            <p class="command">git branch -D branch-name</p>
+          </div>
+          <p>
+            In the above code block, the first command deletes the remote
+            branch, which shares the same name as the local branch. The
+            <span class="code-snippet">-d</span> option is an alias for
+            <span class="code-snippet">--delete</span>. Similarly, the
+            <span class="code-snippet">-D</span> option is an alias for
+            <span class="code-snippet">--delete --force</span>, which will
+            delete the local branch regardless of its merge
+            status&mdash;unmerged branches throw an error when the user attempts
+            deletion.
+          </p>
+          <p>
+            After trimming branches, the local list of remote branches may need
+            to be updated manually to reflect the changes.
+          </p>
+          <div class="console">
+            <p class="comment"><span>update local records</span></p>
+            <p class="command">git remote update origin --prune</p>
+            <p class="comment">
+              <span>check that list reflects recent changes</span>
+            </p>
+            <p class="command">git branch -a</p>
+          </div>
+        </section>
+        <section>
+          <h2 id="rename-branch">Renaming branches</h2>
+          <p>
+            To rename a branch, first update the name of the local branch, then
+            push the "new" renamed branch and delete the old version.
+          </p>
+          <div class="console">
+            <p class="comment"><span>navigate to branch</span></p>
+            <p class="command">git checkout old-branchname</p>
+            <p class="comment"><span>rename local branch</span></p>
+            <p class="command">git branch -m new-branchname</p>
+            <p class="comment"><span>push branch to remote origin</span></p>
+            <p class="command">git push origin -u new-branchname</p>
+            <p class="comment"><span>delete old remote branch</span></p>
+            <p class="command">git push origin -d old-branchname</p>
+          </div>
+        </section>
+        <section>
+          <h2 id="submodules">Submodules</h2>
+          <p>
+            Submodules are one way to incorporate code from other projects that
+            exist as git repositories.
+          </p>
+          <div class="console">
+            <p class="comment">
+              <span>convert existing https submodules to ssh</span>
+            </p>
+            <p class="command">
+              perl -i -p -e 's|https://(.*?)/|git@\1:|g' .gitmodules
+            </p>
+          </div>
+        </section>
+      </article>
     </main>
     <footer>
-        <p>Copyright &copy; 2021 Lukas Vasadi</p>
+      <p>Copyright &copy; 2021 Lukas Vasadi</p>
     </footer>
     <script src="../scripts/main.js"></script>
     <script src="../scripts/post.js"></script>
-</body>
-
+  </body>
 </html>
