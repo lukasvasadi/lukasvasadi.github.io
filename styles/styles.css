@@ -2,6 +2,8 @@
 @import url("https://fonts.googleapis.com/css2?family=Lato");
 @import url("https://fonts.googleapis.com/css2?family=Fira+Code");
 
+/* Monokai color scheme */
+/* https://gist.github.com/r-malon/8fc669332215c8028697a0bbfbfbb32a */
 :root {
   --background: #222;
   --background-alt: #f0f0f0;
@@ -14,6 +16,15 @@
   --text-emph: #9333ff;
   --text-highlight: #d6c13a;
   --links: #759dff;
+  --monokai-background: #2e2e2e;
+  --monokai-comments: #797979;
+  --monokai-white: #d6d6d6;
+  --monokai-yellow: #e5b567;
+  --monokai-green: #b4d273;
+  --monokai-orange: #e87d3e;
+  --monokai-purple: #9e86c8;
+  --monokai-pink: #b05279;
+  --monokai-blue: #6c99bb;
 }
 
 * {
@@ -168,6 +179,11 @@ article section .console p {
   margin-bottom: auto;
 }
 
+article img {
+  width: 80%;
+  margin: auto;
+}
+
 h1,
 h2,
 h3 {
@@ -280,7 +296,7 @@ footer {
 }
 
 .title {
-  margin: auto 1rem;
+  margin: 2rem 1rem;
 }
 
 .toc {
@@ -389,6 +405,53 @@ footer {
   padding: 0.1rem 0.3rem;
 }
 
+.script {
+  font-family: "Fira Code", "Roboto Condensed", sans-serif;
+  font-size: 16px;
+  color: var(--monokai-white);
+  border-radius: 10px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+
+.script p {
+  padding-bottom: 0rem;
+  margin-bottom: 0rem;
+}
+
+.script p:last-child {
+  padding-bottom: 0;
+}
+
+.monokai .script {
+  background: var(--monokai-background);
+}
+
+.monokai .script .indent {
+  padding-left: 1em;
+}
+
+.monokai .script .keyword {
+  color: var(--monokai-green);
+}
+
+.monokai .script .func {
+  color: var(--monokai-blue);
+}
+
+.monokai .script .dtype {
+  color: var(--monokai-pink);
+}
+
+.monokai .script .num {
+  color: var(--monokai-purple);
+}
+
+.monokai .script .comment {
+  color: var(--monokai-comments);
+  font-style: italic;
+}
+
 .code-text {
   font-family: "Fira Code", "Roboto Condensed", sans-serif;
 }
@@ -419,7 +482,13 @@ footer {
     margin-bottom: 5rem;
   }
 
+  article img {
+    width: 50%;
+    margin: auto;
+  }
+
   .gallery {
+    margin-top: 2rem;
     grid-template-columns: repeat(2, 1fr);
     column-gap: 1rem;
   }
@@ -432,6 +501,15 @@ footer {
     /* padding: 1rem; */
     margin-bottom: 1rem;
     word-wrap: break-word;
+  }
+
+  .flex {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .flex img {
+    width: 30%;
   }
 }
 
