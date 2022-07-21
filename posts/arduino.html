@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Arduino</title>
+    <link rel="stylesheet" href="../styles/styles.css" />
+    <link rel="icon" href="../icons/vasadi_gear_icon.png" />
+    <script
+      src="https://kit.fontawesome.com/1b5e59a99b.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+
+  <body>
+    <nav>
+      <a href="../index.html" class="code-text">lukasvasadi</a>
+      <div id="desktop-menu">
+        <a href="../about.html">About</a>
+        <a href="../tutorials.html">Tutorials</a>
+        <a href="mailto:lukas.vasadi@gmail.com"
+          ><i class="fa fa-envelope"></i
+        ></a>
+      </div>
+      <a href="javascript:void(0);" class="hamburger" onclick="menuDropdown()"
+        ><i class="fa fa-bars"></i
+      ></a>
+    </nav>
+    <div id="mobile-menu">
+      <a href="../about.html">About</a>
+      <a href="../tutorials.html">Tutorials</a>
+      <a href="lukas.vasadi@gmail.com" class="icon"
+        ><i class="fa fa-envelope"></i
+      ></a>
+    </div>
+    <div class="title">
+      <h1 class="center">A brain for your electronics projects</h1>
+      <h4 class="center">Last updated: July 2022</h4>
+    </div>
+    <main>
+      <div class="toc">
+        <h2>Contents</h2>
+        <ul>
+          <li><a href="#intro">Introduction</a></li>
+          <li><a href="#code-structure">Code Structure</a></li>
+        </ul>
+      </div>
+      <article class="monokai">
+        <section>
+          <h2 id="intro">Introduction</h2>
+          <p>Arduino is an opensource platform for microcontroller boards.</p>
+          <!-- https://www.pngegg.com/en/png-ofzaw -->
+          <img src="../images/arduino_cartoon.png" alt="" />
+        </section>
+        <section>
+          <h2 id="code-structure">Code Structure</h2>
+          <div class="script">
+            <p>
+              <span class="dtype">int</span> <span class="var">led</span> =
+              <span class="num">13</span>;
+            </p>
+            <p>
+              <span class="keyword">void</span>
+              <span class="func">setup</span>() {
+            </p>
+            <p class="indent">
+              <span class="comment">// set led pin as output</span>
+            </p>
+            <p class="indent">
+              <span class="func">pinMode</span>(<span class="var"
+                >led, OUTPUT</span
+              >);
+            </p>
+            <p>}</p>
+            <p>
+              <span class="keyword">void</span>
+              <span class="func">loop</span>() {
+            </p>
+            <p class="indent">
+              <span class="comment">// toggle led on and off</span>
+            </p>
+            <p class="indent">
+              <span class="func">digitalWrite</span>(<span class="var"
+                >led, HIGH</span
+              >);
+            </p>
+            <p class="indent">
+              <span class="func">delay</span>(<span class="var">1000</span>);
+            </p>
+            <p class="indent">
+              <span class="func">digitalWrite</span>(<span class="var"
+                >led, LOW</span
+              >);
+            </p>
+            <p class="indent">
+              <span class="func">delay</span>(<span class="var">1000</span>);
+            </p>
+            <p>}</p>
+          </div>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>Copyright &copy; 2021 Lukas Vasadi</p>
+    </footer>
+    <script src="../scripts/main.js"></script>
+    <script src="../scripts/post.js"></script>
+  </body>
+</html>
