@@ -49,19 +49,82 @@
       <article class="monokai">
         <section>
           <h2 id="intro">Introduction</h2>
-          <p>Arduino is an opensource platform for microcontroller boards.</p>
+          <p>
+            Arduino is an opensource platform for microcontroller boards. A
+            microcontroller, or microcontroller unit (MCU), is an integrated
+            circuit that contains the processor, memory, and input/output (I/O)
+            bundled together in one package. This is different from the more
+            commonly known central processing unit (CPU), which contains the
+            processor without any peripherals. Microcontrollers are used to
+            control sensors and actuators that interact with the environment.
+          </p>
           <!-- https://www.pngegg.com/en/png-ofzaw -->
           <img src="../images/arduino_cartoon.png" alt="" />
         </section>
         <section>
           <h2 id="code-structure">Code Structure</h2>
+          <p>
+            "Blink" is one of the simplest source code examples (see below) that
+            demonstrates the structure of an MCU program. The Arduino
+            interactive development environment (IDE), i.e., the software user
+            interface where you type code, uses an application programming
+            interface (API) to simplify some of the C/C++ programming. In simple
+            terms, you&mdash;the developer&mdash;always follow the same
+            procedure below: (1) declare global variables, (2) run setup once,
+            (3) loop through main function indefinitely.
+          </p>
+          <p>
+            In this case, we are first declaring a global variable
+            <span class="snippet var">led</span> that represents the I/O pin
+            header number on the Arduino board. The variable is preceded by a
+            datatype indicator, <span class="snippet dtype">int</span>, that
+            reserves a specific amount of onchip memory. Next, in the
+            <span class="snippet func">setup</span> function, the
+            <span class="snippet var">led</span> pin is configured as a digital
+            <span class="snippet keyword">OUTPUT</span>, meaning that the MCU
+            will perform a write operation to that pin, as opposed to a read
+            operation. In the C/C++ programming languages, as well as the
+            Arduino API, a function must be declared with a datatype that
+            references its return value. For example, a function that performs a
+            set of calculations and passes an integer value back to the main
+            loop must be declared <span class="snippet dtype">int</span>. If the
+            function has no return value, then it is declared
+            <span class="snippet dtype">void</span>.
+          </p>
+          <p>
+            During compilation, where the code is translated into machine
+            language, the Arduino IDE knows to execute the
+            <span class="snippet func">setup</span> function once and the
+            <span class="snippet func">loop</span> repeatedly. Within the
+            <span class="snippet func">loop</span> function, the digital pin,
+            which is connected to a physical LED on the board, is toggled
+            <span class="snippet keyword">HIGH</span> and
+            <span class="snippet keyword">LOW</span> with the built-in
+            <span class="snippet func">digitalWrite</span> function. For humans
+            to see the difference, we must add a delay between function calls,
+            in this case <span class="snippet num">1000</span> micro-seconds.
+          </p>
+          <p>
+            When this code is compiled and "flashed," or loaded, onto the MCU,
+            you should see the onboard green LED flash on/off at one-second
+            intervals.
+          </p>
           <div class="script">
+            <p><span class="comment">/*</span></p>
+            <p class="indent"><span class="comment">Blink</span></p>
+            <p class="indent">
+              <span class="comment"
+                >Switches LED on for one second, then off for one second,
+                repeatedly</span
+              >
+            </p>
+            <p><span class="comment">*/</span></p>
             <p>
               <span class="dtype">int</span> <span class="var">led</span> =
               <span class="num">13</span>;
             </p>
             <p>
-              <span class="keyword">void</span>
+              <span class="dtype">void</span>
               <span class="func">setup</span>() {
             </p>
             <p class="indent">
@@ -69,12 +132,12 @@
             </p>
             <p class="indent">
               <span class="func">pinMode</span>(<span class="var"
-                >led, OUTPUT</span
+                >led, <span class="keyword">OUTPUT</span></span
               >);
             </p>
             <p>}</p>
             <p>
-              <span class="keyword">void</span>
+              <span class="dtype">void</span>
               <span class="func">loop</span>() {
             </p>
             <p class="indent">
@@ -82,19 +145,19 @@
             </p>
             <p class="indent">
               <span class="func">digitalWrite</span>(<span class="var"
-                >led, HIGH</span
+                >led, <span class="keyword">HIGH</span></span
               >);
             </p>
             <p class="indent">
-              <span class="func">delay</span>(<span class="var">1000</span>);
+              <span class="func">delay</span>(<span class="num">1000</span>);
             </p>
             <p class="indent">
               <span class="func">digitalWrite</span>(<span class="var"
-                >led, LOW</span
+                >led, <span class="keyword">LOW</span></span
               >);
             </p>
             <p class="indent">
-              <span class="func">delay</span>(<span class="var">1000</span>);
+              <span class="func">delay</span>(<span class="num">1000</span>);
             </p>
             <p>}</p>
           </div>
