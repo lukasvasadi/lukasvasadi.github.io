@@ -9,3 +9,4 @@ The icons used in this site are accessed through a personal [Font Awesome Kit](h
 ## Helpful Links
 
 - [Optimizing images for the web](https://lytbox.co/how-to-optimize-images-for-websites-with-affinity-photo/)
+- [Color scheme generator](http://colormind.io/)
