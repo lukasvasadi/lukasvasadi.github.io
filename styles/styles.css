@@ -526,10 +526,6 @@ footer {
     flex-direction: row;
   }
 
-  nav {
-    position: relative;
-  }
-
   nav a {
     padding: 14px 16px;
     text-decoration: none;
@@ -558,8 +554,8 @@ footer {
     width: 25%;
     position: sticky;
     align-self: flex-start;
-    /* overflow-y: auto; */
-    top: 0rem;
+    /* top: 0; */
+    top: 60px;
   }
 
   .console p:hover .fa-clone {
