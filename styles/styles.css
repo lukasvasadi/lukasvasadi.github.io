@@ -337,6 +337,14 @@ footer {
   display: none;
 }
 
+.snippet {
+  font-family: "Fira Code", "Roboto Condensed", sans-serif;
+  font-size: 17px;
+  border-radius: 5px;
+  color: var(--text-code);
+  padding: 0.1rem 0.3rem;
+}
+
 .comment span {
   font-style: italic;
   color: var(--text-comments);
@@ -359,8 +367,12 @@ footer {
   content: "$ ";
 }
 
+.bash .snippet {
+  background: var(--background-code);
+}
+
 .powershell .console {
-  background-color: var(--background-powershell);
+  background: var(--background-powershell);
   word-break: break-all;
 }
 
@@ -396,15 +408,6 @@ footer {
   color: var(--text-highlight);
 }
 
-.snippet {
-  font-family: "Fira Code", "Roboto Condensed", sans-serif;
-  font-size: 17px;
-  border-radius: 5px;
-  color: var(--text-code);
-  background-color: var(--background-code);
-  padding: 0.1rem 0.3rem;
-}
-
 .script {
   font-family: "Fira Code", "Roboto Condensed", sans-serif;
   font-size: 16px;
@@ -427,29 +430,33 @@ footer {
   background: var(--monokai-background);
 }
 
-.monokai .script .indent {
+.monokai .indent {
   padding-left: 1em;
 }
 
-.monokai .script .keyword {
-  color: var(--monokai-green);
+.monokai .keyword {
+  color: var(--monokai-orange);
 }
 
-.monokai .script .func {
+.monokai .func {
   color: var(--monokai-blue);
 }
 
-.monokai .script .dtype {
+.monokai .dtype {
   color: var(--monokai-pink);
 }
 
-.monokai .script .num {
+.monokai .num {
   color: var(--monokai-purple);
 }
 
-.monokai .script .comment {
+.monokai .comment {
   color: var(--monokai-comments);
   font-style: italic;
+}
+
+.monokai .snippet {
+  background: var(--monokai-background);
 }
 
 .code-text {
