@@ -1,512 +1,723 @@
 <!DOCTYPE html>
 <html>
-
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>PowerShell</title>
     <link rel="stylesheet" href="../styles/styles.css" />
-    <link rel="icon" href="../icons/vasadi_gear_icon.png">
-    <script src="https://kit.fontawesome.com/1b5e59a99b.js" crossorigin="anonymous"></script>
-</head>
+    <link rel="icon" href="../icons/vasadi_gear_icon.png" />
+    <script
+      src="https://kit.fontawesome.com/1b5e59a99b.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
 
-<body>
+  <body>
     <nav>
-        <a href="../index.html" class="code-text">lukasvasadi</a>
-        <div id="desktop-menu">
-            <a href="../about.html">About</a>
-            <a href="../tutorials.html">Tutorials</a>
-            <a href="mailto:lukas.vasadi@gmail.com"><i class="fa fa-envelope"></i></a>
-        </div>
-        <a href="javascript:void(0);" class="hamburger" onclick="menuDropdown()"><i class="fa fa-bars"></i></a>
-    </nav>
-    <div id="mobile-menu">
+      <a href="../index.html" class="code-text">lukasvasadi</a>
+      <div id="desktop-menu">
         <a href="../about.html">About</a>
         <a href="../tutorials.html">Tutorials</a>
-        <a href="lukas.vasadi@gmail.com" class="icon"><i class="fa fa-envelope"></i></a>
+        <a href="mailto:lukas.vasadi@gmail.com"
+          ><i class="fa fa-envelope"></i
+        ></a>
+      </div>
+      <a href="javascript:void(0);" class="hamburger" onclick="menuDropdown()"
+        ><i class="fa fa-bars"></i
+      ></a>
+    </nav>
+    <div id="mobile-menu">
+      <a href="../about.html">About</a>
+      <a href="../tutorials.html">Tutorials</a>
+      <a href="lukas.vasadi@gmail.com" class="icon"
+        ><i class="fa fa-envelope"></i
+      ></a>
     </div>
-    <div class="title">
-        <h1 class="center extra-padding">Task automation with PowerShell</h1>
-        <h4 class="center">Last updated: January 2022</h4>
-    </div>
+    <header>
+      <h1 class="center extra-padding">Task automation with PowerShell</h1>
+      <h4 class="center">Last updated: January 2022</h4>
+    </header>
     <main>
-        <div class="toc">
-            <h2>Contents</h2>
-            <ul>
-                <li><a href="#intro">Introduction</a></li>
-                <li><a href="#basic-utilities">Basic utilities</a></li>
-                <li><a href="#help">Help</a></li>
-                <li><a href="#pipeline">Pipeline</a></li>
-                <li><a href="#objects">Objects</a></li>
-                <li><a href="#variables">Variables</a></li>
-                <li><a href="#remoting">Remoting</a></li>
-                <li><a href="#execution-policy">Execution Policy</a></li>
-                <li><a href="#best-practices">Best Practices</a></li>
-                <li><a href="#credits">Credits</a></li>
-            </ul>
-        </div>
-        <article class="powershell">
-            <section>
-                <h2 id="intro">Introduction</h2>
-                <p>
-                    The PowerShell command line interface was originally intended to port Unix tools to Windows.
-                    However, the developers realized that the fundamental architectural differences between Unix (and
-                    Unix clones such as Linux) and Windows&#8212;namely, that Windows is an API-based operating system
-                    whereas Unix manages its entire framework through text files&#8212;were insurmountable.
-                </p>
-                <p>
-                    As a result, the developers created an entirely new command line interface and scripting language
-                    that would become the basis of future Windows releases. In 2016, the project was made opensource and
-                    Microsoft announced officially-supported versions for MacOS and select Linux distributions.
-                </p>
-                <p>
-                    PowerShell is case insensitive and operates with cmdlets that follow a verb-noun syntax. Similar to
-                    batch files, cmdlets can be used within scripts, which may be packaged into modules, to automate
-                    more complicated administrative tasks.
-                </p>
-            </section>
-            <section>
-                <h2 id="basic-utilities">Basic utilities</h2>
-                <div class="grid definitions">
-                    <p><span class="snippet">Get-History</span></p>
-                    <p>print command history (alias: <span class="snippet">history</span>)</p>
-                    <p><span class="snippet">Where-Object</span></p>
-                    <p>select object from collection based on property values (alias: <span
-                            class="snippet">where</span>)</p>
-                    <p><span class="snippet">Get-Process</span></p>
-                    <p>find all running processes (alias: <span class="snippet">gps</span>)</p>
-                    <p><span class="snippet">Get-Service</span></p>
-                    <p>find all running services (alias: <span class="snippet">gsv</span>)</p>
-                    <p><span class="snippet">Write-Warning</span></p>
-                    <p>prints warning message string argument to console with PowerShell formatting</p>
-                    <p><span class="snippet">Write-Error</span></p>
-                    <p>prints error message string argument to console with PowerShell formatting</p>
-                    <p><span class="snippet">Write-Output</span></p>
-                    <p>print variable value to console while preserving object properties</p>
-                    <p><span class="snippet">Write-Host</span></p>
-                    <p>print to console without preserving object properties</p>
-                    <p><span class="snippet">refreshenv</span></p>
-                    <p>refresh environment variables</p>
-                    <p><span class="snippet">cls</span></p>
-                    <p>clear shell</p>
-                </div>
-                <p>
-                    Sometimes it may be useful to write shell comments, e.g., during webinars or broadcasts. Similar to
-                    Unix, comments in PowerShell are preceded with <span class="code-snippet">#</span>, however, block
-                    comments may be written between the <span class="code-snippet">&lt;#</span> and <span
-                        class="code-snippet">#&gt;</span> symbols.
-                </p>
-                <div class="console">
-                    <p class="comment"><span>this is a comment</span></p>
-                    <p class="comment-block">
-                        <span>
-                            &lt;# this is a block comment where you can include more detailed information that may span
-                            multiple lines #&gt;
-                        </span>
-                    </p>
-                </div>
-                <p>
-                    To measure the time required to execute a command:
-                </p>
-                <div class="console">
-                    <p class="command"><span class="cmdlet">Measure-Command</span> {<span
-                            class="cmdlet">Get-Process</span>}</p>
-                </div>
-            </section>
-            <section>
-                <h2 id="help">Help</h2>
-                <p>
-                    The developers of PowerShell believed that no user should memorize commands or syntax. As a result,
-                    they packaged PowerShell with an updatable, structured help utility that provides the latest
-                    information for cmdlets. With an internet connection, update help with the cmdlets below:
-                </p>
-                <div class="console">
-                    <p class="command"><span class="cmdlet">Update-Help</span></p>
-                    <p class="comment"><span>often recommended to force execution</span></p>
-                    <p class="command"><span class="cmdlet">Update-Help</span> -Force</p>
-                </div>
-                <p>
-                    To get help on a cmdlet, use the <span class="code-snippet">Get-Help</span> utility followed by the
-                    cmdlet under investigation. This will output a shortlist of helpful information and automatically
-                    scroll to the bottom.
-                </p>
-                <div class="console">
-                    <p class="command"><span class="cmdlet">Get-Help</span> cmdlet</p>
-                </div>
-                <p>
-                    Alternatively, the <span class="code-snippet">help</span> and <span class="code-snippet">man</span>
-                    commands may be used to display similar, but often more extensive, detailed information, but
-                    starting from the top with the option to show more.
-                </p>
-                <p>
-                    The <span class="code-snippet">Get-Help</span> utility may also be used to discover cmdlets for
-                    particular operations. For example, when trying to find cmdlets that interactive with services,
-                    i.e., background processes analogous to daemons, users can execute one of the help utilities along
-                    with a combination of keywords and wildcards:
-                </p>
-                <div class="console">
-                    <p class="comment"><span>use the wildcard * symbol to broaden search</span></p>
-                    <p class="command"><span class="cmdlet">Get-Help</span> *service*</p>
-                    <p class="comment"><span>add a g before the search criteria to produce a shortlist of results</span>
-                    </p>
-                    <p class="command"><span class="cmdlet">Get-Help</span> g*service*</p>
-                </div>
-                <p>
-                    This will return a list of potentially relevant cmdlets with "service" as part of their name. To see
-                    more extensive information about a cmdlet, use the <span class="code-snippet">-Detailed</span>
-                    parameter.
-                </p>
-                <div class="console">
-                    <p class="comment"><span>retrieve brief information about a cmdlet</span></p>
-                    <p class="command"><span class="cmdlet">Get-Help</span> Get-Service</p>
-                    <p class="comment"><span>retrieve more detailed information</span></p>
-                    <p class="command"><span class="cmdlet">Get-Help</span> Get-Service -Detailed</p>
-                    <p class="comment"><span>view examples</span></p>
-                    <p class="command"><span class="cmdlet">Get-Help</span> Get-Service -Examples</p>
-                    <p class="comment"><span>understand how the cmdlet works in a pipeline</span></p>
-                    <p class="command"><span class="cmdlet">Get-Help</span> Get-Service -Full</p>
-                    <p class="comment"><span>display help in a popup window</span></p>
-                    <p class="command"><span class="cmdlet">Get-Help</span> Get-Service -ShowWindow</p>
-                </div>
-            </section>
-            <section>
-                <h2 id="pipeline">Pipeline</h2>
-                <p>
-                    Similar to other shell scripting tools, the PowerShell pipe (<span class="snippet">|</span>) utility
-                    allows users to pass data output from one command to the input of another.
-                </p>
-                <div class="console">
-                    <p class="comment"><span>export a list of current active services to a csv file</span></p>
-                    <p class="command"><span class="cmdlet">Get-Service</span> | <span class="cmdlet">Export-csv</span>
-                        -Path C:\Users\user\Desktop</p>
-                </div>
-                <p>
-                    Besides executing commands on collections of objects crossing the pipeline, users can also evaluate
-                    individual objects with filters. These individual objects, or items, crossing the pipeline can be
-                    accessed with the <span class="snippet">$PSItem</span> variable:
-                </p>
-                <div class="console">
-                    <p class="comment"><span>filter individual process objects where the status is running</span></p>
-                    <p class="command">
-                        <span class="cmdlet">Get-Service</span> | <span class="cmdlet">Where-Object</span>
-                        {$PSItem.Status -eq "Running"}
-                    </p>
-                </div>
-                <p>
-                    Of course, not all cmdlets will accept the objects being ferried across the pipeline. A good rule of
-                    thumb&mdash;though not always the case&mdash;is that cmdlets with the same noun, e.g., <span
-                        class="snippet">Get-Service</span>, <span class="snippet">Stop-Service</span>, will be
-                    compatible. Specifically,
-                    this means that the data leaving one cmdlet has the same property value, i.e., class type, as the
-                    input required by the adjacent cmdlet in the pipeline.
-                </p>
-            </section>
-            <section>
-                <h2 id="objects">Objects</h2>
-                <p>
-                    In contrast to Unix-like systems, where all shell interactions are based on text-based input/output,
-                    PowerShell was designed to work directly with objects. In many cases, this reduces the amount of
-                    work necessary to accomplish certain tasks, as there is no overhead management of filler text
-                    output. As an example, if you wanted to restrict <span class="snippet">Get-Process</span> output to
-                    handles greater than 900:
-                </p>
-                <div class="console">
-                    <p class="command"><span class="cmdlet">Get-Process</span> | <span class="cmdlet">Where</span>
-                        Handles -gt 900</p>
-                </div>
-                <p>
-                    This one line of code replaces several lines that would be needed to achieve the same result with
-                    Bash.
-                </p>
-                <p>
-                    Every object has associated properties and methods, which describe features of the object class as
-                    well as actionable functions, respectively. The <span class="snippet">Get-Member</span> utility,
-                    with shorthand <span class="snippet">gm</span>, prints all properties and methods of an object along
-                    with its class definition.
-                </p>
-                <div class="console">
-                    <p class="comment"><span>find the properties of the bits service object</span></p>
-                    <p class="command"><span class="cmdlet">Get-Service</span> -Name bits | <span
-                            class="cmdlet">Get-Member</span></p>
-                </div>
-                <p>
-                    With this information, you can choose to customize output based on object class properties.
-                </p>
-                <div class="console">
-                    <p class="comment"><span>print the name and status of every object returned from get-service</span>
-                    </p>
-                    <p class="command"><span class="cmdlet">Get-Service</span> | <span
-                            class="cmdlet">Select-Object</span> -Property Name, Status</p>
-                    <p class="comment"><span>print the name and length of each object and sort by length</span></p>
-                    <p class="command">
-                        <span class="cmdlet">Get-ChildItem</span> | <span class="cmdlet">Select-Object</span> -Property
-                        Name, Length | <span class="cmdlet">Sort</span> -Property Length
-                    </p>
-                </div>
-            </section>
-            <section>
-                <h2 id="variables">Variables</h2>
-                <p>
-                    PowerShell variables are similar to Bash variables, except that these can hold object values. For
-                    example:
-                </p>
-                <div class="console">
-                    <p class="command"><span class="var">$bits</span> = <span class="cmdlet">Get-Service</span> bits</p>
-                </div>
-                <p>
-                    The variable <span class="snippet var">bits</span> now holds the <span class="snippet">bits</span>
-                    service object. As such, this variable is subject to the object properties and methods:
-                </p>
-                <div class="console">
-                    <p class="comment"><span>print the status of the bits service</span></p>
-                    <p class="command"><span class="var">$bits</span>.status</p>
-                    <p>Running</p>
-                    <p class="comment"><span>stop the bits service</span></p>
-                    <p class="command"><span class="var">$bits</span>.stop()</p>
-                </div>
-                <p>
-                    It is important to note that the properties of this variable are static, meaning they represent a
-                    snapshot of the object at the time of variable creation. After running a method, the object must be
-                    manually refreshed to update any properties that may have changed state.
-                </p>
-                <div class="console">
-                    <p class="comment"><span>check the variable status</span></p>
-                    <p class="command"><span class="var">$bits</span>.status</p>
-                    <p>Running</p>
-                    <p class="comment"><span>refresh object properties</span></p>
-                    <p class="command"><span class="var">$bits</span>.refresh()</p>
-                    <p class="command"><span class="var">$bits</span>.status</p>
-                    <p>Stopped</p>
-                </div>
-                <p>
-                    PowerShell variables, when defined inside brackets <span class="snippet">{}</span>, may also contain
-                    spaces and special characters:
-                </p>
-                <div class="console">
-                    <p class="command"><span class="var">${ var!@bl& }</span> = "hello"</p>
-                    <p class="command"><span class="var">${ var!@bl& }</span></p>
-                    <p>hello</p>
-                </div>
-            </section>
-            <section>
-                <h2 id="remoting">Remoting</h2>
-                <p>
-                    Remote access has to be enabled on all machines. Starting with Windows Server 2012, which is a cloud
-                    operating system, remote access is enabled by default.
-                </p>
-                <div class="console">
-                    <p class="command"><span class="cmdlet">Enable-PSRemoting</span></p>
-                </div>
-                <p>
-                    To establish a one-to-one connection:
-                </p>
-                <div class="console">
-                    <p class="command"><span class="cmdlet">Enter-PSSession</span> -ComputerName &lt;computer-name&gt;
-                    </p>
-                </div>
-                <p>
-                    Outside of a remote session, individual commands can be executed on remote machines with the <span
-                        class="snippet">Invoke-Command</span> cmdlet:
-                </p>
-                <div class="console">
-                    <p class="comment"><span>print out the system event log from a remote machine named
-                            "image-processing"</span></p>
-                    <p class="command"><span class="cmdlet">Invoke-Command</span> -ComputerName image-processing {<span
-                            class="cmdlet">Get-EventLog</span> -LogName system}</p>
-                    <p class="comment"><span>beware of what will be executed</span></p>
-                    <p class="command"><span class="cmdlet">Invoke-Command</span> -ComputerName comp1,comp2,comp3 {<span
-                            class="cmdlet">Restart-Computer</span>}</p>
-                </div>
-                <p>
-                    Note that every PowerShell command entered into the console uses <span
-                        class="snippet">Invoke-Command</span> behind the scences, with the local computer accepted as
-                    the default machine. All data returned from the remote system(s) are deserialized object
-                    representations, meaning that the objects contain all relevant information for the administrator,
-                    but have no methods other than <span class="snippet">ToString</span>.
-                </p>
-                <p>
-                    If not connected to the local network, PowerShell remoting may be facilitated in a browser over
-                    https web access. To set up this feature, first install <span
-                        class="snippet">WindowsPowerShellWebAccess</span> on the remote machine and then configure
-                    user/group privileges.
-                </p>
-                <div class="console">
-                    <p class="comment"><span>connect to the desired machine</span></p>
-                    <p class="command"><span class="cmdlet">Enter-PSSession</span> -ComputerName &lt;computer-name&gt;
-                    </p>
-                    <p class="comment"><span>install the web access feature</span></p>
-                    <p class="command"><span class="cmdlet">Install-WindowsFeature</span> WindowsPowerShellWebAccess</p>
-                    <p class="comment"><span>configure a web application for remote PowerShell access</span></p>
-                    <p class="command"><span class="cmdlet">Install-PswaWebApplication</span> -UseTestCertificate</p>
-                    <p class="comment"><span>add authorization rules for users and groups</span></p>
-                    <p class="command">
-                        <span class="cmdlet">Add-PswaAuthorizationRule</span>
-                        -ComputerGroupName &lt;computer-group&gt; -UserName &lt;users&gt; -ConfigurationName
-                        &lt;access-rights&gt;
-                    </p>
-                </div>
-                <p>
-                    After completing these steps, the administrator can open a browser and navigate to the web
-                    address&mdash;the default being https://pwa/pwsa)&mdash;and access a PowerShell instance connected
-                    to the remote machine.
-                </p>
-                <p>
-                    Individual commands can be executed on a remote machine without starting a PowerShell session:
-                </p>
-                <div class="console">
-                    <p class="command"><span class="cmdlet">Invoke-Command</span> -ComputerName &lt;computer-name&gt;
-                        {<span class="var">$proc</span> = <span class="cmdlet">Get-Process</span>}</p>
-                </div>
-                <p>
-                    In this case, PowerShell is loaded and initialized on the remote machine, the command is executed,
-                    and then the console instance and connection are destroyed. Naturally, this means that any variables
-                    are deleted from memory and thus cannot be accessed with a subsequent <span
-                        class="snippet">Invoke-Command</span>.
-                </p>
-                <p>
-                    However, as hinted above, persistent PowerShell sessions can be created and accessed at various
-                    points of time:
-                </p>
-                <div class="console">
-                    <p class="command"><span class="var">$sess</span> = <span class="cmdlet">New-PSSession</span>
-                        -ComputerName &lt;computer-name&gt;</p>
-                </div>
-                <p>
-                    This creates a persistent remote session and stores the object inside the variable <span
-                        class="snippet var">sess</span>. This session can now be used instead of <span
-                        class="snippet">ComputerName</span> to pass commands to the remote machine. So long as the
-                    session remains open, variables will persist in system memory and can be accessed with subsequent
-                    commands.
-                </p>
-                <div class="console">
-                    <p class="command"><span class="cmdlet">Invoke-Command</span> -Session <span
-                            class="var">$sess</span> {<span class="var">$x</span>=2}</p>
-                    <p class="command"><span class="cmdlet">Invoke-Command</span> -Session <span
-                            class="var">$sess</span> {<span class="var">$x</span>}</p>
-                    <p>2</p>
-                </div>
-                <p>
-                    Sessions also offer the ability to share modules without installation on the local machine. For
-                    example, if a server computer had the <span class="snippet">ActiveDirectory</span> module installed:
-                </p>
-                <div class="console">
-                    <p class="command"><span class="var">$sess</span> = <span class="cmdlet">New-PSSession</span>
-                        -ComputerName server</p>
-                    <p class="command"><span class="cmdlet">Import-PSSession</span> -Session <span
-                            class="var">$sess</span> -Module ActiveDirectory</p>
-                </div>
-                <p>
-                    Now all cmdlets from <span class="snippet">ActiveDirectory</span> are available locally while the
-                    session is active. Behind the scenes, the local machine builds data structures using <span
-                        class="snippet">Get-Command</span> and, when these cmdlets are invoked, the relevant
-                    information, e.g., input parameters, is collected and passed to the remote computer for execution.
-                    This entire workflow is referred to as "implicit remoting."
-                </p>
-            </section>
-            <section>
-                <h2 id="execution-policy">Execution Policy</h2>
-                <p>
-                    PowerShell has safety features that prevent users from accidentally running scripts that may
-                    contain harmful or malicious code. Script execution permissions are controlled via the execution
-                    policy, which can be set to <span class="snippet">Restricted</span> (default), <span
-                        class="snippet">Unrestricted</span>, <span class="snippet">AllSigned</span>, <span
-                        class="snippet">RemoteSigned</span>, <span class="snippet">Bypass</span>, and <span
-                        class="snippet">Undefined</span>. <span class="snippet">AllSigned</span> requires that all
-                    scripts downloaded or created locally have digital signatures, whereas <span
-                        class="snippet">RemoteSigned</span> only requires signatures for scripts downloaded from the
-                    web.
-                </p>
-                <p>
-                    It is recommended to avoid <span class="snippet">Unrestricted</span> and <span
-                        class="snippet">Bypass</span>, as these options allow the machine to execute any script without
-                    review. If a downloaded script is missing a trusted digital signature but nevertheless has been
-                    deemed safe, then it can be exempted from the execution policy with the <span
-                        class="snippet">Unblock-File</span> command. As suggested, the correct way to run local scripts
-                    is to add a digital signature, which provides explicit authorization to execute the code.
-                </p>
-                <p>
-                    To find the current execution policy:
-                </p>
-                <div class="console">
-                    <p class="command"><span class="cmdlet">Get-ExecutionPolicy</span></p>
-                </div>
-                <p>
-                    To change the execution policy:
-                </p>
-                <div class="console">
-                    <p class="comment"><span>AllSigned or RemoteSigned are generally recommended</span></p>
-                    <p class="command"><span class="cmdlet">Set-ExecutionPolicy</span> AllSigned</p>
-                </div>
-                <p>
-                    To create a digital signature:
-                </p>
-                <div class="console">
-                    <p class="command"><span class="cmdlet">New-SelfSignedCertificate</span></p>
-                </div>
-                <p>
-                    To locate the digital signature and save it to an environment variable:
-                </p>
-                <div class="console">
-                    <p class="comment"><span>save all certificates to an environment variable</span></p>
-                    <p class="command"><span class="cmdlet">dir</span> Cert:\CurrentUser -Recurse -CodeSigningCert
-                        -OutVariable a</p>
-                    <p class="comment"><span>save the first cert from list to separate variable</span></p>
-                    <p class="command">$cert = $a[0]</p>
-                </div>
-                <p>
-                    To add a digital signature to a script:
-                </p>
-                <div class="console">
-                    <p class="command"><span class="cmdlet">Set-AuthenticodeSignature</span> -Certificate $cert
-                        -FilePath &lt;script-path&gt;</p>
-                </div>
-                <p>
-                    It is critical that administrators only sign scripts that they understand fully. When working in an
-                    industrial setting, adding a digital signature is a way of assuming responsibility for the
-                    consequences of script execution.
-                </p>
-            </section>
-            <section>
-                <h2 id="best-practices">Best Practices</h2>
-                <p>
-                    PowerShell is a powerful tool that can cause major system damage if mishandled. When unsure about
-                    the ramifications of a certain command, administrators can use the <span
-                        class="snippet">WhatIf</span> parameter to print out the results of the questionable command
-                    without execution.
-                </p>
-                <div class="console">
-                    <p class="comment"><span>the following command would kill all active services and likely damage the
-                            system</span></p>
-                    <p class="command"><span class="cmdlet">Get-Service</span> | <span
-                            class="cmdlet">Stop-Service</span> -WhatIf</p>
-                </div>
-                <p>
-                    Administrators may also consider using the <span class="snippet">Confirm</span> parameter to be
-                    prompted for confirmation before command execution.
-                </p>
-                <div class="console">
-                    <p class="comment"><span>print out command execution results with confirmation prompt</span></p>
-                    <p class="command"><span class="cmdlet">Get-Service</span> | <span
-                            class="cmdlet">Stop-Service</span> -Confirm</p>
-                </div>
-            </section>
-            <section>
-                <h2 id="credits">Credits</h2>
-                <p>
-                    The content presented was based on the <a
-                        href="https://www.youtube.com/watch?v=UVUd9_k9C6A&t=7637s">PowerShell for Beginners</a> course
-                    hosted by Jeffrey Snover, the inventor of PowerShell, and Jason Helmick. This free online course is
-                    recommended for anyone wanting a deeper exploration of PowerShell.
-                </p>
-            </section>
-        </article>
+      <div class="toc">
+        <h2>Contents</h2>
+        <ul>
+          <li><a href="#intro">Introduction</a></li>
+          <li><a href="#basic-utilities">Basic utilities</a></li>
+          <li><a href="#help">Help</a></li>
+          <li><a href="#pipeline">Pipeline</a></li>
+          <li><a href="#objects">Objects</a></li>
+          <li><a href="#variables">Variables</a></li>
+          <li><a href="#remoting">Remoting</a></li>
+          <li><a href="#execution-policy">Execution Policy</a></li>
+          <li><a href="#best-practices">Best Practices</a></li>
+          <li><a href="#credits">Credits</a></li>
+        </ul>
+      </div>
+      <article class="powershell">
+        <section>
+          <h2 id="intro">Introduction</h2>
+          <p>
+            The PowerShell command line interface was originally intended to
+            port Unix tools to Windows. However, the developers realized that
+            the fundamental architectural differences between Unix (and Unix
+            clones such as Linux) and Windows&#8212;namely, that Windows is an
+            API-based operating system whereas Unix manages its entire framework
+            through text files&#8212;were insurmountable.
+          </p>
+          <p>
+            As a result, the developers created an entirely new command line
+            interface and scripting language that would become the basis of
+            future Windows releases. In 2016, the project was made opensource
+            and Microsoft announced officially-supported versions for MacOS and
+            select Linux distributions.
+          </p>
+          <p>
+            PowerShell is case insensitive and operates with cmdlets that follow
+            a verb-noun syntax. Similar to batch files, cmdlets can be used
+            within scripts, which may be packaged into modules, to automate more
+            complicated administrative tasks.
+          </p>
+        </section>
+        <section>
+          <h2 id="basic-utilities">Basic utilities</h2>
+          <div class="grid definitions">
+            <p><span class="snippet">Get-History</span></p>
+            <p>
+              print command history (alias:
+              <span class="snippet">history</span>)
+            </p>
+            <p><span class="snippet">Where-Object</span></p>
+            <p>
+              select object from collection based on property values (alias:
+              <span class="snippet">where</span>)
+            </p>
+            <p><span class="snippet">Get-Process</span></p>
+            <p>
+              find all running processes (alias:
+              <span class="snippet">gps</span>)
+            </p>
+            <p><span class="snippet">Get-Service</span></p>
+            <p>
+              find all running services (alias:
+              <span class="snippet">gsv</span>)
+            </p>
+            <p><span class="snippet">Write-Warning</span></p>
+            <p>
+              prints warning message string argument to console with PowerShell
+              formatting
+            </p>
+            <p><span class="snippet">Write-Error</span></p>
+            <p>
+              prints error message string argument to console with PowerShell
+              formatting
+            </p>
+            <p><span class="snippet">Write-Output</span></p>
+            <p>
+              print variable value to console while preserving object properties
+            </p>
+            <p><span class="snippet">Write-Host</span></p>
+            <p>print to console without preserving object properties</p>
+            <p><span class="snippet">refreshenv</span></p>
+            <p>refresh environment variables</p>
+            <p><span class="snippet">cls</span></p>
+            <p>clear shell</p>
+          </div>
+          <p>
+            Sometimes it may be useful to write shell comments, e.g., during
+            webinars or broadcasts. Similar to Unix, comments in PowerShell are
+            preceded with <span class="code-snippet">#</span>, however, block
+            comments may be written between the
+            <span class="code-snippet">&lt;#</span> and
+            <span class="code-snippet">#&gt;</span> symbols.
+          </p>
+          <div class="console">
+            <p class="comment"><span>this is a comment</span></p>
+            <p class="comment-block">
+              <span>
+                &lt;# this is a block comment where you can include more
+                detailed information that may span multiple lines #&gt;
+              </span>
+            </p>
+          </div>
+          <p>To measure the time required to execute a command:</p>
+          <div class="console">
+            <p class="command">
+              <span class="cmdlet">Measure-Command</span> {<span class="cmdlet"
+                >Get-Process</span
+              >}
+            </p>
+          </div>
+        </section>
+        <section>
+          <h2 id="help">Help</h2>
+          <p>
+            The developers of PowerShell believed that no user should memorize
+            commands or syntax. As a result, they packaged PowerShell with an
+            updatable, structured help utility that provides the latest
+            information for cmdlets. With an internet connection, update help
+            with the cmdlets below:
+          </p>
+          <div class="console">
+            <p class="command"><span class="cmdlet">Update-Help</span></p>
+            <p class="comment">
+              <span>often recommended to force execution</span>
+            </p>
+            <p class="command">
+              <span class="cmdlet">Update-Help</span> -Force
+            </p>
+          </div>
+          <p>
+            To get help on a cmdlet, use the
+            <span class="code-snippet">Get-Help</span> utility followed by the
+            cmdlet under investigation. This will output a shortlist of helpful
+            information and automatically scroll to the bottom.
+          </p>
+          <div class="console">
+            <p class="command"><span class="cmdlet">Get-Help</span> cmdlet</p>
+          </div>
+          <p>
+            Alternatively, the <span class="code-snippet">help</span> and
+            <span class="code-snippet">man</span>
+            commands may be used to display similar, but often more extensive,
+            detailed information, but starting from the top with the option to
+            show more.
+          </p>
+          <p>
+            The <span class="code-snippet">Get-Help</span> utility may also be
+            used to discover cmdlets for particular operations. For example,
+            when trying to find cmdlets that interactive with services, i.e.,
+            background processes analogous to daemons, users can execute one of
+            the help utilities along with a combination of keywords and
+            wildcards:
+          </p>
+          <div class="console">
+            <p class="comment">
+              <span>use the wildcard * symbol to broaden search</span>
+            </p>
+            <p class="command">
+              <span class="cmdlet">Get-Help</span> *service*
+            </p>
+            <p class="comment">
+              <span
+                >add a g before the search criteria to produce a shortlist of
+                results</span
+              >
+            </p>
+            <p class="command">
+              <span class="cmdlet">Get-Help</span> g*service*
+            </p>
+          </div>
+          <p>
+            This will return a list of potentially relevant cmdlets with
+            "service" as part of their name. To see more extensive information
+            about a cmdlet, use the <span class="code-snippet">-Detailed</span>
+            parameter.
+          </p>
+          <div class="console">
+            <p class="comment">
+              <span>retrieve brief information about a cmdlet</span>
+            </p>
+            <p class="command">
+              <span class="cmdlet">Get-Help</span> Get-Service
+            </p>
+            <p class="comment">
+              <span>retrieve more detailed information</span>
+            </p>
+            <p class="command">
+              <span class="cmdlet">Get-Help</span> Get-Service -Detailed
+            </p>
+            <p class="comment"><span>view examples</span></p>
+            <p class="command">
+              <span class="cmdlet">Get-Help</span> Get-Service -Examples
+            </p>
+            <p class="comment">
+              <span>understand how the cmdlet works in a pipeline</span>
+            </p>
+            <p class="command">
+              <span class="cmdlet">Get-Help</span> Get-Service -Full
+            </p>
+            <p class="comment"><span>display help in a popup window</span></p>
+            <p class="command">
+              <span class="cmdlet">Get-Help</span> Get-Service -ShowWindow
+            </p>
+          </div>
+        </section>
+        <section>
+          <h2 id="pipeline">Pipeline</h2>
+          <p>
+            Similar to other shell scripting tools, the PowerShell pipe (<span
+              class="snippet"
+              >|</span
+            >) utility allows users to pass data output from one command to the
+            input of another.
+          </p>
+          <div class="console">
+            <p class="comment">
+              <span
+                >export a list of current active services to a csv file</span
+              >
+            </p>
+            <p class="command">
+              <span class="cmdlet">Get-Service</span> |
+              <span class="cmdlet">Export-csv</span> -Path C:\Users\user\Desktop
+            </p>
+          </div>
+          <p>
+            Besides executing commands on collections of objects crossing the
+            pipeline, users can also evaluate individual objects with filters.
+            These individual objects, or items, crossing the pipeline can be
+            accessed with the <span class="snippet">$PSItem</span> variable:
+          </p>
+          <div class="console">
+            <p class="comment">
+              <span
+                >filter individual process objects where the status is
+                running</span
+              >
+            </p>
+            <p class="command">
+              <span class="cmdlet">Get-Service</span> |
+              <span class="cmdlet">Where-Object</span>
+              {$PSItem.Status -eq "Running"}
+            </p>
+          </div>
+          <p>
+            Of course, not all cmdlets will accept the objects being ferried
+            across the pipeline. A good rule of thumb&mdash;though not always
+            the case&mdash;is that cmdlets with the same noun, e.g.,
+            <span class="snippet">Get-Service</span>,
+            <span class="snippet">Stop-Service</span>, will be compatible.
+            Specifically, this means that the data leaving one cmdlet has the
+            same property value, i.e., class type, as the input required by the
+            adjacent cmdlet in the pipeline.
+          </p>
+        </section>
+        <section>
+          <h2 id="objects">Objects</h2>
+          <p>
+            In contrast to Unix-like systems, where all shell interactions are
+            based on text-based input/output, PowerShell was designed to work
+            directly with objects. In many cases, this reduces the amount of
+            work necessary to accomplish certain tasks, as there is no overhead
+            management of filler text output. As an example, if you wanted to
+            restrict <span class="snippet">Get-Process</span> output to handles
+            greater than 900:
+          </p>
+          <div class="console">
+            <p class="command">
+              <span class="cmdlet">Get-Process</span> |
+              <span class="cmdlet">Where</span> Handles -gt 900
+            </p>
+          </div>
+          <p>
+            This one line of code replaces several lines that would be needed to
+            achieve the same result with Bash.
+          </p>
+          <p>
+            Every object has associated properties and methods, which describe
+            features of the object class as well as actionable functions,
+            respectively. The <span class="snippet">Get-Member</span> utility,
+            with shorthand <span class="snippet">gm</span>, prints all
+            properties and methods of an object along with its class definition.
+          </p>
+          <div class="console">
+            <p class="comment">
+              <span>find the properties of the bits service object</span>
+            </p>
+            <p class="command">
+              <span class="cmdlet">Get-Service</span> -Name bits |
+              <span class="cmdlet">Get-Member</span>
+            </p>
+          </div>
+          <p>
+            With this information, you can choose to customize output based on
+            object class properties.
+          </p>
+          <div class="console">
+            <p class="comment">
+              <span
+                >print the name and status of every object returned from
+                get-service</span
+              >
+            </p>
+            <p class="command">
+              <span class="cmdlet">Get-Service</span> |
+              <span class="cmdlet">Select-Object</span> -Property Name, Status
+            </p>
+            <p class="comment">
+              <span
+                >print the name and length of each object and sort by
+                length</span
+              >
+            </p>
+            <p class="command">
+              <span class="cmdlet">Get-ChildItem</span> |
+              <span class="cmdlet">Select-Object</span> -Property Name, Length |
+              <span class="cmdlet">Sort</span> -Property Length
+            </p>
+          </div>
+        </section>
+        <section>
+          <h2 id="variables">Variables</h2>
+          <p>
+            PowerShell variables are similar to Bash variables, except that
+            these can hold object values. For example:
+          </p>
+          <div class="console">
+            <p class="command">
+              <span class="var">$bits</span> =
+              <span class="cmdlet">Get-Service</span> bits
+            </p>
+          </div>
+          <p>
+            The variable <span class="snippet var">bits</span> now holds the
+            <span class="snippet">bits</span>
+            service object. As such, this variable is subject to the object
+            properties and methods:
+          </p>
+          <div class="console">
+            <p class="comment">
+              <span>print the status of the bits service</span>
+            </p>
+            <p class="command"><span class="var">$bits</span>.status</p>
+            <p>Running</p>
+            <p class="comment"><span>stop the bits service</span></p>
+            <p class="command"><span class="var">$bits</span>.stop()</p>
+          </div>
+          <p>
+            It is important to note that the properties of this variable are
+            static, meaning they represent a snapshot of the object at the time
+            of variable creation. After running a method, the object must be
+            manually refreshed to update any properties that may have changed
+            state.
+          </p>
+          <div class="console">
+            <p class="comment"><span>check the variable status</span></p>
+            <p class="command"><span class="var">$bits</span>.status</p>
+            <p>Running</p>
+            <p class="comment"><span>refresh object properties</span></p>
+            <p class="command"><span class="var">$bits</span>.refresh()</p>
+            <p class="command"><span class="var">$bits</span>.status</p>
+            <p>Stopped</p>
+          </div>
+          <p>
+            PowerShell variables, when defined inside brackets
+            <span class="snippet">{}</span>, may also contain spaces and special
+            characters:
+          </p>
+          <div class="console">
+            <p class="command">
+              <span class="var">${ var!@bl& }</span> = "hello"
+            </p>
+            <p class="command"><span class="var">${ var!@bl& }</span></p>
+            <p>hello</p>
+          </div>
+        </section>
+        <section>
+          <h2 id="remoting">Remoting</h2>
+          <p>
+            Remote access has to be enabled on all machines. Starting with
+            Windows Server 2012, which is a cloud operating system, remote
+            access is enabled by default.
+          </p>
+          <div class="console">
+            <p class="command"><span class="cmdlet">Enable-PSRemoting</span></p>
+          </div>
+          <p>To establish a one-to-one connection:</p>
+          <div class="console">
+            <p class="command">
+              <span class="cmdlet">Enter-PSSession</span> -ComputerName
+              &lt;computer-name&gt;
+            </p>
+          </div>
+          <p>
+            Outside of a remote session, individual commands can be executed on
+            remote machines with the
+            <span class="snippet">Invoke-Command</span> cmdlet:
+          </p>
+          <div class="console">
+            <p class="comment">
+              <span
+                >print out the system event log from a remote machine named
+                "image-processing"</span
+              >
+            </p>
+            <p class="command">
+              <span class="cmdlet">Invoke-Command</span> -ComputerName
+              image-processing {<span class="cmdlet">Get-EventLog</span>
+              -LogName system}
+            </p>
+            <p class="comment"><span>beware of what will be executed</span></p>
+            <p class="command">
+              <span class="cmdlet">Invoke-Command</span> -ComputerName
+              comp1,comp2,comp3 {<span class="cmdlet">Restart-Computer</span>}
+            </p>
+          </div>
+          <p>
+            Note that every PowerShell command entered into the console uses
+            <span class="snippet">Invoke-Command</span> behind the scences, with
+            the local computer accepted as the default machine. All data
+            returned from the remote system(s) are deserialized object
+            representations, meaning that the objects contain all relevant
+            information for the administrator, but have no methods other than
+            <span class="snippet">ToString</span>.
+          </p>
+          <p>
+            If not connected to the local network, PowerShell remoting may be
+            facilitated in a browser over https web access. To set up this
+            feature, first install
+            <span class="snippet">WindowsPowerShellWebAccess</span> on the
+            remote machine and then configure user/group privileges.
+          </p>
+          <div class="console">
+            <p class="comment"><span>connect to the desired machine</span></p>
+            <p class="command">
+              <span class="cmdlet">Enter-PSSession</span> -ComputerName
+              &lt;computer-name&gt;
+            </p>
+            <p class="comment"><span>install the web access feature</span></p>
+            <p class="command">
+              <span class="cmdlet">Install-WindowsFeature</span>
+              WindowsPowerShellWebAccess
+            </p>
+            <p class="comment">
+              <span
+                >configure a web application for remote PowerShell access</span
+              >
+            </p>
+            <p class="command">
+              <span class="cmdlet">Install-PswaWebApplication</span>
+              -UseTestCertificate
+            </p>
+            <p class="comment">
+              <span>add authorization rules for users and groups</span>
+            </p>
+            <p class="command">
+              <span class="cmdlet">Add-PswaAuthorizationRule</span>
+              -ComputerGroupName &lt;computer-group&gt; -UserName &lt;users&gt;
+              -ConfigurationName &lt;access-rights&gt;
+            </p>
+          </div>
+          <p>
+            After completing these steps, the administrator can open a browser
+            and navigate to the web address&mdash;the default being
+            https://pwa/pwsa)&mdash;and access a PowerShell instance connected
+            to the remote machine.
+          </p>
+          <p>
+            Individual commands can be executed on a remote machine without
+            starting a PowerShell session:
+          </p>
+          <div class="console">
+            <p class="command">
+              <span class="cmdlet">Invoke-Command</span> -ComputerName
+              &lt;computer-name&gt; {<span class="var">$proc</span> =
+              <span class="cmdlet">Get-Process</span>}
+            </p>
+          </div>
+          <p>
+            In this case, PowerShell is loaded and initialized on the remote
+            machine, the command is executed, and then the console instance and
+            connection are destroyed. Naturally, this means that any variables
+            are deleted from memory and thus cannot be accessed with a
+            subsequent <span class="snippet">Invoke-Command</span>.
+          </p>
+          <p>
+            However, as hinted above, persistent PowerShell sessions can be
+            created and accessed at various points of time:
+          </p>
+          <div class="console">
+            <p class="command">
+              <span class="var">$sess</span> =
+              <span class="cmdlet">New-PSSession</span> -ComputerName
+              &lt;computer-name&gt;
+            </p>
+          </div>
+          <p>
+            This creates a persistent remote session and stores the object
+            inside the variable <span class="snippet var">sess</span>. This
+            session can now be used instead of
+            <span class="snippet">ComputerName</span> to pass commands to the
+            remote machine. So long as the session remains open, variables will
+            persist in system memory and can be accessed with subsequent
+            commands.
+          </p>
+          <div class="console">
+            <p class="command">
+              <span class="cmdlet">Invoke-Command</span> -Session
+              <span class="var">$sess</span> {<span class="var">$x</span>=2}
+            </p>
+            <p class="command">
+              <span class="cmdlet">Invoke-Command</span> -Session
+              <span class="var">$sess</span> {<span class="var">$x</span>}
+            </p>
+            <p>2</p>
+          </div>
+          <p>
+            Sessions also offer the ability to share modules without
+            installation on the local machine. For example, if a server computer
+            had the <span class="snippet">ActiveDirectory</span> module
+            installed:
+          </p>
+          <div class="console">
+            <p class="command">
+              <span class="var">$sess</span> =
+              <span class="cmdlet">New-PSSession</span> -ComputerName server
+            </p>
+            <p class="command">
+              <span class="cmdlet">Import-PSSession</span> -Session
+              <span class="var">$sess</span> -Module ActiveDirectory
+            </p>
+          </div>
+          <p>
+            Now all cmdlets from
+            <span class="snippet">ActiveDirectory</span> are available locally
+            while the session is active. Behind the scenes, the local machine
+            builds data structures using
+            <span class="snippet">Get-Command</span> and, when these cmdlets are
+            invoked, the relevant information, e.g., input parameters, is
+            collected and passed to the remote computer for execution. This
+            entire workflow is referred to as "implicit remoting."
+          </p>
+        </section>
+        <section>
+          <h2 id="execution-policy">Execution Policy</h2>
+          <p>
+            PowerShell has safety features that prevent users from accidentally
+            running scripts that may contain harmful or malicious code. Script
+            execution permissions are controlled via the execution policy, which
+            can be set to <span class="snippet">Restricted</span> (default),
+            <span class="snippet">Unrestricted</span>,
+            <span class="snippet">AllSigned</span>,
+            <span class="snippet">RemoteSigned</span>,
+            <span class="snippet">Bypass</span>, and
+            <span class="snippet">Undefined</span>.
+            <span class="snippet">AllSigned</span> requires that all scripts
+            downloaded or created locally have digital signatures, whereas
+            <span class="snippet">RemoteSigned</span> only requires signatures
+            for scripts downloaded from the web.
+          </p>
+          <p>
+            It is recommended to avoid
+            <span class="snippet">Unrestricted</span> and
+            <span class="snippet">Bypass</span>, as these options allow the
+            machine to execute any script without review. If a downloaded script
+            is missing a trusted digital signature but nevertheless has been
+            deemed safe, then it can be exempted from the execution policy with
+            the <span class="snippet">Unblock-File</span> command. As suggested,
+            the correct way to run local scripts is to add a digital signature,
+            which provides explicit authorization to execute the code.
+          </p>
+          <p>To find the current execution policy:</p>
+          <div class="console">
+            <p class="command">
+              <span class="cmdlet">Get-ExecutionPolicy</span>
+            </p>
+          </div>
+          <p>To change the execution policy:</p>
+          <div class="console">
+            <p class="comment">
+              <span>AllSigned or RemoteSigned are generally recommended</span>
+            </p>
+            <p class="command">
+              <span class="cmdlet">Set-ExecutionPolicy</span> AllSigned
+            </p>
+          </div>
+          <p>To create a digital signature:</p>
+          <div class="console">
+            <p class="command">
+              <span class="cmdlet">New-SelfSignedCertificate</span>
+            </p>
+          </div>
+          <p>
+            To locate the digital signature and save it to an environment
+            variable:
+          </p>
+          <div class="console">
+            <p class="comment">
+              <span>save all certificates to an environment variable</span>
+            </p>
+            <p class="command">
+              <span class="cmdlet">dir</span> Cert:\CurrentUser -Recurse
+              -CodeSigningCert -OutVariable a
+            </p>
+            <p class="comment">
+              <span>save the first cert from list to separate variable</span>
+            </p>
+            <p class="command">$cert = $a[0]</p>
+          </div>
+          <p>To add a digital signature to a script:</p>
+          <div class="console">
+            <p class="command">
+              <span class="cmdlet">Set-AuthenticodeSignature</span> -Certificate
+              $cert -FilePath &lt;script-path&gt;
+            </p>
+          </div>
+          <p>
+            It is critical that administrators only sign scripts that they
+            understand fully. When working in an industrial setting, adding a
+            digital signature is a way of assuming responsibility for the
+            consequences of script execution.
+          </p>
+        </section>
+        <section>
+          <h2 id="best-practices">Best Practices</h2>
+          <p>
+            PowerShell is a powerful tool that can cause major system damage if
+            mishandled. When unsure about the ramifications of a certain
+            command, administrators can use the
+            <span class="snippet">WhatIf</span> parameter to print out the
+            results of the questionable command without execution.
+          </p>
+          <div class="console">
+            <p class="comment">
+              <span
+                >the following command would kill all active services and likely
+                damage the system</span
+              >
+            </p>
+            <p class="command">
+              <span class="cmdlet">Get-Service</span> |
+              <span class="cmdlet">Stop-Service</span> -WhatIf
+            </p>
+          </div>
+          <p>
+            Administrators may also consider using the
+            <span class="snippet">Confirm</span> parameter to be prompted for
+            confirmation before command execution.
+          </p>
+          <div class="console">
+            <p class="comment">
+              <span
+                >print out command execution results with confirmation
+                prompt</span
+              >
+            </p>
+            <p class="command">
+              <span class="cmdlet">Get-Service</span> |
+              <span class="cmdlet">Stop-Service</span> -Confirm
+            </p>
+          </div>
+        </section>
+        <section>
+          <h2 id="credits">Credits</h2>
+          <p>
+            The content presented was based on the
+            <a href="https://www.youtube.com/watch?v=UVUd9_k9C6A&t=7637s"
+              >PowerShell for Beginners</a
+            >
+            course hosted by Jeffrey Snover, the inventor of PowerShell, and
+            Jason Helmick. This free online course is recommended for anyone
+            wanting a deeper exploration of PowerShell.
+          </p>
+        </section>
+      </article>
     </main>
     <footer>
-        <p>Copyright &copy; 2021 Lukas Vasadi</p>
+      <p>Copyright &copy; 2021 Lukas Vasadi</p>
     </footer>
     <script src="../scripts/main.js"></script>
     <script src="../scripts/post.js"></script>
-</body>
-
+  </body>
 </html>

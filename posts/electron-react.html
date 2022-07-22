@@ -1,107 +1,124 @@
 <!DOCTYPE html>
 <html>
-
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Electron React</title>
     <link rel="stylesheet" href="../styles/styles.css" />
-    <link rel="icon" href="../icons/vasadi_gear_icon.png">
-    <script src="https://kit.fontawesome.com/1b5e59a99b.js" crossorigin="anonymous"></script>
-</head>
+    <link rel="icon" href="../icons/vasadi_gear_icon.png" />
+    <script
+      src="https://kit.fontawesome.com/1b5e59a99b.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
 
-<body>
+  <body>
     <nav>
-        <a href="../index.html" class="code-text">lukasvasadi</a>
-        <div id="desktop-menu">
-            <a href="../about.html">About</a>
-            <a href="../tutorials.html">Tutorials</a>
-            <a href="mailto:lukas.vasadi@gmail.com"><i class="fa fa-envelope"></i></a>
-        </div>
-        <a href="javascript:void(0);" class="hamburger" onclick="menuDropdown()"><i class="fa fa-bars"></i></a>
-    </nav>
-    <div id="mobile-menu">
+      <a href="../index.html" class="code-text">lukasvasadi</a>
+      <div id="desktop-menu">
         <a href="../about.html">About</a>
         <a href="../tutorials.html">Tutorials</a>
-        <a href="lukas.vasadi@gmail.com" class="icon"><i class="fa fa-envelope"></i></a>
+        <a href="mailto:lukas.vasadi@gmail.com"
+          ><i class="fa fa-envelope"></i
+        ></a>
+      </div>
+      <a href="javascript:void(0);" class="hamburger" onclick="menuDropdown()"
+        ><i class="fa fa-bars"></i
+      ></a>
+    </nav>
+    <div id="mobile-menu">
+      <a href="../about.html">About</a>
+      <a href="../tutorials.html">Tutorials</a>
+      <a href="lukas.vasadi@gmail.com" class="icon"
+        ><i class="fa fa-envelope"></i
+      ></a>
     </div>
-    <div class="title">
-        <h1 class="center">Building an Electron app with React</h1>
-        <h4 class="center">Last updated: June 2022</h4>
-    </div>
+    <header>
+      <h1 class="center">Building an Electron app with React</h1>
+      <h4 class="center">Last updated: June 2022</h4>
+    </header>
     <main>
-        <div class="toc">
-            <h2>Contents</h2>
-            <ul>
-                <li><a href="#intro">Introduction</a></li>
-                <li><a href="#setup">Setup</a></li>
-            </ul>
-        </div>
-        <article class="bash">
-            <section>
-                <h2 id="intro">Introduction</h2>
-                <p>
-                    This guide assumes some familiarity with modern JavaScript and Node.js. To install Node.js and its
-                    package manager (npm), follow the instructions from the <a href="./environment.html">environment
-                        setup tutorial</a>. Some installations will require the use of <span
-                        class="snippet">yarn</span>:
-                </p>
-                <div class="console">
-                    <p class="command">npm i --global yarn</p>
-                    <p class="comment"><span>confirm installation</span></p>
-                    <p class="command">yarn --version</p>
-                </div>
-                <p>
-                    The following tutorial is based on a <a
-                        href="https://www.youtube.com/watch?v=oAaS9ix8pes&t=132s">YouTube video</a> by Coding with
-                    Justin. The information has been condensed and, in some cases, clarified for a lay audience.
-                </p>
-                <p>
-                    Electron is a framework for creating desktop applications with web development tools, i.e.,
-                    JavaScript, HTML/CSS. It is developed and maintained by GitHub, and supports some of the most
-                    popular modern desktop applications, including Slack and VSCode. The frontend is rendered using the
-                    Chromium browser engine&mdash;the same engine powering Google Chrome&mdash;while the backend uses
-                    the Node.js JavaScript runtime environment.
-                </p>
-                <p>
-                    React is primarily a frontend JavaScript library, which was created by Facebook (Meta) in 2013. With
-                    React, developers build UI elements as "components," which maintain a state that can be controlled
-                    independent of the Document Object Manager (DOM), i.e., UI components can be updated individually,
-                    without refreshing the entire page. In my opinion, this is the most compelling reason to use React
-                    alonside Electron, especially when creating applications with high rendering demands, such as a
-                    video player.
-                </p>
-            </section>
-            <section>
-                <h2 id="setup">Setup</h2>
-                <p>
-                    Electron and React each require a dedicated process.
-                </p>
-                <p>
-                    To start, configure a React application with the <span class="snippet">create-react-app</span>
-                    command line tool:
-                </p>
-                <div class="console">
-                    <p class="command">npx create-react-app project-dirname</p>
-                </div>
-                <p>
-                    Navigate to the new project directory and install the dependencies needed to bridge Electron and
-                    React:
-                </p>
-                <div class="console">
-                    <p class="command">cd project-dirname</p>
-                    <p class="command">yarn add -D concurrently cross-env electron electron-builder electronmon wait-on
-                    </p>
-                </div>
-            </section>
-        </article>
+      <div class="toc">
+        <h2>Contents</h2>
+        <ul>
+          <li><a href="#intro">Introduction</a></li>
+          <li><a href="#setup">Setup</a></li>
+        </ul>
+      </div>
+      <article class="bash">
+        <section>
+          <h2 id="intro">Introduction</h2>
+          <p>
+            This guide assumes some familiarity with modern JavaScript and
+            Node.js. To install Node.js and its package manager (npm), follow
+            the instructions from the
+            <a href="./environment.html">environment setup tutorial</a>. Some
+            installations will require the use of
+            <span class="snippet">yarn</span>:
+          </p>
+          <div class="console">
+            <p class="command">npm i --global yarn</p>
+            <p class="comment"><span>confirm installation</span></p>
+            <p class="command">yarn --version</p>
+          </div>
+          <p>
+            The following tutorial is based on a
+            <a href="https://www.youtube.com/watch?v=oAaS9ix8pes&t=132s"
+              >YouTube video</a
+            >
+            by Coding with Justin. The information has been condensed and, in
+            some cases, clarified for a lay audience.
+          </p>
+          <p>
+            Electron is a framework for creating desktop applications with web
+            development tools, i.e., JavaScript, HTML/CSS. It is developed and
+            maintained by GitHub, and supports some of the most popular modern
+            desktop applications, including Slack and VSCode. The frontend is
+            rendered using the Chromium browser engine&mdash;the same engine
+            powering Google Chrome&mdash;while the backend uses the Node.js
+            JavaScript runtime environment.
+          </p>
+          <p>
+            React is primarily a frontend JavaScript library, which was created
+            by Facebook (Meta) in 2013. With React, developers build UI elements
+            as "components," which maintain a state that can be controlled
+            independent of the Document Object Manager (DOM), i.e., UI
+            components can be updated individually, without refreshing the
+            entire page. In my opinion, this is the most compelling reason to
+            use React alonside Electron, especially when creating applications
+            with high rendering demands, such as a video player.
+          </p>
+        </section>
+        <section>
+          <h2 id="setup">Setup</h2>
+          <p>Electron and React each require a dedicated process.</p>
+          <p>
+            To start, configure a React application with the
+            <span class="snippet">create-react-app</span>
+            command line tool:
+          </p>
+          <div class="console">
+            <p class="command">npx create-react-app project-dirname</p>
+          </div>
+          <p>
+            Navigate to the new project directory and install the dependencies
+            needed to bridge Electron and React:
+          </p>
+          <div class="console">
+            <p class="command">cd project-dirname</p>
+            <p class="command">
+              yarn add -D concurrently cross-env electron electron-builder
+              electronmon wait-on
+            </p>
+          </div>
+        </section>
+      </article>
     </main>
     <footer>
-        <p>Copyright &copy; 2022 Lukas Vasadi</p>
+      <p>Copyright &copy; 2022 Lukas Vasadi</p>
     </footer>
     <script src="../scripts/main.js"></script>
     <script src="../scripts/post.js"></script>
-</body>
-
+  </body>
 </html>
